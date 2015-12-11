@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 	#region Variables
 	// Typical player values.
 	int health = 20;
-	int attack = 5;
+	int strength = 5;
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
@@ -187,11 +187,27 @@ public class Player : MonoBehaviour
 	{
 		return isMoving;
 	}
+
+	public bool HasDied()
+	{
+		return (health == 0);
+	}
 	
 	// Returns current movement.
 	public int GetMovement()
 	{
 		return movement;
+	}
+
+	public int GetHealth()
+	{
+		return health;
+	}
+
+	// Return attack value
+	public int GetStrength()
+	{
+		return strength;
 	}
 	
 	// Returns the player's position in map space.

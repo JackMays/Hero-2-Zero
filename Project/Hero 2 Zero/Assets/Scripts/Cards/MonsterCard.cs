@@ -62,4 +62,9 @@ public class MonsterCard : Card{
 	{
 		return fameModifier;
 	}
+
+	public bool HasDied()
+	{
+		return (health == 0);
+	}
 }
