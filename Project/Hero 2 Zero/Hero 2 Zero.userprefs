@@ -1,0 +1,22 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cards\CardManager.cs" Line="215" Column="3" />
+      <File FileName="Assets\Scripts\Cards\ChoiceCard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Map.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Dice.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cards\GoldCard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cards\Card.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cards\MonsterCard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cards\FameCard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DiceManager.cs" Line="31" Column="45" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
