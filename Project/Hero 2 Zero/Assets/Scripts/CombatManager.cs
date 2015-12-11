@@ -27,6 +27,7 @@ public class CombatManager : MonoBehaviour {
 
 	void ResolveCombat()
 	{
+		// fuck
 		if (playerDiceRoll > monsterDiceRoll)
 		{
 			//player wins
