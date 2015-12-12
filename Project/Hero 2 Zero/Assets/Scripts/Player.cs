@@ -232,6 +232,8 @@ public class Player : MonoBehaviour
 	// Changes the fame based on passed value.
 	public void ChangeFame(int f)
 	{
+		Debug.Log("Fame has been changed by " + f + ". Fame was " + fame + ", and is now " + (fame + f));
+		
 		fame += f;
 	}
 	

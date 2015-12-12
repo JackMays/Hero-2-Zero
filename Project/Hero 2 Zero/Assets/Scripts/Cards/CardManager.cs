@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
 		Item,
 		Choice,
 		Teleport,
+		Health,
 		Monster
 	}
 
@@ -40,6 +41,13 @@ public class CardManager : MonoBehaviour
 	
 	// The current drawn card.
 	Card drawnCard;
+	
+	// Holds whether the player needs to make a choice.
+	bool makeChoice = false;
+	
+	// Holds the selected choice.
+	int chosenChoice = -1;
+	
 	#endregion
 	
 	// Use this for initialization
@@ -78,6 +86,16 @@ public class CardManager : MonoBehaviour
 		laneCards.Enqueue(new Card(0, "You find a stone and leave it.", 0));
 		
 		// Village Cards
+		
+		int[] c1E = new int[1] {1};
+		int[] c1T = new int[1] {0};
+		int[] c1V = new int[1] {10};
+		int[] c2E = new int[1] {1};
+		int[] c2T = new int[1] {0};
+		int[] c2V = new int[1] {-10};
+	
+		villageCards.Enqueue(new ChoiceCard("Gain 10 Fame", "Lose 10 Fame", c1E, c1T, c1V, c2E, c2T, c2V, 1, "Do you want Fame?", 4));
+		
 		villageCards.Enqueue(new Card(1, "You knock on someone's door and headbutt them when they answer.", 0));
 		villageCards.Enqueue(new Card(1, "You set someone's hut on fire. Pyromania YEAH.", 0));
 		villageCards.Enqueue(new Card(1, "You window shop as you wander the streets.", 0));
@@ -99,14 +117,14 @@ public class CardManager : MonoBehaviour
 		forestCards.Enqueue(new Card(3, "You climb a tree to get a good vantage point.", 0));
 		
 		// Mountain Cards
-		mountainCards.Enqueue(new Card(4, "You ride a mountain goat.", 4));
-		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 4));
-		mountainCards.Enqueue(new Card(4, "You shout at the mountain and cause an avalanche.", 4));
-		mountainCards.Enqueue(new Card(4, "You push an old lady down the slopes.", 4));
-		mountainCards.Enqueue(new Card(4, "You climb the mountain stairs and encounter a frost troll.", 4));
+		mountainCards.Enqueue(new Card(4, "You ride a mountain goat.", 0));
+		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 0));
+		mountainCards.Enqueue(new Card(4, "You shout at the mountain and cause an avalanche.", 0));
+		mountainCards.Enqueue(new Card(4, "You push an old lady down the slopes.", 0));
+		mountainCards.Enqueue(new Card(4, "You climb the mountain stairs and encounter a frost troll.", 0));
 
 		// Monster Cards; 5th img element and 6th type enum
-		monsterCards.Enqueue(new MonsterCard("Fucking Snowman",0, 10, 10, 10, 10, 5, "Monster!", 6));
+		monsterCards.Enqueue(new MonsterCard("Fucking Snowman",0, 10, 10, 10, 10, 5, "Monster!", 7));
 	}
 	
 	void LoadImages()
@@ -148,15 +166,10 @@ public class CardManager : MonoBehaviour
 			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = drawnCard.GetDescription();
 		}
 		
-
-		
 		// Checks if a choice card or not.
 		if ((Type)drawnCard.GetCardType () == Type.Choice) {
 			// Choice shit.
-			
-			// Shows the choices.
-			choice1.SetActive(true);
-			choice2.SetActive(true);
+			ShowChoices();
 		}
 		else {
 			// Hide the choices.
@@ -165,6 +178,76 @@ public class CardManager : MonoBehaviour
 		}
 		
 		cardObject.enabled = true;
+	}
+	
+	void ShowChoices()
+	{
+		// Casts the card as a choice card.
+		ChoiceCard c = (ChoiceCard)drawnCard;
+		
+		// Sets the text for both choices.
+		choice1.transform.GetChild(0).GetComponent<Text>().text = c.GetChoiceText(0);
+		choice2.transform.GetChild(0).GetComponent<Text>().text = c.GetChoiceText(1);
+		
+		// Sets that the player needs to make a choice.
+		makeChoice = true;
+		
+		// Resets selected choice.
+		chosenChoice = -1;
+		
+		// Show the choices.
+		choice1.SetActive(true);
+		choice2.SetActive(true);
+	}
+	
+	// Runs through the selected choice's effects and applies them.
+	public void CheckChoices(int currentPlayer, List<Player> players)
+	{
+		// Casts the drawn card as a choice card.
+		ChoiceCard c = (ChoiceCard)drawnCard;
+		
+		// Loops through the card's choices and applies the effects.
+		for (int i = 0; i < c.GetChoiceEffects(chosenChoice).GetLength(0); ++i) {
+			// Checks which type of effect to apply.
+			
+			// Checks if fame effect.
+			if ((Type)c.GetChoiceEffects(chosenChoice)[i] == Type.Fame) {
+				// Creates a fame card.
+				Debug.Log(c.GetChoiceValues(chosenChoice)[i]);
+				Debug.Log(c.GetChoiceTargets(chosenChoice)[i]);
+				drawnCard = new FameCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+			}
+			
+			// Applies the effect.
+			ApplyEffect(currentPlayer, players);
+		}
+		
+		makeChoice = false;
+	}
+	
+	// Sets the selected choice.
+	public void SetChosenChoice(int cho)
+	{
+		chosenChoice = cho;
+	}
+	
+	// Returns whether a choice needs to be made.
+	public bool NeedMakeChoice()
+	{
+		return makeChoice;
+	}
+	
+	// Returns whetehr the player has made a choice.
+	public bool HasMadeChoice()
+	{
+		// Checks if a choice has been selected.
+		if (chosenChoice != -1) {
+			// Returns that a choice has been made.
+			return true;
+		}
+		
+		// Returns that a choice hasn't been made.
+		return false;
 	}
 	
 	// Checks the card to see if it has an effect and then applies it.
@@ -199,9 +282,10 @@ public class CardManager : MonoBehaviour
 			else if (cardType == Type.Monster) {
 				BeginCombat();
 			}
-
 		}
 	}
+	
+	
 	
 	#region Card Effects
 	// Changes the fame value of selected player.

@@ -18,28 +18,36 @@ public class ChoiceCard : Card
 	int[] choice1Effects;
 	// Contains the targets of choice 1.
 	int[] choice1Targets;
+	// Contains the values of choice 1.
+	int[] choice1Values;
 	
 	// Contains the effects of choice 2.
 	int[] choice2Effects;
 	// Contains the targets of choice 2.
 	int[] choice2Targets;
+	// Contains the values of choice 2.
+	int[] choice2Values;
+	
+	
 	
 	#endregion
 	
 	// Constructor
-	public ChoiceCard(string c1, string c2, int[] c1E, int[] c1T,
-						int[] c2E, int[] c2T, int im, string de, int ty)
+	public ChoiceCard(string c1, string c2, int[] c1E, int[] c1T, int[] c1V, 
+						int[] c2E, int[] c2T, int[] c2V, int im, string de, int ty)
 						: base(im, de, ty)
 	{
 		// Sets the choice 1 values.
 		choice1Text = c1;
 		choice1Effects = c1E;
 		choice1Targets = c1T;
+		choice1Values = c1V;
 		
 		// Sets the choice 2 values.
 		choice2Text = c2;
 		choice2Effects = c2E;
 		choice2Targets = c2T;
+		choice2Values = c2V;
 	}
 	
 	// Returns the text for the given choice.
@@ -79,5 +87,18 @@ public class ChoiceCard : Card
 		
 		// Returns the targets for choice 2.
 		return choice2Targets;
+	}
+	
+	// Returns the values for the given choice.
+	public int[] GetChoiceValues(int c)
+	{
+		// Checks if the first choice is required.
+		if (c == 0) {
+			// Returns the values for choice 1.
+			return choice1Values;
+		}
+		
+		// Returns the values for choice 2.
+		return choice2Values;
 	}
 }

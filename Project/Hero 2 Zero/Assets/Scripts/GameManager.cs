@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 	// Holds whether the dice have been rolled.
 	bool diceRolled = false;
 	
+	
 	#endregion
 	
 	
@@ -127,13 +128,29 @@ public class GameManager : MonoBehaviour
 	{
 		// Checks if the card is already showing.
 		if (cardManager.IsShowingCard()) {
-			// Waits for the player to press the roll button to hide card and end turn.
-			if (Input.GetButtonDown(rollButton)) {
-				// Hides the card.
-				cardManager.HideCard();
+			// Checks if a choice need to be made.
+			if (cardManager.NeedMakeChoice()) {
+				// Checks if a choice has been made.
+				if (cardManager.HasMadeChoice()) {
+					// Applies the card choice effects.
+					cardManager.CheckChoices(currentPlayer, listPlayers);
+					
+					// Hides the card.
+					cardManager.HideCard();
+					
+					// Changes turn state to change players.
+					turnState = 3;
+				}
+			}
+			else {
+				// Waits for the player to press the roll button to hide card and end turn.
+				if (Input.GetButtonDown(rollButton)) {
+					// Hides the card.
+					cardManager.HideCard();
 				
-				// Changes turn state to change players.
-				turnState = 3;
+					// Changes turn state to change players.
+					turnState = 3;
+				}
 			}
 		}
 		else {
