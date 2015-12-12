@@ -181,6 +181,8 @@ public class Player : MonoBehaviour
 		// Sets that the player is now moving.
 		movingTile = true;
 	}
+
+
 	
 	// Returns whether the player is moving.
 	public bool GetMoving()
@@ -227,6 +229,15 @@ public class Player : MonoBehaviour
 	{
 		movement = move;
 		isMoving = true;
+	}
+
+	public void TakeDamage(int dmg)
+	{
+		health -= (dmg - defence);
+		if (health < 0)
+		{
+			health = 0;
+		}
 	}
 	
 	// Changes the fame based on passed value.

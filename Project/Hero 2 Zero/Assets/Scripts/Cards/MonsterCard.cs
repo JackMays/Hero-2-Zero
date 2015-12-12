@@ -67,4 +67,13 @@ public class MonsterCard : Card{
 	{
 		return (health == 0);
 	}
+
+	public void TakeDamage(int dmg)
+	{
+		health -= dmg;
+		if (health < 0)
+		{
+			health = 0;
+		}
+	}
 }

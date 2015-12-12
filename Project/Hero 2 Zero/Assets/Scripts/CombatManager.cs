@@ -27,14 +27,19 @@ public class CombatManager : MonoBehaviour {
 
 	void ResolveCombat()
 	{
+		int damage = 0;
 		// fuck
 		if (playerDiceRoll > monsterDiceRoll)
 		{
 			//player wins
+			damage = playerDiceRoll - monsterDiceRoll;
+			monster.TakeDamage(damage);
 		}
 		else if (playerDiceRoll < monsterDiceRoll)
 		{
 			// monster wins
+			damage = monsterDiceRoll - playerDiceRoll;
+			player.TakeDamage(damage);
 		}
 	
 		if (player.HasDied() || monster.HasDied())
