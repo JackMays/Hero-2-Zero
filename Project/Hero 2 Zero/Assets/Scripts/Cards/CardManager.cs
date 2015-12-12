@@ -44,6 +44,7 @@ public class CardManager : MonoBehaviour
 	
 	// Holds whether the player needs to make a choice.
 	bool makeChoice = false;
+	bool isMonsterDrawn = false;
 	
 	// Holds the selected choice.
 	int chosenChoice = -1;
@@ -150,14 +151,21 @@ public class CardManager : MonoBehaviour
 	{
 		// Gets the first card in the designated area queue.
 		drawnCard = DrawCard(area);
+		//TEST draw monster
+		//drawnCard = DrawCard(5);
+
+		// set isMonsterDrawn if a monster is drawn, false if it isnr
+		// Serves as a way to reset this boolean without additional functions or lines
+		isMonsterDrawn = ((Type)drawnCard.GetCardType() == Type.Monster);
 
 		// Sets the card image.
 		// TEMP change image and text to monster image, will make timed reveal soon
-		if ((Type)drawnCard.GetCardType() == Type.Monster)
+		if (isMonsterDrawn)
 		{
 			MonsterCard mc = (MonsterCard)drawnCard;
 			cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
 			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
+
 		}
 		else
 		{
@@ -230,7 +238,7 @@ public class CardManager : MonoBehaviour
 	{
 		chosenChoice = cho;
 	}
-	
+
 	// Returns whether a choice needs to be made.
 	public bool NeedMakeChoice()
 	{
@@ -248,6 +256,17 @@ public class CardManager : MonoBehaviour
 		
 		// Returns that a choice hasn't been made.
 		return false;
+	}
+
+	public bool HasMonEncountered()
+	{
+
+		return isMonsterDrawn;
+	}
+
+	public MonsterCard GetMonEncountered()
+	{
+		return (MonsterCard)drawnCard;
 	}
 	
 	// Checks the card to see if it has an effect and then applies it.
@@ -279,8 +298,9 @@ public class CardManager : MonoBehaviour
 			else if (cardType == Type.Teleport) {
 				TeleportPlayer(currentPlayer, players);
 			}
+			// Combat
 			else if (cardType == Type.Monster) {
-				BeginCombat();
+				TriggerEncounter();
 			}
 		}
 	}
@@ -341,10 +361,10 @@ public class CardManager : MonoBehaviour
 	{
 	
 	}
-
-	void BeginCombat()
+	// combat function for apply effect if brought back into use
+	void TriggerEncounter()
 	{
-
+		isMonsterDrawn = true;
 	}
 	
 	// Finds the players that the card will affect.

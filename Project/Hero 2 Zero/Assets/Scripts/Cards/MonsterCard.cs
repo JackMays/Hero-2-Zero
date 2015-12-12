@@ -71,6 +71,9 @@ public class MonsterCard : Card{
 	public void TakeDamage(int dmg)
 	{
 		health -= dmg;
+
+		Debug.Log ("Health: " + health);
+
 		if (health < 0)
 		{
 			health = 0;

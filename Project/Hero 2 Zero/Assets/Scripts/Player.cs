@@ -182,6 +182,12 @@ public class Player : MonoBehaviour
 		movingTile = true;
 	}
 
+	public void ReplenishHealth()
+	{
+		// TEMP: hea between combat to resume flow
+		health = 20;
+	}
+
 
 	
 	// Returns whether the player is moving.
@@ -233,7 +239,18 @@ public class Player : MonoBehaviour
 
 	public void TakeDamage(int dmg)
 	{
-		health -= (dmg - defence);
+		// because fuck defense making me sit for an hour rolling dice
+		// when it was eating all the damage
+		/*int modifiedDmg = dmg - defence;
+		if (modifiedDmg > 0)
+		{
+			health -= (dmg - defence);
+		}*/
+
+		health -= dmg;
+
+		Debug.Log ("Health: " + health);
+
 		if (health < 0)
 		{
 			health = 0;

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 	
 	// Reference to dice manager.
 	public DiceManager diceManager;
+
+	public CombatManager combatManager;
 	
 	// Number of players.
 	int numPlayers = 2;
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
 	// The order in which player's take their turns.
 	int[] turnOrder = new int[2] {0, 1};
 	
-	// State of player's turn. 0: Roll Dice | 1: Move Player | 2: Show Card | 3: Change player
+	// State of player's turn. 0: Roll Dice | 1: Move Player | 2: Show Card | 3: Change player | 4: Combat
 	int turnState = 0;
 	
 	// Button to roll the dice.
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
 	
 	// Holds whether the dice have been rolled.
 	bool diceRolled = false;
+	bool cmbPlayerRolled = false;
+	bool cmbBothRolled = false;
 	
 	
 	#endregion
@@ -86,6 +90,11 @@ public class GameManager : MonoBehaviour
 			
 			// Resets back to roll dice state.
 			turnState = 0;
+		}
+
+		else if (turnState == 4)
+		{
+			StateCombat();
 		}
 	}
 	
@@ -142,18 +151,30 @@ public class GameManager : MonoBehaviour
 					turnState = 3;
 				}
 			}
-			else {
+			else 
+			{
 				// Waits for the player to press the roll button to hide card and end turn.
-				if (Input.GetButtonDown(rollButton)) {
+				if (Input.GetButtonDown(rollButton)) 
+				{
 					// Hides the card.
 					cardManager.HideCard();
-				
-					// Changes turn state to change players.
-					turnState = 3;
+					// set up combat if a monster card is encountered
+					if (cardManager.HasMonEncountered())
+					{
+						combatManager.EstablishCombat(listPlayers[currentPlayer], cardManager.GetMonEncountered());
+						Debug.Log ("COMBAT BEGIN");
+						turnState = 4;
+					}
+					else
+					{
+						// Changes turn state to change players.
+						turnState = 3;
+					}
 				}
 			}
 		}
-		else {
+		else 
+		{
 			// Gets the player's grid position.
 			Vector2 playGrid = listPlayers[currentPlayer].GetPosition();
 			
@@ -162,6 +183,72 @@ public class GameManager : MonoBehaviour
 			
 			// Shows the first card from the coresponding deck.
 			cardManager.DisplayCard(tileType);
+		}
+	}
+
+	void StateCombat()
+	{
+		if (!combatManager.HasCombatEnded())
+		{
+			// roll until both combatants are rolled
+			if (!cmbBothRolled)
+			{
+				// Checks if the dice have been rolled and if they have stopped.
+				if (diceRolled && !diceManager.IsRolling()) 
+				{					
+					// Resets dice rolled.
+					diceRolled = false;
+
+					if (!cmbPlayerRolled)
+					{
+						Debug.Log ("Player Rolled: " + diceManager.GetDiceResults());
+						combatManager.SetPlayerDiceRoll(diceManager.GetDiceResults());
+						cmbPlayerRolled = true;
+					}
+					else
+					{
+						Debug.Log ("Monster Rolled: " + diceManager.GetDiceResults());
+						combatManager.SetMonsterDiceRoll(diceManager.GetDiceResults());
+						cmbBothRolled = true;
+					}
+
+
+				}
+				else if (diceRolled == false) {
+					// Waits for the player to roll the dice.
+					if (Input.GetButtonDown(rollButton)) {
+						// Rolls the dice and sets to wait for result.
+						diceManager.RollDice();
+						diceRolled = true;
+					}
+				}
+			}
+			else
+			{
+				// if both dice are rolled ask for a resolve then wait for the flag from combatManager
+				if (combatManager.HasRoundResolved())
+				{
+					cmbPlayerRolled = false;
+					cmbBothRolled = false;
+					combatManager.ResetRound();
+					Debug.Log ("should reset round now");
+				}
+				else
+				{
+					combatManager.ResolveCombat();
+				}
+			}
+
+		}
+		else
+		{
+			combatManager.ResetCombat();
+			cmbPlayerRolled = false;
+			cmbBothRolled = false;
+			// change players
+			turnState = 3;
+
+			Debug.Log ("Combat Over");
 		}
 	}
 	
