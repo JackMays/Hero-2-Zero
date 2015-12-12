@@ -20,7 +20,9 @@
 
 
 # Unity3D generated meta files
-/Project/Hero 2 Zero/*.pidb.meta
+*.pidb.meta
+*.meta
 
 # Unity3D Generated File On Crash Reports
 /Project/Hero 2 Zero/sysinfo.txt
+
