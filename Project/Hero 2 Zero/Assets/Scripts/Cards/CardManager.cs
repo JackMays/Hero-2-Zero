@@ -151,10 +151,8 @@ public class CardManager : MonoBehaviour
 	{
 		// Gets the first card in the designated area queue.
 		drawnCard = DrawCard(area);
-		//TEST draw monster
-		//drawnCard = DrawCard(5);
 
-		// set isMonsterDrawn if a monster is drawn, false if it isnr
+		// Set isMonsterDrawn if a monster is drawn, false if it isnr
 		// Serves as a way to reset this boolean without additional functions or lines
 		isMonsterDrawn = ((Type)drawnCard.GetCardType() == Type.Monster);
 
@@ -165,7 +163,6 @@ public class CardManager : MonoBehaviour
 			MonsterCard mc = (MonsterCard)drawnCard;
 			cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
 			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
-
 		}
 		else
 		{
@@ -218,13 +215,46 @@ public class CardManager : MonoBehaviour
 		for (int i = 0; i < c.GetChoiceEffects(chosenChoice).GetLength(0); ++i) {
 			// Checks which type of effect to apply.
 			
+			// Gets the effect type.
+			Type t = (Type)c.GetChoiceEffects(chosenChoice)[i];
+			
 			// Checks if fame effect.
-			if ((Type)c.GetChoiceEffects(chosenChoice)[i] == Type.Fame) {
+			if (t == Type.Fame) {
 				// Creates a fame card.
-				Debug.Log(c.GetChoiceValues(chosenChoice)[i]);
-				Debug.Log(c.GetChoiceTargets(chosenChoice)[i]);
 				drawnCard = new FameCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
+			
+			// Checks if a gold effect.
+			else if (t == Type.Gold) {
+				// Creates a gold card.
+				drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+			}
+			
+			// Checks if an item effect.
+			else if (t == Type.Item) {
+				// Creates a item card.
+				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+			}
+			
+			// Checks if a Teleport effect.
+			else if (t == Type.Teleport) {
+				// Creates a teleport card.
+				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+			}
+			
+			// Checks if a health effect.
+			else if (t == Type.Health) {
+				// Creates a health card.
+				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+			}
+			
+			// Checks if a monster effect.
+			else if (t == Type.Monster) {
+				// Creates a monster card.
+				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+			}
+			
+			
 			
 			// Applies the effect.
 			ApplyEffect(currentPlayer, players);
