@@ -1,0 +1,7 @@
+NEW CARD
+Type : 1
+Area : 1
+Image : 1
+Description : 
+Value : 10
+Target : 0

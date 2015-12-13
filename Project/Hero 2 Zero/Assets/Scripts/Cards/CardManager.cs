@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.IO;
 
 public class CardManager : MonoBehaviour
 {
@@ -71,6 +72,7 @@ public class CardManager : MonoBehaviour
 		
 		// Creates the cards.
 		CreateCards ();
+		//ReadCards();
 		
 		// Loads the images.
 		LoadImages();
@@ -126,6 +128,172 @@ public class CardManager : MonoBehaviour
 
 		// Monster Cards; 5th img element and 6th type enum
 		monsterCards.Enqueue(new MonsterCard("Fucking Snowman",0, 10, 10, 10, 10, 5, "Monster!", 7));
+	}
+	
+	void DebugList()
+	{
+		for (int i = 0; i < 6; ++i) {
+			for (int j = 0; j < cardList[i].Count; ++j) {
+				Debug.Log (cardList[i].Dequeue());
+			}
+		}
+	}
+	
+	// Reads through all the cards in the file and adds them to the decks.
+	List<Card> ReadCards()
+	{
+		// Opens the card file.
+		StreamReader strm = new StreamReader("Assets/Resources/Cards.txt");
+		
+		// Holds the list of cards to return.
+		List<Card> cards = new List<Card>();
+		
+		// Reads the first line.
+		string text = strm.ReadLine();
+		
+		// Loops while there is still a card.
+		while (text == "NEW CARD") {
+			// Reads in the type of card.
+			string type = strm.ReadLine();
+			// Cuts the title from the line.
+			type = type.Replace(" ", "");
+			type = type.Substring(type.IndexOf(":") + 1);
+			
+			// Reads in the card's area.
+			string a = strm.ReadLine();
+			// Cuts the title from the line.
+			a = a.Replace(" ", "");
+			a = a.Substring(a.IndexOf(":") + 1);
+			// Converts the string to an int.
+			int area = int.Parse(a);
+			
+			// Creates a card for the given type.
+			Card c = CreateCardFromType(strm, int.Parse(type));
+			
+			// Adds the card to the corresponding deck.
+			AddCardToDeck(c, area);
+			
+			// Reads in the next line to see if there is another card.
+			text = strm.ReadLine();
+		}
+		
+		// Returns the list of cards.
+		return cards;
+	}
+	
+	
+	
+	// Uses the given type to create a card.
+	Card CreateCardFromType(StreamReader strm, int type)
+	{
+		// Reads in the card's image.
+		string value = strm.ReadLine();
+		// Cuts the title from the line.
+		value = value.Replace(" ", "");
+		value = value.Substring(value.IndexOf(":") + 1);
+		// Converts the string to an int.
+		int i = int.Parse(value);
+		
+		// Reads in the card's description.
+		value = strm.ReadLine();
+		// Cuts the title from the line.
+		value = value.Replace(" ", "");
+		string d = value.Substring(value.IndexOf(":") + 1);
+
+	
+		// Holds the card.
+		Card c = new Card(0, "", 0);
+	
+		// Checks if a blank card.
+		if (type == 0) {			
+			// Creates a new card.
+			return new Card(i, d, type);
+		}
+		
+		// Checks if a fame, gold or health card.
+		if (type == 1 || type == 2 || type == 6) {
+			// Reads in the change value.
+			value = strm.ReadLine();
+			// Cuts the title from the line.
+			value = value.Replace(" ", "");
+			value = value.Substring(value.IndexOf(":") + 1);
+			// Converts the string to an int.
+			int v = int.Parse(value);
+			
+			// Reads in the target.
+			value = strm.ReadLine();
+			// Cuts the title from the line.
+			value = value.Replace(" ", "");
+			value = value.Substring(value.IndexOf(":") + 1);
+			// Converts the string to an int.
+			int t = int.Parse(value);
+			
+			// Checks if a fame card.
+			if (type == 1) {
+				// Creates a new card.
+				return new FameCard(v, t, i, d, type);
+			}
+			// Checks if a gold card.
+			else if (type == 2) {
+				// Creates a new card.
+				return new GoldCard(v, t, i, d, type);
+			}
+			// Health card.
+			else {
+				// Creates a new card.
+				return new DamageCard(v, t, i, d, type);
+			}
+		}
+		
+		// Checks if an item card.
+		if (type == 3) {
+		
+		}
+		
+		// Checks if a choice card.
+		if (type == 4) {
+		
+		}
+		
+		// Checks if a teleport card.
+		if (type == 5) {
+		
+		}
+		
+		return new Card(0,"",0);
+	}
+	
+	// Adds the card to the deck corresponding with the given area.
+	void AddCardToDeck(Card c, int area)
+	{
+		// Checks which area the card appears in.
+		switch (area) {
+			// Lane.
+			case 0:
+				laneCards.Enqueue(c);
+				break;
+			// Village.
+			case 1:
+				villageCards.Enqueue(c);
+				break;
+			// Field.
+			case 2:
+				fieldCards.Enqueue(c);
+				break;
+			// Forest.
+			case 3:
+				forestCards.Enqueue(c);
+				break;
+			// Mountain.
+			case 4:
+				mountainCards.Enqueue(c);
+				break;
+			// Monster.
+			case 5:
+				monsterCards.Enqueue(c);
+				break;		
+		}
+	
 	}
 	
 	void LoadImages()
@@ -467,6 +635,10 @@ public class CardManager : MonoBehaviour
 			List<Player> plays = new List<Player>() {GameObject.Find("Totem").GetComponent<Player>(), GameObject.Find("Totem_Horned").GetComponent<Player>()};
 			
 			ApplyEffect(0, plays);
+		}
+		
+		if (Input.GetKeyDown(KeyCode.S)) {
+			DebugList ();
 		}
 	}
 }
