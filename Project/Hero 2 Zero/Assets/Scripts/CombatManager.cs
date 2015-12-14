@@ -60,18 +60,21 @@ public class CombatManager : MonoBehaviour {
 		{
 			// end combat
 			isCombatEnded = true;
-			player.ReplenishHealth();
 
 			if (player.HasDied())
 			{
 				// remove player for allotted turns, place monster card at area
+				// Also decrease fame
+				player.HandleDeath(monster.GetFameMod());
 				Debug.Log ("Player's HP hit 0");
 			}
 			else if (monster.HasDied())
 			{
 				// Remove Card from area
 				Debug.Log ("Monster's HP hit 0");
+				player.ChangeFame(monster.GetFameMod());
 			}
+
 		}
 		else
 		{

@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
+
+	int turnSkipCap = 3;
+	int turnSkipCount;
 	
 	// The direction the player is moving in. 0 : up | 1 : right | 2 : down | 3 : left (Public because lazy).
 	public int direction = 0;
@@ -44,9 +47,9 @@ public class Player : MonoBehaviour
 	#endregion
 	
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
-	
+		turnSkipCount = turnSkipCap;
 	}
 	
 	// Moves the player over time to the target space.
@@ -182,10 +185,10 @@ public class Player : MonoBehaviour
 		movingTile = true;
 	}
 
-	public void ReplenishHealth()
+	public void ReplenishHealth(int hp)
 	{
 		// TEMP: hea between combat to resume flow
-		health = 20;
+		health = hp;
 	}
 
 
@@ -199,6 +202,21 @@ public class Player : MonoBehaviour
 	public bool HasDied()
 	{
 		return (health == 0);
+	}
+
+	public bool HasSkippedTurns()
+	{
+		if (turnSkipCount < turnSkipCap)
+		{
+
+			++turnSkipCount;
+			return false;
+		}
+		else
+		{
+			ReplenishHealth(20);
+			return true;
+		}
 	}
 	
 	// Returns current movement.
@@ -255,6 +273,12 @@ public class Player : MonoBehaviour
 		{
 			health = 0;
 		}
+	}
+
+	public void HandleDeath(int floss)
+	{
+		turnSkipCount = 0;
+		ChangeFame(-floss);
 	}
 	
 	// Changes the fame based on passed value.

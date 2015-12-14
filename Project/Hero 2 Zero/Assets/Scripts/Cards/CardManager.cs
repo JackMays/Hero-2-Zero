@@ -46,6 +46,7 @@ public class CardManager : MonoBehaviour
 	// Holds whether the player needs to make a choice.
 	bool makeChoice = false;
 	bool isMonsterDrawn = false;
+	bool isMonsterRevealed = false;
 	
 	// Holds the selected choice.
 	int chosenChoice = -1;
@@ -323,21 +324,11 @@ public class CardManager : MonoBehaviour
 		// Set isMonsterDrawn if a monster is drawn, false if it isnr
 		// Serves as a way to reset this boolean without additional functions or lines
 		isMonsterDrawn = ((Type)drawnCard.GetCardType() == Type.Monster);
-
-		// Sets the card image.
-		// TEMP change image and text to monster image, will make timed reveal soon
-		if (isMonsterDrawn)
-		{
-			MonsterCard mc = (MonsterCard)drawnCard;
-			cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
-			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
-		}
-		else
-		{
-			cardObject.transform.GetChild(1).GetComponent<Image>().sprite = imageList[drawnCard.GetImageIndex()];
-			// Changes the card description.
-			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = drawnCard.GetDescription();
-		}
+		
+		cardObject.transform.GetChild(1).GetComponent<Image>().sprite = imageList[drawnCard.GetImageIndex()];
+		// Changes the card description.
+		cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = drawnCard.GetDescription();
+		
 		
 		// Checks if a choice card or not.
 		if ((Type)drawnCard.GetCardType () == Type.Choice) {
@@ -460,6 +451,11 @@ public class CardManager : MonoBehaviour
 	{
 
 		return isMonsterDrawn;
+	}
+
+	public bool HasMonRevealed()
+	{
+		return isMonsterRevealed;
 	}
 
 	public MonsterCard GetMonEncountered()
@@ -624,6 +620,20 @@ public class CardManager : MonoBehaviour
 	public void HideCard()
 	{
 		cardObject.enabled = false;
+	}
+
+	public void RevealMonCard()
+	{
+		MonsterCard mc = (MonsterCard)drawnCard;
+		cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
+		cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
+		isMonsterRevealed = true;
+	}
+
+	public void ResetMonsterFlags()
+	{
+		isMonsterDrawn = false;
+		isMonsterRevealed = false;
 	}
 	
 	// Update is called once per frame

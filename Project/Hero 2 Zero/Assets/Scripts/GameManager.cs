@@ -73,7 +73,16 @@ public class GameManager : MonoBehaviour
 	{
 		// Rolling the dice stage.
 		if (turnState == 0) {
-			StateRollDice();
+
+			if (listPlayers[currentPlayer].HasSkippedTurns())
+			{
+				StateRollDice();
+			}
+			else
+			{
+				Debug.Log ("Skipped Player" + (currentPlayer + 1));
+				turnState = 3;
+			}
 		}
 		// Moving the player stage.
 		else if (turnState == 1) {
@@ -156,17 +165,26 @@ public class GameManager : MonoBehaviour
 				// Waits for the player to press the roll button to hide card and end turn.
 				if (Input.GetButtonDown(rollButton)) 
 				{
-					// Hides the card.
-					cardManager.HideCard();
+
 					// set up combat if a monster card is encountered
 					if (cardManager.HasMonEncountered())
 					{
-						combatManager.EstablishCombat(listPlayers[currentPlayer], cardManager.GetMonEncountered());
-						Debug.Log ("COMBAT BEGIN");
-						turnState = 4;
+						if (cardManager.HasMonRevealed())
+						{
+							combatManager.EstablishCombat(listPlayers[currentPlayer], cardManager.GetMonEncountered());
+							Debug.Log ("COMBAT BEGIN");
+							turnState = 4;
+							cardManager.HideCard();
+						}
+						else
+						{
+							cardManager.RevealMonCard();
+						}
 					}
 					else
 					{
+						// Hides the card.
+						cardManager.HideCard();
 						// Changes turn state to change players.
 						turnState = 3;
 					}
