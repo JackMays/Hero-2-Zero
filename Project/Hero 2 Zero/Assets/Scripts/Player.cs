@@ -278,7 +278,7 @@ public class Player : MonoBehaviour
 	public void HandleDeath(int floss)
 	{
 		turnSkipCount = 0;
-		ChangeFame(-floss);
+		ChangeFame(floss);
 	}
 	
 	// Changes the fame based on passed value.
@@ -303,7 +303,6 @@ public class Player : MonoBehaviour
 				// Finds the next tile for the player to move to.
 				MoveTile();
 			}
-			
 		}
 	}
 }

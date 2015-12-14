@@ -165,7 +165,6 @@ public class GameManager : MonoBehaviour
 				// Waits for the player to press the roll button to hide card and end turn.
 				if (Input.GetButtonDown(rollButton)) 
 				{
-
 					// set up combat if a monster card is encountered
 					if (cardManager.HasMonEncountered())
 					{
@@ -175,6 +174,7 @@ public class GameManager : MonoBehaviour
 							Debug.Log ("COMBAT BEGIN");
 							turnState = 4;
 							cardManager.HideCard();
+							cardManager.ResetMonsterFlags();
 						}
 						else
 						{
@@ -265,6 +265,8 @@ public class GameManager : MonoBehaviour
 			cmbBothRolled = false;
 			// change players
 			turnState = 3;
+			
+			cardManager.HideMonsterCard();
 
 			Debug.Log ("Combat Over");
 		}

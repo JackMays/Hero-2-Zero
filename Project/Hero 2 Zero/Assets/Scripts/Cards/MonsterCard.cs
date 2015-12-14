@@ -74,7 +74,12 @@ public class MonsterCard : Card
 
 	public int GetFameMod(bool gain)
 	{
-		return (gain) ? fameGain : fameLose;
+		if (gain) {
+			return fameGain;
+		}
+		else {
+			return fameLose;
+		}
 	}
 
 	public bool HasDied()
