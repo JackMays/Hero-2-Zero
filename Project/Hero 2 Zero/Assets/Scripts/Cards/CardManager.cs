@@ -32,6 +32,7 @@ public class CardManager : MonoBehaviour
 	
 	// The physical card to be displayed to the player
 	public Canvas cardObject;
+	public Canvas monsterCardObject;
 	// The buttons on the card.
 	GameObject choice1;
 	GameObject choice2;
@@ -69,6 +70,7 @@ public class CardManager : MonoBehaviour
 		
 		// Hides the card.
 		cardObject.enabled = false;
+		monsterCardObject.enabled = false;
 		
 		// Creates the cards.
 		CreateCards ();
@@ -127,9 +129,10 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new Card(4, "You climb the mountain stairs and encounter a frost troll.", 0));
 
 		// Monster Cards; 5th img element and 6th type enum
-		monsterCards.Enqueue(new MonsterCard("Fucking Snowman",0, 10, 10, 10, 10, 5, "Monster!", 7));
+		monsterCards.Enqueue(new MonsterCard("Fucking Snowman",0, 10, 10, 2, 10, 10, -10, 5, "Monster!", 7));
 	}
 	
+	#region READING CARDS
 	void DebugList()
 	{
 		for (int i = 0; i < 6; ++i) {
@@ -296,6 +299,8 @@ public class CardManager : MonoBehaviour
 	
 	}
 	
+	#endregion
+	
 	void LoadImages()
 	{
 	
@@ -328,16 +333,24 @@ public class CardManager : MonoBehaviour
 		// TEMP change image and text to monster image, will make timed reveal soon
 		if (isMonsterDrawn)
 		{
-			MonsterCard mc = (MonsterCard)drawnCard;
-			cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
-			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
+			// Sets the monster card up and shows it.
+			DisplayMonsterCard();
 		}
 		else
 		{
-			cardObject.transform.GetChild(1).GetComponent<Image>().sprite = imageList[drawnCard.GetImageIndex()];
-			// Changes the card description.
-			cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = drawnCard.GetDescription();
+			// Sets teh card up and shows it.
+			DisplayNormalCard();
 		}
+	}
+	
+	// Shows the normal card and updates its values.
+	void DisplayNormalCard()
+	{
+		// Sets the card's image.
+		cardObject.transform.GetChild(1).GetComponent<Image>().sprite = imageList[drawnCard.GetImageIndex()];
+		
+		// Changes the card description.
+		cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = drawnCard.GetDescription();
 		
 		// Checks if a choice card or not.
 		if ((Type)drawnCard.GetCardType () == Type.Choice) {
@@ -350,7 +363,36 @@ public class CardManager : MonoBehaviour
 			choice2.SetActive(false);
 		}
 		
+		// Shows the card.
 		cardObject.enabled = true;
+	}
+	
+	// Shows the monster card and updates its values.
+	void DisplayMonsterCard()
+	{
+		// Casts the drawn card as a monster card.
+		MonsterCard mon = (MonsterCard)drawnCard;
+		
+		// Sets the card's image.
+		monsterCardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[mon.GetMonImg()];
+		
+		// Sets the card's name.
+		monsterCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mon.GetName();
+		// Sets the card's attack.
+		monsterCardObject.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = mon.GetStrength().ToString();
+		// Sets the card's health.
+		monsterCardObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = mon.GetHealth().ToString();
+		// Sets the card's defense.
+		monsterCardObject.transform.GetChild(5).GetChild(1).GetComponent<Text>().text = mon.GetDefense().ToString();
+		// Sets the card's fame gain.
+		monsterCardObject.transform.GetChild(6).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(true).ToString();
+		// Sets the card's fame loss.
+		monsterCardObject.transform.GetChild(7).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(false).ToString();
+		// Sets the card's gold gain.
+		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
+		
+		// Shows the monster card.
+		monsterCardObject.enabled = true;
 	}
 	
 	void ShowChoices()
@@ -401,28 +443,26 @@ public class CardManager : MonoBehaviour
 			// Checks if an item effect.
 			else if (t == Type.Item) {
 				// Creates a item card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				//drawnCard = new ItemCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
 			
 			// Checks if a Teleport effect.
 			else if (t == Type.Teleport) {
 				// Creates a teleport card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				//drawnCard = new TelportCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
 			
 			// Checks if a health effect.
 			else if (t == Type.Health) {
 				// Creates a health card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				//drawnCard = new DamageCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
 			
 			// Checks if a monster effect.
 			else if (t == Type.Monster) {
 				// Creates a monster card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				//drawnCard = new MonsterCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
-			
-			
 			
 			// Applies the effect.
 			ApplyEffect(currentPlayer, players);

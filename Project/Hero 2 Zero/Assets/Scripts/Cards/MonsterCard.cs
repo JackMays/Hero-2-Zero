@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterCard : Card{
-
+public class MonsterCard : Card
+{
+	#region Variables
+	
 	int monsterImgIndex;
 
 	string name = "";
 
 	int health = 0;
 	int strength = 0;
+	int defense = 0;
 	int goldVictoryGain = 0;
-	int fameModifier = 0;
+	int fameGain = 0;
+	int fameLose = 0;
+	
+	#endregion
 
 	// Use this for initialization
-	public MonsterCard (string nm, int monIm, int hp, int str, int gain, int famod, int im, string de, int ty) : base (im, de, ty)
+	public MonsterCard (string nm, int monIm, int hp, int str, int def, int gain, int faga, int falo, int im, string de, int ty) : base (im, de, ty)
 	{
 		name = nm;
 
@@ -24,10 +30,13 @@ public class MonsterCard : Card{
 		health = hp;
 		// Attack strength
 		strength = str;
+		// Defense.
+		defense = def;
 		// gold earned on a win
 		goldVictoryGain = gain;
 		// Fame/glory given or taken away
-		fameModifier = famod;
+		fameGain = faga;
+		fameLose = falo;
 		
 
 	}
@@ -52,15 +61,20 @@ public class MonsterCard : Card{
 	{
 		return strength;
 	}
+	
+	public int GetDefense()
+	{
+		return defense;
+	}
 
 	public int GetVictoryGold()
 	{
 		return goldVictoryGain;
 	}
 
-	public int GetFameMod()
+	public int GetFameMod(bool gain)
 	{
-		return fameModifier;
+		return (gain) ? fameGain : fameLose;
 	}
 
 	public bool HasDied()

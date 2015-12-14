@@ -42,6 +42,9 @@ public class CardCreator : MonoBehaviour
 	// The list of targets.
 	public List<Toggle> targetToggles;
 	
+	// The target panel.
+	public GameObject targetPanel;
+	
 	// Current target of the card.
 	int target = 0;
 	#endregion
@@ -141,6 +144,9 @@ public class CardCreator : MonoBehaviour
 			
 			// Shows the fame/gold/health panel.
 			FGHPanel.SetActive(true);
+			
+			// Shows the target panel.
+			targetPanel.SetActive(true);
 		}
 		else {
 			HideExtraPanels();
@@ -152,6 +158,9 @@ public class CardCreator : MonoBehaviour
 	{
 		// Hides the fame/gold/health extra options.
 		FGHPanel.SetActive(false);
+		
+		// Hides the target panel.
+		targetPanel.SetActive(false);
 	}
 	
 	// Sets the chosen target and deselects the previous.
@@ -164,7 +173,7 @@ public class CardCreator : MonoBehaviour
 		target = t;
 	}
 	
-	// Saves the current card in a readbale format to be used in the main game.
+	// Saves the current card in a readable format to be used in the main game.
 	public void SaveCard()
 	{
 		// Holds the cards details.
