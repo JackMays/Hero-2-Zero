@@ -22,6 +22,26 @@ public class Map : MonoBehaviour
 		{2, 0, 4, 3, 2, 0, 4},
 		{1, 6, 5, 0, 1, 6, 5}
 	};
+
+	MonsterCard[,] tiledMonsterCards = new MonsterCard[7,7] {
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null}
+	};
+
+	/*bool[,] monsteredTiles = new bool[7,7] {
+		{false, false, false, false, false, false, false},
+		{false, false, false, false, false, false, false},
+		{false, false, false, false, false, false, false},
+		{false, false, false, false, false, false, false},
+		{false, false, false, false, false, false, false},
+		{false, false, false, false, false, false, false},
+		{false, false, false, false, false, false, false}
+	};*/
 	
 	// Parent of all map tiles.
 	public GameObject mapParent;
@@ -79,6 +99,16 @@ public class Map : MonoBehaviour
 		// Changes the colour of the tile to change type.
 		g.GetComponent<Renderer>().material = mats[value-1];
 	}
+
+	public void AddMonsterToTile(int i, int j, MonsterCard mon)
+	{
+		tiledMonsterCards[i, j] = mon;
+	}
+
+	/*public void AddMonsteredFlag(int i, int j)
+	{
+		monsteredTiles[i, j] = true;
+	}*/
 	
 	// Returns teh value of the requested tile.
 	public int GetTile(int i, int j)
@@ -91,6 +121,28 @@ public class Map : MonoBehaviour
 		// Return's the tile value.
 		return map[i,j];
 	}
+
+	public MonsterCard GetMonsterOnTile(int i, int j)
+	{
+		// Checks if the tile isn't out of bounds.
+		if (i < 0 || j < 0 || i >= map.GetLength(0) || j >= map.GetLength(1)) {
+			return null;
+		}
+		
+		// Return's the tile value.
+		return tiledMonsterCards[i, j];
+	}
+
+	/*public bool HasTileBeenMonstered(int i, int j)
+	{
+		// Checks if the tile isn't out of bounds.
+		if (i < 0 || j < 0 || i >= map.GetLength(0) || j >= map.GetLength(1)) {
+			return false;
+		}
+		
+		// Return's the tile value.
+		return monsteredTiles[i, j];
+	}*/
 	
 	// Update is called once per frame
 	void Update ()

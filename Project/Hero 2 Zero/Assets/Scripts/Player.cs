@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 	public Map map;
 	
 	// Player's position in map coordinates. (Public for now cause I'm lazy.)
-	public Vector2 position = new Vector2(0,0);
+	public Vector2 mapPosition = new Vector2(0,0);
 	
 	// Holds whetehr the player is currently moving.
 	bool isMoving = false;
@@ -91,24 +91,24 @@ public class Player : MonoBehaviour
 		// Checks if the player needs to look up/down or left/right.
 		if (checkForward) {
 			// Checks if the tile below is viable.
-			if (map.GetTile((int)position.x, (int)position.y - 1) != 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y - 1) != 0) {
 				direction = 2;
 				transform.LookAt(transform.position + Vector3.back);
 			}
 			// Checks if the tile above is viable.
-			if (map.GetTile((int)position.x, (int)position.y + 1) != 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y + 1) != 0) {
 				direction = 0;
 				transform.LookAt(transform.position + Vector3.forward);
 			}
 		}
 		else {
 			// Checks if the tile to the left is viable.
-			if (map.GetTile((int)position.x - 1, (int)position.y) != 0) {
+			if (map.GetTile((int)mapPosition.x - 1, (int)mapPosition.y) != 0) {
 				direction = 3;
 				transform.LookAt(transform.position + Vector3.left);
 			}
 			// Checks if the tile to the right is viable.
-			if (map.GetTile((int)position.x + 1, (int)position.y) != 0) {
+			if (map.GetTile((int)mapPosition.x + 1, (int)mapPosition.y) != 0) {
 				direction = 1;
 				transform.LookAt(transform.position + Vector3.right);
 			}
@@ -123,22 +123,22 @@ public class Player : MonoBehaviour
 		// a valid target. Otherwise the player needs to change direction clockwise.
 		
 		if (direction == 0) {
-			if (map.GetTile((int)position.x, (int)position.y + 1) == 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y + 1) == 0) {
 				ChangeDirection(false);
 			}
 		}
 		else if (direction == 1) {
-			if (map.GetTile((int)position.x + 1, (int)position.y) == 0) {
+			if (map.GetTile((int)mapPosition.x + 1, (int)mapPosition.y) == 0) {
 				ChangeDirection(true);
 			}
 		}
 		else if (direction == 2) {
-			if (map.GetTile((int)position.x, (int)position.y - 1) == 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y - 1) == 0) {
 				ChangeDirection(false);
 			}
 		}
 		else if (direction == 3) {
-			if (map.GetTile((int)position.x - 1, (int)position.y) == 0) {
+			if (map.GetTile((int)mapPosition.x - 1, (int)mapPosition.y) == 0) {
 				ChangeDirection(true);
 			}
 		}
@@ -152,20 +152,20 @@ public class Player : MonoBehaviour
 		// the player's map position.
 	
 		if (direction == 0) {
-			moveTarget = new Vector3(2 * position.x, transform.position.y, 2 * (position.y+1));
-			position.y += 1;
+			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (mapPosition.y+1));
+			mapPosition.y += 1;
 		}
 		else if (direction == 1) {
-			moveTarget = new Vector3(2 * (position.x+1), transform.position.y, 2 * position.y);
-			position.x += 1;
+			moveTarget = new Vector3(2 * (mapPosition.x+1), transform.position.y, 2 * mapPosition.y);
+			mapPosition.x += 1;
 		}
 		else if (direction == 2) {
-			moveTarget = new Vector3(2 * position.x, transform.position.y, 2 * (position.y-1));
-			position.y -= 1;
+			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (mapPosition.y-1));
+			mapPosition.y -= 1;
 		}
 		else if (direction == 3) {
-			moveTarget = new Vector3(2 * (position.x-1), transform.position.y, 2 * position.y);
-			position.x -= 1;
+			moveTarget = new Vector3(2 * (mapPosition.x-1), transform.position.y, 2 * mapPosition.y);
+			mapPosition.x -= 1;
 		}
 	}
 	
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
 	void MoveTile()
 	{
 		// Stores the current position in 3D space.
-		startJumpPosition = new Vector3(2 * position.x, transform.position.y, 2 * position.y);
+		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 2 * mapPosition.y);
 		
 		// Find the direction the player needs to move in.
 		FindDirection ();
@@ -237,9 +237,9 @@ public class Player : MonoBehaviour
 	}
 	
 	// Returns the player's position in map space.
-	public Vector2 GetPosition()
+	public Vector2 GetMapPosition()
 	{
-		return position;
+		return mapPosition;
 	}
 	
 	// Sets whether the player is moving.

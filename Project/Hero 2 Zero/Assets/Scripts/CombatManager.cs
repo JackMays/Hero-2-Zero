@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour {
 
+	public Map map;
+
 	Player player;
 
 	MonsterCard monster;
@@ -63,9 +65,17 @@ public class CombatManager : MonoBehaviour {
 
 			if (player.HasDied())
 			{
+				int tileX = (int)player.GetMapPosition().x;
+				int tileY = (int)player.GetMapPosition().y;
+
+				map.AddMonsterToTile(tileX, tileY, monster);
+
+				Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now.");
+
 				// remove player for allotted turns, place monster card at area
 				// Also decrease fame
 				player.HandleDeath(monster.GetFameMod(false));
+
 				Debug.Log ("Player's HP hit 0");
 			}
 			else if (monster.HasDied())

@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
 		else 
 		{
 			// Gets the player's grid position.
-			Vector2 playGrid = listPlayers[currentPlayer].GetPosition();
+			Vector2 playGrid = listPlayers[currentPlayer].GetMapPosition();
 			
 			// Gets the area type from the map at the player's position.
 			int tileType = map.GetTile((int)playGrid.x, (int)playGrid.y)-1;
