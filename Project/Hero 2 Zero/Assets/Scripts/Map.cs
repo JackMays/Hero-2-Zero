@@ -22,7 +22,8 @@ public class Map : MonoBehaviour
 		{2, 0, 4, 3, 2, 0, 4},
 		{1, 6, 5, 0, 1, 6, 5}
 	};
-
+	
+	// This...
 	MonsterCard[,] tiledMonsterCards = new MonsterCard[7,7] {
 		{null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null},

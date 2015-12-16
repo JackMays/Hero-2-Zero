@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
 	#region Variables
 	// Typical player values.
 	int health = 20;
+	int maxHealth = 20;
 	int strength = 5;
 	int defence = 5;
 	int gold = 10;
@@ -43,6 +45,9 @@ public class Player : MonoBehaviour
 	
 	// Whetehr the player is travelling between tiles or not.
 	bool movingTile = false;
+	
+	// List of the item cards the player has.
+	List<Card> items = new List<Card>();
 	
 	#endregion
 	
@@ -287,6 +292,44 @@ public class Player : MonoBehaviour
 		Debug.Log("Fame has been changed by " + f + ". Fame was " + fame + ", and is now " + (fame + f));
 		
 		fame += f;
+	}
+	
+	// Changes the health based on passed value.
+	public void ChangeHealth(int h)
+	{
+		health += h;
+		
+		// Checks if the health went over the maximum.
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+		
+		// Checks if the player died.
+		CheckDead();
+	}
+	
+	// Checks whether an item is to be added or removed and then does the appropriate action.
+	public void ChangeItems(Card c, bool add)
+	{
+		// Checks if the item is to be added.
+		if (add) {
+			// Adds the item.
+			items.Add(c);
+		}
+		else {
+			// Removes the item.
+			items.Remove(c);
+		}
+	}
+	
+	// Checks whether the player has lost enough health to die.
+	void CheckDead()
+	{
+		// Checks if health is below 0.
+		if (health <= 0) {
+			health = 0;
+			turnSkipCount = 0;
+		}
 	}
 	
 	// Update is called once per frame

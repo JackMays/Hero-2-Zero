@@ -20,6 +20,8 @@ public class ChoiceCard : Card
 	int[] choice1Targets;
 	// Contains the values of choice 1.
 	int[] choice1Values;
+	// Applies on to Item and Move effects. Holds whether the choice adds or removes items.
+	bool[] choice1Extra;
 	
 	// Contains the effects of choice 2.
 	int[] choice2Effects;
@@ -27,8 +29,8 @@ public class ChoiceCard : Card
 	int[] choice2Targets;
 	// Contains the values of choice 2.
 	int[] choice2Values;
-	
-	
+	// Applies on to Item and Move effects. Holds whether the choice adds or removes items or move / teleport.
+	bool[] choice2Extra;
 	
 	#endregion
 	
@@ -100,5 +102,18 @@ public class ChoiceCard : Card
 		
 		// Returns the values for choice 2.
 		return choice2Values;
+	}
+	
+	// Returns the whether the choice should remove or add an item.
+	public bool[] GetChoiceExtra(int c)
+	{
+		// Checks if the first choice is required.
+		if (c == 0) {
+			// Returns the values for choice 1.
+			return choice1Extra;
+		}
+		
+		// Returns the values for choice 2.
+		return choice2Extra;
 	}
 }

@@ -27,6 +27,10 @@ public class CardManager : MonoBehaviour
 	Queue<Card> mountainCards = new Queue<Card>();
 	Queue<Card> monsterCards = new Queue<Card>();
 	
+	// Items are a list because specific cards may need to be drawn at certain times.
+	List<Card> itemCards = new List<Card>();
+	
+	
 	// List of the queues. Makes it easier to access a certain list.
 	List<Queue<Card>> cardList = new List<Queue<Card>>();
 	
@@ -248,7 +252,7 @@ public class CardManager : MonoBehaviour
 			// Health card.
 			else {
 				// Creates a new card.
-				return new DamageCard(v, t, i, d, type);
+				return new HealthCard(v, t, i, d, type);
 			}
 		}
 		
@@ -450,28 +454,26 @@ public class CardManager : MonoBehaviour
 			// Checks if an item effect.
 			else if (t == Type.Item) {
 				// Creates a item card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				drawnCard = new ItemEventCard(c.GetChoiceExtra(chosenChoice)[i], c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
 			
 			// Checks if a Teleport effect.
 			else if (t == Type.Teleport) {
 				// Creates a teleport card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				drawnCard = new MoveCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceValues(chosenChoice)[i], c.GetChoiceExtra(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
 			
 			// Checks if a health effect.
 			else if (t == Type.Health) {
 				// Creates a health card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				drawnCard = new HealthCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
 			
 			// Checks if a monster effect.
 			else if (t == Type.Monster) {
 				// Creates a monster card.
-				//drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
+				//drawnCard = new MonsterCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", 1);
 			}
-			
-			
 			
 			// Applies the effect.
 			ApplyEffect(currentPlayer, players);
@@ -507,7 +509,6 @@ public class CardManager : MonoBehaviour
 
 	public bool HasMonEncountered()
 	{
-
 		return isMonsterDrawn;
 	}
 
@@ -542,13 +543,13 @@ public class CardManager : MonoBehaviour
 			else if (cardType == Type.Item) {
 				ChangeItemEffect(currentPlayer, players);
 			}
-			// Choice.
-			else if (cardType == Type.Choice) {
-				ApplyChoice(currentPlayer, players);
-			}
 			// Teleport
 			else if (cardType == Type.Teleport) {
 				TeleportPlayer(currentPlayer, players);
+			}
+			// Health
+			else if (cardType == Type.Health) {
+				ChangeHealthEffect(currentPlayer, players);
 			}
 			// Combat
 			else if (cardType == Type.Monster) {
@@ -599,13 +600,19 @@ public class CardManager : MonoBehaviour
 	// Changes the items of selected player.
 	void ChangeItemEffect(int currentPlayer, List<Player> players)
 	{
+		// Casts the drawn card as a gold card to access the functions.
+		ItemEventCard c = (ItemEventCard)drawnCard;
 		
-	}
-	
-	// Waits for the player to make a choice and then applies the choice.
-	void ApplyChoice(int currentPlayer, List<Player> players)
-	{
-	
+		// Gets the target of the card.
+		int target = c.GetTarget();
+		
+		// Finds the players which will be effected. 
+		List<int> affectedPlayers = FindTargets(target, currentPlayer, players.Count);
+		
+		// Loops through all the players and changes the gold.
+		foreach (int i in affectedPlayers) {
+			players[i].ChangeItems(itemCards[c.GetItemIndex()], c.GetAddRemove());
+		}
 	}
 	
 	// Teleports selected players to set target.
@@ -613,6 +620,25 @@ public class CardManager : MonoBehaviour
 	{
 	
 	}
+	
+	// Changes the gold value of selected player.
+	void ChangeHealthEffect(int currentPlayer, List<Player> players)
+	{
+		// Casts the drawn card as a gold card to access the functions.
+		HealthCard c = (HealthCard)drawnCard;
+		
+		// Gets the target of the card.
+		int target = c.GetTarget();
+		
+		// Finds the players which will be effected. 
+		List<int> affectedPlayers = FindTargets(target, currentPlayer, players.Count);
+		
+		// Loops through all the players and changes the gold.
+		foreach (int i in affectedPlayers) {
+			players[i].ChangeHealth(c.GetHealth());
+		}
+	}
+	
 	// combat function for apply effect if brought back into use
 	void TriggerEncounter()
 	{
@@ -732,15 +758,7 @@ public class CardManager : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetKeyDown(KeyCode.A)) {
-			DisplayCard(5);
 			
-			List<Player> plays = new List<Player>() {GameObject.Find("Totem").GetComponent<Player>(), GameObject.Find("Totem_Horned").GetComponent<Player>()};
-			
-			ApplyEffect(0, plays);
-		}
-		
-		if (Input.GetKeyDown(KeyCode.S)) {
-			DebugList ();
 		}
 	}
 }

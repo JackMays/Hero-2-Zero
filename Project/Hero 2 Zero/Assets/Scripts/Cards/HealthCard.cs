@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageCard : Card
+public class HealthCard : Card
 {
 	#region Variables
 	// The change in health.
@@ -13,7 +13,7 @@ public class DamageCard : Card
 	#endregion
 	
 	// Constructor
-	public DamageCard(int he, int ta, int im, string de, int ty) : base (im, de, ty)
+	public HealthCard(int he, int ta, int im, string de, int ty) : base (im, de, ty)
 	{
 		// Sets the health change.
 		health = he;
