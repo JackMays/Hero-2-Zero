@@ -741,6 +741,39 @@ public class CardManager : MonoBehaviour
 		//cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
 		isMonsterRevealed = true;
 	}
+	
+	// For when landing on a persisting monster.
+	public void RevealMonCard(MonsterCard mon)
+	{
+		// Sets the card's image.
+		monsterCardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[mon.GetMonImg()];
+		
+		// Sets the card's name.
+		monsterCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mon.GetName();
+		// Sets the card's attack.
+		monsterCardObject.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = mon.GetStrength().ToString();
+		// Sets the card's health.
+		monsterCardObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = mon.GetHealth().ToString();
+		// Sets the card's defense.
+		monsterCardObject.transform.GetChild(5).GetChild(1).GetComponent<Text>().text = mon.GetDefense().ToString();
+		// Sets the card's fame gain.
+		monsterCardObject.transform.GetChild(6).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(true).ToString();
+		// Sets the card's fame loss.
+		monsterCardObject.transform.GetChild(7).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(false).ToString();
+		// Sets the card's gold gain.
+		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
+		
+		// Hides the normal card.
+		cardObject.enabled = false;
+		
+		// Shows the monster card.
+		monsterCardObject.enabled = true;
+		
+		//MonsterCard mc = (MonsterCard)drawnCard;
+		//cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
+		//cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
+		isMonsterRevealed = true;
+	}
 
 	public void ResetMonsterFlags()
 	{

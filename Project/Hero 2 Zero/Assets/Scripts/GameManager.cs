@@ -135,8 +135,18 @@ public class GameManager : MonoBehaviour
 	{
 		// Checks if the player has stopped.
 		if (!listPlayers[currentPlayer].GetMoving()) {
-			// Updates the turn state to show the card.
-			turnState = 2;
+			Vector2 playerPos = listPlayers[currentPlayer].GetMapPosition();
+			MonsterCard mc = map.GetMonsterOnTile((int)playerPos.x, (int)playerPos.y);
+			
+			if (mc != null) {
+				cardManager.RevealMonCard(mc);
+				combatManager.EstablishCombat(listPlayers[currentPlayer], mc);
+				turnState = 4;
+			}
+			else {
+				// Updates the turn state to show the card.
+				turnState = 2;
+			}
 		}
 	}
 	
