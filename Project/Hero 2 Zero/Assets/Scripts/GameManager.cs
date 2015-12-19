@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
 			else
 			{
 				// if both dice are rolled ask for a resolve then wait for the flag from combatManager
-				if (combatManager.HasRoundResolved())
+				/*if (combatManager.HasRoundResolved())
 				{
 					cmbPlayerRolled = false;
 					cmbBothRolled = false;
@@ -263,8 +263,10 @@ public class GameManager : MonoBehaviour
 				}
 				else
 				{
-					combatManager.ResolveCombat();
-				}
+
+				}*/
+
+				combatManager.ResolveCombat();
 			}
 
 		}

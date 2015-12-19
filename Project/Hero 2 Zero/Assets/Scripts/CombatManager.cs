@@ -12,7 +12,7 @@ public class CombatManager : MonoBehaviour {
 	int playerDiceRoll;
 	int monsterDiceRoll;
 
-	bool isRoundResolved;
+	//bool isRoundResolved;
 	bool isCombatEnded;
 
 	// Use this for initialization
@@ -24,7 +24,7 @@ public class CombatManager : MonoBehaviour {
 		playerDiceRoll = 0;
 		monsterDiceRoll = 0;
 
-		isRoundResolved = false;
+		//isRoundResolved = false;
 		isCombatEnded = false;
 	}
 	
@@ -57,21 +57,24 @@ public class CombatManager : MonoBehaviour {
 			// DRAW
 			Debug.Log ("Tie");
 		}
+
+		int tileX = (int)player.GetMapPosition().x;
+		int tileY = (int)player.GetMapPosition().y;
+
+		if (!monster.HasDied())
+		{
+
+			
+			map.AddMonsterToTile(tileX, tileY, monster);
+			
+			Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now.");
+		}
+
 		// if any have died, combat is over, if not its just a round
 		if (player.HasDied() || monster.HasDied())
 		{
-			// end combat
-			isCombatEnded = true;
-
 			if (player.HasDied())
 			{
-				int tileX = (int)player.GetMapPosition().x;
-				int tileY = (int)player.GetMapPosition().y;
-
-				map.AddMonsterToTile(tileX, tileY, monster);
-
-				Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now.");
-
 				// remove player for allotted turns, place monster card at area
 				// Also decrease fame
 				player.HandleDeath(monster.GetFameMod(false));
@@ -83,14 +86,18 @@ public class CombatManager : MonoBehaviour {
 				// Remove Card from area
 				Debug.Log ("Monster's HP hit 0");
 				player.ChangeFame(monster.GetFameMod(true));
+				map.ClearMonsterTile(tileX, tileY);
 			}
 
 		}
-		else
+		/*else
 		{
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
-		}
+		}*/
+
+		// end combat
+		isCombatEnded = true;
 	}
 
 	public void EstablishCombat(Player p, MonsterCard m)
@@ -105,15 +112,15 @@ public class CombatManager : MonoBehaviour {
 		monster = null;
 		isCombatEnded = false;
 		// make sure round is reset
-		ResetRound();
+		//ResetRound();
 	}
 
-	public void ResetRound()
+	/*public void ResetRound()
 	{
 		isRoundResolved = false;
 		playerDiceRoll = 0;
 		monsterDiceRoll = 0;
-	}
+	}*/
 
 	public void SetPlayerDiceRoll(int pRoll)
 	{
@@ -127,10 +134,10 @@ public class CombatManager : MonoBehaviour {
 		monsterDiceRoll = mRoll + monster.GetStrength();
 		Debug.Log ("Monster Total: " + mRoll + " (base) + " + monster.GetStrength() + " (str) = " + monsterDiceRoll);
 	}
-	public bool HasRoundResolved()
+	/*public bool HasRoundResolved()
 	{
 		return isRoundResolved;
-	}
+	}*/
 	public bool HasCombatEnded()
 	{
 		return isCombatEnded;

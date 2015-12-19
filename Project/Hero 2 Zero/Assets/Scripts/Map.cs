@@ -110,6 +110,11 @@ public class Map : MonoBehaviour
 	{
 		monsteredTiles[i, j] = true;
 	}*/
+
+	public void ClearMonsterTile(int i, int j)
+	{
+		tiledMonsterCards[i, j] = null;
+	}
 	
 	// Returns teh value of the requested tile.
 	public int GetTile(int i, int j)
