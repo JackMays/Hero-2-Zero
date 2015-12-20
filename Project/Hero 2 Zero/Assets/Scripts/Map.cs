@@ -23,8 +23,18 @@ public class Map : MonoBehaviour
 		{1, 6, 5, 0, 1, 6, 5}
 	};
 	
-	// This...
+	// Monster Instances by Tile
 	MonsterCard[,] tiledMonsterCards = new MonsterCard[7,7] {
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null},
+		{null, null, null, null, null, null, null}
+	};
+
+	GameObject[,] tiledMonsterPrefabs = new GameObject[7,7] {
 		{null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null},
@@ -106,6 +116,11 @@ public class Map : MonoBehaviour
 		tiledMonsterCards[i, j] = mon;
 	}
 
+	public void AddPrefabToTiles(int i, int j, GameObject pr, Vector3 pos)
+	{
+		tiledMonsterPrefabs[i, j] = Instantiate(pr, pos, Quaternion.identity) as GameObject; 
+	}
+
 	/*public void AddMonsteredFlag(int i, int j)
 	{
 		monsteredTiles[i, j] = true;
@@ -114,6 +129,13 @@ public class Map : MonoBehaviour
 	public void ClearMonsterTile(int i, int j)
 	{
 		tiledMonsterCards[i, j] = null;
+	}
+
+	public void ClearPrefabTile(int i, int j)
+	{
+		Destroy(tiledMonsterPrefabs[i, j]);
+
+		tiledMonsterPrefabs[i, j] = null;
 	}
 	
 	// Returns teh value of the requested tile.
@@ -137,6 +159,17 @@ public class Map : MonoBehaviour
 		
 		// Return's the tile value.
 		return tiledMonsterCards[i, j];
+	}
+
+	public bool HasBlankModel(int i, int j)
+	{
+		// Checks if the tile isn't out of bounds.
+		if (i < 0 || j < 0 || i >= map.GetLength(0) || j >= map.GetLength(1)) {
+			return false;
+		}
+
+		// return true if model is blank/null and false if not
+		return (tiledMonsterPrefabs[i, j] == null);
 	}
 
 	/*public bool HasTileBeenMonstered(int i, int j)

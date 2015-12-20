@@ -6,6 +6,7 @@ public class MonsterCard : Card
 	#region Variables
 	
 	int monsterImgIndex;
+	int monsterModelIndex;
 
 	string name = "";
 
@@ -19,12 +20,14 @@ public class MonsterCard : Card
 	#endregion
 
 	// Use this for initialization
-	public MonsterCard (string nm, int monIm, int hp, int str, int def, int gain, int faga, int falo, int im, string de, int ty) : base (im, de, ty)
+	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int im, string de, int ty) : base (im, de, ty)
 	{
 		name = nm;
 
 		// monster image
 		monsterImgIndex = monIm;
+		monsterModelIndex = model;
+
 
 		// Monster Health
 		health = hp;
@@ -50,7 +53,11 @@ public class MonsterCard : Card
 	{
 		return monsterImgIndex;
 	}
-	
+
+	public int GetMonModel()
+	{
+		return monsterModelIndex;
+	}
 
 	public int GetHealth()
 	{

@@ -44,6 +44,7 @@ public class CardManager : MonoBehaviour
 	// List of card images.
 	public List<Sprite> imageList;
 	public List<Sprite> monImageList;
+	public List<GameObject> monPrefabList;
 	
 	// The current drawn card.
 	Card drawnCard;
@@ -137,8 +138,8 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new Card(4, "You climb the mountain stairs and encounter a frost troll.", 0));
 
 		// Monster Cards; 5th img element and 6th type enum
-		monsterCards.Enqueue(new MonsterCard("Fucking Snowman", 0, 10, 10, 3, 10, 10, -10, 5, "Monster!", 7));
-		monsterCards.Enqueue(new MonsterCard("Slime", 1, 10, 4, 1, 5, 5, -15, 2, "Monster!", 7));
+		monsterCards.Enqueue(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!", 7));
+		monsterCards.Enqueue(new MonsterCard("Slime", 1, 0, 10, 4, 1, 5, 5, -15, 2, "Monster!", 7));
 	}
 	
 	void DebugList()
@@ -698,6 +699,11 @@ public class CardManager : MonoBehaviour
 	public bool IsShowingCard()
 	{
 		return cardShowing;
+	}
+
+	public GameObject GetMonsterModel(int index)
+	{
+		return monPrefabList[index];
 	}
 	
 	// Hides the card.

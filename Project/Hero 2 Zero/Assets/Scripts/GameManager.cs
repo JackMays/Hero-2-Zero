@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 			
 			if (mc != null) {
 				cardManager.RevealMonCard(mc);
-				combatManager.EstablishCombat(listPlayers[currentPlayer], mc);
+				combatManager.EstablishCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
 				turnState = 4;
 			}
 			else {
@@ -180,7 +180,9 @@ public class GameManager : MonoBehaviour
 					{
 						if (cardManager.HasMonRevealed())
 						{
-							combatManager.EstablishCombat(listPlayers[currentPlayer], cardManager.GetMonEncountered());
+							MonsterCard monster = cardManager.GetMonEncountered();
+
+							combatManager.EstablishCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModel()));
 							Debug.Log ("COMBAT BEGIN");
 							turnState = 4;
 							cardManager.HideCard();

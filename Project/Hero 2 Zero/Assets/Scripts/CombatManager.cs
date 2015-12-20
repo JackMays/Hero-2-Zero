@@ -87,6 +87,7 @@ public class CombatManager : MonoBehaviour {
 				Debug.Log ("Monster's HP hit 0");
 				player.ChangeFame(monster.GetFameMod(true));
 				map.ClearMonsterTile(tileX, tileY);
+				map.ClearPrefabTile(tileX, tileY);
 			}
 
 		}
@@ -100,10 +101,16 @@ public class CombatManager : MonoBehaviour {
 		isCombatEnded = true;
 	}
 
-	public void EstablishCombat(Player p, MonsterCard m)
+	public void EstablishCombat(Player p, MonsterCard m, GameObject pr)
 	{
 		player = p;
 		monster = m;
+
+		// if there is no model, send it to be instantiated
+		if (map.HasBlankModel((int)player.GetMapPosition().x, (int)player.GetMapPosition().y))
+		{
+			map.AddPrefabToTiles((int)player.GetMapPosition().x, (int)player.GetMapPosition().y, pr, player.transform.position);
+		}
 	}
 
 	public void ResetCombat()
