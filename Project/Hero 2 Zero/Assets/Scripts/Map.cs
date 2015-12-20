@@ -23,7 +23,8 @@ public class Map : MonoBehaviour
 		{1, 6, 5, 0, 1, 6, 5}
 	};
 	
-	// This...
+	// This... (I can't wait until we put the actual map sizes in and this array is filled
+	// with over 400 useless null pointers all taking up space.
 	MonsterCard[,] tiledMonsterCards = new MonsterCard[7,7] {
 		{null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null},

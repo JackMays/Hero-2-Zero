@@ -138,7 +138,7 @@ public class CardManager : MonoBehaviour
 
 		// Monster Cards; 5th img element and 6th type enum
 		monsterCards.Enqueue(new MonsterCard("Fucking Snowman", 0, 10, 10, 3, 10, 10, -10, 5, "Monster!", 7));
-		monsterCards.Enqueue(new MonsterCard("Slime", 1, 10, 4, 1, 5, 5, -15, 2, "Monster!", 7));
+		monsterCards.Enqueue(new MonsterCard("Slime", 1, 10, 6, 1, 5, 5, -15, 2, "Monster!", 7));
 	}
 	
 	void DebugList()
@@ -378,34 +378,6 @@ public class CardManager : MonoBehaviour
 		cardObject.enabled = true;
 	}
 	
-	// Shows the monster card and updates its values.
-	void DisplayMonsterCard()
-	{
-		// Casts the drawn card as a monster card.
-		MonsterCard mon = (MonsterCard)drawnCard;
-		
-		// Sets the card's image.
-		monsterCardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[mon.GetMonImg()];
-		
-		// Sets the card's name.
-		monsterCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mon.GetName();
-		// Sets the card's attack.
-		monsterCardObject.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = mon.GetStrength().ToString();
-		// Sets the card's health.
-		monsterCardObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = mon.GetHealth().ToString();
-		// Sets the card's defense.
-		monsterCardObject.transform.GetChild(5).GetChild(1).GetComponent<Text>().text = mon.GetDefense().ToString();
-		// Sets the card's fame gain.
-		monsterCardObject.transform.GetChild(6).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(true).ToString();
-		// Sets the card's fame loss.
-		monsterCardObject.transform.GetChild(7).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(false).ToString();
-		// Sets the card's gold gain.
-		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
-		
-		// Shows the monster card.
-		monsterCardObject.enabled = true;
-	}
-	
 	void ShowChoices()
 	{
 		// Casts the card as a choice card.
@@ -557,7 +529,6 @@ public class CardManager : MonoBehaviour
 			}
 		}
 	}
-	
 	
 	
 	#region Card Effects
@@ -736,9 +707,6 @@ public class CardManager : MonoBehaviour
 		// Shows the monster card.
 		monsterCardObject.enabled = true;
 	
-		//MonsterCard mc = (MonsterCard)drawnCard;
-		//cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
-		//cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
 		isMonsterRevealed = true;
 	}
 	
@@ -769,9 +737,6 @@ public class CardManager : MonoBehaviour
 		// Shows the monster card.
 		monsterCardObject.enabled = true;
 		
-		//MonsterCard mc = (MonsterCard)drawnCard;
-		//cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
-		//cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
 		isMonsterRevealed = true;
 	}
 
