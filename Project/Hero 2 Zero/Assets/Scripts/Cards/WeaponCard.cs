@@ -16,8 +16,8 @@ public class WeaponCard : ItemCard
 	#endregion
 	
 	// Constructor.
-	public WeaponCard (int at, int def, int du, string na, int co, int us, int im, string des, int ty)
-					: base (na, co, us, im, des, ty)
+	public WeaponCard (int at, int def, int du, string na, int co, int ef, int va, int us, int im, string des, int ty)
+					: base (na, co, ef, va, us, im, des, ty)
 	{
 		// Sets the values for the weapon.
 		attack = at;
@@ -41,5 +41,17 @@ public class WeaponCard : ItemCard
 	public int GetDurability()
 	{
 		return durability;
+	}
+	
+	// Sets the durability of the weapon.
+	public void SetDurability(int d)
+	{
+		durability = d;
+	}
+	
+	// Changes the durability of the weapon.
+	public void ChangeDurability(int d)
+	{
+		durability += d;
 	}
 }

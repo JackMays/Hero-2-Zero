@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: f4113406112cc554992cf574024f88a1
+timeCreated: 1450715602
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Body
+    100002: Bottom
+    100004: group1
+    100006: group2
+    100008: group3
+    100010: group4
+    100012: Left_Eye
+    100014: Left_Eye 1
+    100016: left_Eye_Root
+    100018: Left_Eyebrow
+    100020: Left_Eyebrow 1
+    100022: Left_Eyebrow_Inner
+    100024: Left_Eyebrow_Outer
+    100026: Left_Eyebrow_Root
+    100028: Middle
+    100030: polySurface1
+    100032: Right_Eye
+    100034: Right_Eye 1
+    100036: Right_Eye_Root
+    100038: Right_Eyebrow
+    100040: Right_Eyebrow 1
+    100042: Right_Eyebrow_Inner
+    100044: Right_Eyebrow_Outer
+    100046: Root
+    100048: //RootNode
+    100050: Top
+    400000: Body
+    400002: Bottom
+    400004: group1
+    400006: group2
+    400008: group3
+    400010: group4
+    400012: Left_Eye
+    400014: Left_Eye 1
+    400016: left_Eye_Root
+    400018: Left_Eyebrow
+    400020: Left_Eyebrow 1
+    400022: Left_Eyebrow_Inner
+    400024: Left_Eyebrow_Outer
+    400026: Left_Eyebrow_Root
+    400028: Middle
+    400030: polySurface1
+    400032: Right_Eye
+    400034: Right_Eye 1
+    400036: Right_Eye_Root
+    400038: Right_Eyebrow
+    400040: Right_Eyebrow 1
+    400042: Right_Eyebrow_Inner
+    400044: Right_Eyebrow_Outer
+    400046: Root
+    400048: //RootNode
+    400050: Top
+    4300000: Body
+    4300002: Left_Eye
+    4300004: Right_Eye
+    4300006: Right_Eyebrow
+    4300008: Left_Eyebrow
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Body
+    13700002: Left_Eye
+    13700004: Left_Eyebrow
+    13700006: Right_Eye
+    13700008: Right_Eyebrow
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 50
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

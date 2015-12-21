@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
 	public CombatManager combatManager;
 	
+	// Reference to item manager.
+	ItemManager itemManager;
+	
 	// Number of players.
 	int numPlayers = 2;
 	
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	
+		itemManager = new ItemManager(listPlayers);
 	}
 	
 	// Changes the player's turn.

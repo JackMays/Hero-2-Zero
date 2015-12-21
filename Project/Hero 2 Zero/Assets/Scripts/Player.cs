@@ -49,6 +49,12 @@ public class Player : MonoBehaviour
 	// List of the item cards the player has.
 	List<Card> items = new List<Card>();
 	
+	// Number of dice the player can throw.
+	int numDice = 2;
+	
+	// Holds whether the player can skip the next monster they encounter.
+	bool skipMonster = false;
+		
 	#endregion
 	
 	// Use this for initialization
@@ -308,6 +314,24 @@ public class Player : MonoBehaviour
 		CheckDead();
 	}
 	
+	// Changes the gold based on passed value.
+	public void ChangeGold(int g)
+	{
+		gold += g;
+	}
+	
+	// Changes the number of dice the player can throw.
+	public void ChangeDice(int d)
+	{
+		numDice += d;
+	}
+	
+	// Resets the number of dice to be thrown back to default.
+	public void ResetDiceCount()
+	{
+		numDice = 2;
+	}
+	
 	// Checks whether an item is to be added or removed and then does the appropriate action.
 	public void ChangeItems(Card c, bool add)
 	{
@@ -319,6 +343,28 @@ public class Player : MonoBehaviour
 		else {
 			// Removes the item.
 			items.Remove(c);
+		}
+	}
+	
+	// Sets whether the player can skip the next monster.
+	public void SetSkipMonster(bool s)
+	{
+		skipMonster = s;
+	}
+	
+	// Changes the number of turns the player has to skip.
+	public void ChangeTurnsToSkip(int t)
+	{
+		turnSkipCount += t;
+		
+		// Keeps number of skipped turns under cap.
+		if (turnSkipCount > turnSkipCap) {
+			turnSkipCount = turnSkipCap;
+		}
+		
+		// Keeps number of turns to skip out of negative.
+		if (turnSkipCount < 0) {
+			turnSkipCount = 0;
 		}
 	}
 	

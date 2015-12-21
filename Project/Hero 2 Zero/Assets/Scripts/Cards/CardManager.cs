@@ -139,7 +139,7 @@ public class CardManager : MonoBehaviour
 
 		// Monster Cards; 5th img element and 6th type enum
 		monsterCards.Enqueue(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!", 7));
-		monsterCards.Enqueue(new MonsterCard("Slime", 1, 0, 10, 4, 1, 5, 5, -15, 2, "Monster!", 7));
+		monsterCards.Enqueue(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 2, "Monster!", 7));
 	}
 	
 	void DebugList()

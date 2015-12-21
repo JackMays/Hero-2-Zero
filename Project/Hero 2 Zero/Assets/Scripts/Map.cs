@@ -34,6 +34,8 @@ public class Map : MonoBehaviour
 		{null, null, null, null, null, null, null}
 	};
 
+	// One 2D array I could let slide but 2 2D arrays which will have around 400 null pointers
+	// is something that is gonna drive me insane. Thats 800 4/8 bit pointers for no reason.
 	GameObject[,] tiledMonsterPrefabs = new GameObject[7,7] {
 		{null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null},
@@ -43,16 +45,6 @@ public class Map : MonoBehaviour
 		{null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null}
 	};
-
-	/*bool[,] monsteredTiles = new bool[7,7] {
-		{false, false, false, false, false, false, false},
-		{false, false, false, false, false, false, false},
-		{false, false, false, false, false, false, false},
-		{false, false, false, false, false, false, false},
-		{false, false, false, false, false, false, false},
-		{false, false, false, false, false, false, false},
-		{false, false, false, false, false, false, false}
-	};*/
 	
 	// Parent of all map tiles.
 	public GameObject mapParent;
