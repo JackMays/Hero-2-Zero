@@ -63,6 +63,10 @@ public class ItemManager
 			case 6:
 				SkipTurn(card.GetValue(), currentPlayer);
 				break;
+			// Become Villain.
+			case 7:
+				BecomeVillain(currentPlayer);
+				break;
 		}
 	}
 	
@@ -100,6 +104,12 @@ public class ItemManager
 	void SkipTurn(int value, int currentPlayer)
 	{
 		players[currentPlayer].ChangeTurnsToSkip(value);
+	}
+	
+	// Makes the current player the villain.
+	void BecomeVillain(int currentPlayer)
+	{
+		players[currentPlayer].SetVillain(true);
 	}
 	#endregion
 	

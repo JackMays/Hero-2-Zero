@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
 		
 		// Sets which player's turn it is.
 		currentPlayer = turnOrder[turnIndex];
+		
+		// Sets the number of dice to roll. Putting here until setup state added later.
+		diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
 	}
 	
 	// Update is called once per frame
@@ -119,11 +122,14 @@ public class GameManager : MonoBehaviour
 			// Resets dice rolled.
 			diceRolled = false;
 			
-			// Starts teh player moving and updates the turn state.
+			// Starts the player moving and updates the turn state.
 			listPlayers[currentPlayer].StartMovement(diceManager.GetDiceResults());
 			turnState = 1;
 		}
 		else if (diceRolled == false) {
+			// Sets the number of dice to roll.
+			//diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
+			
 			// Waits for the player to roll the dice.
 			if (Input.GetButtonDown(rollButton)) {
 				// Rolls the dice and sets to wait for result.

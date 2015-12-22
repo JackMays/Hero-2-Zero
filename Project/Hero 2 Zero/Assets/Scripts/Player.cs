@@ -50,11 +50,13 @@ public class Player : MonoBehaviour
 	List<Card> items = new List<Card>();
 	
 	// Number of dice the player can throw.
-	int numDice = 2;
+	public int numDice = 2;
 	
 	// Holds whether the player can skip the next monster they encounter.
 	bool skipMonster = false;
 		
+	// Holds whetehr the player is a villain or not.
+	bool isVillain = false;
 	#endregion
 	
 	// Use this for initialization
@@ -326,6 +328,12 @@ public class Player : MonoBehaviour
 		numDice += d;
 	}
 	
+	// Gets the number of dice the player can roll.
+	public int GetDice()
+	{
+		return numDice;
+	}
+	
 	// Resets the number of dice to be thrown back to default.
 	public void ResetDiceCount()
 	{
@@ -366,6 +374,18 @@ public class Player : MonoBehaviour
 		if (turnSkipCount < 0) {
 			turnSkipCount = 0;
 		}
+	}
+	
+	// Sets whether the player is a villain or not.
+	public void SetVillain(bool v)
+	{
+		isVillain = v;
+	}	
+	
+	// Gets whether the player is a villain or not.
+	public bool GetVillain()
+	{
+		return isVillain;
 	}
 	
 	// Checks whether the player has lost enough health to die.

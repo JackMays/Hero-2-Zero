@@ -109,7 +109,12 @@ public class CombatManager : MonoBehaviour {
 		// if there is no model, send it to be instantiated
 		if (map.HasBlankModel((int)player.GetMapPosition().x, (int)player.GetMapPosition().y))
 		{
-			map.AddPrefabToTiles((int)player.GetMapPosition().x, (int)player.GetMapPosition().y, pr, player.transform.position);
+			// Gets the player's world position.
+			Vector3 pos = player.transform.position;
+			// Removes the y coordinate.
+			pos.y = 0;
+			// Spawns the monster.
+			map.AddPrefabToTiles((int)player.GetMapPosition().x, (int)player.GetMapPosition().y, pr, pos);
 		}
 	}
 

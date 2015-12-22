@@ -8,8 +8,8 @@ public class DiceManager : MonoBehaviour
 	// List of Dice.
 	public List<Dice> listDice;
 
-	// The button to roll dice.
-	string rollButton = "Fire1";
+	// The number of dice to throw.
+	int numDice = 2;
 
 	// Holds whether the dice are still rolling.
 	bool isRolling = false;
@@ -52,9 +52,9 @@ public class DiceManager : MonoBehaviour
 		// Holds the total result.
 		int count = 0;
 		
-		// Loops through all the dice.
-		foreach (Dice d in listDice) {
-			count += d.GetResult();
+		// Loops through all the thrown dice.
+		for (int i = 0; i < numDice; ++i) {
+			count += listDice[i].GetResult();
 		}
 		
 		// Returns the result.
@@ -67,12 +67,37 @@ public class DiceManager : MonoBehaviour
 		return isRolling;
 	}
 	
+	// Hides/Shows dice based on the number of dice the player can throw.
+	public void ShowDice(int numD)
+	{
+		// Checks if the already the correct number of dice.
+		if (numDice == numD) {
+			return;
+		}
+		
+		// The number of dice is not correct so some need to be hidden/shown.
+		numDice = numD;
+		
+		// Loops through the list of dice and shows the throwable while hiding the unused.
+		for (int i = 0; i < listDice.Count; ++i) {
+			// Checks if the current dice can be thrown.
+			if (i < numD) {
+				// Shows the dice.
+				listDice[i].gameObject.SetActive(true);
+			}
+			else {
+				// Hides the dice.
+				listDice[i].gameObject.SetActive(false);
+			}
+		}
+	}
+	
 	// Rolls the dice.
 	public void RollDice()
 	{
-		// Rolls all the dice.
-		foreach (Dice d in listDice) {
-			d.ApplyForce ();
+		// Loops through all the throwable dice.
+		for (int i = 0; i < numDice; ++i) {
+			listDice[i].ApplyForce ();
 		}
 		
 		// Sets that the dice are rolling.
