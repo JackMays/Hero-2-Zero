@@ -7,7 +7,10 @@ public class DiceManager : MonoBehaviour
 	#region Variables
 	// List of Dice.
 	public List<Dice> listDice;
-
+	
+	// Initial positions of the dice.
+	List<Vector3> diceOrigins = new List<Vector3>();
+	
 	// The number of dice to throw.
 	int numDice = 2;
 
@@ -19,7 +22,10 @@ public class DiceManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-
+		// Stores the origins of the dice.		
+		for (int i = 0; i < listDice.Count; ++i) {
+			diceOrigins.Add(listDice[i].transform.position);
+		}
 	}
 	
 	// Checks to see if all the dice hasve stopped rolling.
@@ -84,6 +90,13 @@ public class DiceManager : MonoBehaviour
 			if (i < numD) {
 				// Shows the dice.
 				listDice[i].gameObject.SetActive(true);
+				
+				// Places dice back to original position and rotation.
+				listDice[i].transform.position = diceOrigins[i];
+				listDice[i].transform.rotation = Quaternion.identity;
+				
+				// Removes gravity until thrown.
+				listDice[i].GetComponent<Rigidbody>().useGravity = false;
 			}
 			else {
 				// Hides the dice.
@@ -97,6 +110,9 @@ public class DiceManager : MonoBehaviour
 	{
 		// Loops through all the throwable dice.
 		for (int i = 0; i < numDice; ++i) {
+			// Adds gravity.
+			listDice[i].GetComponent<Rigidbody>().useGravity = true;
+		
 			listDice[i].ApplyForce ();
 		}
 		
