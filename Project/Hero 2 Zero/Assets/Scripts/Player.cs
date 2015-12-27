@@ -43,8 +43,11 @@ public class Player : MonoBehaviour
 	// Timer for steady movement between tiles.
 	float moveTime = 0;
 	
-	// Whetehr the player is travelling between tiles or not.
+	// Whether the player is travelling between tiles or not.
 	bool movingTile = false;
+	
+	// Holds whether the player has just stopped moving to a tile.
+	bool justStopped = false;
 	
 	// List of the item cards the player has.
 	List<Card> items = new List<Card>();
@@ -55,18 +58,24 @@ public class Player : MonoBehaviour
 	// Holds whether the player can skip the next monster they encounter.
 	bool skipMonster = false;
 		
-	// Holds whetehr the player is a villain or not.
+	// Holds whether the player is a villain or not.
 	bool isVillain = false;
+	
+	// Stores the finish values for moving.
+	Vector2 finishPosition = new Vector2();
+	int finishDirection = 0;
 	#endregion
 	
 	// Use this for initialization
 	void Awake ()
 	{
 		turnSkipCount = turnSkipCap;
+		finishPosition = mapPosition;
+		finishDirection = direction;
 	}
 	
 	// Moves the player over time to the target space.
-	void Move()
+	public void Move()
 	{
 		// Debugs movement values.
 		//Debug.Log(moveTime);
@@ -93,8 +102,9 @@ public class Player : MonoBehaviour
 			// Resets the movement timer.
 			moveTime = 0;
 			
-			// Sets that teh player has reached the target tile.
+			// Sets that the player has reached the target tile.
 			movingTile = false;
+			justStopped = true;
 		}
 	}
 	
@@ -164,6 +174,9 @@ public class Player : MonoBehaviour
 		// and finds the position of the next tile in that direction. It then updates
 		// the player's map position.
 	
+		// Holds the target to move to.
+		Vector3 mTarget = new Vector3();
+	
 		if (direction == 0) {
 			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (mapPosition.y+1));
 			mapPosition.y += 1;
@@ -183,7 +196,7 @@ public class Player : MonoBehaviour
 	}
 	
 	// Sets the player up to move to the next tile.
-	void MoveTile()
+	public void MoveTile()
 	{
 		// Stores the current position in 3D space.
 		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 2 * mapPosition.y);
@@ -196,6 +209,7 @@ public class Player : MonoBehaviour
 		
 		// Sets that the player is now moving.
 		movingTile = true;
+		justStopped = false;		
 	}
 
 	public void ReplenishHealth(int hp)
@@ -266,6 +280,7 @@ public class Player : MonoBehaviour
 	{
 		movement = move;
 		isMoving = true;
+		justStopped = false;
 	}
 
 	public void TakeDamage(int dmg)
@@ -388,6 +403,18 @@ public class Player : MonoBehaviour
 		return isVillain;
 	}
 	
+	// Gets whether the player just stopped.
+	public bool JustStoppedMoving()
+	{
+		return justStopped;
+	}
+	
+	// Sets whether the player just stopped.
+	public void SetJustStopped(bool b)
+	{
+		justStopped = b;
+	}
+	
 	// Checks whether the player has lost enough health to die.
 	void CheckDead()
 	{
@@ -398,11 +425,100 @@ public class Player : MonoBehaviour
 		}
 	}
 	
+	// Returns whether the player is travelling between tiles.
+	public bool IsMovingBetweenTiles()
+	{
+		return movingTile;
+	}
+	
+	// This will find the tile the player will stop moving on.
+	public void FindFinish()
+	{
+		// Makes a copy of movement, current position, current target and direction.
+		int m = movement;
+		Vector2 p = mapPosition;
+		Vector2 t = moveTarget;
+		int d = direction;
+		
+		
+		// Loops until can move no more.
+		while (m > 0) {
+			// Finds the direction to move in.
+			FindDirection();
+			
+			// Updates the map position.
+			FindMoveTarget();
+			
+			// Decrements the number of tiles to move.
+			--m;
+		}
+		
+		// Stores the finish position and direction.
+		finishPosition = mapPosition;
+		finishDirection = direction;
+		
+		// Resets the original position, target and direction.
+		mapPosition = p;
+		moveTarget = t;
+		direction = d;
+		
+		// Rotates the player back to original orientation.
+		RotatePlayer(direction);
+	}
+	
+	// Rotates the player to a specified direction.
+	void RotatePlayer(int dir)
+	{
+		// Checks which direction the player needs to face.
+		switch (dir) {
+			// Up.
+			case 0:
+				transform.LookAt(transform.position + Vector3.forward);
+				break;
+			// Right.
+			case 1:
+				transform.LookAt(transform.position + Vector3.right);
+				break;
+			// Down.
+			case 2:
+				transform.LookAt(transform.position + Vector3.back);
+				break;
+			// Left.
+			case 3:
+				transform.LookAt(transform.position + Vector3.left);
+				break;			
+		}
+	}
+	
+	// Skips the player straight to the last tile.
+	public void SkipToFinish()
+	{
+		Debug.Log("mapPosition: " + finishPosition + ", Direction: " + finishDirection);
+	
+		// Sets the values to the finished values.
+		mapPosition = finishPosition;
+		direction = finishDirection;
+		
+		// Rotates the player to face the correct way.
+		RotatePlayer(direction);
+		
+		// Moves the player in world space.
+		transform.localPosition = new Vector3(mapPosition.x * 2, transform.position.y, mapPosition.y * 2);
+		
+		// Sets movement to 0 and stops the player.
+		movement = 0;
+		moveTime = 0;
+		isMoving = false;
+		movingTile = false;
+		justStopped = true;
+	}	
+	
 	// Update is called once per frame
 	void Update ()
 	{
 		// Checks if the player is currently moving.
-		if (isMoving) {
+		//if (isMoving) {
+		if (false) {
 			// Checks if the player is currently travelling between tiles.
 			if (movingTile) {
 				// Continues the movement.

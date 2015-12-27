@@ -74,9 +74,39 @@ public class GameManager : MonoBehaviour
 		diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
 	}
 	
+	// Checks if there are any players on the current tile.
+	int CheckPlayerPositions(Vector2 mapPos, int skipIndex = -1)
+	{
+		// Loops through all the players.
+		for (int i = 0; i < listPlayers.Count; ++i) {
+			// Checks all but the skip index.
+			if (i != skipIndex) {
+				// Checks if the player's map position matches the search position.
+				if (listPlayers[i].GetMapPosition() == mapPos) {
+					// Returns the player index.
+					return i;
+				}
+			}
+		}
+		
+		// Returns that no player is on the tile.
+		return -1;
+	}
+	
+	// Holds whether the game has been hacked by Skynet.
+	bool Skynet = false;
+	
 	// Update is called once per frame
 	void Update ()
 	{
+		// Checks if skynet is here.
+		if (Skynet) {
+			// Infinite loop to kill Skynet. Suck it Skynet.
+			for (int i = 0; i < 100; ++i) {
+				--i;
+			}
+		}
+	
 		// Rolling the dice stage.
 		if (turnState == 0) {
 
@@ -124,6 +154,7 @@ public class GameManager : MonoBehaviour
 			
 			// Starts the player moving and updates the turn state.
 			listPlayers[currentPlayer].StartMovement(diceManager.GetDiceResults());
+			listPlayers[currentPlayer].FindFinish();
 			turnState = 1;
 		}
 		else if (diceRolled == false) {
@@ -142,20 +173,58 @@ public class GameManager : MonoBehaviour
 	// Waits for the player to stop moving. (To be expanded)
 	void StateMovePlayer()
 	{
-		// Checks if the player has stopped.
-		if (!listPlayers[currentPlayer].GetMoving()) {
-			Vector2 playerPos = listPlayers[currentPlayer].GetMapPosition();
-			MonsterCard mc = map.GetMonsterOnTile((int)playerPos.x, (int)playerPos.y);
-			
-			if (mc != null) {
-				cardManager.RevealMonCard(mc);
-				combatManager.EstablishCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
-				turnState = 4;
+		// Checks if the player is moving between tiles.
+		if (listPlayers[currentPlayer].IsMovingBetweenTiles()) {
+			// Continues the movement.
+			listPlayers[currentPlayer].Move();
+		}
+		else {
+			// Checks if the player just stopped.
+			if (listPlayers[currentPlayer].JustStoppedMoving()) {
+				// Sets that the player has not stopped moving anymore.
+				listPlayers[currentPlayer].SetJustStopped(false);
+				
+				// Gets the player's map position.
+				Vector2 playerPos = listPlayers[currentPlayer].GetMapPosition();
+				// Gets the monster card on the current tile.
+				MonsterCard mc = map.GetMonsterOnTile((int)playerPos.x, (int)playerPos.y);
+				
+				// Checks that a monster is on the tile.
+				if (mc != null) {
+					// Shows the monster card.
+					cardManager.RevealMonCard(mc);
+					// Starts combat.
+					combatManager.EstablishCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
+					// Updates state to combat.
+					turnState = 4;
+				}
+				
+				// Gets the index of a player on the current tile.
+				int enemyPlayer = CheckPlayerPositions(playerPos, currentPlayer);
+				
+				// Checks if there is a player on the tile.
+				if (enemyPlayer != -1) {
+					// Do your combat initiallising here Jack. It would be currentPlayer versus enemyPlayer.
+					
+					// Updates state to combat.
+					turnState = 4;
+				}
+				
+				// Checks if the player cannot move anymore.
+				if (!listPlayers[currentPlayer].GetMoving()) {
+					// Updates the turn state to show the card.
+					turnState = 2;
+				}
 			}
 			else {
-				// Updates the turn state to show the card.
-				turnState = 2;
+				// Finds the next tile to move to.
+				listPlayers[currentPlayer].MoveTile();
 			}
+		}
+		
+		// Right-click to skip movement and go straight to last tile.
+		if (Input.GetMouseButtonDown(1)) {
+			listPlayers[currentPlayer].SkipToFinish();
 		}
 	}
 	
