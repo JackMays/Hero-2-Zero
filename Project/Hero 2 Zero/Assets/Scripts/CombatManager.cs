@@ -24,6 +24,7 @@ public class CombatManager : MonoBehaviour {
 	void Awake () 
 	{
 		player = null;
+		player2 = null;
 		monster = null;
 
 		playerDiceRoll = 0;
@@ -245,7 +246,7 @@ public class CombatManager : MonoBehaviour {
 	{
 		playerTwoDiceRoll = p2Roll * player2.GetStrength();
 
-		Debug.Log ("Player 2 Total: " + p2Roll + " (base) + " + player2.GetStrength() + " (str) = " + playerTwoDiceRoll);
+		Debug.Log ("Second Player Total: " + p2Roll + " (base) + " + player2.GetStrength() + " (str) = " + playerTwoDiceRoll);
 	}
 
 	public void SetMonsterDiceRoll(int mRoll)
@@ -258,6 +259,16 @@ public class CombatManager : MonoBehaviour {
 	{
 		return isRoundResolved;
 	}*/
+
+	public bool HasMonCombat()
+	{
+		return isMonCombat;
+	}
+	public bool HasPlayerCombat()
+	{
+		return isPvpCombat;
+	}
+
 	public bool HasCombatEnded()
 	{
 		return isCombatEnded;

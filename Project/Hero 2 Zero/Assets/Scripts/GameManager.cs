@@ -206,6 +206,7 @@ public class GameManager : MonoBehaviour
 				if (enemyPlayer != -1) {
 					// Do your combat initiallising here Jack. It would be currentPlayer versus enemyPlayer.
 					combatManager.EstablishPvpCombat(listPlayers[currentPlayer], listPlayers[enemyPlayer]);
+					Debug.Log ("PVP BEGIN");
 					
 					// Updates state to combat.
 					turnState = 4;
@@ -318,8 +319,17 @@ public class GameManager : MonoBehaviour
 					}
 					else
 					{
-						Debug.Log ("Monster Rolled: " + diceManager.GetDiceResults());
-						combatManager.SetMonsterDiceRoll(diceManager.GetDiceResults());
+						if (combatManager.HasMonCombat())
+						{
+							Debug.Log ("Monster Rolled: " + diceManager.GetDiceResults());
+							combatManager.SetMonsterDiceRoll(diceManager.GetDiceResults());
+						}
+						else if (combatManager.HasPlayerCombat())
+						{
+							Debug.Log ("Second Player Rolled: " + diceManager.GetDiceResults());
+							combatManager.SetPlayerTwoDiceRoll(diceManager.GetDiceResults());
+						}
+
 						cmbBothRolled = true;
 					}
 
