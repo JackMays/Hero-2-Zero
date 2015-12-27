@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
 					// Shows the monster card.
 					cardManager.RevealMonCard(mc);
 					// Starts combat.
-					combatManager.EstablishCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
+					combatManager.EstablishMonCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
 					// Updates state to combat.
 					turnState = 4;
 				}
@@ -205,6 +205,7 @@ public class GameManager : MonoBehaviour
 				// Checks if there is a player on the tile.
 				if (enemyPlayer != -1) {
 					// Do your combat initiallising here Jack. It would be currentPlayer versus enemyPlayer.
+					combatManager.EstablishPvpCombat(listPlayers[currentPlayer], listPlayers[enemyPlayer]);
 					
 					// Updates state to combat.
 					turnState = 4;
@@ -262,7 +263,7 @@ public class GameManager : MonoBehaviour
 						{
 							MonsterCard monster = cardManager.GetMonEncountered();
 
-							combatManager.EstablishCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModel()));
+							combatManager.EstablishMonCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModel()));
 							Debug.Log ("COMBAT BEGIN");
 							turnState = 4;
 							cardManager.HideCard();

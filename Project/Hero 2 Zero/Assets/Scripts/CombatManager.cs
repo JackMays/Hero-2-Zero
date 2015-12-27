@@ -6,11 +6,16 @@ public class CombatManager : MonoBehaviour {
 	public Map map;
 
 	Player player;
+	Player player2;
 
 	MonsterCard monster;
 
 	int playerDiceRoll;
+	int playerTwoDiceRoll;
 	int monsterDiceRoll;
+
+	bool isMonCombat;
+	bool isPvpCombat;
 
 	//bool isRoundResolved;
 	bool isCombatEnded;
@@ -24,6 +29,9 @@ public class CombatManager : MonoBehaviour {
 		playerDiceRoll = 0;
 		monsterDiceRoll = 0;
 
+		isMonCombat = false;
+		isPvpCombat = false;
+
 		//isRoundResolved = false;
 		isCombatEnded = false;
 	}
@@ -33,10 +41,10 @@ public class CombatManager : MonoBehaviour {
 	{
 	}
 
-	public void ResolveCombat()
+	void ResolveMon()
 	{
 		int damage = 0;
-
+		
 		// compare dice
 		if (playerDiceRoll > monsterDiceRoll)
 		{
@@ -44,6 +52,8 @@ public class CombatManager : MonoBehaviour {
 			damage = playerDiceRoll - monsterDiceRoll;
 			Debug.Log ("Monster Takes: " + playerDiceRoll + " + " + monsterDiceRoll + " = " + damage);
 			monster.TakeDamage(damage);
+			player.ChangeFame(monster.GetFameMod(true));
+
 		}
 		else if (playerDiceRoll < monsterDiceRoll)
 		{
@@ -51,6 +61,81 @@ public class CombatManager : MonoBehaviour {
 			damage = monsterDiceRoll - playerDiceRoll;
 			Debug.Log ("Player Takes: " + monsterDiceRoll + " - " + playerDiceRoll + " = " + damage);
 			player.TakeDamage(damage);
+			player.ChangeFame(monster.GetFameMod(false));
+		}
+		else
+		{
+			// DRAW
+			Debug.Log ("Tie");
+		}
+		
+		int tileX = (int)player.GetMapPosition().x;
+		int tileY = (int)player.GetMapPosition().y;
+		
+		if (!monster.HasDied())
+		{	
+			map.AddMonsterToTile(tileX, tileY, monster);
+			
+			Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now.");
+		}
+		
+		// if any have died, combat is over, if not its just a round
+		if (player.HasDied() || monster.HasDied())
+		{
+			if (player.HasDied())
+			{
+				Debug.Log ("Player's HP hit 0");
+
+				// remove player for allotted turns, place monster card at area
+				// Also decrease fame more due to critical loss
+				player.HandleDeath(monster.GetFameMod(false));
+				
+
+			}
+			else if (monster.HasDied())
+			{
+				// Remove Card from area
+				Debug.Log ("Monster's HP hit 0");
+				// gain more fame as bonus for win
+				player.ChangeFame(monster.GetFameMod(true));
+				map.ClearMonsterTile(tileX, tileY);
+				map.ClearPrefabTile(tileX, tileY);
+			}
+			
+		}
+		/*else
+		{
+			isRoundResolved = true;
+			Debug.Log("round resolved flagged");
+		}*/
+	}
+
+	void ResolvePvp()
+	{
+		int damage = 0;
+		
+		// compare dice
+		if (playerDiceRoll > playerTwoDiceRoll)
+		{
+			//player one wins
+			damage = playerDiceRoll - playerTwoDiceRoll;
+			Debug.Log ("Player 2 Takes: " + playerDiceRoll + " - " + playerTwoDiceRoll + " = " + damage);
+			player2.TakeDamage(damage);
+
+			player.ChangeFame(10);
+			player2.ChangeFame(-10);
+
+			
+		}
+		else if (playerDiceRoll < playerTwoDiceRoll)
+		{
+			// player two wins
+			damage = playerTwoDiceRoll - playerDiceRoll;
+			Debug.Log ("Player Takes: " + playerTwoDiceRoll + " - " + playerDiceRoll + " = " + damage);
+			player.TakeDamage(damage);
+
+			player.ChangeFame(-10);
+			player2.ChangeFame(10);
 		}
 		else
 		{
@@ -58,53 +143,58 @@ public class CombatManager : MonoBehaviour {
 			Debug.Log ("Tie");
 		}
 
-		int tileX = (int)player.GetMapPosition().x;
-		int tileY = (int)player.GetMapPosition().y;
-
-		if (!monster.HasDied())
-		{
-
-			
-			map.AddMonsterToTile(tileX, tileY, monster);
-			
-			Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now.");
-		}
-
 		// if any have died, combat is over, if not its just a round
-		if (player.HasDied() || monster.HasDied())
+		if (player.HasDied() || player2.HasDied())
 		{
 			if (player.HasDied())
 			{
-				// remove player for allotted turns, place monster card at area
-				// Also decrease fame
-				player.HandleDeath(monster.GetFameMod(false));
+				Debug.Log ("Player 1's HP hit 0");
 
-				Debug.Log ("Player's HP hit 0");
+				// remove losing player for allotted turns
+				// gain/lose bonus fame for win & loss
+				player.HandleDeath(-10);
+				player2.ChangeFame(10);
+
 			}
 			else if (monster.HasDied())
 			{
-				// Remove Card from area
-				Debug.Log ("Monster's HP hit 0");
-				player.ChangeFame(monster.GetFameMod(true));
-				map.ClearMonsterTile(tileX, tileY);
-				map.ClearPrefabTile(tileX, tileY);
-			}
+				Debug.Log ("Player 2's HP hit 0");
 
+				// remove losing player for allotted turns
+				// gain/lose bonus fame for win & loss
+				player.ChangeFame(10);
+				player2.HandleDeath(-10);
+			}
+			
 		}
 		/*else
 		{
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
 		}*/
+	}
+
+	public void ResolveCombat()
+	{
+		if (isMonCombat)
+		{
+			ResolveMon();
+		}
+		else if (isPvpCombat)
+		{
+			ResolvePvp();
+		}
 
 		// end combat
 		isCombatEnded = true;
 	}
 
-	public void EstablishCombat(Player p, MonsterCard m, GameObject pr)
+	public void EstablishMonCombat(Player p, MonsterCard m, GameObject pr)
 	{
 		player = p;
 		monster = m;
+
+		isMonCombat = true;
 
 		// if there is no model, send it to be instantiated
 		if (map.HasBlankModel((int)player.GetMapPosition().x, (int)player.GetMapPosition().y))
@@ -118,10 +208,21 @@ public class CombatManager : MonoBehaviour {
 		}
 	}
 
+	public void EstablishPvpCombat(Player p1, Player p2)
+	{
+		player = p1;
+		player2 = p2;
+
+		isPvpCombat = true;
+	}
+
 	public void ResetCombat()
 	{
 		player = null;
 		monster = null;
+
+		isMonCombat = false;
+		isPvpCombat = false;
 		isCombatEnded = false;
 		// make sure round is reset
 		//ResetRound();
@@ -138,6 +239,13 @@ public class CombatManager : MonoBehaviour {
 	{
 		playerDiceRoll = pRoll + player.GetStrength();
 		Debug.Log ("Player Total: " + pRoll + " (base) + " + player.GetStrength() + " (str) = " + playerDiceRoll);
+	}
+
+	public void SetPlayerTwoDiceRoll(int p2Roll)
+	{
+		playerTwoDiceRoll = p2Roll * player2.GetStrength();
+
+		Debug.Log ("Player 2 Total: " + p2Roll + " (base) + " + player2.GetStrength() + " (str) = " + playerTwoDiceRoll);
 	}
 
 	public void SetMonsterDiceRoll(int mRoll)
