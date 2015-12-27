@@ -184,6 +184,8 @@ public class GameManager : MonoBehaviour
 				// Waits for the player to press the roll button to hide card and end turn.
 				if (Input.GetButtonDown(rollButton)) 
 				{
+					// Applies the effect of the card.
+					cardManager.ApplyEffect(currentPlayer, listPlayers);				
 					// set up combat if a monster card is encountered
 					if (cardManager.HasMonEncountered())
 					{

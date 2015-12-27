@@ -15,6 +15,7 @@ public class CardManager : MonoBehaviour
 		Choice,
 		Teleport,
 		Health,
+		CreateMonster,
 		Monster
 	}
 
@@ -25,7 +26,7 @@ public class CardManager : MonoBehaviour
 	Queue<Card> fieldCards = new Queue<Card>();
 	Queue<Card> forestCards = new Queue<Card>();
 	Queue<Card> mountainCards = new Queue<Card>();
-	Queue<Card> monsterCards = new Queue<Card>();
+	List<MonsterCard> monsterCards = new List<MonsterCard>();
 	
 	// Items are a list because specific cards may need to be drawn at certain times.
 	List<Card> itemCards = new List<Card>();
@@ -62,6 +63,7 @@ public class CardManager : MonoBehaviour
 	
 	#endregion
 	
+	#region Start Shit
 	// Use this for initialization
 	void Start ()
 	{
@@ -71,7 +73,6 @@ public class CardManager : MonoBehaviour
 		cardList.Add(fieldCards);
 		cardList.Add(forestCards);
 		cardList.Add(mountainCards);
-		cardList.Add(monsterCards);
 		
 		// Stores the buttons.
 		choice1 = cardObject.transform.GetChild(3).gameObject;
@@ -86,14 +87,14 @@ public class CardManager : MonoBehaviour
 		//ReadCards();
 		
 		// Loads the images.
-		LoadImages();
+		//LoadImages();
 	}
 	
 	// Creates the cards and adds them to their queues.
 	void CreateCards()
 	{	
 		// Lane Cards
-		laneCards.Enqueue(new FameCard(10, 0, 0, "You trip on a pothole", 1));
+		laneCards.Enqueue(new FameCard(-10, 0, 0, "You trip on a pothole", 1));
 		laneCards.Enqueue(new Card(0, "You come across a goblin corpse.", 0));
 		laneCards.Enqueue(new Card(0, "You kick a passing old lady. Bitch.", 0));
 		laneCards.Enqueue(new Card(0, "You feel so joyful you start to skip. Like a fag.", 0));
@@ -117,6 +118,7 @@ public class CardManager : MonoBehaviour
 		villageCards.Enqueue(new Card(1, "A girl gives you a flower. You kick her.", 0));
 		
 		// Field Cards
+		fieldCards.Enqueue(new MonsterEventCard("Slime", 2, "You encounter a friendly slime. Now slay it.", 7));
 		fieldCards.Enqueue(new Card(2, "You get hayfever because you're a pusseh.", 0));
 		fieldCards.Enqueue(new Card(2, "A flower calls you a prick. You step on it.", 0));
 		fieldCards.Enqueue(new Card(2, "A passing fairy grants you a wish. You wish for the fairy to die.", 0));
@@ -138,19 +140,13 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new Card(4, "You climb the mountain stairs and encounter a frost troll.", 0));
 
 		// Monster Cards; 5th img element and 6th type enum
-		monsterCards.Enqueue(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!", 7));
-		monsterCards.Enqueue(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 2, "Monster!", 7));
+		monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!", 8));
+		monsterCards.Add(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 2, "Monster!", 8));
 	}
 	
-	void DebugList()
-	{
-		for (int i = 0; i < 6; ++i) {
-			for (int j = 0; j < cardList[i].Count; ++j) {
-				Debug.Log (cardList[i].Dequeue());
-			}
-		}
-	}
+	#endregion
 	
+	#region Loading Cards
 	// Reads through all the cards in the file and adds them to the decks.
 	List<Card> ReadCards()
 	{
@@ -302,7 +298,7 @@ public class CardManager : MonoBehaviour
 				break;
 			// Monster.
 			case 5:
-				monsterCards.Enqueue(c);
+				monsterCards.Add((MonsterCard) c);
 				break;		
 		}
 	}
@@ -311,25 +307,22 @@ public class CardManager : MonoBehaviour
 	{
 	
 	}
+	#endregion
 	
-	// Pulls the first card and then puts it at the end of the pile.
-	Card DrawCard(int pile)
-	{
-		// Takes the first card from the specified queue.
-		Card c = cardList[pile].Dequeue();
-		
-		// Adds the card back to the end of the queue.
-		cardList[pile].Enqueue(c);
-		
-		// Returns the card.
-		return c;
-	}
-	
+	#region Draw & Display Card
 	// Displays the card to the player.
 	public void DisplayCard(int area)
 	{
 		// Gets the first card in the designated area queue.
-		drawnCard = DrawCard(area);
+		// Checks if the area is a monster area.
+		if (area == 5) {
+			// Draws a monster card.
+			drawnCard = DrawMonsterCard();
+		} else 
+		{
+			// Draws a normal card.
+			drawnCard = DrawCard(area);
+		}
 
 		// Set isMonsterDrawn if a monster is drawn, false if it isnr
 		// Serves as a way to reset this boolean without additional functions or lines
@@ -353,6 +346,78 @@ public class CardManager : MonoBehaviour
 		cardObject.enabled = true;
 		
 		cardShowing = true;
+	}
+	
+	// Pulls the first card and then puts it at the end of the pile.
+	Card DrawCard(int pile)
+	{
+		// Takes the first card from the specified queue.
+		Card c = cardList[pile].Dequeue();
+		
+		// Adds the card back to the end of the queue.
+		cardList[pile].Enqueue(c);
+		
+		// Returns the card.
+		return c;
+	}
+	
+	// Use this method to draw a monster card.
+	public Card DrawMonsterCard()
+	{
+		// Takes the first card from the list.
+		MonsterCard mon = monsterCards[0];
+		
+		// Shuffles the monster cards.
+		ShuffleMonsterCards();
+		
+		// Sets the drawn card to a deep copy of the monster card.
+		return new MonsterCard(mon);
+	}
+	
+	// Shuffles a normal card deck.
+	void ShuffleNormalCards(int index)
+	{
+		// Creates a list to temporarily store the deck.
+		List<Card> cards = new List<Card>();
+		
+		// Loops through the deck.
+		while (cardList[index].Count > 0) {
+			// Adds the card to the temp list.
+			cards.Add(cardList[index].Dequeue());
+		}
+		
+		// Declaring the int here so as to not keep declaring in the loop.
+		int rand = 0;
+		
+		// Loops through the list and randomly adds cards back to the queue.
+		while (cards.Count > 0) {
+			rand = Random.Range(0, cards.Count);
+			cardList[index].Enqueue(cards[rand]);
+			cards.RemoveAt(rand);
+		}
+	}
+	
+	// Shuffles the monster cards.
+	void ShuffleMonsterCards()
+	{
+		// Creates a second list to temporarily hold the randomised list.
+		List<MonsterCard> temp = new List<MonsterCard>();
+		
+		// Declaring int here to prevent numerous declaring in the loop.
+		int rand = 0;
+		
+		// Loops through the list.
+		while (monsterCards.Count > 0) {
+			// Gets a random idnex.
+			rand = Random.Range(0, monsterCards.Count);
+			// Adds a random index to the temp list.
+			temp.Add(monsterCards[rand]);
+			// Removes the card.
+			monsterCards.RemoveAt(rand);
+		}
+		
+		// Sets the monster card list to the new shuffled list.
+		monsterCards = temp;
 	}
 	
 	// Shows the normal card and updates its values.
@@ -379,8 +444,7 @@ public class CardManager : MonoBehaviour
 		cardObject.enabled = true;
 	}
 	
-	// Shows the monster card and updates its values.
-	void DisplayMonsterCard()
+	public void RevealMonCard()
 	{
 		// Casts the drawn card as a monster card.
 		MonsterCard mon = (MonsterCard)drawnCard;
@@ -403,10 +467,49 @@ public class CardManager : MonoBehaviour
 		// Sets the card's gold gain.
 		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
 		
+		// Hides the normal card.
+		cardObject.enabled = false;
+		
 		// Shows the monster card.
 		monsterCardObject.enabled = true;
+		
+		// Sets that the card has been shown.
+		isMonsterRevealed = true;
 	}
 	
+	// For when landing on a persisting monster.
+	public void RevealMonCard(MonsterCard mon)
+	{
+		// Sets the card's image.
+		monsterCardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[mon.GetMonImg()];
+		
+		// Sets the card's name.
+		monsterCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mon.GetName();
+		// Sets the card's attack.
+		monsterCardObject.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = mon.GetStrength().ToString();
+		// Sets the card's health.
+		monsterCardObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = mon.GetHealth().ToString();
+		// Sets the card's defense.
+		monsterCardObject.transform.GetChild(5).GetChild(1).GetComponent<Text>().text = mon.GetDefense().ToString();
+		// Sets the card's fame gain.
+		monsterCardObject.transform.GetChild(6).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(true).ToString();
+		// Sets the card's fame loss.
+		monsterCardObject.transform.GetChild(7).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(false).ToString();
+		// Sets the card's gold gain.
+		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
+		
+		// Hides the normal card.
+		cardObject.enabled = false;
+		
+		// Shows the monster card.
+		monsterCardObject.enabled = true;
+		
+		// Sets that the card has been shown.
+		isMonsterRevealed = true;
+	}
+	#endregion
+	
+	#region Choices	
 	void ShowChoices()
 	{
 		// Casts the card as a choice card.
@@ -507,27 +610,15 @@ public class CardManager : MonoBehaviour
 		// Returns that a choice hasn't been made.
 		return false;
 	}
-
-	public bool HasMonEncountered()
-	{
-		return isMonsterDrawn;
-	}
-
-	public bool HasMonRevealed()
-	{
-		return isMonsterRevealed;
-	}
-
-	public MonsterCard GetMonEncountered()
-	{
-		return (MonsterCard)drawnCard;
-	}
 	
+	#endregion
+	
+	#region Card Effects
 	// Checks the card to see if it has an effect and then applies it.
 	public void ApplyEffect(int currentPlayer, List<Player> players)
 	{
 		Type cardType = (Type)drawnCard.GetCardType();
-	
+		
 		// Checks if the card is not a normal card.
 		if (cardType != Type.None) {
 			// Checks which type of card effect to apply.
@@ -552,16 +643,17 @@ public class CardManager : MonoBehaviour
 			else if (cardType == Type.Health) {
 				ChangeHealthEffect(currentPlayer, players);
 			}
+			// Create Monster
+			else if (cardType == Type.CreateMonster) {
+				CreateMonster();
+			}
 			// Combat
 			else if (cardType == Type.Monster) {
-				TriggerEncounter();
+				
 			}
 		}
 	}
 	
-	
-	
-	#region Card Effects
 	// Changes the fame value of selected player.
 	void ChangeFameEffect(int currentPlayer, List<Player> players)
 	{
@@ -640,6 +732,32 @@ public class CardManager : MonoBehaviour
 		}
 	}
 	
+	// Spawns a monster on the current tile.
+	void CreateMonster()
+	{
+		// Casts the current card as a monster event card.
+		MonsterEventCard card = (MonsterEventCard)drawnCard;
+		
+		// Holds the monster card from the list.
+		MonsterCard mon = new MonsterCard(monsterCards[0]);
+		
+		// Loops through the list.
+		for (int i = 0; i < monsterCards.Count; ++i) {
+			// Checks if the current monster's name matches the searching name.
+			if (monsterCards[i].GetName() == card.GetName()) {
+				// Stores the monster card and ends the loop.
+				mon = monsterCards[i];
+				i = monsterCards.Count;
+			}
+		}
+		
+		// Performs a deep copy of the monster card.
+		drawnCard = new MonsterCard(mon);
+		
+		// Sets that a monster has been encountered.
+		isMonsterDrawn = true;
+	}
+	
 	// combat function for apply effect if brought back into use
 	void TriggerEncounter()
 	{
@@ -694,93 +812,28 @@ public class CardManager : MonoBehaviour
 	}
 	#endregion
 	
+	#region Small Monster Functions
 	
-	// Returns whether the card is being shown.
-	public bool IsShowingCard()
+	public bool HasMonEncountered()
 	{
-		return cardShowing;
+		return isMonsterDrawn;
 	}
-
+	
+	public bool HasMonRevealed()
+	{
+		return isMonsterRevealed;
+	}
+	
+	public MonsterCard GetMonEncountered()
+	{
+		return (MonsterCard)drawnCard;
+	}	
+	
 	public GameObject GetMonsterModel(int index)
 	{
 		return monPrefabList[index];
 	}
 	
-	// Hides the card.
-	public void HideCard()
-	{
-		cardObject.enabled = false;
-		cardShowing = false;
-	}
-
-	public void RevealMonCard()
-	{
-		// Casts the drawn card as a monster card.
-		MonsterCard mon = (MonsterCard)drawnCard;
-		
-		// Sets the card's image.
-		monsterCardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[mon.GetMonImg()];
-		
-		// Sets the card's name.
-		monsterCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mon.GetName();
-		// Sets the card's attack.
-		monsterCardObject.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = mon.GetStrength().ToString();
-		// Sets the card's health.
-		monsterCardObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = mon.GetHealth().ToString();
-		// Sets the card's defense.
-		monsterCardObject.transform.GetChild(5).GetChild(1).GetComponent<Text>().text = mon.GetDefense().ToString();
-		// Sets the card's fame gain.
-		monsterCardObject.transform.GetChild(6).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(true).ToString();
-		// Sets the card's fame loss.
-		monsterCardObject.transform.GetChild(7).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(false).ToString();
-		// Sets the card's gold gain.
-		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
-		
-		// Hides the normal card.
-		cardObject.enabled = false;
-		
-		// Shows the monster card.
-		monsterCardObject.enabled = true;
-	
-		//MonsterCard mc = (MonsterCard)drawnCard;
-		//cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
-		//cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
-		isMonsterRevealed = true;
-	}
-	
-	// For when landing on a persisting monster.
-	public void RevealMonCard(MonsterCard mon)
-	{
-		// Sets the card's image.
-		monsterCardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[mon.GetMonImg()];
-		
-		// Sets the card's name.
-		monsterCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mon.GetName();
-		// Sets the card's attack.
-		monsterCardObject.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = mon.GetStrength().ToString();
-		// Sets the card's health.
-		monsterCardObject.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = mon.GetHealth().ToString();
-		// Sets the card's defense.
-		monsterCardObject.transform.GetChild(5).GetChild(1).GetComponent<Text>().text = mon.GetDefense().ToString();
-		// Sets the card's fame gain.
-		monsterCardObject.transform.GetChild(6).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(true).ToString();
-		// Sets the card's fame loss.
-		monsterCardObject.transform.GetChild(7).GetChild(1).GetComponent<Text>().text = mon.GetFameMod(false).ToString();
-		// Sets the card's gold gain.
-		monsterCardObject.transform.GetChild(8).GetChild(1).GetComponent<Text>().text = mon.GetVictoryGold().ToString();
-		
-		// Hides the normal card.
-		cardObject.enabled = false;
-		
-		// Shows the monster card.
-		monsterCardObject.enabled = true;
-		
-		//MonsterCard mc = (MonsterCard)drawnCard;
-		//cardObject.transform.GetChild(1).GetComponent<Image>().sprite = monImageList[0];
-		//cardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = mc.GetName();
-		isMonsterRevealed = true;
-	}
-
 	public void ResetMonsterFlags()
 	{
 		isMonsterDrawn = false;
@@ -792,6 +845,23 @@ public class CardManager : MonoBehaviour
 		monsterCardObject.enabled = false;
 		cardShowing = false;
 	}
+	
+	#endregion
+	
+	#region Show/Hide Card
+	// Returns whether the card is being shown.
+	public bool IsShowingCard()
+	{
+		return cardShowing;
+	}
+
+	// Hides the card.
+	public void HideCard()
+	{
+		cardObject.enabled = false;
+		cardShowing = false;
+	}
+	#endregion
 	
 	// Update is called once per frame
 	void Update ()

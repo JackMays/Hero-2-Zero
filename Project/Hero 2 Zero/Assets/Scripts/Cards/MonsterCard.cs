@@ -40,10 +40,42 @@ public class MonsterCard : Card
 		// Fame/glory given or taken away
 		fameGain = faga;
 		fameLose = falo;
-		
-
 	}
-
+	
+	public MonsterCard (MonsterCard mon) : base (mon.GetImageIndex(), mon.GetDescription(), mon.GetCardType())
+	{
+		monsterImgIndex = mon.monsterImgIndex;
+		monsterModelIndex = mon.monsterModelIndex;
+		name = mon.name;
+		health = mon.health;
+		strength = mon.strength;
+		defense = mon.defense;
+		goldVictoryGain = mon.goldVictoryGain;
+		fameGain = mon.fameGain;
+		fameLose = mon.fameLose;	
+	}
+	
+	// This will allow to make a deep copy of another monster instance.
+	public void CloneMonster(MonsterCard mon)
+	{
+		monsterImgIndex = mon.monsterImgIndex;
+		monsterModelIndex = mon.monsterModelIndex;
+		name = mon.name;
+		health = mon.health;
+		strength = mon.strength;
+		defense = mon.defense;
+		goldVictoryGain = mon.goldVictoryGain;
+		fameGain = mon.fameGain;
+		fameLose = mon.fameLose;		
+	}
+	
+	public void SetValues(string n, int s, int h)
+	{
+		name = n;
+		strength = s;
+		health = h;
+	}
+	
 	public string GetName()
 	{
 		return name;

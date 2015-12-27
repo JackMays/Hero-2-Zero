@@ -22,6 +22,16 @@ public class Map : MonoBehaviour
 		{2, 0, 4, 3, 2, 0, 4},
 		{1, 6, 5, 0, 1, 6, 5}
 	};
+	/*
+	int[,] map = new int[7,7] {
+		{6, 6, 6, 0, 6, 6, 6},
+		{6, 0, 6, 6, 6, 0, 6},
+		{6, 6, 0, 0, 0, 6, 6},
+		{0, 6, 0, 0, 0, 6, 0},
+		{6, 6, 0, 0, 0, 6, 6},
+		{6, 0, 6, 6, 6, 0, 6},
+		{6, 6, 6, 0, 6, 6, 6}
+	};*/
 	
 	// Monster Instances by Tile
 	MonsterCard[,] tiledMonsterCards = new MonsterCard[7,7] {
