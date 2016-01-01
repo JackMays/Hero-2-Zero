@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
 	bool cmbPlayerRolled = false;
 	bool cmbBothRolled = false;
 	
-	
+	// Canvas for choosing a direction.
+	public GameObject canvasDirection;
 	#endregion
 	
 	
@@ -91,6 +92,31 @@ public class GameManager : MonoBehaviour
 		
 		// Returns that no player is on the tile.
 		return -1;
+	}
+	
+	// Sets the direction that the player chose.
+	public void SetDirection(int d)
+	{
+		// Hides the direction buttons.
+		canvasDirection.SetActive(false);
+	
+		// Sets the player's direction.
+		listPlayers[currentPlayer].SetDirection(d);
+		
+		// Sets teh player to move.
+		listPlayers[currentPlayer].MoveTile();
+	}
+	
+	// Shows the direction canvas and activates the choosale buttons.
+	void ShowDirectionCanvas(bool[] dirs)
+	{
+		// Shows the canvas.
+		canvasDirection.SetActive(true);
+		
+		// Loops through the buttons and ativates the possible choices.
+		for (int i = 0; i < 4; ++i) {
+			canvasDirection.transform.GetChild(i).gameObject.SetActive(dirs[i]);
+		}
 	}
 	
 	// Holds whether the game has been hacked by Skynet.
@@ -179,13 +205,14 @@ public class GameManager : MonoBehaviour
 			listPlayers[currentPlayer].Move();
 		}
 		else {
+			// Gets the player's map position.
+			Vector2 playerPos = listPlayers[currentPlayer].GetMapPosition();
+		
 			// Checks if the player just stopped.
 			if (listPlayers[currentPlayer].JustStoppedMoving()) {
 				// Sets that the player has not stopped moving anymore.
 				listPlayers[currentPlayer].SetJustStopped(false);
 				
-				// Gets the player's map position.
-				Vector2 playerPos = listPlayers[currentPlayer].GetMapPosition();
 				// Gets the monster card on the current tile.
 				MonsterCard mc = map.GetMonsterOnTile((int)playerPos.x, (int)playerPos.y);
 				
@@ -219,8 +246,27 @@ public class GameManager : MonoBehaviour
 				}
 			}
 			else {
-				// Finds the next tile to move to.
-				listPlayers[currentPlayer].MoveTile();
+				// Checks if the current tile is a choice tile.
+				bool[] dirs = map.IsChoiceTile((int)playerPos.x, (int)playerPos.y);
+				
+				// Checks if the directions is not null.
+				if (dirs != null) {
+					// Shows the direction buttons.
+					ShowDirectionCanvas(dirs);					
+				}
+				else {
+					// Gets the direction the player must move in.
+					int dir = map.IsForceTile((int)playerPos.x, (int)playerPos.y);
+					
+					// Checks if the player has to change direction.
+					if (dir != -1) {
+						// Changes the player's direction.
+						listPlayers[currentPlayer].SetDirection(dir);
+					}		
+					
+					// Finds the next tile to move to.
+					listPlayers[currentPlayer].MoveTile();
+				}
 			}
 		}
 		

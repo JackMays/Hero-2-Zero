@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
 	#region Variables
 	// Typical player values.
@@ -76,7 +76,12 @@ public class Player : MonoBehaviour
 	
 	// Moves the player over time to the target space.
 	public void Move()
-	{		
+	{
+		// Debugs movement values.
+		//Debug.Log(moveTime);
+		//Debug.Log(startJumpPosition);
+		//Debug.Log(moveTarget);
+		
 		// Updates timer with time sicne last update.
 		moveTime += Time.deltaTime;
 		
@@ -109,12 +114,12 @@ public class Player : MonoBehaviour
 		// Checks if the player needs to look up/down or left/right.
 		if (checkForward) {
 			// Checks if the tile below is viable.
-			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y + 1) != 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y - 1) != 0) {
 				direction = 2;
 				transform.LookAt(transform.position + Vector3.back);
 			}
 			// Checks if the tile above is viable.
-			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y - 1) != 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y + 1) != 0) {
 				direction = 0;
 				transform.LookAt(transform.position + Vector3.forward);
 			}
@@ -141,7 +146,7 @@ public class Player : MonoBehaviour
 		// a valid target. Otherwise the player needs to change direction clockwise.
 		
 		if (direction == 0) {
-			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y - 1) == 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y + 1) == 0) {
 				ChangeDirection(false);
 			}
 		}
@@ -151,7 +156,7 @@ public class Player : MonoBehaviour
 			}
 		}
 		else if (direction == 2) {
-			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y + 1) == 0) {
+			if (map.GetTile((int)mapPosition.x, (int)mapPosition.y - 1) == 0) {
 				ChangeDirection(false);
 			}
 		}
@@ -173,19 +178,19 @@ public class Player : MonoBehaviour
 		Vector3 mTarget = new Vector3();
 		
 		if (direction == 0) {
-			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (0 - (mapPosition.y-1)));
-			mapPosition.y -= 1;
+			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (mapPosition.y+1));
+			mapPosition.y += 1;
 		}
 		else if (direction == 1) {
-			moveTarget = new Vector3(2 * (mapPosition.x+1), transform.position.y, 0 - (2 * mapPosition.y));
+			moveTarget = new Vector3(2 * (mapPosition.x+1), transform.position.y, 2 * mapPosition.y);
 			mapPosition.x += 1;
 		}
 		else if (direction == 2) {
-			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (0 - (mapPosition.y+1)));
-			mapPosition.y += 1;
+			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (mapPosition.y-1));
+			mapPosition.y -= 1;
 		}
 		else if (direction == 3) {
-			moveTarget = new Vector3(2 * (mapPosition.x-1), transform.position.y, 0 - (2 * mapPosition.y));
+			moveTarget = new Vector3(2 * (mapPosition.x-1), transform.position.y, 2 * mapPosition.y);
 			mapPosition.x -= 1;
 		}
 	}
@@ -193,33 +198,27 @@ public class Player : MonoBehaviour
 	// Sets the player up to move to the next tile.
 	public void MoveTile()
 	{
-		Debug.Log("Map Pos: " + mapPosition + " | Direction : " + direction);
-		
 		// Stores the current position in 3D space.
-		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 0 - (2 * mapPosition.y));
+		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 2 * mapPosition.y);
 		
 		// Find the direction the player needs to move in.
 		FindDirection ();
 		
-		Debug.Log("New Direction: " + direction);
-		
 		// Find the position the player needs to move to.
 		FindMoveTarget();
-		Debug.Log("Target: " + moveTarget);
-		
-		Debug.Log("New Map Pos: " + mapPosition);
 		
 		// Sets that the player is now moving.
 		movingTile = true;
 		justStopped = false;		
 	}
 	
-	#region IGNORE
 	public void ReplenishHealth(int hp)
 	{
 		// TEMP: hea between combat to resume flow
 		health = hp;
 	}
+	
+	
 	
 	// Returns whether the player is moving.
 	public bool GetMoving()
@@ -504,7 +503,7 @@ public class Player : MonoBehaviour
 		RotatePlayer(direction);
 		
 		// Moves the player in world space.
-		transform.localPosition = new Vector3(mapPosition.x * 2, transform.position.y, 0 - (mapPosition.y * 2));
+		transform.localPosition = new Vector3(mapPosition.x * 2, transform.position.y, mapPosition.y * 2);
 		
 		// Sets movement to 0 and stops the player.
 		movement = 0;
@@ -513,35 +512,6 @@ public class Player : MonoBehaviour
 		movingTile = false;
 		justStopped = true;
 	}	
-	#endregion
-	
-	// Sets the direction of the player and rotates to face that way.
-	public void SetDirection(int d)
-	{
-		// Sets the direction.
-		direction = d;
-	
-		// Face up.
-		if (d == 0) {
-			transform.LookAt(transform.position + Vector3.forward);
-			return;
-		}
-		
-		// Face right.
-		if (d == 1) {
-			transform.LookAt(transform.position + Vector3.right);
-			return;
-		}
-		
-		// Face down.
-		if (d == 2) {
-			transform.LookAt(transform.position + Vector3.back);
-			return;
-		}
-		
-		// Face left.
-		transform.LookAt(transform.position + Vector3.left);
-	}
 	
 	// Update is called once per frame
 	void Update ()
