@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
 	public GameObject canvasDirection;
 	#endregion
 	
-	
 	// Use this for initialization
 	void Start ()
 	{

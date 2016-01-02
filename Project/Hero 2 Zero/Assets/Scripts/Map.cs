@@ -4,28 +4,7 @@ using System.Collections.Generic;
 
 public class Map : MonoBehaviour
 {
-	#region Variables
-	// The map.
-	/*int[,] map = new int[5,5] {
-	{1, 2, 3, 4, 5},
-	{1, 0, 0, 0, 1},
-	{5, 0, 0, 0, 2},
-	{4, 0, 0, 0, 3},
-	{3, 2, 1, 5, 4}
-	};*/
-	
-	int[,] map = new int[9,9] {
-		{1, 2, 3, 4, 1, 4, 5, 6, 1},
-		{6, 0, 0, 5, 0, 3, 0, 0, 2},
-		{5, 0, 0, 6, 1, 2, 0, 0, 3},
-		{4, 3, 2, 0, 0, 0, 6, 5, 4},
-		{4, 0, 1, 0, 0, 0, 1, 0, 2},
-		{4, 5, 6, 0, 0, 0, 2, 3, 4},
-		{3, 0, 0, 2, 1, 6, 0, 0, 5},
-		{2, 0, 0, 3, 0, 5, 0, 0, 6},
-		{1, 6, 5, 4, 3, 4, 3, 2, 1}		
-	};
-	
+	#region Structs
 	// Makes it a lot easier to store the tile position and the directions the player can choose.
 	struct ChoiceTile {
 		// The grid position of the tile.
@@ -56,8 +35,27 @@ public class Map : MonoBehaviour
 			gridPos = pos;
 			direction = dir;
 		}
-	}
+	}	
+	#endregion
 	
+	#region Variables
+	// The map.
+	int[,] map = new int[9,9] {
+		{1, 2, 3, 4, 1, 4, 5, 6, 1},
+		{6, 0, 0, 5, 0, 3, 0, 0, 2},
+		{5, 0, 0, 6, 1, 2, 0, 0, 3},
+		{4, 3, 2, 0, 0, 0, 6, 5, 4},
+		{4, 0, 1, 0, 0, 0, 1, 0, 2},
+		{4, 5, 6, 0, 0, 0, 2, 3, 4},
+		{3, 0, 0, 2, 1, 6, 0, 0, 5},
+		{2, 0, 0, 3, 0, 5, 0, 0, 6},
+		{1, 6, 5, 4, 3, 4, 3, 2, 1}		
+	};
+	
+	
+	
+	// Holds the position of where the player needs to choose a path
+	// and the directions the player can choose.
 	List<ChoiceTile> choiceTiles = new List<ChoiceTile>() {
 		new ChoiceTile(new Vector2(0, 3), new bool[4] {false, true, true, false}),
 		new ChoiceTile(new Vector2(3, 8), new bool[4] {false, false, true, true}),
@@ -65,23 +63,14 @@ public class Map : MonoBehaviour
 		new ChoiceTile(new Vector2(5, 0), new bool[4] {true, true, false, false})
 	};
 	
+	// Holds the position of where the player is forced to go in a
+	// particular direction.
 	List<ForceTile> forceTiles = new List<ForceTile>() {
 		new ForceTile(new Vector2(0, 5), 1),
 		new ForceTile(new Vector2(5, 8), 2),
 		new ForceTile(new Vector2(8, 3), 3),
 		new ForceTile(new Vector2(3, 0), 0)
 	};
-	
-	/*
-	int[,] map = new int[7,7] {
-		{6, 6, 6, 0, 6, 6, 6},
-		{6, 0, 6, 6, 6, 0, 6},
-		{6, 6, 0, 0, 0, 6, 6},
-		{0, 6, 0, 0, 0, 6, 0},
-		{6, 6, 0, 0, 0, 6, 6},
-		{6, 0, 6, 6, 6, 0, 6},
-		{6, 6, 6, 0, 6, 6, 6}
-	};*/
 	
 	// Monster Instances by Tile
 	MonsterCard[,] tiledMonsterCards = new MonsterCard[9,9] {
@@ -135,6 +124,8 @@ public class Map : MonoBehaviour
 		
 	}
 	
+	#region Create Map
+	
 	// Places the tiles around the map according to the array.
 	void CreateMap()
 	{
@@ -168,6 +159,7 @@ public class Map : MonoBehaviour
 		g.GetComponent<Renderer>().material = mats[value-1];
 	}
 	
+	// Places a tile at the specified position and changes its type.
 	void CreateTile2(int i, int j, int value)
 	{
 		// Places a tile, changes its name and assigns its parent.
@@ -177,6 +169,22 @@ public class Map : MonoBehaviour
 		
 		// Moves the tile locally to the correct position.
 		g.transform.localPosition = new Vector3(j * 2, 0, (0 - i) * 2);
+	}
+	
+	#endregion
+	
+	#region Getters
+	
+	// Returns the value of the requested tile.
+	public int GetTile(int i, int j)
+	{
+		// Checks if the tile isn't out of bounds.
+		if (i < 0 || j < 0 || i >= map.GetLength(1) || j >= map.GetLength(0)) {
+			return 0;
+		}
+		
+		// Return's the tile value.
+		return map[j, i];
 	}
 	
 	// Returns the directions the player can travel if a choice tile.
@@ -217,6 +225,10 @@ public class Map : MonoBehaviour
 		return -1;
 	}
 	
+	#endregion
+	
+	#region Monster Functions
+	
 	public void AddMonsterToTile(int i, int j, MonsterCard mon)
 	{
 		tiledMonsterCards[i, j] = mon;
@@ -237,18 +249,6 @@ public class Map : MonoBehaviour
 		Destroy(tiledMonsterPrefabs[i, j]);
 		
 		tiledMonsterPrefabs[i, j] = null;
-	}
-	
-	// Returns teh value of the requested tile.
-	public int GetTile(int i, int j)
-	{
-		// Checks if the tile isn't out of bounds.
-		if (i < 0 || j < 0 || i >= map.GetLength(1) || j >= map.GetLength(0)) {
-			return 0;
-		}
-		
-		// Return's the tile value.
-		return map[j,i];
 	}
 	
 	public MonsterCard GetMonsterOnTile(int i, int j)
@@ -272,4 +272,6 @@ public class Map : MonoBehaviour
 		// return true if model is blank/null and false if not
 		return (tiledMonsterPrefabs[i, j] == null);
 	}
+	
+	#endregion
 }

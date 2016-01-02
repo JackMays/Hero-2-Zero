@@ -74,6 +74,40 @@ public class Player : MonoBehaviour
 		finishDirection = direction;
 	}
 	
+	#region Movement
+	
+	// Stores the spaces for the player to move and allows the player to move.
+	public void StartMovement(int move)
+	{
+		movement = move;
+		isMoving = true;
+		justStopped = false;
+	}
+	
+	// Sets the player up to move to the next tile.
+	public void MoveTile()
+	{
+		Debug.Log("Map Pos: " + mapPosition + " | Direction : " + direction);
+		
+		// Stores the current position in 3D space.
+		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 0 - (2 * mapPosition.y));
+		
+		// Find the direction the player needs to move in.
+		FindDirection ();
+		
+		Debug.Log("New Direction: " + direction);
+		
+		// Find the position the player needs to move to.
+		FindMoveTarget();
+		Debug.Log("Target: " + moveTarget);
+		
+		Debug.Log("New Map Pos: " + mapPosition);
+		
+		// Sets that the player is now moving.
+		movingTile = true;
+		justStopped = false;		
+	}
+	
 	// Moves the player over time to the target space.
 	public void Move()
 	{		
@@ -190,119 +224,9 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	// Sets the player up to move to the next tile.
-	public void MoveTile()
-	{
-		Debug.Log("Map Pos: " + mapPosition + " | Direction : " + direction);
-		
-		// Stores the current position in 3D space.
-		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 0 - (2 * mapPosition.y));
-		
-		// Find the direction the player needs to move in.
-		FindDirection ();
-		
-		Debug.Log("New Direction: " + direction);
-		
-		// Find the position the player needs to move to.
-		FindMoveTarget();
-		Debug.Log("Target: " + moveTarget);
-		
-		Debug.Log("New Map Pos: " + mapPosition);
-		
-		// Sets that the player is now moving.
-		movingTile = true;
-		justStopped = false;		
-	}
+	#endregion
 	
-	#region IGNORE
-	public void ReplenishHealth(int hp)
-	{
-		// TEMP: hea between combat to resume flow
-		health = hp;
-	}
-	
-	// Returns whether the player is moving.
-	public bool GetMoving()
-	{
-		return isMoving;
-	}
-	
-	public bool HasDied()
-	{
-		return (health == 0);
-	}
-	
-	public bool HasSkippedTurns()
-	{
-		if (turnSkipCount < turnSkipCap)
-		{
-			
-			++turnSkipCount;
-			return false;
-		}
-		else
-		{
-			ReplenishHealth(20);
-			return true;
-		}
-	}
-	
-	// Returns current movement.
-	public int GetMovement()
-	{
-		return movement;
-	}
-	
-	public int GetHealth()
-	{
-		return health;
-	}
-	
-	// Return attack value
-	public int GetStrength()
-	{
-		return strength;
-	}
-	
-	// Returns the player's position in map space.
-	public Vector2 GetMapPosition()
-	{
-		return mapPosition;
-	}
-	
-	// Sets whether the player is moving.
-	public void SetMoving(bool m)
-	{
-		isMoving = m;
-	}
-	
-	// Stores the spaces for the player to move and allows the player to move.
-	public void StartMovement(int move)
-	{
-		movement = move;
-		isMoving = true;
-		justStopped = false;
-	}
-	
-	public void TakeDamage(int dmg)
-	{
-		// because fuck defense making me sit for an hour rolling dice
-		// when it was eating all the damage
-		/*int modifiedDmg = dmg - defence;
-		if (modifiedDmg > 0)
-		{
-			health -= (dmg - defence);
-		}*/
-		
-		health -= dmg;
-		
-		Debug.Log ("Health: " + health);
-		
-		if (health < 0)
-		{
-			health = 0;
-		}
-	}
+	#region Death
 	
 	public void HandleDeath(int floss)
 	{
@@ -310,110 +234,10 @@ public class Player : MonoBehaviour
 		ChangeFame(floss);
 	}
 	
-	// Changes the fame based on passed value.
-	public void ChangeFame(int f)
-	{
-		Debug.Log("Fame has been changed by " + f + ". Fame was " + fame + ", and is now " + (fame + f));
-		
-		fame += f;
-	}
-	
-	// Changes the health based on passed value.
-	public void ChangeHealth(int h)
-	{
-		health += h;
-		
-		// Checks if the health went over the maximum.
-		if (health > maxHealth) {
-			health = maxHealth;
-		}
-		
-		// Checks if the player died.
-		CheckDead();
-	}
-	
-	// Changes the gold based on passed value.
-	public void ChangeGold(int g)
-	{
-		gold += g;
-	}
-	
-	// Changes the number of dice the player can throw.
-	public void ChangeDice(int d)
-	{
-		numDice += d;
-	}
-	
-	// Gets the number of dice the player can roll.
-	public int GetDice()
-	{
-		return numDice;
-	}
-	
 	// Resets the number of dice to be thrown back to default.
 	public void ResetDiceCount()
 	{
 		numDice = 2;
-	}
-	
-	// Checks whether an item is to be added or removed and then does the appropriate action.
-	public void ChangeItems(Card c, bool add)
-	{
-		// Checks if the item is to be added.
-		if (add) {
-			// Adds the item.
-			items.Add(c);
-		}
-		else {
-			// Removes the item.
-			items.Remove(c);
-		}
-	}
-	
-	// Sets whether the player can skip the next monster.
-	public void SetSkipMonster(bool s)
-	{
-		skipMonster = s;
-	}
-	
-	// Changes the number of turns the player has to skip.
-	public void ChangeTurnsToSkip(int t)
-	{
-		turnSkipCount += t;
-		
-		// Keeps number of skipped turns under cap.
-		if (turnSkipCount > turnSkipCap) {
-			turnSkipCount = turnSkipCap;
-		}
-		
-		// Keeps number of turns to skip out of negative.
-		if (turnSkipCount < 0) {
-			turnSkipCount = 0;
-		}
-	}
-	
-	// Sets whether the player is a villain or not.
-	public void SetVillain(bool v)
-	{
-		isVillain = v;
-	}	
-	
-	// Gets whether the player is a villain or not.
-	public bool GetVillain()
-	{
-		return isVillain;
-	}
-	
-	// Gets whether the player just stopped.
-	public bool JustStoppedMoving()
-	{
-		return justStopped;
-	}
-	
-	// Sets whether the player just stopped.
-	public void SetJustStopped(bool b)
-	{
-		justStopped = b;
 	}
 	
 	// Checks whether the player has lost enough health to die.
@@ -426,11 +250,9 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	// Returns whether the player is travelling between tiles.
-	public bool IsMovingBetweenTiles()
-	{
-		return movingTile;
-	}
+	#endregion
+	
+	#region Skip Movement
 	
 	// This will find the tile the player will stop moving on.
 	public void FindFinish()
@@ -467,6 +289,29 @@ public class Player : MonoBehaviour
 		RotatePlayer(direction);
 	}
 	
+	// Skips the player straight to the last tile.
+	public void SkipToFinish()
+	{
+		Debug.Log("mapPosition: " + finishPosition + ", Direction: " + finishDirection);
+		
+		// Sets the values to the finished values.
+		mapPosition = finishPosition;
+		direction = finishDirection;
+		
+		// Rotates the player to face the correct way.
+		RotatePlayer(direction);
+		
+		// Moves the player in world space.
+		transform.localPosition = new Vector3(mapPosition.x * 2, transform.position.y, 0 - (mapPosition.y * 2));
+		
+		// Sets movement to 0 and stops the player.
+		movement = 0;
+		moveTime = 0;
+		isMoving = false;
+		movingTile = false;
+		justStopped = true;
+	}
+	
 	// Rotates the player to a specified direction.
 	void RotatePlayer(int dir)
 	{
@@ -491,36 +336,128 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	// Skips the player straight to the last tile.
-	public void SkipToFinish()
-	{
-		Debug.Log("mapPosition: " + finishPosition + ", Direction: " + finishDirection);
-		
-		// Sets the values to the finished values.
-		mapPosition = finishPosition;
-		direction = finishDirection;
-		
-		// Rotates the player to face the correct way.
-		RotatePlayer(direction);
-		
-		// Moves the player in world space.
-		transform.localPosition = new Vector3(mapPosition.x * 2, transform.position.y, 0 - (mapPosition.y * 2));
-		
-		// Sets movement to 0 and stops the player.
-		movement = 0;
-		moveTime = 0;
-		isMoving = false;
-		movingTile = false;
-		justStopped = true;
-	}	
 	#endregion
+	
+	#region Changers
+	
+	// Changes the fame based on passed value.
+	public void ChangeFame(int f)
+	{
+		Debug.Log("Fame has been changed by " + f + ". Fame was " + fame + ", and is now " + (fame + f));
+		
+		fame += f;
+	}
+	
+	// Changes the health based on passed value.
+	public void ChangeHealth(int h)
+	{
+		health += h;
+		
+		// Checks if the health went over the maximum.
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+		
+		// Checks if the player died.
+		CheckDead();
+	}
+	
+	public void TakeDamage(int dmg)
+	{
+		// because fuck defense making me sit for an hour rolling dice
+		// when it was eating all the damage
+		/*int modifiedDmg = dmg - defence;
+		if (modifiedDmg > 0)
+		{
+			health -= (dmg - defence);
+		}*/
+		
+		health -= dmg;
+		
+		Debug.Log ("Health: " + health);
+		
+		if (health < 0)
+		{
+			health = 0;
+		}
+	}
+	
+	public void ReplenishHealth(int hp)
+	{
+		// TEMP: hea between combat to resume flow
+		health = hp;
+	}
+	
+	// Changes the gold based on passed value.
+	public void ChangeGold(int g)
+	{
+		gold += g;
+	}
+	
+	// Changes the number of dice the player can throw.
+	public void ChangeDice(int d)
+	{
+		numDice += d;
+	}
+	
+	// Checks whether an item is to be added or removed and then does the appropriate action.
+	public void ChangeItems(Card c, bool add)
+	{
+		// Checks if the item is to be added.
+		if (add) {
+			// Adds the item.
+			items.Add(c);
+		}
+		else {
+			// Removes the item.
+			items.Remove(c);
+		}
+	}
+	
+	// Changes the number of turns the player has to skip.
+	public void ChangeTurnsToSkip(int t)
+	{
+		turnSkipCount += t;
+		
+		// Keeps number of skipped turns under cap.
+		if (turnSkipCount > turnSkipCap) {
+			turnSkipCount = turnSkipCap;
+		}
+		
+		// Keeps number of turns to skip out of negative.
+		if (turnSkipCount < 0) {
+			turnSkipCount = 0;
+		}
+	}
+	
+	#endregion
+	
+	#region Setters
+	
+	// Sets whether the player is moving.
+	public void SetMoving(bool m)
+	{
+		isMoving = m;
+	}
+	
+	// Sets whether the player can skip the next monster.
+	public void SetSkipMonster(bool s)
+	{
+		skipMonster = s;
+	}
+	
+	// Sets whether the player just stopped.
+	public void SetJustStopped(bool b)
+	{
+		justStopped = b;
+	}
 	
 	// Sets the direction of the player and rotates to face that way.
 	public void SetDirection(int d)
 	{
 		// Sets the direction.
 		direction = d;
-	
+		
 		// Face up.
 		if (d == 0) {
 			transform.LookAt(transform.position + Vector3.forward);
@@ -543,21 +480,95 @@ public class Player : MonoBehaviour
 		transform.LookAt(transform.position + Vector3.left);
 	}
 	
+	// Sets whether the player is a villain or not.
+	public void SetVillain(bool v)
+	{
+		isVillain = v;
+	}	
+	
+	#endregion
+	
+	#region Getters
+	
+	// Returns whether the player is moving.
+	public bool GetMoving()
+	{
+		return isMoving;
+	}	
+	
+	// Returns current movement.
+	public int GetMovement()
+	{
+		return movement;
+	}
+	
+	// Returns the current health.
+	public int GetHealth()
+	{
+		return health;
+	}
+	
+	// Return attack value
+	public int GetStrength()
+	{
+		return strength;
+	}
+	
+	// Returns the player's position in map space.
+	public Vector2 GetMapPosition()
+	{
+		return mapPosition;
+	}
+	
+	// Gets the number of dice the player can roll.
+	public int GetDice()
+	{
+		return numDice;
+	}
+	
+	// Returns whether the player is travelling between tiles.
+	public bool IsMovingBetweenTiles()
+	{
+		return movingTile;
+	}
+	
+	// Gets whether the player just stopped.
+	public bool JustStoppedMoving()
+	{
+		return justStopped;
+	}
+	
+	public bool HasDied()
+	{
+		return (health == 0);
+	}
+	
+	public bool HasSkippedTurns()
+	{
+		if (turnSkipCount < turnSkipCap)
+		{
+			
+			++turnSkipCount;
+			return false;
+		}
+		else
+		{
+			ReplenishHealth(20);
+			return true;
+		}
+	}
+	
+	// Gets whether the player is a villain or not.
+	public bool GetVillain()
+	{
+		return isVillain;
+	}
+	
+	#endregion
+	
 	// Update is called once per frame
 	void Update ()
 	{
-		// Checks if the player is currently moving.
-		//if (isMoving) {
-		if (false) {
-			// Checks if the player is currently travelling between tiles.
-			if (movingTile) {
-				// Continues the movement.
-				Move();
-			}
-			else {
-				// Finds the next tile for the player to move to.
-				MoveTile();
-			}
-		}
+		
 	}
 }
