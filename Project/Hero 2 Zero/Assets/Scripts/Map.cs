@@ -118,6 +118,7 @@ public class Map : MonoBehaviour
 	
 	// List of materials to change tile type.
 	public Material[] mats;
+	public GameObject[] tilePrefabs;
 	
 	// Camera overseeing map.
 	public Camera cam;
@@ -146,7 +147,7 @@ public class Map : MonoBehaviour
 				// Checks if the space is a tile.
 				if (value != 0) {
 					// Creates the tile.
-					CreateTile(i, j, value);
+					CreateTile2(i, j, value);
 				}
 			}
 		}
@@ -165,6 +166,17 @@ public class Map : MonoBehaviour
 		
 		// Changes the colour of the tile to change type.
 		g.GetComponent<Renderer>().material = mats[value-1];
+	}
+	
+	void CreateTile2(int i, int j, int value)
+	{
+		// Places a tile, changes its name and assigns its parent.
+		GameObject g = Instantiate<GameObject>(tilePrefabs[value-1]);
+		g.name = "Tile : (" + i + ", " + j + ") : " + value;
+		g.transform.parent = mapParent.transform;
+		
+		// Moves the tile locally to the correct position.
+		g.transform.localPosition = new Vector3(j * 2, 0, (0 - i) * 2);
 	}
 	
 	// Returns the directions the player can travel if a choice tile.

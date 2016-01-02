@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour
 		
 		// Loops through the buttons and ativates the possible choices.
 		for (int i = 0; i < 4; ++i) {
-			canvasDirection.transform.GetChild(i).gameObject.SetActive(dirs[i]);
+			canvasDirection.transform.GetChild(i).GetComponent<Button>().interactable = dirs[i];
 		}
 	}
 	
