@@ -20,7 +20,7 @@ public class MonsterCard : Card
 	#endregion
 
 	// Use this for initialization
-	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int im, string de, int ty) : base (im, de, ty)
+	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int im, string de) : base (im, de, 8)
 	{
 		name = nm;
 

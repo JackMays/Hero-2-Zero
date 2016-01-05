@@ -110,13 +110,13 @@ public class GameManager : MonoBehaviour
 	// Shows the direction canvas and activates the choosale buttons.
 	void ShowDirectionCanvas(bool[] dirs)
 	{
-		// Shows the canvas.
-		canvasDirection.SetActive(true);
-		
 		// Loops through the buttons and ativates the possible choices.
 		for (int i = 0; i < 4; ++i) {
 			canvasDirection.transform.GetChild(i).GetComponent<Button>().interactable = dirs[i];
 		}
+	
+		// Shows the canvas.
+		canvasDirection.SetActive(true);
 	}
 	
 	// Holds whether the game has been hacked by Skynet.
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	
-	// Waits for the player to stop moving. (To be expanded)
+	// Waits for the player to stop moving.
 	void StateMovePlayer()
 	{
 		// Checks if the player is moving between tiles.
