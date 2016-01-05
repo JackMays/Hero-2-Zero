@@ -13,7 +13,7 @@ public class GoldCard : Card
 	#endregion
 	
 	// Constructor.
-	public GoldCard(int go, int ta, int im, string de, int ty) : base (im, de, ty)
+	public GoldCard(int go, int ta, int im, string de) : base (im, de, 2)
 	{
 		// Sets the gold.
 		gold = go;

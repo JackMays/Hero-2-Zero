@@ -13,7 +13,7 @@ public class FameCard : Card
 	#endregion
 	
 	// Constructor
-	public FameCard(int fa, int ta, int im, string de, int ty) : base (im, de, ty)
+	public FameCard(int fa, int ta, int im, string de) : base (im, de, 1)
 	{
 		// Sets the fame.
 		fame = fa;

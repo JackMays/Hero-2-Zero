@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
 	// Sets the player up to move to the next tile.
 	public void MoveTile()
 	{
-		Debug.Log("Map Pos: " + mapPosition + " | Direction : " + direction);
+		//Debug.Log("Map Pos: " + mapPosition + " | Direction : " + direction);
 		
 		// Stores the current position in 3D space.
 		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 0 - (2 * mapPosition.y));
@@ -95,13 +95,13 @@ public class Player : MonoBehaviour
 		// Find the direction the player needs to move in.
 		FindDirection ();
 		
-		Debug.Log("New Direction: " + direction);
+		//Debug.Log("New Direction: " + direction);
 		
 		// Find the position the player needs to move to.
 		FindMoveTarget();
-		Debug.Log("Target: " + moveTarget);
+		//Debug.Log("Target: " + moveTarget);
 		
-		Debug.Log("New Map Pos: " + mapPosition);
+		//Debug.Log("New Map Pos: " + mapPosition);
 		
 		// Sets that the player is now moving.
 		movingTile = true;
@@ -292,7 +292,7 @@ public class Player : MonoBehaviour
 	// Skips the player straight to the last tile.
 	public void SkipToFinish()
 	{
-		Debug.Log("mapPosition: " + finishPosition + ", Direction: " + finishDirection);
+		//Debug.Log("mapPosition: " + finishPosition + ", Direction: " + finishDirection);
 		
 		// Sets the values to the finished values.
 		mapPosition = finishPosition;
@@ -351,6 +351,8 @@ public class Player : MonoBehaviour
 	// Changes the health based on passed value.
 	public void ChangeHealth(int h)
 	{
+		Debug.Log("Health has been changed by " + h + ". Health was " + health + ", and is now " + (health + h));
+	
 		health += h;
 		
 		// Checks if the health went over the maximum.
@@ -391,6 +393,8 @@ public class Player : MonoBehaviour
 	// Changes the gold based on passed value.
 	public void ChangeGold(int g)
 	{
+		Debug.Log("Gold has been changed by " + g + ". Gold was " + gold + ", and is now " + (gold + g));
+	
 		gold += g;
 	}
 	
@@ -416,7 +420,7 @@ public class Player : MonoBehaviour
 	
 	// Changes the number of turns the player has to skip.
 	public void ChangeTurnsToSkip(int t)
-	{
+	{	
 		turnSkipCount += t;
 		
 		// Keeps number of skipped turns under cap.
@@ -547,7 +551,6 @@ public class Player : MonoBehaviour
 	{
 		if (turnSkipCount < turnSkipCap)
 		{
-			
 			++turnSkipCount;
 			return false;
 		}
