@@ -191,7 +191,7 @@ public class CardManager : MonoBehaviour
 		c1V = new int[2] {-10, -1};
 		
 		// Mountain Cards
-		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You take a shortcut through a snowy pass, only to find it depper than expected. -10 Health, Skip next turn."));
+		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You take a shortcut through a snowy pass, only to find it deeper than expected. -10 Health, Skip next turn."));
 		mountainCards.Enqueue(new Card(4, "You ride a mountain goat.", 0));
 		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 0));
 		mountainCards.Enqueue(new Card(4, "You shout at the mountain and cause an avalanche.", 0));
