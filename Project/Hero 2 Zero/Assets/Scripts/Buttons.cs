@@ -13,9 +13,14 @@ public class Buttons : MonoBehaviour {
 	
 	}
 
-	public void Play()
+	public void PlayHotseat()
 	{
 		// Dice Rolling Scene
+		Application.LoadLevel(2);
+	}
+
+	public void GoToMulti()
+	{
 		Application.LoadLevel(1);
 	}
 
@@ -23,5 +28,10 @@ public class Buttons : MonoBehaviour {
 	{
 		// exit app, ignored in editor
 		Application.Quit();
+	}
+
+	public void ReturnToMenu()
+	{
+		Application.LoadLevel(0);
 	}
 }
