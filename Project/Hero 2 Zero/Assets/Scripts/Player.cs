@@ -529,6 +529,11 @@ public class Player : MonoBehaviour
 	{
 		return numDice;
 	}
+
+	public int GetItemHandLimit()
+	{
+		return items.Count;
+	}
 	
 	// Returns whether the player is travelling between tiles.
 	public bool IsMovingBetweenTiles()

@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 	
 	// Current index in turn order.
 	int turnIndex = 0;
+
+	int handIndex = 0;
 	
 	// The order in which player's take their turns.
 	int[] turnOrder = new int[2] {0, 1};
@@ -92,6 +94,34 @@ public class GameManager : MonoBehaviour
 		
 		// Returns that no player is on the tile.
 		return -1;
+	}
+
+	public void IncrementHand()
+	{
+		if (handIndex != /*listPlayers[currentPlayer].GetItemHandLimit()*/ 5)
+		{
+			++handIndex;
+		}
+		else
+		{
+			handIndex = 0;
+		}
+		// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
+		GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
+	}
+
+	public void DecrementHand()
+	{
+		if (handIndex != 0)
+		{
+			--handIndex;
+		}
+		else
+		{
+			handIndex = /*listPlayers[currentPlayer].GetItemHandLimit()*/ 5;
+		}
+		// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
+		GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
 	}
 	
 	// Sets the direction that the player chose.
