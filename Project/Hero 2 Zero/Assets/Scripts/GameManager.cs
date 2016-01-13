@@ -50,12 +50,16 @@ public class GameManager : MonoBehaviour
 	
 	// Canvas for choosing a direction.
 	public GameObject canvasDirection;
+
+	GameObject mainCam;
 	#endregion
 	
 	// Use this for initialization
 	void Start ()
 	{
 		itemManager = new ItemManager(listPlayers);
+
+		mainCam = GameObject.FindWithTag("MainCamera");
 	}
 	
 	// Changes the player's turn.
@@ -75,6 +79,23 @@ public class GameManager : MonoBehaviour
 		
 		// Sets the number of dice to roll. Putting here until setup state added later.
 		diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
+	}
+
+	void UpdateCamera()
+	{
+		Vector3 playerPos = listPlayers[currentPlayer].gameObject.transform.localPosition;
+		float camSpeed = 2.0f;
+		
+		Debug.Log(playerPos);
+		
+		if (mainCam.transform.localPosition != playerPos)
+		{
+			//mainCam.transform.localPosition = new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5);
+
+			mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
+			                                                new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5), 
+			                                                Time.deltaTime * camSpeed);
+		}
 	}
 	
 	// Checks if there are any players on the current tile.
@@ -155,6 +176,8 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		UpdateCamera();
+
 		// Checks if skynet is here.
 		if (Skynet) {
 			// Infinite loop to kill Skynet. Suck it Skynet.
