@@ -421,6 +421,10 @@ public class CardManager : MonoBehaviour
 	// Pulls the first card and then puts it at the end of the pile.
 	Card DrawCard(int pile)
 	{
+		if (pile == 7) {
+			pile = 1;
+		}
+	
 		// Takes the first card from the specified queue.
 		Card c = cardList[pile].Dequeue();
 		

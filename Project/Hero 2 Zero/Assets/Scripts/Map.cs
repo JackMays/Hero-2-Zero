@@ -53,7 +53,6 @@ public class Map : MonoBehaviour
 	};
 	
 	
-	
 	// Holds the position of where the player needs to choose a path
 	// and the directions the player can choose.
 	List<ChoiceTile> choiceTiles = new List<ChoiceTile>() {
@@ -111,17 +110,73 @@ public class Map : MonoBehaviour
 	
 	// Camera overseeing map.
 	public Camera cam;
+	
+	// Change to my map.
+	public bool changeMap = false;
 	#endregion
 	
 	// Use this for initialization
 	void Start ()
 	{
+		if (changeMap) {
+			ChangeMap();
+		}
+		
 		CreateMap();
 		
 		Vector3 moveCam = cam.transform.localPosition;
 		moveCam.x = map.GetLength(0) - 1;
 		cam.transform.localPosition = moveCam;
 		
+	}
+	
+	void ChangeMap()
+	{
+		map = new int[21, 30] {
+			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 1, 0, 4, 4, 2, 0, 0, 0, 0},
+			{2, 2, 7, 6, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 3, 6, 4, 4, 0, 7, 6, 1, 0, 7, 2, 0, 0, 0},
+			{2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4, 6, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0},
+			{2, 0, 0, 0, 0, 2, 2, 1, 1, 6, 3, 7, 1, 4, 0, 0, 0, 0, 1, 4, 4, 7, 0, 0, 0, 4, 1, 0, 0, 0},
+			{7, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 0, 0},
+			{7, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 6, 3, 0, 0, 0, 0, 0, 4, 0, 0, 0, 7, 4, 4, 0, 0},
+			{2, 2, 2, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 3, 1, 4, 7, 2, 2, 4, 6, 4, 4, 0, 0, 6, 0, 0},
+			{0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 1, 3, 4, 0, 0},
+			{0, 0, 1, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 1, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0},
+			{0, 0, 1, 0, 0, 0, 0, 0, 6, 1, 7, 1, 4, 3, 0, 0, 0, 2, 1, 0, 0, 7, 6, 4, 3, 1, 0, 0, 0, 0},
+			{7, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 6, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+			{7, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0},
+			{3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0},
+			{3, 0, 0, 6, 3, 3, 1, 3, 1, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0},
+			{1, 3, 0, 0, 0, 0, 0, 0, 7, 6, 3, 1, 1, 7, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 5, 0},
+			{0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 1, 7, 0, 0, 0, 0, 0, 0, 5, 7, 0, 7, 0},
+			{0, 0, 4, 6, 0, 0, 0, 0, 0, 0, 1, 1, 1, 6, 0, 0, 0, 0, 1, 1, 1, 7, 6, 1, 1, 5, 0, 0, 5, 5},
+			{0, 0, 0, 6, 4, 1, 0, 0, 0, 0, 3, 0, 0, 3, 3, 1, 7, 3, 3, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6},
+			{0, 0, 0, 0, 0, 3, 2, 2, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 7, 0, 0, 0, 0, 5, 6},
+			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 2, 2, 2, 1, 0},
+			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 6, 5, 5, 1, 5, 0, 0, 0, 0}	
+		};
+		
+		choiceTiles = new List<ChoiceTile>() {
+			new ChoiceTile(new Vector2(3, 8), new bool[4] {false, true, true, false}),
+			new ChoiceTile(new Vector2(3, 13), new bool[4] {true, false, true, false}),
+			new ChoiceTile(new Vector2(1, 19), new bool[4] {false, true, true, false}),
+			new ChoiceTile(new Vector2(14, 26), new bool[4] {false, true, true, false}),
+			new ChoiceTile(new Vector2(16, 18), new bool[4] {true, false, true, false}),
+			new ChoiceTile(new Vector2(10, 13), new bool[4] {false, true, true, false})
+		};
+		
+		// Holds the position of where the player is forced to go in a
+		// particular direction.
+		forceTiles = new List<ForceTile>() {
+			new ForceTile(new Vector2(6, 21), 2),
+			new ForceTile(new Vector2(8, 21), 2),
+			new ForceTile(new Vector2(16, 23), 3),
+			new ForceTile(new Vector2(14, 13), 3),
+			new ForceTile(new Vector2(10, 2), 0)
+		};
+		
+		tiledMonsterCards = new MonsterCard[21,30];
+		tiledMonsterPrefabs = new GameObject[21,30];
 	}
 	
 	#region Create Map
@@ -162,6 +217,10 @@ public class Map : MonoBehaviour
 	// Places a tile at the specified position and changes its type.
 	void CreateTile2(int i, int j, int value)
 	{
+		if (value == 7) {
+			value = 1;
+		}
+		
 		// Places a tile, changes its name and assigns its parent.
 		GameObject g = Instantiate<GameObject>(tilePrefabs[value-1]);
 		g.name = "Tile : (" + i + ", " + j + ") : " + value;
