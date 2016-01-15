@@ -5,22 +5,18 @@ public class CameraManager : MonoBehaviour {
 
 	GameObject mainCam;
 
-	GameObject currentPlayer;
+	GameObject currentPlayer = null;
 	
 	Vector3 camMapViewPos;
 
-	bool mapView;
+	bool mapView = false;
 
 	// Use this for initialization
 	void Start () 
 	{
 		mainCam = GameObject.FindWithTag("MainCamera");
 
-		currentPlayer = null;
-
 		camMapViewPos = mainCam.transform.localPosition;
-
-		mapView = false;
 
 
 	}
