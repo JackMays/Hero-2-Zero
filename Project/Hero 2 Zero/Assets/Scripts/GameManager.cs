@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 	public DiceManager diceManager;
 
 	public CombatManager combatManager;
+
+	public CameraManager cameraManager;
 	
 	// Reference to item manager.
 	ItemManager itemManager;
@@ -47,14 +49,11 @@ public class GameManager : MonoBehaviour
 	bool diceRolled = false;
 	bool cmbPlayerRolled = false;
 	bool cmbBothRolled = false;
-	bool mapView = false;
 	
 	// Canvas for choosing a direction.
 	public GameObject canvasDirection;
 
-	GameObject mainCam;
 
-	Vector3 camMapViewPos;
 	#endregion
 	
 	// Use this for initialization
@@ -62,9 +61,7 @@ public class GameManager : MonoBehaviour
 	{
 		itemManager = new ItemManager(listPlayers);
 
-		mainCam = GameObject.FindWithTag("MainCamera");
-
-		camMapViewPos = mainCam.transform.localPosition;
+		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
 	}
 	
 	// Changes the player's turn.
@@ -81,28 +78,14 @@ public class GameManager : MonoBehaviour
 		
 		// Sets which player's turn it is.
 		currentPlayer = turnOrder[turnIndex];
+
+		// update cam manager
+		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
 		
 		// Sets the number of dice to roll. Putting here until setup state added later.
 		diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
 	}
 
-	void UpdateCamera()
-	{
-		Vector3 playerPos = listPlayers[currentPlayer].gameObject.transform.localPosition;
-		float camSpeed = 2.0f;
-		
-		Debug.Log(playerPos);
-		
-		if (mainCam.transform.localPosition != playerPos)
-		{
-			//mainCam.transform.localPosition = new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5);
-
-			mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
-			                                                new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5), 
-			                                                Time.deltaTime * camSpeed);
-		}
-	}
-	
 	// Checks if there are any players on the current tile.
 	int CheckPlayerPositions(Vector2 mapPos, int skipIndex = -1)
 	{
@@ -181,23 +164,6 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftShift))
-		{
-			mapView = !mapView;
-		}
-
-		if (mapView)
-		{
-			if (mainCam.transform.localPosition != camMapViewPos)
-			{
-				mainCam.transform.localPosition = camMapViewPos;
-			}
-		}
-		else
-		{
-			UpdateCamera();
-		}
-
 		// Checks if skynet is here.
 		if (Skynet) {
 			// Infinite loop to kill Skynet. Suck it Skynet.
