@@ -116,7 +116,7 @@ public class Map : MonoBehaviour
 	#endregion
 	
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 		if (changeMap) {
 			ChangeMap();

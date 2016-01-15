@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
 	// Reference to item manager.
 	ItemManager itemManager;
 	
-	// Number of players.
-	int numPlayers = 2;
-	
 	// List of the players.
 	public List<Player> listPlayers;
+
+	// Number of players.
+	int numPlayers = 2;
 	
 	// The player whose turn it is.
 	int currentPlayer = 0;
@@ -47,11 +47,14 @@ public class GameManager : MonoBehaviour
 	bool diceRolled = false;
 	bool cmbPlayerRolled = false;
 	bool cmbBothRolled = false;
+	bool mapView = false;
 	
 	// Canvas for choosing a direction.
 	public GameObject canvasDirection;
 
 	GameObject mainCam;
+
+	Vector3 camMapViewPos;
 	#endregion
 	
 	// Use this for initialization
@@ -60,6 +63,8 @@ public class GameManager : MonoBehaviour
 		itemManager = new ItemManager(listPlayers);
 
 		mainCam = GameObject.FindWithTag("MainCamera");
+
+		camMapViewPos = mainCam.transform.localPosition;
 	}
 	
 	// Changes the player's turn.
@@ -176,7 +181,22 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		UpdateCamera();
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			mapView = !mapView;
+		}
+
+		if (mapView)
+		{
+			if (mainCam.transform.localPosition != camMapViewPos)
+			{
+				mainCam.transform.localPosition = camMapViewPos;
+			}
+		}
+		else
+		{
+			UpdateCamera();
+		}
 
 		// Checks if skynet is here.
 		if (Skynet) {
