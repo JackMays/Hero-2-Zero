@@ -421,7 +421,7 @@ public class CardManager : MonoBehaviour
 	// Pulls the first card and then puts it at the end of the pile.
 	Card DrawCard(int pile)
 	{
-		if (pile == 7) {
+		if (pile > 6) {
 			pile = 1;
 		}
 	
