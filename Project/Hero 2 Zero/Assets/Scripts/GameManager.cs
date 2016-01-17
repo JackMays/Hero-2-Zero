@@ -378,6 +378,14 @@ public class GameManager : MonoBehaviour
 			// Gets the area type from the map at the player's position.
 			int tileType = map.GetTile((int)playGrid.x, (int)playGrid.y)-1;
 			
+			// Checks if rest area.
+			if (tileType == 6) {
+				// Skip card drawing.
+				turnState = 3;
+				
+				return;
+			}
+			
 			// Shows the first card from the coresponding deck.
 			cardManager.DisplayCard(tileType);
 		}

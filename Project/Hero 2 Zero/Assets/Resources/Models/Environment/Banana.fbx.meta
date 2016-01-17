@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9af3c2c27b9cf074d98cd89491d51d4f
-timeCreated: 1452777127
+guid: 5e2d364f3015e1f4090a15736789f411
+timeCreated: 1452978551
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Box
+    4300000: Banana
   materials:
     importMaterials: 1
     materialName: 0

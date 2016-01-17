@@ -10,6 +10,10 @@ public class CameraManager : MonoBehaviour {
 	Vector3 camMapViewPos;
 
 	bool mapView = false;
+	
+	int camState = 0;
+	
+	public Transform bananaPosition;
 
 	// Use this for initialization
 	void Start () 
@@ -17,8 +21,6 @@ public class CameraManager : MonoBehaviour {
 		mainCam = GameObject.FindWithTag("MainCamera");
 
 		camMapViewPos = mainCam.transform.localPosition;
-
-
 	}
 	
 	// Update is called once per frame
@@ -26,15 +28,25 @@ public class CameraManager : MonoBehaviour {
 	{
 		if (Input.GetKeyDown(KeyCode.LeftShift))
 		{
-			mapView = !mapView;
+			//mapView = !mapView;
+			
+			if (camState == 2) {
+				camState = 0;
+			}
+			else {
+				++camState;
+			}
 		}
 		
-		if (mapView)
+		if (camState == 1)
 		{
 			if (mainCam.transform.localPosition != camMapViewPos)
 			{
 				mainCam.transform.localPosition = camMapViewPos;
 			}
+		}
+		if (camState == 2) {
+			mainCam.transform.localPosition = bananaPosition.localPosition;
 		}
 		else
 		{
