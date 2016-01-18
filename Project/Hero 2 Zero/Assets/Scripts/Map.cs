@@ -61,7 +61,7 @@ public class Map : MonoBehaviour
 		new ChoiceTile(new Vector2(8, 5), new bool[4] {true, false, false, true}),
 		new ChoiceTile(new Vector2(5, 0), new bool[4] {true, true, false, false})
 	};
-	
+	 
 	// Holds the position of where the player is forced to go in a
 	// particular direction.
 	List<ForceTile> forceTiles = new List<ForceTile>() {
@@ -110,6 +110,12 @@ public class Map : MonoBehaviour
 	
 	// Camera overseeing map.
 	public Camera cam;
+	
+	// Chest prefab.
+	public GameObject chestPrefab;
+	
+	// List of chests.
+	List<Chest> listChests = new List<Chest>();
 	
 	// Change to my map.
 	public bool changeMap = false;
@@ -184,6 +190,9 @@ public class Map : MonoBehaviour
 	// Places the tiles around the map according to the array.
 	void CreateMap()
 	{
+		// Holds available tile positions for chest placement.
+		List<Vector2> viableTiles = new List<Vector2>();
+	
 		// Loops through the array.
 		for (int i = 0; i < map.GetLength(0); ++i) {
 			for (int j = 0; j < map.GetLength(1); ++j) {
@@ -194,9 +203,15 @@ public class Map : MonoBehaviour
 				if (value != 0) {
 					// Creates the tile.
 					CreateTile2(i, j, value);
+					
+					// Adds the position to the list.
+					viableTiles.Add(new Vector2(i, j));
 				}
 			}
 		}
+		
+		// Places the chests using the tile list.
+		PlaceChests(viableTiles);
 	}
 	
 	// Places a tile at the specified position and changes its type.
@@ -228,6 +243,61 @@ public class Map : MonoBehaviour
 		
 		// Moves the tile locally to the correct position.
 		g.transform.localPosition = new Vector3(j * 2, 0, (0 - i) * 2);
+	}
+	
+	// Places chests on random tiles.
+	void PlaceChests(List<Vector2> tiles)
+	{		
+		// Holds the random index.
+		int index = Random.Range(0, tiles.Count);
+		
+		// Number of chests to place.
+		int numChests = 10;
+		
+		// Holds whether the tile is already occupied.
+		bool isOccupied = false;
+		
+		// Holds the maximum number of placement attempts.
+		int max = 50;
+		
+		// Loops until all chests are placed.
+		while (numChests > 0 && max > 0) {
+			isOccupied = false;
+		
+			// Makes sure no other chests are on the tile.
+			for (int i = 0; i < listChests.Count; ++i) {
+			// Gets the chest's position.
+				Vector2 pos = listChests[i].GetGridPosition();
+				
+				// Checks if the current indexed position is not too close to the current chest.
+				//if (tiles[index] == pos) {
+				if (tiles[index].x > pos.x - 4 && tiles[index].x < pos.x + 4) {
+					if (tiles[index].y > pos.y - 4 && tiles[index].y < pos.y + 4) {
+						Debug.Log("Occupied");
+						isOccupied = true;
+					}
+				}	
+			}
+			
+			// Places a chest if the tile is unoccupied.
+			if (!isOccupied) {
+				// Places a chest at the indexed tile's position and sets its parent.
+				GameObject c = Instantiate<GameObject>(chestPrefab);
+				c.transform.parent = mapParent.transform;
+				c.transform.localPosition = new Vector3(tiles[index].y * 2, 0.062f, -tiles[index].x * 2);
+				c.GetComponent<Chest>().SetGridPosition(tiles[index]);
+			
+				// Adds the chest to the list and decrements number to place.
+				listChests.Add(c.GetComponent<Chest>());
+				--numChests;
+			}
+			
+			// Gets a new random index.
+			index = Random.Range(0, tiles.Count);
+			
+			// Decrements max attempts.
+			--max;
+		}		
 	}
 	
 	#endregion

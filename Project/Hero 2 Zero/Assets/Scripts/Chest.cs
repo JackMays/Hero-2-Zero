@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChestOpen : MonoBehaviour
+public class Chest : MonoBehaviour
 {
 	#region Variables
 	// Holds whether the chest is open or not.
 	bool isOpen = false;
+	
+	// Holds the chest's grid position.
+	Vector2 gridPosition = Vector2.zero;
 	
 	// The chest's animations.
 	Animation anims;
@@ -16,6 +19,18 @@ public class ChestOpen : MonoBehaviour
 	{
 		// Gets the animations.
 		anims = GetComponent<Animation>();
+	}
+	
+	// Returns the chest's grid position.
+	public Vector2 GetGridPosition()
+	{
+		return gridPosition;
+	}
+	
+	// Sets the chest's grid position.
+	public void SetGridPosition(Vector2 pos)
+	{
+		gridPosition = pos;
 	}
 	
 	// Update is called once per frame

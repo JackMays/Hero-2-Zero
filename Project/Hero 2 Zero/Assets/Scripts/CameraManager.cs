@@ -45,7 +45,7 @@ public class CameraManager : MonoBehaviour {
 				mainCam.transform.localPosition = camMapViewPos;
 			}
 		}
-		if (camState == 2) {
+		else if (camState == 2) {
 			mainCam.transform.localPosition = bananaPosition.localPosition;
 		}
 		else
