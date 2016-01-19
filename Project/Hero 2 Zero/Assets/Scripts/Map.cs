@@ -131,7 +131,8 @@ public class Map : MonoBehaviour
 		CreateMap();
 		
 		Vector3 moveCam = cam.transform.localPosition;
-		moveCam.x = map.GetLength(0) - 1;
+		moveCam.x = (map.GetLength(0) - 1) * 1.55f;
+		moveCam.z = -map.GetLength(1) * 2f;
 		cam.transform.localPosition = moveCam;
 		
 	}
