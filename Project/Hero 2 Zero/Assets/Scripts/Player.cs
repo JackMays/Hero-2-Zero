@@ -346,6 +346,11 @@ public class Player : MonoBehaviour
 		Debug.Log("Fame has been changed by " + f + ". Fame was " + fame + ", and is now " + (fame + f));
 		
 		fame += f;
+
+		if (fame <= 0)
+		{
+			Application.LoadLevel(3);
+		}
 	}
 	
 	// Changes the health based on passed value.
