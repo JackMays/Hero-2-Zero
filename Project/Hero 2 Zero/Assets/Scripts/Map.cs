@@ -361,46 +361,46 @@ public class Map : MonoBehaviour
 	
 	public void AddMonsterToTile(int i, int j, MonsterCard mon)
 	{
-		tiledMonsterCards[i, j] = mon;
+		tiledMonsterCards[j, i] = mon;
 	}
 	
 	public void AddPrefabToTiles(int i, int j, GameObject pr, Vector3 pos)
 	{
-		tiledMonsterPrefabs[i, j] = Instantiate(pr, pos, Quaternion.identity) as GameObject; 
+		tiledMonsterPrefabs[j, i] = Instantiate(pr, pos, Quaternion.identity) as GameObject; 
 	}
 	
 	public void ClearMonsterTile(int i, int j)
 	{
-		tiledMonsterCards[i, j] = null;
+		tiledMonsterCards[j, i] = null;
 	}
 	
 	public void ClearPrefabTile(int i, int j)
 	{
-		Destroy(tiledMonsterPrefabs[i, j]);
+		Destroy(tiledMonsterPrefabs[j, i]);
 		
-		tiledMonsterPrefabs[i, j] = null;
+		tiledMonsterPrefabs[j, i] = null;
 	}
 	
 	public MonsterCard GetMonsterOnTile(int i, int j)
 	{
 		// Checks if the tile isn't out of bounds.
-		if (i < 0 || j < 0 || i >= map.GetLength(0) || j >= map.GetLength(1)) {
+		if (i < 0 || j < 0 || j >= map.GetLength(0) || i >= map.GetLength(1)) {
 			return null;
 		}
 		
 		// Return's the tile value.
-		return tiledMonsterCards[i, j];
+		return tiledMonsterCards[j, i];
 	}
 	
 	public bool HasBlankModel(int i, int j)
 	{
 		// Checks if the tile isn't out of bounds.
-		if (i < 0 || j < 0 || i >= map.GetLength(0) || j >= map.GetLength(1)) {
+		if (i < 0 || j < 0 || j >= map.GetLength(0) || i >= map.GetLength(1)) {
 			return false;
 		}
 		
 		// return true if model is blank/null and false if not
-		return (tiledMonsterPrefabs[i, j] == null);
+		return (tiledMonsterPrefabs[j, i] == null);
 	}
 	
 	#endregion
