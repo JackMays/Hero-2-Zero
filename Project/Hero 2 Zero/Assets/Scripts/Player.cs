@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
 	
 	// Holds whether the player has just stopped moving to a tile.
 	bool justStopped = false;
+
+	bool wasDead = false;
 	
 	// List of the item cards the player has.
 	List<Card> items = new List<Card>();
@@ -227,11 +229,11 @@ public class Player : MonoBehaviour
 	#endregion
 	
 	#region Death
-	
-	public void HandleDeath(int floss)
+	// slight variation of Check Dead to allow for bonus fame loss on combat defeat
+	public void HandleCombDeath(int floss)
 	{
-		turnSkipCount = 0;
 		ChangeFame(floss);
+		CheckDead ();
 	}
 	
 	// Resets the number of dice to be thrown back to default.
@@ -247,6 +249,7 @@ public class Player : MonoBehaviour
 		if (health <= 0) {
 			health = 0;
 			turnSkipCount = 0;
+			wasDead = true;
 		}
 	}
 	
@@ -389,12 +392,6 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	public void ReplenishHealth(int hp)
-	{
-		// TEMP: hea between combat to resume flow
-		health = hp;
-	}
-	
 	// Changes the gold based on passed value.
 	public void ChangeGold(int g)
 	{
@@ -522,6 +519,11 @@ public class Player : MonoBehaviour
 	{
 		return strength;
 	}
+
+	public int GetFame()
+	{
+		return fame;
+	}
 	
 	// Returns the player's position in map space.
 	public Vector2 GetMapPosition()
@@ -566,7 +568,13 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			ReplenishHealth(20);
+			// if skipping turns due to death
+			// restore hp at the end
+			if (wasDead)
+			{
+				ChangeHealth(maxHealth);
+				wasDead = false;
+			}
 			return true;
 		}
 	}

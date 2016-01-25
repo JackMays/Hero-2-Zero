@@ -89,7 +89,7 @@ public class CombatManager : MonoBehaviour {
 
 				// remove player for allotted turns, place monster card at area
 				// Also decrease fame more due to critical loss
-				player.HandleDeath(monster.GetFameMod(false));
+				player.HandleCombDeath(monster.GetFameMod(false));
 				
 
 			}
@@ -153,7 +153,7 @@ public class CombatManager : MonoBehaviour {
 
 				// remove losing player for allotted turns
 				// gain/lose bonus fame for win & loss
-				player.HandleDeath(-10);
+				player.HandleCombDeath(-10);
 				player2.ChangeFame(10);
 
 			}
@@ -164,7 +164,7 @@ public class CombatManager : MonoBehaviour {
 				// remove losing player for allotted turns
 				// gain/lose bonus fame for win & loss
 				player.ChangeFame(10);
-				player2.HandleDeath(-10);
+				player2.HandleCombDeath(-10);
 			}
 			
 		}

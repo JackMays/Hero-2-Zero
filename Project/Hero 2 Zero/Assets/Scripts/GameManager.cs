@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
 	
 	// List of the players.
 	public List<Player> listPlayers;
+
+	// Temp for easier testing
+	public Text p1HP;
+	public Text p1Fame;
+	public Text p2HP;
+	public Text p2Fame;
+
 
 	// Number of players.
 	int numPlayers = 2;
@@ -164,6 +171,13 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		// display stuff in temp UI
+		p1HP.text = "HP: " + listPlayers[0].GetHealth();
+		p1Fame.text = "Fame: " + listPlayers[0].GetFame();
+
+		p2HP.text = "HP: " + listPlayers[1].GetHealth();
+		p2Fame.text = "Fame: " + listPlayers[1].GetFame();
+
 		// Checks if skynet is here.
 		if (Skynet) {
 			// Infinite loop to kill Skynet. Suck it Skynet.
