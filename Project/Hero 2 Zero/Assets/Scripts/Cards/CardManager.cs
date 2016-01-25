@@ -107,7 +107,7 @@ public class CardManager : MonoBehaviour
 		int[] c2T = new int[1] {0};
 		int[] c2V = new int[1] {-10};
 	
-		// Lane Cards
+		// Lane Cards: 9
 		laneCards.Enqueue(new ChoiceCard("Help", "Leave", c1E, c1T, c1V, c2E, c2T, c2V, 0, "Timmy is stuck in a well."));
 		laneCards.Enqueue(new FameCard(-10, 0, 0, "You trip on a pothole"));
 		laneCards.Enqueue(new FameCard(10, 0, 0, "You come across a goblin corpse and passing villagers congratulate your victory."));
@@ -123,7 +123,7 @@ public class CardManager : MonoBehaviour
 		
 		laneCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 0, "You are ambushed by a group of bandits."));
 		
-		// Village Cards
+		// Village Cards: 9
 		
 		c1E = new int[1] {1};
 		c1T = new int[1] {0};
@@ -137,8 +137,8 @@ public class CardManager : MonoBehaviour
 		villageCards.Enqueue(new FameCard(-25, 0, 1, "You knock on someone's door and headbutt them when they answer."));
 		villageCards.Enqueue(new Card(1, "You set someone's hut on fire. Pyromania YEAH.", 0));
 		villageCards.Enqueue(new Card(1, "You window shop as you wander the streets.", 0));
-		villageCards.Enqueue(new Card(1, "You find a big bearded man and start a public fight.", 0));
-		villageCards.Enqueue(new Card(1, "A girl gives you a flower. You kick her.", 0));
+		villageCards.Enqueue(new FameCard(-15, 0, 1, "You find a big bearded man and start a public fight."));
+		villageCards.Enqueue(new FameCard(-5, 0, 1, "A girl gives you a flower. You kick her."));
 		villageCards.Enqueue(new GoldCard(-20, 0, 1, "A passing gang of kids steal money from you. -20 Gold."));
 		
 		c1E = new int[2] {2, 6};
@@ -157,7 +157,7 @@ public class CardManager : MonoBehaviour
 		villageCards.Enqueue(new ChoiceCard("Join in", "Stop it", c1E, c1T, c1V, c2E, c2T, c2V, 1, "A bar brawl has broken out where you are drinking."));
 		
 		
-		// Field Cards
+		// Field Cards: 9
 		fieldCards.Enqueue(new MonsterEventCard("Slime", 2, "You encounter a friendly slime. Now slay it."));
 		fieldCards.Enqueue(new Card(2, "You get hayfever because you're a pusseh.", 0));
 		fieldCards.Enqueue(new Card(2, "A flower calls you a prick. You step on it.", 0));
@@ -176,7 +176,7 @@ public class CardManager : MonoBehaviour
 		
 		fieldCards.Enqueue(new ChoiceCard("Destroy it", "Report it", c1E, c1T, c1V, c2E, c2T, c2V, 2, "You come across a rare breed of poison ivy."));
 		
-		// Forest Cards
+		// Forest Cards: 8
 		forestCards.Enqueue(new HealthCard(10, 0, 3, "You pick an apple from a tree and eat it."));
 		forestCards.Enqueue(new Card(3, "All the trees look the same and you find yourself quickly lost.", 0));
 		forestCards.Enqueue(new Card(3, "You find a piece of paper stuck to a tree. Suddenly you can hear drums.", 0));
@@ -190,7 +190,7 @@ public class CardManager : MonoBehaviour
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {-10, -1};
 		
-		// Mountain Cards
+		// Mountain Cards: 9
 		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You take a shortcut through a snowy pass, only to find it deeper than expected. -10 Health, Skip next turn."));
 		mountainCards.Enqueue(new Card(4, "You ride a mountain goat.", 0));
 		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 0));
@@ -211,7 +211,7 @@ public class CardManager : MonoBehaviour
 		
 		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You help capture a criminal and claim their bounty."));
 
-		// Monster Cards; 5th img element and 6th type enum
+		// Monster Cards; 5th img element and 6th type enum: 3
 		// name, card image, model, HP, Strength, Defence, gold gain, fame gain, fame loss, base card image, description
 		monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!"));
 		monsterCards.Add(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
