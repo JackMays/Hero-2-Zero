@@ -196,7 +196,7 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 0));
 		mountainCards.Enqueue(new Card(4, "You shout at the mountain and cause an avalanche.", 0));
 		mountainCards.Enqueue(new Card(4, "You push an old lady down the slopes.", 0));
-		mountainCards.Enqueue(new Card(4, "You climb the mountain stairs and encounter a frost troll.", 0));
+		mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "You climb the mountain stairs and encounter a frost troll."));
 		mountainCards.Enqueue(new HealthCard(-20, 0, 4, "You slip in the snow and fall down the mountain."));
 		
 		c1E = new int[2] {1, 2};
@@ -212,8 +212,10 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You help capture a criminal and claim their bounty."));
 
 		// Monster Cards; 5th img element and 6th type enum
+		// name, card image, model, HP, Strength, Defence, gold gain, fame gain, fame loss, base card image, description
 		monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 2, "Monster!"));
+		monsterCards.Add(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Frost Troll", 2, 0, 15, 8, 4, 20, 10, -10, 5, "Monster!"));
 	}
 	
 	#endregion
