@@ -107,15 +107,16 @@ public class CardManager : MonoBehaviour
 		int[] c2T = new int[1] {0};
 		int[] c2V = new int[1] {-10};
 	
-		// Lane Cards: 9
+		// Lane Cards: 10
 		laneCards.Enqueue(new ChoiceCard("Help", "Leave", c1E, c1T, c1V, c2E, c2T, c2V, 0, "Timmy is stuck in a well."));
-		laneCards.Enqueue(new FameCard(-10, 0, 0, "You trip on a pothole"));
 		laneCards.Enqueue(new FameCard(10, 0, 0, "You come across a goblin corpse and passing villagers congratulate your victory."));
-		laneCards.Enqueue(new Card(0, "You kick a passing old lady. Bitch.", 0));
+		laneCards.Enqueue(new FameCard(-5, 0, 0, "You rearrange the directions of some roadsigns."));
+		laneCards.Enqueue(new FameCard(-10, 0, 0, "You kick a passing old lady. Bitch."));
+		laneCards.Enqueue(new FameCard(10, 0, 0, "You assault a innocent looking carriage travelling the path. It's cargo is Kidnapped children."));
 		laneCards.Enqueue(new Card(0, "You feel so joyful you start to skip. Like a fag.", 0));
 		laneCards.Enqueue(new Card(0, "You find a stone and leave it.", 0));
+		laneCards.Enqueue(new Card(0, "You trip on a pothole", 0));
 		laneCards.Enqueue(new SkipCard(-1, 0, "A fallen tree is blocking your path. Skip next turn."));
-		laneCards.Enqueue(new FameCard(-10, 0, 0, "You rearrange the diretions of some roadsigns."));
 		
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
@@ -123,7 +124,7 @@ public class CardManager : MonoBehaviour
 		
 		laneCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 0, "You are ambushed by a group of bandits."));
 		
-		// Village Cards: 9
+		// Village Cards: 10
 		
 		c1E = new int[1] {1};
 		c1T = new int[1] {0};
@@ -137,6 +138,7 @@ public class CardManager : MonoBehaviour
 		villageCards.Enqueue(new FameCard(-25, 0, 1, "You knock on someone's door and headbutt them when they answer."));
 		villageCards.Enqueue(new Card(1, "You set someone's hut on fire. Pyromania YEAH.", 0));
 		villageCards.Enqueue(new Card(1, "You window shop as you wander the streets.", 0));
+		villageCards.Enqueue(new Card(1, "You take some time to people watch in the Village Square.", 0));
 		villageCards.Enqueue(new FameCard(-15, 0, 1, "You find a big bearded man and start a public fight."));
 		villageCards.Enqueue(new FameCard(-5, 0, 1, "A girl gives you a flower. You kick her."));
 		villageCards.Enqueue(new GoldCard(-20, 0, 1, "A passing gang of kids steal money from you. -20 Gold."));
@@ -157,13 +159,15 @@ public class CardManager : MonoBehaviour
 		villageCards.Enqueue(new ChoiceCard("Join in", "Stop it", c1E, c1T, c1V, c2E, c2T, c2V, 1, "A bar brawl has broken out where you are drinking."));
 		
 		
-		// Field Cards: 9
+		// Field Cards: 10 (sans the commented out ones)
 		fieldCards.Enqueue(new MonsterEventCard("Slime", 2, "You encounter a friendly slime. Now slay it."));
+		fieldCards.Enqueue(new FameCard(-10, 0, 2, "A passing fairy grants you a wish. You wish for the fairy to die."));
+		fieldCards.Enqueue(new FameCard(10, 0, 0, "Ripped apart a Butterfly. You saved Butterfly kind from evil Dictator!"));
 		fieldCards.Enqueue(new Card(2, "You get hayfever because you're a pusseh.", 0));
-		fieldCards.Enqueue(new Card(2, "A flower calls you a prick. You step on it.", 0));
-		fieldCards.Enqueue(new Card(2, "A passing fairy grants you a wish. You wish for the fairy to die.", 0));
+		//fieldCards.Enqueue(new Card(2, "A flower calls you a prick. You step on it.", 0));
 		fieldCards.Enqueue(new Card(2, "Grass. Pretty much it.", 0));
 		fieldCards.Enqueue(new Card(2, "You lie on the grass and cloudwatch.", 0));
+		villageCards.Enqueue(new GoldCard(20, 0, 2, "You spot an oddly out of place dirt mound in the grass. Digging it unearths a small pouch. +20 Gold."));
 		fieldCards.Enqueue(new HealthCard(20, 0, 2, "You lie in the field and relax under the warm sun."));
 		fieldCards.Enqueue(new HealthCard(10, 0, 2, "A group of villagers invite you to join their picnic"));
 		
@@ -176,26 +180,29 @@ public class CardManager : MonoBehaviour
 		
 		fieldCards.Enqueue(new ChoiceCard("Destroy it", "Report it", c1E, c1T, c1V, c2E, c2T, c2V, 2, "You come across a rare breed of poison ivy."));
 		
-		// Forest Cards: 8
+		// Forest Cards: 10
 		forestCards.Enqueue(new HealthCard(10, 0, 3, "You pick an apple from a tree and eat it."));
-		forestCards.Enqueue(new Card(3, "All the trees look the same and you find yourself quickly lost.", 0));
-		forestCards.Enqueue(new Card(3, "You find a piece of paper stuck to a tree. Suddenly you can hear drums.", 0));
 		forestCards.Enqueue(new SkipCard(1, 3, "You are invited to a feast by the local elves. Skip a turn."));
+		forestCards.Enqueue(new SkipCard(2, 3, "All the trees look the same and you find yourself quickly lost."));
+		forestCards.Enqueue(new Card(3, "You find a piece of paper stuck to a tree. Suddenly you can hear drums.", 0));
 		forestCards.Enqueue(new Card(3, "You see a tree and kick it down. Turns out a tree falling in the forest does make a sound.", 0));
 		forestCards.Enqueue(new Card(3, "You climb a tree to get a good vantage point.", 0));
 		forestCards.Enqueue(new FameCard(-20, 0, 3, "You trip over a sacred statue and break it."));
 		forestCards.Enqueue(new FameCard(-20, 0, 3, "You come across a unicorn that will grant you 3 wishes. You scissor kick it."));
+		forestCards.Enqueue(new FameCard(-20, 0, 3, "You are EXTREMELY racist to an Elf. Like, wow, can we even put that in this game?"));
+		forestCards.Enqueue(new GoldCard(50, 0, 3, "In a forest clearing you an important looking chest. As usual. +50 gold."));
 		
 		c1E = new int[2] {1, 9};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {-10, -1};
 		
-		// Mountain Cards: 9
+		// Mountain Cards: 10
 		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You take a shortcut through a snowy pass, only to find it deeper than expected. -10 Health, Skip next turn."));
 		mountainCards.Enqueue(new Card(4, "You ride a mountain goat.", 0));
 		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 0));
 		mountainCards.Enqueue(new Card(4, "You shout at the mountain and cause an avalanche.", 0));
-		mountainCards.Enqueue(new Card(4, "You push an old lady down the slopes.", 0));
+		mountainCards.Enqueue(new FameCard(-10, 0, 4, "You push an old lady down the slopes."));
+		mountainCards.Enqueue(new FameCard(-10, 0, 4, "You sneak up on a mountain bear and place a sign on his neck, 'Free Hugs'"));
 		mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "You climb the mountain stairs and encounter a frost troll."));
 		mountainCards.Enqueue(new HealthCard(-20, 0, 4, "You slip in the snow and fall down the mountain."));
 		

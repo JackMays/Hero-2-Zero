@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	int strength = 5;
 	int defence = 5;
 	int gold = 10;
-	int fame = /*200*/ 100;
+	int fame = 200;
 	
 	int turnSkipCap = 3;
 	int turnSkipCount;
