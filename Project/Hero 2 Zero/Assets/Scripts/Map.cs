@@ -166,7 +166,7 @@ public class Map : MonoBehaviour
 		choiceTiles = new List<ChoiceTile>() {
 			new ChoiceTile(new Vector2(3, 8), new bool[4] {false, true, true, false}),
 			new ChoiceTile(new Vector2(3, 13), new bool[4] {true, false, true, false}),
-			new ChoiceTile(new Vector2(1, 19), new bool[4] {false, true, true, false}),
+			new ChoiceTile(new Vector2(1, 18), new bool[4] {false, true, true, false}),
 			new ChoiceTile(new Vector2(14, 26), new bool[4] {false, true, true, false}),
 			new ChoiceTile(new Vector2(16, 18), new bool[4] {true, false, true, false}),
 			new ChoiceTile(new Vector2(10, 13), new bool[4] {false, true, true, false})
