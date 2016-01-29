@@ -59,7 +59,7 @@ public class CameraManager : MonoBehaviour {
 		Vector3 playerPos = currentPlayer.transform.localPosition;
 		float camSpeed = 2.0f;
 		
-		Debug.Log(playerPos);
+		//Debug.Log(playerPos);
 		
 		if (mainCam.transform.localPosition != playerPos)
 		{

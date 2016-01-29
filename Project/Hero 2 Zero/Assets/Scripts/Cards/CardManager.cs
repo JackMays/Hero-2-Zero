@@ -558,6 +558,8 @@ public class CardManager : MonoBehaviour
 		
 		// Sets that the card has been shown.
 		isMonsterRevealed = true;
+
+		Debug.Log ("revealed (Drawn): " + mon.GetName());
 	}
 	
 	// For when landing on a persisting monster.
@@ -589,6 +591,8 @@ public class CardManager : MonoBehaviour
 		
 		// Sets that the card has been shown.
 		isMonsterRevealed = true;
+
+		Debug.Log ("revealed (Persistant): " + mon.GetName());
 	}
 	#endregion
 	

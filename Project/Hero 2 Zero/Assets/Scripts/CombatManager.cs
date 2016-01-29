@@ -157,7 +157,7 @@ public class CombatManager : MonoBehaviour {
 				player2.ChangeFame(10);
 
 			}
-			else if (monster.HasDied())
+			else if (player2.HasDied())
 			{
 				Debug.Log ("Player 2's HP hit 0");
 
