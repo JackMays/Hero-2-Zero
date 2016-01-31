@@ -292,11 +292,17 @@ public class GameManager : MonoBehaviour
 					turnState = 4;
 				}
 				
-				// Checks if the player cannot move anymore.
+				// Checks if the player cannot move anymore
 				if (!listPlayers[currentPlayer].GetMoving()) {
 					// Updates the turn state to show the card.
-					turnState = 2;
+					// as long as the player isnt already in combat with a prexisting monster or player.
+					if (turnState != 4)
+					{
+						turnState = 2;
+					}
 				}
+
+				Debug.Log ("turn state: " + turnState.ToString());
 			}
 			else {
 				// Checks if the current tile is a choice tile.
