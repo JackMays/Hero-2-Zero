@@ -31,7 +31,7 @@ public class CardManager : MonoBehaviour
 	List<MonsterCard> monsterCards = new List<MonsterCard>();
 	
 	// Items are a list because specific cards may need to be drawn at certain times.
-	List<Card> itemCards = new List<Card>();
+	List<ItemCard> itemCards = new List<ItemCard>();
 	
 	
 	// List of the queues. Makes it easier to access a certain list.
@@ -40,6 +40,7 @@ public class CardManager : MonoBehaviour
 	// The physical card to be displayed to the player
 	public Canvas cardObject;
 	public Canvas monsterCardObject;
+	public Canvas handCardObject;
 	// The buttons on the card.
 	GameObject choice1;
 	GameObject choice2;
@@ -1019,6 +1020,22 @@ public class CardManager : MonoBehaviour
 		cardObject.enabled = false;
 		cardShowing = false;
 	}
+	#endregion
+
+	#region Hand
+	// called on turn switch
+	public void ToggleHand(bool enable)
+	{
+		handCardObject.enabled = enable;
+	}
+
+	public void PopulateHand(ItemCard card)
+	{
+		handCardObject.transform.GetChild(1).GetComponent<Image>().sprite = imageList[card.GetImageIndex()];
+		// Changes the card description.
+		handCardObject.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = card.GetDescription();
+	}
+
 	#endregion
 	
 	// Update is called once per frame

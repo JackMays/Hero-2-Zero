@@ -69,6 +69,16 @@ public class GameManager : MonoBehaviour
 		itemManager = new ItemManager(listPlayers);
 
 		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
+
+		if (listPlayers[currentPlayer].GetItemHandLimit() == 0)
+		{
+			cardManager.ToggleHand(false);
+		}
+		else
+		{
+			cardManager.ToggleHand(true);
+			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
+		}
 	}
 	
 	// Changes the player's turn.
@@ -91,6 +101,17 @@ public class GameManager : MonoBehaviour
 		
 		// Sets the number of dice to roll. Putting here until setup state added later.
 		diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
+
+		// Check new Players hand
+		if (listPlayers[currentPlayer].GetItemHandLimit() == 0)
+		{
+			cardManager.ToggleHand(false);
+		}
+		else
+		{
+			cardManager.ToggleHand(true);
+			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
+		}
 	}
 
 	// Checks if there are any players on the current tile.
@@ -114,30 +135,40 @@ public class GameManager : MonoBehaviour
 
 	public void IncrementHand()
 	{
-		if (handIndex != /*listPlayers[currentPlayer].GetItemHandLimit()*/ 5)
+		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
 		{
-			++handIndex;
+			if (handIndex != listPlayers[currentPlayer].GetItemHandLimit() - 1)
+			{
+				++handIndex;
+			}
+			else
+			{
+				handIndex = 0;
+			}
+			// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
+			//GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
+			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
-		else
-		{
-			handIndex = 0;
-		}
-		// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
-		GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
+
+
 	}
 
 	public void DecrementHand()
 	{
-		if (handIndex != 0)
+		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
 		{
-			--handIndex;
+			if (handIndex != 0)
+			{
+				--handIndex;
+			}
+			else
+			{
+				handIndex = listPlayers[currentPlayer].GetItemHandLimit() - 1;
+			}
+			// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
+			//GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
+			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
-		else
-		{
-			handIndex = /*listPlayers[currentPlayer].GetItemHandLimit()*/ 5;
-		}
-		// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
-		GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
 	}
 	
 	// Sets the direction that the player chose.

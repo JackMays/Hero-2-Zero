@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 	bool wasDead = false;
 	
 	// List of the item cards the player has.
-	List<Card> items = new List<Card>();
+	List<ItemCard> items = new List<ItemCard>();
 	
 	// Number of dice the player can throw.
 	public int numDice = 2;
@@ -74,6 +74,10 @@ public class Player : MonoBehaviour
 		turnSkipCount = turnSkipCap;
 		finishPosition = mapPosition;
 		finishDirection = direction;
+
+		items.Add (new ItemCard("Skip Monster (In Battle)", 0, 4, 0, 1, 0, "Skip a Monster. Battle Only", 0));
+		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 0, "Spawn a Monster on a tile. Board Only", 0));
+		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 0, 2, 0, "Skip a Target Players turn", 0));
 	}
 	
 	#region Movement
@@ -407,7 +411,7 @@ public class Player : MonoBehaviour
 	}
 	
 	// Checks whether an item is to be added or removed and then does the appropriate action.
-	public void ChangeItems(Card c, bool add)
+	public void ChangeItems(ItemCard c, bool add)
 	{
 		// Checks if the item is to be added.
 		if (add) {
@@ -540,6 +544,11 @@ public class Player : MonoBehaviour
 	public int GetItemHandLimit()
 	{
 		return items.Count;
+	}
+
+	public ItemCard GetCurrentItem(int index)
+	{
+		return items[index];
 	}
 	
 	// Returns whether the player is travelling between tiles.
