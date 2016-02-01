@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 	int turnState = 0;
 	
 	// Button to roll the dice.
-	string rollButton = "Fire1";
+	string rollButton = "Fire2";
 	
 	// Holds whether the dice have been rolled.
 	bool diceRolled = false;
@@ -220,6 +220,16 @@ public class GameManager : MonoBehaviour
 		{
 			StateCombat();
 		}
+	}
+	
+	public InputField input;
+	
+	public void ForceDiceRoll()
+	{
+		Debug.Log(int.Parse(input.text));
+		listPlayers[currentPlayer].StartMovement(int.Parse(input.text));
+		listPlayers[currentPlayer].FindFinish();
+		turnState = 1;
 	}
 	
 	// Waits for the player to roll the dice, then for them to stop and finally
@@ -485,6 +495,7 @@ public class GameManager : MonoBehaviour
 			turnState = 3;
 			
 			cardManager.HideMonsterCard();
+			cardManager.ResetMonsterFlags();
 
 			Debug.Log ("Combat Over");
 		}
