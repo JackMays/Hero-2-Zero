@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
 		items.Add (new ItemCard("Skip Monster (In Battle)", 0, 4, 0, 1, 0, "Skip a Monster. Battle Only", 0));
 		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 0, "Spawn a Monster on a tile. Board Only", 0));
-		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 0, 2, 0, "Skip a Target Players turn", 0));
+		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 0, 2, 0, "Skip a Target Players turn. Board Only", 0));
 	}
 	
 	#region Movement

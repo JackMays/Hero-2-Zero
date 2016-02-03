@@ -170,6 +170,46 @@ public class GameManager : MonoBehaviour
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
 	}
+
+	public void ActivateHand()
+	{
+		ItemCard selectedCard = listPlayers[currentPlayer].GetCurrentItem(handIndex);
+
+		if (selectedCard.GetUsableArea() == 0)
+		{
+			if (turnState != 3)
+			{
+				Debug.Log ("Cant use Cards during Player Switch");
+			}
+			else
+			{
+				Debug.Log ("Activated Anywhere Card");
+			}
+		}
+		else if (selectedCard.GetUsableArea() == 1)
+		{
+			if (turnState == 4)
+			{
+				Debug.Log ("Activated In Combat Card");
+			}
+			else
+			{
+				Debug.Log ("Unavailable as not in Combat");
+			}
+		}
+		else if (selectedCard.GetUsableArea() == 2)
+		{
+			if (turnState == 0)
+			{
+				Debug.Log ("Activated Board Card");
+			}
+			else
+			{
+				Debug.Log ("Unavailable when Dice has been rolled");
+			}
+		}
+
+	}
 	
 	// Sets the direction that the player chose.
 	public void SetDirection(int d)
