@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 721a47dfadad0c14f9cf0191fbec2bea
+timeCreated: 1454595030
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bag_End
+    100002: Bag_Root
+    100004: Body
+    100006: Finger_1_1
+    100008: Finger_1_1 1
+    100010: Finger_1_2
+    100012: Finger_1_2 1
+    100014: Finger_1_3
+    100016: Finger_1_3 1
+    100018: Finger_2_1
+    100020: Finger_2_1 1
+    100022: Finger_2_2
+    100024: Finger_2_2 1
+    100026: Finger_2_3
+    100028: Finger_2_3 1
+    100030: Finger_3_1
+    100032: Finger_3_1 1
+    100034: Finger_3_2
+    100036: Finger_3_2 1
+    100038: Finger_3_3
+    100040: Finger_3_3 1
+    100042: Finger_4_1
+    100044: Finger_4_1 1
+    100046: Finger_4_2
+    100048: Finger_4_2 1
+    100050: Finger_4_3
+    100052: Finger_4_3 1
+    100054: Hair_End
+    100056: Hair_Root
+    100058: Left_Ankle
+    100060: Left_Elbow
+    100062: Left_Knee
+    100064: Left_Knee_Armour
+    100066: Left_Knee_Armour 1
+    100068: Left_Shoulder
+    100070: Left_Shoulder_Armour
+    100072: Left_Thigh
+    100074: Left_Toe
+    100076: Left_Wrist
+    100078: Lower_Neck
+    100080: //RootNode
+    100082: Right_Ankle
+    100084: Right_Elbow
+    100086: Right_Knee
+    100088: Right_Shoulder
+    100090: Right_Shoulder_Armour
+    100092: Right_Thigh
+    100094: Right_Toe
+    100096: Right_Wrist
+    100098: Root
+    100100: Thumb_1
+    100102: Thumb_1 1
+    100104: Thumb_2
+    100106: Thumb_2 1
+    100108: Thumb_3
+    100110: Thumb_3 1
+    100112: Upper_Body
+    100114: Upper_Neck
+    100116: Armour
+    100118: Eyes
+    100120: Gloves
+    100122: Hair
+    100124: Legs
+    100126: Mouth
+    100128: Torso
+    400000: Bag_End
+    400002: Bag_Root
+    400004: Body
+    400006: Finger_1_1
+    400008: Finger_1_1 1
+    400010: Finger_1_2
+    400012: Finger_1_2 1
+    400014: Finger_1_3
+    400016: Finger_1_3 1
+    400018: Finger_2_1
+    400020: Finger_2_1 1
+    400022: Finger_2_2
+    400024: Finger_2_2 1
+    400026: Finger_2_3
+    400028: Finger_2_3 1
+    400030: Finger_3_1
+    400032: Finger_3_1 1
+    400034: Finger_3_2
+    400036: Finger_3_2 1
+    400038: Finger_3_3
+    400040: Finger_3_3 1
+    400042: Finger_4_1
+    400044: Finger_4_1 1
+    400046: Finger_4_2
+    400048: Finger_4_2 1
+    400050: Finger_4_3
+    400052: Finger_4_3 1
+    400054: Hair_End
+    400056: Hair_Root
+    400058: Left_Ankle
+    400060: Left_Elbow
+    400062: Left_Knee
+    400064: Left_Knee_Armour
+    400066: Left_Knee_Armour 1
+    400068: Left_Shoulder
+    400070: Left_Shoulder_Armour
+    400072: Left_Thigh
+    400074: Left_Toe
+    400076: Left_Wrist
+    400078: Lower_Neck
+    400080: //RootNode
+    400082: Right_Ankle
+    400084: Right_Elbow
+    400086: Right_Knee
+    400088: Right_Shoulder
+    400090: Right_Shoulder_Armour
+    400092: Right_Thigh
+    400094: Right_Toe
+    400096: Right_Wrist
+    400098: Root
+    400100: Thumb_1
+    400102: Thumb_1 1
+    400104: Thumb_2
+    400106: Thumb_2 1
+    400108: Thumb_3
+    400110: Thumb_3 1
+    400112: Upper_Body
+    400114: Upper_Neck
+    400116: Armour
+    400118: Eyes
+    400120: Gloves
+    400122: Hair
+    400124: Legs
+    400126: Mouth
+    400128: Torso
+    2300000: Body
+    2300002: Armour
+    2300004: Eyes
+    2300006: Gloves
+    2300008: Hair
+    2300010: Legs
+    2300012: Mouth
+    2300014: Torso
+    3300000: Body
+    3300002: Armour
+    3300004: Eyes
+    3300006: Gloves
+    3300008: Hair
+    3300010: Legs
+    3300012: Mouth
+    3300014: Torso
+    4300000: Body
+    4300002: Eyes
+    4300004: Mouth
+    4300006: Gloves
+    4300008: Hair
+    4300010: Armour
+    4300012: Legs
+    4300014: Torso
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
