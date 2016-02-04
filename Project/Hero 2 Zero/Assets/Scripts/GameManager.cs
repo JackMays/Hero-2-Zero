@@ -21,9 +21,12 @@ public class GameManager : MonoBehaviour
 	
 	// Reference to item manager.
 	ItemManager itemManager;
+
+	ItemCard selectedHandCard;
 	
 	// List of the players.
 	public List<Player> listPlayers;
+	public List<GameObject> listTargetButtons;
 
 	// Temp for easier testing
 	public Text p1HP;
@@ -46,8 +49,9 @@ public class GameManager : MonoBehaviour
 	// The order in which player's take their turns.
 	int[] turnOrder = new int[2] {0, 1};
 	
-	// State of player's turn. 0: Roll Dice | 1: Move Player | 2: Show Card | 3: Change player | 4: Combat
+	// State of player's turn. 0: Roll Dice | 1: Move Player | 2: Show Card | 3: Change player | 4: Combat | 5: Card targetting
 	int turnState = 0;
+	int prevTurnState = 0;
 	
 	// Button to roll the dice.
 	string rollButton = "Fire2";
@@ -147,6 +151,7 @@ public class GameManager : MonoBehaviour
 			}
 			// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
 			//GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
+			// Set active hand card with the current item
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
 
@@ -167,15 +172,17 @@ public class GameManager : MonoBehaviour
 			}
 			// test: will be a call to CardMaster passing in the handindex and currentplayer to draw the right card
 			//GameObject.Find("HandIndexTest").GetComponent<Text>().text = handIndex.ToString();
+			// Set active hand card with the current item
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
 	}
 
 	public void ActivateHand()
 	{
-		ItemCard selectedCard = listPlayers[currentPlayer].GetCurrentItem(handIndex);
+		selectedHandCard = listPlayers[currentPlayer].GetCurrentItem(handIndex);
 
-		if (selectedCard.GetUsableArea() == 0)
+		// check if selected card is in it area
+		if (selectedHandCard.GetUsableArea() == 0)
 		{
 			if (turnState != 3)
 			{
@@ -184,31 +191,56 @@ public class GameManager : MonoBehaviour
 			else
 			{
 				Debug.Log ("Activated Anywhere Card");
+				prevTurnState = turnState;
+				turnState = 5;
 			}
 		}
-		else if (selectedCard.GetUsableArea() == 1)
+		else if (selectedHandCard.GetUsableArea() == 1)
 		{
 			if (turnState == 4)
 			{
 				Debug.Log ("Activated In Combat Card");
+				prevTurnState = turnState;
+				turnState = 5;
 			}
 			else
 			{
 				Debug.Log ("Unavailable as not in Combat");
 			}
 		}
-		else if (selectedCard.GetUsableArea() == 2)
+		else if (selectedHandCard.GetUsableArea() == 2)
 		{
 			if (turnState == 0)
 			{
 				Debug.Log ("Activated Board Card");
+				prevTurnState = turnState;
+				turnState = 5;
 			}
 			else
 			{
 				Debug.Log ("Unavailable when Dice has been rolled");
 			}
 		}
+		// set the target buttons active if we are in the targetting phase
+		if (turnState == 5)
+		{
+			for (int i = 0; i < listTargetButtons.Count; ++i)
+			{
+				listTargetButtons[i].SetActive(true);
+			}
+		}
 
+	}
+
+	public void ExecuteHandEffect(int target)
+	{
+		// execurte effect from item manager then set turn state back to previous state
+		itemManager.ApplyItemEffect(selectedHandCard, target);
+		turnState = prevTurnState;
+		for (int i = 0; i < listTargetButtons.Count; ++i)
+		{
+			listTargetButtons[i].SetActive(false);
+		}
 	}
 	
 	// Sets the direction that the player chose.
@@ -291,6 +323,7 @@ public class GameManager : MonoBehaviour
 		{
 			StateCombat();
 		}
+
 	}
 	
 	public InputField input;
@@ -570,6 +603,9 @@ public class GameManager : MonoBehaviour
 
 			Debug.Log ("Combat Over");
 		}
+
+
 	}
-	
+
+
 }

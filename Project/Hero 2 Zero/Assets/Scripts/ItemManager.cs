@@ -31,7 +31,7 @@ public class ItemManager
 	#region Item Effects
 	// Takes in the effect of the item, the target of the effect and the player list
 	// to apply the effect to.
-	void ApplyItemEffect(ItemCard card, int currentPlayer)
+	public void ApplyItemEffect(ItemCard card, int currentPlayer)
 	{
 		// Checks the effect index and calls the appropriate function.
 		switch (card.GetEffect()) {
