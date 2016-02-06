@@ -26,34 +26,40 @@ public class ItemManager
 	public ItemManager(List<Player> p)
 	{
 		players = p;
+		Debug.Log (players[0].gameObject.name);
+		Debug.Log (players[1].gameObject.name);
 	}
 	
 	#region Item Effects
 	// Takes in the effect of the item, the target of the effect and the player list
 	// to apply the effect to.
-	public void ApplyItemEffect(ItemCard card, int currentPlayer)
+	public void ApplyItemEffect(ItemCard card, int target)
 	{
+		Debug.Log ("applying item effect");
+
+		Debug.Log ("card effect: " + card.GetEffect().ToString() + " target: " + target.ToString() + " Value: " + card.GetValue ().ToString());
+
 		// Checks the effect index and calls the appropriate function.
 		switch (card.GetEffect()) {
 			// Change Fame.
 			case 0:
-				ChangeFame(card.GetValue(), currentPlayer);
+				ChangeFame(card.GetValue(), target);
 				break;
 			// Change Gold.
 			case 1:
-				ChangeGold(card.GetValue(), currentPlayer);
+				ChangeGold(card.GetValue(), target);
 				break;
 			// Change Health.
 			case 2:
-				ChangeHealth(card.GetValue(), currentPlayer);
+				ChangeHealth(card.GetValue(), target);
 				break;
 			// Change Dice.
 			case 3:
-				ChangeDice(card.GetValue(), currentPlayer);
+				ChangeDice(card.GetValue(), target);
 				break;
 			// Skip Monster.
 			case 4:
-				SkipMonster(currentPlayer);
+				SkipMonster(target);
 				break;
 			// Spawn Monster.
 			case 5:
@@ -61,11 +67,11 @@ public class ItemManager
 				break;
 			// Skip Turn.
 			case 6:
-				SkipTurn(card.GetValue(), currentPlayer);
+				SkipTurn(card.GetValue(), target);
 				break;
 			// Become Villain.
 			case 7:
-				BecomeVillain(currentPlayer);
+				BecomeVillain(target);
 				break;
 		}
 	}

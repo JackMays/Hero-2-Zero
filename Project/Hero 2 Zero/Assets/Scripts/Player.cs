@@ -12,8 +12,9 @@ public class Player : MonoBehaviour
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
-	
-	int turnSkipCap = 3;
+
+	int deathSkipCap = 3;
+	int turnSkipCap;
 	int turnSkipCount;
 	
 	// The direction the player is moving in. 0 : up | 1 : right | 2 : down | 3 : left (Public because lazy).
@@ -71,13 +72,14 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
+		turnSkipCap = deathSkipCap;
 		turnSkipCount = turnSkipCap;
 		finishPosition = mapPosition;
 		finishDirection = direction;
 
 		items.Add (new ItemCard("Skip Monster (In Battle)", 0, 4, 0, 1, 0, "Skip a Monster. Battle Only", 0));
 		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 0, "Spawn a Monster on a tile. Board Only", 0));
-		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 0, 2, 0, "Skip a Target Players turn. Board Only", 0));
+		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 1, 2, 0, "Skip a Target Players turn. Board Only", 0));
 	}
 	
 	#region Movement
@@ -252,7 +254,7 @@ public class Player : MonoBehaviour
 		// Checks if health is below 0.
 		if (health <= 0) {
 			health = 0;
-			turnSkipCount = 0;
+			ChangeTurnsToSkip(deathSkipCap);
 			wasDead = true;
 		}
 	}
@@ -427,12 +429,18 @@ public class Player : MonoBehaviour
 	// Changes the number of turns the player has to skip.
 	public void ChangeTurnsToSkip(int t)
 	{	
-		turnSkipCount += t;
+
+		Debug.Log(t.ToString());
+
+		/*turnSkipCount += t;
 		
 		// Keeps number of skipped turns under cap.
 		if (turnSkipCount > turnSkipCap) {
 			turnSkipCount = turnSkipCap;
-		}
+		}*/
+
+		turnSkipCap = t;
+		turnSkipCount = 0;
 		
 		// Keeps number of turns to skip out of negative.
 		if (turnSkipCount < 0) {

@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
 		// set the target buttons active if we are in the targetting phase
 		if (turnState == 5)
 		{
-			for (int i = 0; i < listTargetButtons.Count; ++i)
+			for (int i = 0; i < listPlayers.Count; ++i)
 			{
 				listTargetButtons[i].SetActive(true);
 			}

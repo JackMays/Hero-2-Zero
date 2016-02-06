@@ -117,7 +117,7 @@ public class CardManager : MonoBehaviour
 		laneCards.Enqueue(new Card(0, "You feel so joyful you start to skip. Like a fag.", 0));
 		laneCards.Enqueue(new Card(0, "You find a stone and leave it.", 0));
 		laneCards.Enqueue(new Card(0, "You trip on a pothole", 0));
-		laneCards.Enqueue(new SkipCard(-1, 0, "A fallen tree is blocking your path. Skip next turn."));
+		laneCards.Enqueue(new SkipCard(1, 0, "A fallen tree is blocking your path. Skip next turn."));
 		
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
@@ -195,7 +195,7 @@ public class CardManager : MonoBehaviour
 		
 		c1E = new int[2] {1, 9};
 		c1T = new int[2] {0, 0};
-		c1V = new int[2] {-10, -1};
+		c1V = new int[2] {-10, 1};
 		
 		// Mountain Cards: 10
 		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You take a shortcut through a snowy pass, only to find it deeper than expected. -10 Health, Skip next turn."));
