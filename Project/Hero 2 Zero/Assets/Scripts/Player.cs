@@ -595,6 +595,11 @@ public class Player : MonoBehaviour
 			return true;
 		}
 	}
+
+	public bool HasSkippedMonster()
+	{
+		return skipMonster;
+	}
 	
 	// Gets whether the player is a villain or not.
 	public bool GetVillain()

@@ -255,6 +255,19 @@ public class CombatManager : MonoBehaviour {
 		monsterDiceRoll = mRoll + monster.GetStrength();
 		Debug.Log ("Monster Total: " + mRoll + " (base) + " + monster.GetStrength() + " (str) = " + monsterDiceRoll);
 	}
+
+	public void ForceCombatEnd()
+	{
+		int tileX = (int)player.GetMapPosition().x;
+		int tileY = (int)player.GetMapPosition().y;
+
+		map.AddMonsterToTile(tileX, tileY, monster);
+		
+		Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now CAUSE SKIP.");
+
+		isCombatEnded = true;
+	}
+
 	/*public bool HasRoundResolved()
 	{
 		return isRoundResolved;

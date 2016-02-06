@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
 		}
 		else if (selectedHandCard.GetUsableArea() == 1)
 		{
-			if (turnState == 4)
+			if (turnState == 4 && !cmbPlayerRolled)
 			{
 				Debug.Log ("Activated In Combat Card");
 				prevTurnState = turnState;
@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log ("Unavailable as not in Combat");
+				Debug.Log ("Unavailable as not in Combat Start");
 			}
 		}
 		else if (selectedHandCard.GetUsableArea() == 2)
@@ -565,9 +565,18 @@ public class GameManager : MonoBehaviour
 				else if (diceRolled == false) {
 					// Waits for the player to roll the dice.
 					if (Input.GetButtonDown(rollButton)) {
-						// Rolls the dice and sets to wait for result.
-						diceManager.RollDice();
-						diceRolled = true;
+
+						if (!listPlayers[currentPlayer].HasSkippedMonster())
+						{
+							// Rolls the dice and sets to wait for result.
+							diceManager.RollDice();
+							diceRolled = true;
+						}
+						else
+						{
+							combatManager.ForceCombatEnd();
+							listPlayers[currentPlayer].SetSkipMonster(false);
+						}
 					}
 				}
 			}
