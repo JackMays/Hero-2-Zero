@@ -18,11 +18,15 @@ public class ItemCard : Card
 	
 	// Holds where the item can be used. 0: Anywhere | 1: Battle Only | 2: Board Only
 	int usableArea = 0;
+
+	// Who the ard affects; 0: Current Player | 1: Next Player | 2: Every other player | 3: Every player | 4: Select Player | 5: Board Tile
+
+	int targetType = 0;
 	
 	#endregion
 	
 	// Constructor.
-	public ItemCard (string na, int co, int ef, int va, int us, int im, string de, int ty)
+	public ItemCard (string na, int co, int ef, int va, int us, int ta, int im, string de, int ty)
 					: base (im, de, ty)
 	{
 		// Sets the item's values.
@@ -31,6 +35,7 @@ public class ItemCard : Card
 		effect = ef;
 		value = va;
 		usableArea = us;
+		targetType = ta;
 	}
 	
 	// Returns the name of the item.
@@ -61,5 +66,10 @@ public class ItemCard : Card
 	public int GetUsableArea()
 	{
 		return usableArea;
+	}
+
+	public int GetTargetType()
+	{
+		return targetType;
 	}
 }
