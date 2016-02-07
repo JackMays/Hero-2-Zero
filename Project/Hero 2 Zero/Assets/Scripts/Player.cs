@@ -80,6 +80,8 @@ public class Player : MonoBehaviour
 		items.Add (new ItemCard("Skip Monster (In Battle)", 0, 4, 0, 1, 0, 0, "Skip a Monster. Battle Only", 0));
 		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 5, 0, "Spawn a Monster on a tile. Board Only", 0));
 		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 1, 2, 4, 0, "Skip a Target Players turn. Board Only", 0));
+		items.Add (new ItemCard("Money for all (On Board)", 0, 1, 100, 2, 3, 0, "MONEH!. Board Only", 0));
+		items.Add (new ItemCard("Other Player HP loss (On Board)", 0, 2, -20, 2, 2, 0, "Digi... Nuke! cept active player. Board Only", 0));
 	}
 	
 	#region Movement

@@ -10,7 +10,7 @@ public class ItemManager
 {
 	#region Variables
 	// Reference to the list of players.
-	List<Player> players;
+	List<Player> playersRef;
 	
 	// Holds whether a monster needs to be spawned.
 	bool needSpawnMonster = false;
@@ -25,17 +25,17 @@ public class ItemManager
 	// Constructor.
 	public ItemManager(List<Player> p)
 	{
-		players = p;
-		Debug.Log (players[0].gameObject.name);
-		Debug.Log (players[1].gameObject.name);
+		playersRef = p;
+		Debug.Log (playersRef[0].gameObject.name);
+		Debug.Log (playersRef[1].gameObject.name);
 	}
 	
 	#region Item Effects
-	// Takes in the effect of the item, the target of the effect and the player list
+	// Takes in the effect of the item, and the target from the target state
 	// to apply the effect to.
 	public void ApplyItemEffect(ItemCard card, int target)
 	{
-		Debug.Log ("applying item effect");
+		Debug.Log ("applying targeted item effect");
 
 		Debug.Log ("card effect: " + card.GetEffect().ToString() + " target: " + target.ToString() + " Value: " + card.GetValue ().ToString());
 
@@ -75,47 +75,96 @@ public class ItemManager
 				break;
 		}
 	}
+	// Overload for Target Function situations
+	public void ApplyItemEffect(ItemCard card, List<Player> players, int currentPlayer)
+	{
+		Debug.Log ("applying item effect");
+		
+		Debug.Log ("card effect: " + card.GetEffect().ToString() + " target type: " + card.GetTargetType().ToString() + " Value: " + card.GetValue ().ToString());
+
+		List<Player> targets = FindTargets(card.GetTargetType(), players, currentPlayer);
+		int value = card.GetValue();
+
+		for (int i = 0; i < targets.Count; ++i)
+		{
+			// Checks the effect index and calls the appropriate function.
+			switch (card.GetEffect()) {
+				// Change Fame.
+			case 0:
+				targets[i].ChangeFame(value);
+				break;
+				// Change Gold.
+			case 1:
+				targets[i].ChangeGold(value);
+				break;
+				// Change Health.
+			case 2:
+				targets[i].ChangeHealth(value);
+				break;
+				// Change Dice.
+			case 3:
+				targets[i].ChangeDice(value);
+				break;
+				// Skip Monster.
+			case 4:
+				targets[i].SetSkipMonster(true);
+				break;
+				// Spawn Monster.
+			case 5:
+				needSpawnMonster = true;
+				break;
+				// Skip Turn.
+			case 6:
+				targets[i].ChangeTurnsToSkip(value);
+				break;
+				// Become Villain.
+			case 7:
+				targets[i].SetVillain(true);
+				break;
+			}
+		}
+	}
 	
 	// Changes the current fame of the player by the item's value.
 	void ChangeFame(int value, int currentPlayer)
 	{
-		players[currentPlayer].ChangeFame(value);
+		playersRef[currentPlayer].ChangeFame(value);
 	}
 	
 	// Changes the current gold of the player by the item's value.
 	void ChangeGold(int value, int currentPlayer)
 	{
-		players[currentPlayer].ChangeGold(value);
+		playersRef[currentPlayer].ChangeGold(value);
 	}
 	
 	// Changes the health of the player by the item's value.
 	void ChangeHealth(int value, int currentPlayer)
 	{
-		players[currentPlayer].ChangeHealth(value);
+		playersRef[currentPlayer].ChangeHealth(value);
 	}
 	
 	// Changes the number of dice the player can use.
 	void ChangeDice(int value, int currentPlayer)
 	{
-		players[currentPlayer].ChangeDice(value);
+		playersRef[currentPlayer].ChangeDice(value);
 	}
 	
 	// Sets that the player skips the next monster they encounter.
 	void SkipMonster(int currentPlayer)
 	{
-		players[currentPlayer].SetSkipMonster(true);
+		playersRef[currentPlayer].SetSkipMonster(true);
 	}
 	
 	// Makes the current player skip the next turn.
 	void SkipTurn(int value, int currentPlayer)
 	{
-		players[currentPlayer].ChangeTurnsToSkip(value);
+		playersRef[currentPlayer].ChangeTurnsToSkip(value);
 	}
 	
 	// Makes the current player the villain.
 	void BecomeVillain(int currentPlayer)
 	{
-		players[currentPlayer].SetVillain(true);
+		playersRef[currentPlayer].SetVillain(true);
 	}
 	#endregion
 	
@@ -197,14 +246,20 @@ public class ItemManager
 			List<Player> plays = new List<Player>();
 			
 			// Loops through all players.
-			for (int i = 0; i < plays.Count; ++i) {
+			for (int i = 0; i < players.Count; ++i) {
+
+				Debug.Log ("Index: " + i.ToString() + " currentPlayer: " + currentPlayer.ToString());
+
 				// Checks not the current player.
-				if (i != currentPlayer) {
+				if (i != currentPlayer) 
+				{
+					Debug.Log ("should not add player");
 					// Adds player to list.
 					plays.Add(players[i]);
 				}
 			}
-			
+
+
 			// Returns the list.
 			return plays;
 		}

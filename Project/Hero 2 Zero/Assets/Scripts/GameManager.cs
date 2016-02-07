@@ -222,17 +222,23 @@ public class GameManager : MonoBehaviour
 			}
 		}
 		// set the target buttons active if we are in the targetting phase
-		if (turnState == 5)
+		if (turnState == 5 && selectedHandCard.GetTargetType() == 4)
 		{
 			for (int i = 0; i < listPlayers.Count; ++i)
 			{
 				listTargetButtons[i].SetActive(true);
 			}
 		}
+		// if user target is noty needed skip to apply effect where a target is assigned based on targetType
+		else if (turnState == 5 && selectedHandCard.GetTargetType() != 4)
+		{
+			itemManager.ApplyItemEffect(selectedHandCard, listPlayers, currentPlayer);
+			turnState = prevTurnState;
+		}
 
 	}
 
-	public void ExecuteHandEffect(int target)
+	public void ExecuteTargetedHandEffect(int target)
 	{
 		// execurte effect from item manager then set turn state back to previous state
 		itemManager.ApplyItemEffect(selectedHandCard, target);
