@@ -16,8 +16,8 @@ public class WeaponCard : ItemCard
 	#endregion
 	
 	// Constructor.
-	public WeaponCard (int at, int def, int du, string na, int co, int ef, int va, int us, int im, string des, int ty)
-					: base (na, co, ef, va, us, im, des, ty)
+	public WeaponCard (int at, int def, int du, string na, int co, int ef, int va, int us, int ta, int im, string des, int ty)
+					: base (na, co, ef, va, us, ta, im, des, ty)
 	{
 		// Sets the values for the weapon.
 		attack = at;

@@ -11,7 +11,7 @@ public class SpellCard : ItemCard
 	
 	// Constructor.
 	public SpellCard (int ta, string na, int co, int ef, int va, int us, int im, string de, int ty)
-					: base (na, co, ef, va, us, im, de, ty)
+					: base (na, co, ef, va, us, ta, im, de, ty)
 	{
 		// Sets the values for the card.
 		target = ta;		
