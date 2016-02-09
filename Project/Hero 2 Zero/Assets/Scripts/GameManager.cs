@@ -260,6 +260,8 @@ public class GameManager : MonoBehaviour
 		
 		// Sets teh player to move.
 		listPlayers[currentPlayer].MoveTile();
+		
+		listPlayers[currentPlayer].Walk();
 	}
 	
 	// Shows the direction canvas and activates the choosale buttons.
