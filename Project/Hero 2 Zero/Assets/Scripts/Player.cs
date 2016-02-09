@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
 	
 	// Player's position in map coordinates. (Public for now cause I'm lazy.)
 	public Vector2 mapPosition = new Vector2(0,0);
+
+	Animator animatorCompo;
 	
 	// Holds whetehr the player is currently moving.
 	bool isMoving = false;
@@ -66,7 +68,11 @@ public class Player : MonoBehaviour
 	
 	// Stores the finish values for moving.
 	Vector2 finishPosition = new Vector2();
+
 	int finishDirection = 0;
+
+	int idleID = Animator.StringToHash("isIdle");
+	int walkID = Animator.StringToHash("isWalking");
 	#endregion
 	
 	// Use this for initialization
@@ -76,6 +82,8 @@ public class Player : MonoBehaviour
 		turnSkipCount = turnSkipCap;
 		finishPosition = mapPosition;
 		finishDirection = direction;
+
+		animatorCompo = GetComponent<Animator>();
 
 		items.Add (new ItemCard("Skip Monster (In Battle)", 0, 4, 0, 1, 0, 0, "Skip a Monster. Battle Only", 0));
 		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 5, 0, "Spawn a Monster on a tile. Board Only", 0));
@@ -321,6 +329,24 @@ public class Player : MonoBehaviour
 		isMoving = false;
 		movingTile = false;
 		justStopped = true;
+	}
+
+	public void Idle()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(walkID, false);
+			animatorCompo.SetBool(idleID, true);
+		}
+	}
+
+	public void Walk()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(walkID, true);
+		}
 	}
 	
 	// Rotates the player to a specified direction.

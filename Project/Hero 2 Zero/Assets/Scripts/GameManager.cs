@@ -354,6 +354,8 @@ public class GameManager : MonoBehaviour
 			// Starts the player moving and updates the turn state.
 			listPlayers[currentPlayer].StartMovement(diceManager.GetDiceResults());
 			listPlayers[currentPlayer].FindFinish();
+			// start walking after dice is rolled and movement begins
+			listPlayers[currentPlayer].Walk();
 			turnState = 1;
 		}
 		else if (diceRolled == false) {
@@ -420,6 +422,8 @@ public class GameManager : MonoBehaviour
 					{
 						turnState = 2;
 					}
+					// idle when finished moving
+					listPlayers[currentPlayer].Idle();
 				}
 
 				Debug.Log ("turn state: " + turnState.ToString());
@@ -431,9 +435,12 @@ public class GameManager : MonoBehaviour
 				// Checks if the directions is not null.
 				if (dirs != null) {
 					// Shows the direction buttons.
-					ShowDirectionCanvas(dirs);					
+					ShowDirectionCanvas(dirs);
+					// idles when direction buttons are shown
+					listPlayers[currentPlayer].Idle();
 				}
 				else {
+
 					// Gets the direction the player must move in.
 					int dir = map.IsForceTile((int)playerPos.x, (int)playerPos.y);
 					
@@ -441,10 +448,12 @@ public class GameManager : MonoBehaviour
 					if (dir != -1) {
 						// Changes the player's direction.
 						listPlayers[currentPlayer].SetDirection(dir);
-					}		
-					
+
+					}	
+
 					// Finds the next tile to move to.
 					listPlayers[currentPlayer].MoveTile();
+
 				}
 			}
 		}
