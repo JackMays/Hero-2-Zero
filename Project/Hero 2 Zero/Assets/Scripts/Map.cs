@@ -232,11 +232,7 @@ public class Map : MonoBehaviour
 	
 	// Places a tile at the specified position and changes its type.
 	void CreateTile2(int i, int j, int value)
-	{
-		if (value == 7) {
-			value = 1;
-		}
-		
+	{	
 		// Places a tile, changes its name and assigns its parent.
 		GameObject g = Instantiate<GameObject>(tilePrefabs[value-1]);
 		g.name = "Tile : (" + i + ", " + j + ") : " + value;
