@@ -41,6 +41,11 @@ public class CardManager : MonoBehaviour
 	public Canvas cardObject;
 	public Canvas monsterCardObject;
 	public Canvas handCardObject;
+
+	public Button showHand;
+	public Button hideHand;
+	public Button leftHand;
+	public Button rightHand;
 	// The buttons on the card.
 	GameObject choice1;
 	GameObject choice2;
@@ -84,6 +89,8 @@ public class CardManager : MonoBehaviour
 		// Hides the card.
 		cardObject.enabled = false;
 		monsterCardObject.enabled = false;
+
+		ToggleHand(false);
 		
 		// Creates the cards.
 		CreateCards ();
@@ -1026,7 +1033,14 @@ public class CardManager : MonoBehaviour
 	// called on turn switch
 	public void ToggleHand(bool enable)
 	{
+		// enable and, scroll and hide buttons
 		handCardObject.enabled = enable;
+		leftHand.gameObject.SetActive(enable);
+		rightHand.gameObject.SetActive(enable);
+		hideHand.gameObject.SetActive(enable);
+		// Enable show hand when the rest isnt
+		showHand.gameObject.SetActive(!enable);
+
 	}
 
 	public void PopulateHand(ItemCard card)

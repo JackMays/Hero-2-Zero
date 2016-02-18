@@ -74,13 +74,8 @@ public class GameManager : MonoBehaviour
 
 		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
 
-		if (listPlayers[currentPlayer].GetItemHandLimit() == 0)
+		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
 		{
-			cardManager.ToggleHand(false);
-		}
-		else
-		{
-			cardManager.ToggleHand(true);
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
 	}
