@@ -102,13 +102,8 @@ public class GameManager : MonoBehaviour
 		diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
 
 		// Check new Players hand
-		if (listPlayers[currentPlayer].GetItemHandLimit() == 0)
+		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
 		{
-			cardManager.ToggleHand(false);
-		}
-		else
-		{
-			cardManager.ToggleHand(true);
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
 	}
