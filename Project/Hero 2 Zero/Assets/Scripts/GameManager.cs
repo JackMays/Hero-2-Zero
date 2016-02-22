@@ -33,10 +33,15 @@ public class GameManager : MonoBehaviour
 	public Text p1Fame;
 	public Text p2HP;
 	public Text p2Fame;
+	public Text p3HP;
+	public Text p3Fame;
+	public Text p4HP;
+	public Text p4Fame;
+
 
 
 	// Number of players.
-	int numPlayers = 2;
+	int numPlayers = 4;
 	
 	// The player whose turn it is.
 	int currentPlayer = 0;
@@ -47,7 +52,7 @@ public class GameManager : MonoBehaviour
 	int handIndex = 0;
 	
 	// The order in which player's take their turns.
-	int[] turnOrder = new int[2] {0, 1};
+	int[] turnOrder = new int[4] {0, 1, 2, 3};
 	
 	// State of player's turn. 0: Roll Dice | 1: Move Player | 2: Show Card | 3: Change player | 4: Combat | 5: Card targetting
 	int turnState = 0;
@@ -278,6 +283,12 @@ public class GameManager : MonoBehaviour
 
 		p2HP.text = "HP: " + listPlayers[1].GetHealth();
 		p2Fame.text = "Fame: " + listPlayers[1].GetFame();
+
+		p3HP.text = "HP: " + listPlayers[2].GetHealth();
+		p3Fame.text = "Fame: " + listPlayers[2].GetFame();
+
+		p4HP.text = "HP: " + listPlayers[3].GetHealth();
+		p4Fame.text = "Fame: " + listPlayers[3].GetFame();
 
 		// Checks if skynet is here.
 		if (Skynet) {
