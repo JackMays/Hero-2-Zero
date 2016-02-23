@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
 	
 	// List of the item cards the player has.
 	List<ItemCard> items = new List<ItemCard>();
+
+	WeaponCard equippedWeapon = null;
 	
 	// Number of dice the player can throw.
 	public int numDice = 2;
@@ -431,6 +433,16 @@ public class Player : MonoBehaviour
 			health = 0;
 		}
 	}
+
+	public void DecayWeaponDurability(int value)
+	{
+		equippedWeapon.ChangeDurability(value);
+
+		if (equippedWeapon.GetDurability == 0)
+		{
+			equippedWeapon = null;
+		}
+	}
 	
 	// Changes the gold based on passed value.
 	public void ChangeGold(int g)
@@ -531,6 +543,11 @@ public class Player : MonoBehaviour
 		// Face left.
 		transform.LookAt(transform.position + Vector3.left);
 	}
+
+	public void SetEquippedWeapon(WeaponCard weapon)
+	{
+		equippedWeapon = weapon;
+	}
 	
 	// Sets whether the player is a villain or not.
 	public void SetVillain(bool v)
@@ -563,7 +580,14 @@ public class Player : MonoBehaviour
 	// Return attack value
 	public int GetStrength()
 	{
-		return strength;
+		if (equippedWeapon != null)
+		{
+			return strength - equippedWeapon.GetAttack();
+		}
+		else
+		{
+			return strength;
+		}
 	}
 
 	public int GetFame()
@@ -591,6 +615,11 @@ public class Player : MonoBehaviour
 	public ItemCard GetCurrentItem(int index)
 	{
 		return items[index];
+	}
+
+	public WeaponCard GetWeapon()
+	{
+		return equippedWeapon;
 	}
 	
 	// Returns whether the player is travelling between tiles.

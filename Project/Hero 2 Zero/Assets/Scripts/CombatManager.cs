@@ -69,6 +69,11 @@ public class CombatManager : MonoBehaviour {
 			// DRAW
 			Debug.Log ("Tie");
 		}
+		// lower weapon durability if
+		if (player.GetWeapon() != null)
+		{
+			player.DecayWeaponDurability(-1);
+		}
 		
 		int tileX = (int)player.GetMapPosition().x;
 		int tileY = (int)player.GetMapPosition().y;
@@ -102,6 +107,8 @@ public class CombatManager : MonoBehaviour {
 				map.ClearMonsterTile(tileX, tileY);
 				map.ClearPrefabTile(tileX, tileY);
 			}
+
+
 			
 		}
 		/*else
@@ -142,6 +149,16 @@ public class CombatManager : MonoBehaviour {
 		{
 			// DRAW
 			Debug.Log ("Tie");
+		}
+
+		if (player.GetWeapon() != null)
+		{
+			player.DecayWeaponDurability(-1);
+		}
+
+		if (player2.GetWeapon() != null)
+		{
+			player2.DecayWeaponDurability(-1);
 		}
 
 		// if any have died, combat is over, if not its just a round
@@ -244,7 +261,7 @@ public class CombatManager : MonoBehaviour {
 
 	public void SetPlayerTwoDiceRoll(int p2Roll)
 	{
-		playerTwoDiceRoll = p2Roll * player2.GetStrength();
+		playerTwoDiceRoll = p2Roll + player2.GetStrength();
 
 		Debug.Log ("Second Player Total: " + p2Roll + " (base) + " + player2.GetStrength() + " (str) = " + playerTwoDiceRoll);
 	}
