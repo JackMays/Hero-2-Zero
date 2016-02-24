@@ -69,7 +69,7 @@ public class CombatManager : MonoBehaviour {
 			// DRAW
 			Debug.Log ("Tie");
 		}
-		// lower weapon durability if
+		// lower weapon durability if one exists
 		if (player.GetWeapon() != null)
 		{
 			player.DecayWeaponDurability(-1);

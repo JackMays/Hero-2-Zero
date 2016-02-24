@@ -93,6 +93,8 @@ public class Player : MonoBehaviour
 
 		animatorCompo = GetComponent<Animator>();
 
+		equippedWeapon = new WeaponCard("Mace", -2, 5, 2, 0, "Mace for clubbing things", 0);
+
 		items.Add (new ItemCard("Skip Monster (In Battle)", 0, 4, 0, 1, 0, 0, "Skip a Monster. Battle Only", 0));
 		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 5, 0, "Spawn a Monster on a tile. Board Only", 0));
 		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 1, 2, 4, 0, "Skip a Target Players turn. Board Only", 0));
@@ -438,8 +440,9 @@ public class Player : MonoBehaviour
 	{
 		equippedWeapon.ChangeDurability(value);
 
-		if (equippedWeapon.GetDurability == 0)
+		if (equippedWeapon.GetDurability() == 0)
 		{
+			Debug.Log ("No more weapon");
 			equippedWeapon = null;
 		}
 	}
@@ -582,10 +585,13 @@ public class Player : MonoBehaviour
 	{
 		if (equippedWeapon != null)
 		{
-			return strength - equippedWeapon.GetAttack();
+			Debug.Log(" returned strength " + " + " + equippedWeapon.GetAttack() + " = " + (strength + equippedWeapon.GetAttack()));
+
+			return strength + equippedWeapon.GetAttack();
 		}
 		else
 		{
+			Debug.Log ("returned base str");
 			return strength;
 		}
 	}

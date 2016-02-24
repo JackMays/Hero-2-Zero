@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponCard : ItemCard
+public class WeaponCard : Card
 {
 	#region Variables
+
+	string name = "";
+
 	// The attack value of the card.
 	int attack = 0;
 	
@@ -16,9 +19,11 @@ public class WeaponCard : ItemCard
 	#endregion
 	
 	// Constructor.
-	public WeaponCard (int at, int def, int du, string na, int co, int ef, int va, int us, int ta, int im, string des, int ty)
-					: base (na, co, ef, va, us, ta, im, des, ty)
+	public WeaponCard (string na, int at, int def, int du, int im, string des, int ty)
+					: base (im, des, ty)
 	{
+		name = na;
+
 		// Sets the values for the weapon.
 		attack = at;
 		defense = def;
@@ -52,6 +57,7 @@ public class WeaponCard : ItemCard
 	// Changes the durability of the weapon.
 	public void ChangeDurability(int d)
 	{
+		Debug.Log ("Decayed weapon Durability by: " + d);
 		durability += d;
 	}
 }
