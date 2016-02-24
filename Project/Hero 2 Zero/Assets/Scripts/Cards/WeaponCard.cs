@@ -29,6 +29,21 @@ public class WeaponCard : Card
 		defense = def;
 		durability = du;
 	}
+
+	public WeaponCard (WeaponCard weap) : base (weap.GetImageIndex(), weap.GetDescription(), weap.GetCardType())
+	{
+		name = weap.GetName();
+		
+		// Sets the values for the weapon.
+		attack = weap.GetAttack();
+		defense = weap.GetDefense();
+		durability = weap.GetDurability();
+	}
+
+	public string GetName()
+	{
+		return name;
+	}
 	
 	// Returns the attack of the weapon.
 	public int GetAttack()

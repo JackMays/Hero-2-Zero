@@ -549,7 +549,7 @@ public class Player : MonoBehaviour
 
 	public void SetEquippedWeapon(WeaponCard weapon)
 	{
-		equippedWeapon = weapon;
+		equippedWeapon = new WeaponCard(weapon);
 	}
 	
 	// Sets whether the player is a villain or not.
