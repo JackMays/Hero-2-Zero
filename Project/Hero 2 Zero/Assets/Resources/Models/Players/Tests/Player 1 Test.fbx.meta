@@ -80,6 +80,7 @@ ModelImporter:
     100144: Upper_Body
     100146: Upper_Neck
     100148: Weapon_Parent
+    100150: pPlane1
     400000: Armour
     400002: Bag_End
     400004: Bag_Root
@@ -155,8 +156,11 @@ ModelImporter:
     400144: Upper_Body
     400146: Upper_Neck
     400148: Weapon_Parent
+    400150: pPlane1
     2300000: Cutlass2
+    2300002: pPlane1
     3300000: Cutlass2
+    3300002: pPlane1
     4300000: Cutlass2
     4300002: Body
     4300004: Eyes
@@ -166,6 +170,7 @@ ModelImporter:
     4300012: Armour
     4300014: Legs
     4300016: Torso
+    4300018: pPlane1
     7400000: T Pose
     7400002: Idle
     7400004: Walk
@@ -576,7 +581,7 @@ ModelImporter:
       name: Idle
       takeName: Take 001
       firstFrame: 50
-      lastFrame: 92
+      lastFrame: 93
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -762,7 +767,7 @@ ModelImporter:
       name: Combat Idle
       takeName: Take 001
       firstFrame: 100
-      lastFrame: 154
+      lastFrame: 139
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -807,6 +812,8 @@ ModelImporter:
       - path: Left_Knee_Solver
         weight: 1
       - path: Left_Leg_IK
+        weight: 1
+      - path: pPlane1
         weight: 1
       - path: Right_Elbow_SOlver
         weight: 1
@@ -947,8 +954,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack
       takeName: Take 001
-      firstFrame: 160
-      lastFrame: 188
+      firstFrame: 145
+      lastFrame: 145
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
