@@ -9,9 +9,16 @@ public class ShopManager : MonoBehaviour {
 
 	List<Card> forSaleCards = new List<Card>();
 
+	Player customer = null;
+
+	int card = 0;
+
 	// Use this for initialization
 	void Start () {
 	
+		forSaleCards.Add (new ItemCard("Test Item", 0, 4, 1, 2, 4, 1, "Shop test Item", 0));
+		forSaleCards.Add (new WeaponCard("Test Weapon", -4, 4, 1, 0, "Shop Test Weapon", 0));
+
 	}
 	
 	// Update is called once per frame
@@ -52,11 +59,21 @@ public class ShopManager : MonoBehaviour {
 
 	}
 
-	public void BuyItem(int card, Player customer)
+	public void SetCustomer (Player player)
+	{
+		customer = player;
+	}
+
+	public void SetBoughtCard(int bought)
+	{
+		card = bought;
+	}
+
+	public void BuyItem(/*int card, Player customer*/)
 	{
 		Card toBuy = forSaleCards[card];
-		ItemCard boughtItem = (ItemCard)toBuy;
-		WeaponCard boughtWeapon = (WeaponCard)toBuy;
+		ItemCard boughtItem = toBuy as ItemCard;
+		WeaponCard boughtWeapon = toBuy as WeaponCard;
 
 		if (boughtItem != null)
 		{
@@ -64,7 +81,6 @@ public class ShopManager : MonoBehaviour {
 		}
 		else if (boughtWeapon != null)
 		{
-
 			customer.SetEquippedWeapon(boughtWeapon);
 		}
 	}
