@@ -81,6 +81,9 @@ ModelImporter:
     100146: Upper_Neck
     100148: Weapon_Parent
     100150: pPlane1
+    100152: Dagger1
+    100154: Dagger:Dagger
+    100156: Weapon_Parent1
     400000: Armour
     400002: Bag_End
     400004: Bag_Root
@@ -157,10 +160,17 @@ ModelImporter:
     400146: Upper_Neck
     400148: Weapon_Parent
     400150: pPlane1
+    400152: Dagger1
+    400154: Dagger:Dagger
+    400156: Weapon_Parent1
     2300000: Cutlass2
     2300002: pPlane1
+    2300004: Dagger1
+    2300006: Dagger:Dagger
     3300000: Cutlass2
     3300002: pPlane1
+    3300004: Dagger1
+    3300006: Dagger:Dagger
     4300000: Cutlass2
     4300002: Body
     4300004: Eyes
@@ -171,6 +181,8 @@ ModelImporter:
     4300014: Legs
     4300016: Torso
     4300018: pPlane1
+    4300020: Dagger:Dagger
+    4300022: Dagger1
     7400000: T Pose
     7400002: Idle
     7400004: Walk
