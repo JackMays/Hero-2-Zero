@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
 	int combAttackID = Animator.StringToHash("isAttacking");
 	int combWinID = Animator.StringToHash("isVictory");
 	int combLoseID = Animator.StringToHash("isDefeated");
+	int proneID = Animator.StringToHash("isProne");
 	int getUpID = Animator.StringToHash("isGetUp");
 
 	#endregion
@@ -357,6 +358,48 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(idleID, false);
 			animatorCompo.SetBool(walkID, true);
 		}
+	}
+
+	public void CombatIdle()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combIdleID, true);
+		}
+	}
+
+	public void Attack()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combAttackID, true);
+		}
+	}
+
+	public void Victory()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combWinID, true);
+		}
+	}
+
+	public void Defeat()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combLoseID, true);
+		}
+	}
+
+	public void Prone()
+	{
+		animatorCompo.SetBool(combLoseID, false);
+		animatorCompo.SetBool(proneID, true);
 	}
 	
 	// Rotates the player to a specified direction.
