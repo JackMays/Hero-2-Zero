@@ -79,8 +79,8 @@ public class Player : MonoBehaviour
 	int combAttackID = Animator.StringToHash("isAttacking");
 	int combWinID = Animator.StringToHash("isVictory");
 	int combLoseID = Animator.StringToHash("isDefeated");
-	// for when combLose anim is finished and player is down and monster is in victory pose
-	int combProneID = Animator.StringToHash("isProne");
+	int getUpID = Animator.StringToHash("isGetUp");
+
 	#endregion
 	
 	// Use this for initialization
