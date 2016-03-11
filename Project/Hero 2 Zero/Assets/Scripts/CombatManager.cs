@@ -19,6 +19,8 @@ public class CombatManager : MonoBehaviour {
 
 	//bool isRoundResolved;
 	bool isCombatEnded;
+	// temp bool until monsters have implemented attacks
+	bool MonsterAttackBypass = false;
 
 	// Use this for initialization
 	void Awake () 
@@ -53,7 +55,9 @@ public class CombatManager : MonoBehaviour {
 			damage = playerDiceRoll - monsterDiceRoll;
 			Debug.Log ("Monster Takes: " + playerDiceRoll + " + " + monsterDiceRoll + " = " + damage);
 			monster.TakeDamage(damage);
+			//player.Victory();
 			player.ChangeFame(monster.GetFameMod(true));
+
 
 		}
 		else if (playerDiceRoll < monsterDiceRoll)
@@ -116,6 +120,9 @@ public class CombatManager : MonoBehaviour {
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
 		}*/
+
+		// Temp: make sure idle is returned to while animation flow is incomplete
+		player.Idle ();
 	}
 
 	void ResolvePvp()
@@ -129,6 +136,7 @@ public class CombatManager : MonoBehaviour {
 			damage = playerDiceRoll - playerTwoDiceRoll;
 			Debug.Log ("Player 2 Takes: " + playerDiceRoll + " - " + playerTwoDiceRoll + " = " + damage);
 			player2.TakeDamage(damage);
+			//player.Victory();
 
 			player.ChangeFame(10);
 			player2.ChangeFame(-10);
@@ -141,6 +149,7 @@ public class CombatManager : MonoBehaviour {
 			damage = playerTwoDiceRoll - playerDiceRoll;
 			Debug.Log ("Player Takes: " + playerTwoDiceRoll + " - " + playerDiceRoll + " = " + damage);
 			player.TakeDamage(damage);
+			//player2.Victory();
 
 			player.ChangeFame(-10);
 			player2.ChangeFame(10);
@@ -190,21 +199,74 @@ public class CombatManager : MonoBehaviour {
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
 		}*/
+		// Temp: make sure idle is returned to while animation flow is incomplete
+		player.Idle ();
+		player2.Idle();
 	}
 
 	public void ResolveCombat()
 	{
+		//ExecuteAttackPhase();
+
 		if (isMonCombat)
 		{
-			ResolveMon();
+			/*if ((player.JustStoppedAttacking() || MonsterAttackBypass) || 
+			    (player.JustStoppedAttacking() && MonsterAttackBypass))
+			{*/
+				ResolveMon();
+				// end combat
+				isCombatEnded = true;
+			//}
 		}
 		else if (isPvpCombat)
 		{
-			ResolvePvp();
-		}
+			/*if ((player.JustStoppedAttacking() || player2.JustStoppedAttacking()) || 
+			    (player.JustStoppedAttacking() && player2.JustStoppedAttacking()))
+			{*/
 
-		// end combat
-		isCombatEnded = true;
+				ResolvePvp();
+
+				// end combat
+				isCombatEnded = true;
+			//}
+		}
+	}
+
+	public void ExecuteAttackPhase()
+	{
+		if (isMonCombat)
+		{
+			if (playerDiceRoll > monsterDiceRoll)
+			{
+				player.Attack();
+			}
+			else if (playerDiceRoll < monsterDiceRoll)
+			{
+				MonsterAttackBypass = true;
+			}
+			else
+			{
+				player.Attack();
+				MonsterAttackBypass = true;
+			}
+		}
+		else if (isPvpCombat)
+		{
+			// compare dice
+			if (playerDiceRoll > playerTwoDiceRoll)
+			{
+				player.Attack();
+			}
+			else if (playerDiceRoll < playerTwoDiceRoll)
+			{
+				player2.Attack();
+			}
+			else
+			{
+				player.Attack();
+				player2.Attack();
+			}
+		}
 	}
 
 	public void EstablishMonCombat(Player p, MonsterCard m, GameObject pr)

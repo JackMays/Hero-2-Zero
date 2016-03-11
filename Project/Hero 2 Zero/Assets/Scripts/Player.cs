@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
 	// Holds whether the player has just stopped moving to a tile.
 	bool justStopped = false;
 
+	bool justAttacked = false;
+
 	bool wasDead = false;
 	
 	// List of the item cards the player has.
@@ -277,6 +279,7 @@ public class Player : MonoBehaviour
 			health = 0;
 			ChangeTurnsToSkip(deathSkipCap);
 			wasDead = true;
+			Prone();
 		}
 	}
 	
@@ -344,10 +347,18 @@ public class Player : MonoBehaviour
 
 	public void Idle()
 	{
+		// reset everything when returning to idle
 		if (animatorCompo)
 		{
 			animatorCompo.SetBool(walkID, false);
+			animatorCompo.SetBool(combIdleID, false);
+			animatorCompo.SetBool(combAttackID, false);
+			animatorCompo.SetBool(combWinID, false);
+			animatorCompo.SetBool(combLoseID, false);
+			animatorCompo.SetBool(proneID, false);
 			animatorCompo.SetBool(idleID, true);
+
+			justAttacked = false;
 		}
 	}
 
@@ -377,6 +388,18 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(combAttackID, true);
 		}
 	}
+	// for anim event at the end of attack
+	// Switch back to combatidle and flag an attack so combat state can move forward
+	public void AttackEnd()
+	{
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(combAttackID, false);
+			animatorCompo.SetBool(combIdleID, true);
+		}
+
+		justAttacked = true;
+	}
 
 	public void Victory()
 	{
@@ -398,8 +421,11 @@ public class Player : MonoBehaviour
 
 	public void Prone()
 	{
-		animatorCompo.SetBool(combLoseID, false);
-		animatorCompo.SetBool(proneID, true);
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(combLoseID, false);
+			animatorCompo.SetBool(proneID, true);
+		}
 	}
 	
 	// Rotates the player to a specified direction.
@@ -469,6 +495,8 @@ public class Player : MonoBehaviour
 			health -= (dmg - defence);
 		}*/
 		
+		Defeat();
+
 		health -= dmg;
 		
 		Debug.Log ("Health: " + health);
@@ -681,6 +709,11 @@ public class Player : MonoBehaviour
 	public bool JustStoppedMoving()
 	{
 		return justStopped;
+	}
+
+	public bool JustStoppedAttacking()
+	{
+		return justAttacked;
 	}
 	
 	public bool HasDied()

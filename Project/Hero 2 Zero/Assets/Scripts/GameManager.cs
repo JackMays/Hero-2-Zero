@@ -400,6 +400,7 @@ public class GameManager : MonoBehaviour
 					cardManager.RevealMonCard(mc);
 					// Starts combat.
 					combatManager.EstablishMonCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
+					//listPlayers[currentPlayer].CombatIdle();
 					// Updates state to combat.
 					turnState = 4;
 				}
@@ -411,6 +412,8 @@ public class GameManager : MonoBehaviour
 				if (enemyPlayer != -1) {
 					// Do your combat initiallising here Jack. It would be currentPlayer versus enemyPlayer.
 					combatManager.EstablishPvpCombat(listPlayers[currentPlayer], listPlayers[enemyPlayer]);
+					//listPlayers[currentPlayer].CombatIdle();
+					//listPlayers[enemyPlayer].CombatIdle();
 					Debug.Log ("PVP BEGIN");
 					
 					// Updates state to combat.
@@ -502,6 +505,7 @@ public class GameManager : MonoBehaviour
 							MonsterCard monster = cardManager.GetMonEncountered();
 
 							combatManager.EstablishMonCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModel()));
+							//listPlayers[currentPlayer].CombatIdle();
 							Debug.Log ("COMBAT BEGIN");
 							turnState = 4;
 							cardManager.HideCard();
