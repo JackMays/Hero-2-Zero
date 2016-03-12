@@ -384,7 +384,7 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combIdleID, false);
 			animatorCompo.SetBool(combAttackID, true);
 		}
 	}
@@ -405,7 +405,7 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combIdleID, false);
 			animatorCompo.SetBool(combWinID, true);
 		}
 	}
@@ -414,7 +414,7 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combIdleID, false);
 			animatorCompo.SetBool(combLoseID, true);
 		}
 	}

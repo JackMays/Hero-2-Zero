@@ -121,8 +121,6 @@ public class CombatManager : MonoBehaviour {
 			Debug.Log("round resolved flagged");
 		}*/
 
-		// Temp: make sure idle is returned to while animation flow is incomplete
-		player.Idle ();
 	}
 
 	void ResolvePvp()
@@ -199,36 +197,44 @@ public class CombatManager : MonoBehaviour {
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
 		}*/
-		// Temp: make sure idle is returned to while animation flow is incomplete
-		player.Idle ();
-		player2.Idle();
 	}
 
 	public void ResolveCombat()
 	{
-		//ExecuteAttackPhase();
+		ExecuteAttackPhase();
 
 		if (isMonCombat)
 		{
-			/*if ((player.JustStoppedAttacking() || MonsterAttackBypass) || 
-			    (player.JustStoppedAttacking() && MonsterAttackBypass))
-			{*/
+			if ((player.JustStoppedAttacking() || MonsterAttackBypass) || 
+			    (player.JustStoppedAttacking() && MonsterAttackBypass) ||
+			    !player.GetComponent<Animator>())
+			{
 				ResolveMon();
 				// end combat
 				isCombatEnded = true;
-			//}
+			}
 		}
 		else if (isPvpCombat)
 		{
-			/*if ((player.JustStoppedAttacking() || player2.JustStoppedAttacking()) || 
-			    (player.JustStoppedAttacking() && player2.JustStoppedAttacking()))
-			{*/
+			if (player.GetComponent<Animator>() && player2.GetComponent<Animator>())
+			{
+				if ((player.JustStoppedAttacking() || player2.JustStoppedAttacking()) || 
+				    (player.JustStoppedAttacking() && player2.JustStoppedAttacking()))
+				{
 
+					ResolvePvp();
+
+					// end combat
+					isCombatEnded = true;
+				}
+			}
+			else
+			{
 				ResolvePvp();
-
+				
 				// end combat
 				isCombatEnded = true;
-			//}
+			}
 		}
 	}
 
