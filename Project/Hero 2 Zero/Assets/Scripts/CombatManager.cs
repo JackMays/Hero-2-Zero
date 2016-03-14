@@ -249,6 +249,7 @@ public class CombatManager : MonoBehaviour {
 			else if (playerDiceRoll < monsterDiceRoll)
 			{
 				MonsterAttackBypass = true;
+				player.Defeat();
 			}
 			else
 			{
@@ -262,10 +263,12 @@ public class CombatManager : MonoBehaviour {
 			if (playerDiceRoll > playerTwoDiceRoll)
 			{
 				player.Attack();
+				player2.Defeat();
 			}
 			else if (playerDiceRoll < playerTwoDiceRoll)
 			{
 				player2.Attack();
+				player.Defeat();
 			}
 			else
 			{

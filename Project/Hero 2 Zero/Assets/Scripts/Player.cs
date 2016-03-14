@@ -279,7 +279,7 @@ public class Player : MonoBehaviour
 			health = 0;
 			ChangeTurnsToSkip(deathSkipCap);
 			wasDead = true;
-			Prone();
+			//Prone();
 		}
 	}
 	
@@ -495,7 +495,7 @@ public class Player : MonoBehaviour
 			health -= (dmg - defence);
 		}*/
 		
-		Defeat();
+		//Defeat();
 
 		health -= dmg;
 		
