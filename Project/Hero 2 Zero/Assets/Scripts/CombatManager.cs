@@ -14,11 +14,12 @@ public class CombatManager : MonoBehaviour {
 	int playerTwoDiceRoll;
 	int monsterDiceRoll;
 
-	bool isMonCombat;
-	bool isPvpCombat;
+	bool isMonCombat = false;
+	bool isPvpCombat = false;
 
+	bool isAttackPhaseExec = false;
 	//bool isRoundResolved;
-	bool isCombatEnded;
+	bool isCombatEnded = false;
 	// temp bool until monsters have implemented attacks
 	bool MonsterAttackBypass = false;
 
@@ -28,15 +29,6 @@ public class CombatManager : MonoBehaviour {
 		player = null;
 		player2 = null;
 		monster = null;
-
-		playerDiceRoll = 0;
-		monsterDiceRoll = 0;
-
-		isMonCombat = false;
-		isPvpCombat = false;
-
-		//isRoundResolved = false;
-		isCombatEnded = false;
 	}
 	
 	// Update is called once per frame
@@ -201,12 +193,15 @@ public class CombatManager : MonoBehaviour {
 
 	public void ResolveCombat()
 	{
-		ExecuteAttackPhase();
+		if (!isAttackPhaseExec)
+		{
+			ExecuteAttackPhase();
+		}
 
 		if (isMonCombat)
 		{
-			if ((player.JustStoppedAttacking() || MonsterAttackBypass) || 
-			    (player.JustStoppedAttacking() && MonsterAttackBypass) ||
+			if (/*(player.HasFightAnimFinished() || MonsterAttackBypass) ||*/ 
+			    (player.HasFightAnimFinished() && MonsterAttackBypass) ||
 			    !player.GetComponent<Animator>())
 			{
 				ResolveMon();
@@ -218,8 +213,8 @@ public class CombatManager : MonoBehaviour {
 		{
 			if (player.GetComponent<Animator>() && player2.GetComponent<Animator>())
 			{
-				if ((player.JustStoppedAttacking() || player2.JustStoppedAttacking()) || 
-				    (player.JustStoppedAttacking() && player2.JustStoppedAttacking()))
+				if (/*(player.HasFightAnimFinished() || player2.HasFightAnimFinished()) ||*/ 
+				    (player.HasFightAnimFinished() && player2.HasFightAnimFinished()))
 				{
 
 					ResolvePvp();
@@ -245,6 +240,7 @@ public class CombatManager : MonoBehaviour {
 			if (playerDiceRoll > monsterDiceRoll)
 			{
 				player.Attack();
+				MonsterAttackBypass = true;
 			}
 			else if (playerDiceRoll < monsterDiceRoll)
 			{
@@ -276,6 +272,8 @@ public class CombatManager : MonoBehaviour {
 				player2.Attack();
 			}
 		}
+
+		isAttackPhaseExec = true;
 	}
 
 	public void EstablishMonCombat(Player p, MonsterCard m, GameObject pr)
@@ -312,6 +310,7 @@ public class CombatManager : MonoBehaviour {
 
 		isMonCombat = false;
 		isPvpCombat = false;
+		isAttackPhaseExec = false;
 		isCombatEnded = false;
 		// make sure round is reset
 		//ResetRound();

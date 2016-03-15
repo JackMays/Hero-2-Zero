@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 	// Holds whether the player has just stopped moving to a tile.
 	bool justStopped = false;
 
-	bool justAttacked = false;
+	bool justFought = false;
 
 	bool wasDead = false;
 	
@@ -358,7 +358,7 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(proneID, false);
 			animatorCompo.SetBool(idleID, true);
 
-			justAttacked = false;
+			justFought = false;
 		}
 	}
 
@@ -398,7 +398,16 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(combIdleID, true);
 		}
 
-		justAttacked = true;
+		justFought = true;
+	}
+
+	// for anim event at the end of attack
+	// Switch back to combatidle and flag an attack so combat state can move forward
+	public void DefeatEnd()
+	{
+		Prone();
+		
+		justFought = true;
 	}
 
 	public void Victory()
@@ -711,9 +720,9 @@ public class Player : MonoBehaviour
 		return justStopped;
 	}
 
-	public bool JustStoppedAttacking()
+	public bool HasFightAnimFinished()
 	{
-		return justAttacked;
+		return justFought;
 	}
 	
 	public bool HasDied()
