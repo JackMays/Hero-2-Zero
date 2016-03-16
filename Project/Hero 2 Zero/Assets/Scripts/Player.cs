@@ -356,9 +356,8 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(combWinID, false);
 			animatorCompo.SetBool(combLoseID, false);
 			animatorCompo.SetBool(proneID, false);
+			animatorCompo.SetBool(getUpID, false);
 			animatorCompo.SetBool(idleID, true);
-
-			justFought = false;
 		}
 	}
 
@@ -435,6 +434,22 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(combLoseID, false);
 			animatorCompo.SetBool(proneID, true);
 		}
+	}
+
+	public void StandUp()
+	{
+		if (animatorCompo)
+		{
+			Debug.Log("Stand Up");
+
+			//animatorCompo.SetBool(proneID, false);
+			animatorCompo.SetBool(getUpID, true);
+		}
+	}
+
+	public void ResetPlayerCombat()
+	{
+		justFought = false;
 	}
 	
 	// Rotates the player to a specified direction.
@@ -723,6 +738,11 @@ public class Player : MonoBehaviour
 	public bool HasFightAnimFinished()
 	{
 		return justFought;
+	}
+
+	public bool HasIdleState()
+	{
+		return animatorCompo.GetBool(idleID);
 	}
 	
 	public bool HasDied()

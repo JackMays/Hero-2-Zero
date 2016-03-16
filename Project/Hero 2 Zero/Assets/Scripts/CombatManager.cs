@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour {
 	bool isPvpCombat = false;
 
 	bool isAttackPhaseExec = false;
+	bool isResolveOnce = false;
 	//bool isRoundResolved;
 	bool isCombatEnded = false;
 	// temp bool until monsters have implemented attacks
@@ -82,7 +83,7 @@ public class CombatManager : MonoBehaviour {
 		}
 		
 		// if any have died, combat is over, if not its just a round
-		if (player.HasDied() || monster.HasDied())
+		/*if (player.HasDied() || monster.HasDied())
 		{
 			if (player.HasDied())
 			{
@@ -94,7 +95,12 @@ public class CombatManager : MonoBehaviour {
 				
 
 			}
-			else if (monster.HasDied())
+			else
+			{
+				player.StandUp();
+			}
+
+			if (monster.HasDied())
 			{
 				// Remove Card from area
 				Debug.Log ("Monster's HP hit 0");
@@ -107,11 +113,34 @@ public class CombatManager : MonoBehaviour {
 
 			
 		}
-		/*else
+		else
 		{
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
 		}*/
+
+		if (player.HasDied())
+		{
+			Debug.Log ("Player's HP hit 0");
+			
+			// remove player for allotted turns, place monster card at area
+			// Also decrease fame more due to critical loss
+			player.HandleCombDeath(monster.GetFameMod(false));
+		}
+		else
+		{
+			player.StandUp();
+		}
+		
+		if (monster.HasDied())
+		{
+			// Remove Card from area
+			Debug.Log ("Monster's HP hit 0");
+			// gain more fame as bonus for win
+			player.ChangeFame(monster.GetFameMod(true));
+			map.ClearMonsterTile(tileX, tileY);
+			map.ClearPrefabTile(tileX, tileY);
+		}
 
 	}
 
@@ -161,7 +190,7 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		// if any have died, combat is over, if not its just a round
-		if (player.HasDied() || player2.HasDied())
+		/*if (player.HasDied() || player2.HasDied())
 		{
 			if (player.HasDied())
 			{
@@ -173,7 +202,12 @@ public class CombatManager : MonoBehaviour {
 				player2.ChangeFame(10);
 
 			}
-			else if (player2.HasDied())
+			else
+			{
+				player.StandUp();
+			}
+
+			if (player2.HasDied())
 			{
 				Debug.Log ("Player 2's HP hit 0");
 
@@ -182,13 +216,46 @@ public class CombatManager : MonoBehaviour {
 				player.ChangeFame(10);
 				player2.HandleCombDeath(-10);
 			}
+			else
+			{
+				player2.StandUp();
+			}
 			
 		}
-		/*else
+		else
 		{
 			isRoundResolved = true;
 			Debug.Log("round resolved flagged");
 		}*/
+		
+		if (player.HasDied())
+		{
+			Debug.Log ("Player 1's HP hit 0");
+			
+			// remove losing player for allotted turns
+			// gain/lose bonus fame for win & loss
+			player.HandleCombDeath(-10);
+			player2.ChangeFame(10);
+			
+		}
+		else
+		{
+			player.StandUp();
+		}
+		
+		if (player2.HasDied())
+		{
+			Debug.Log ("Player 2's HP hit 0");
+			
+			// remove losing player for allotted turns
+			// gain/lose bonus fame for win & loss
+			player.ChangeFame(10);
+			player2.HandleCombDeath(-10);
+		}
+		else
+		{
+			player2.StandUp();
+		}
 	}
 
 	public void ResolveCombat()
@@ -204,9 +271,24 @@ public class CombatManager : MonoBehaviour {
 			    (player.HasFightAnimFinished() && MonsterAttackBypass) ||
 			    !player.GetComponent<Animator>())
 			{
-				ResolveMon();
-				// end combat
-				isCombatEnded = true;
+				if (!isResolveOnce)
+				{
+					ResolveMon();
+					isResolveOnce = true;
+				}
+				if (player.GetComponent<Animator>())
+				{
+					if (player.HasIdleState())
+					{
+						// end combat
+						isCombatEnded = true;
+						player.ResetPlayerCombat();
+					}
+				}
+				else
+				{
+					isCombatEnded = true;
+				}
 			}
 		}
 		else if (isPvpCombat)
@@ -216,19 +298,34 @@ public class CombatManager : MonoBehaviour {
 				if (/*(player.HasFightAnimFinished() || player2.HasFightAnimFinished()) ||*/ 
 				    (player.HasFightAnimFinished() && player2.HasFightAnimFinished()))
 				{
+					if (!isResolveOnce)
+					{
+						ResolvePvp();
+						isResolveOnce = true;
+					}
 
-					ResolvePvp();
-
-					// end combat
-					isCombatEnded = true;
+					if (player.HasIdleState() && player2.HasIdleState())
+					{
+						// end combat
+						isCombatEnded = true;
+						player.ResetPlayerCombat();
+						player2.ResetPlayerCombat();
+					}
 				}
 			}
 			else
 			{
-				ResolvePvp();
-				
+				if (!isResolveOnce)
+				{
+					ResolvePvp();
+					isResolveOnce = true;
+				}
+
 				// end combat
 				isCombatEnded = true;
+				player.ResetPlayerCombat();
+				player2.ResetPlayerCombat();
+				
 			}
 		}
 	}
@@ -311,6 +408,7 @@ public class CombatManager : MonoBehaviour {
 		isMonCombat = false;
 		isPvpCombat = false;
 		isAttackPhaseExec = false;
+		isResolveOnce = false;
 		isCombatEnded = false;
 		// make sure round is reset
 		//ResetRound();
