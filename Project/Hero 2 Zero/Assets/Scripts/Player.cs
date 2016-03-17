@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 	// Typical player values.
 	int health = 20;
 	int maxHealth = 20;
-	int strength = 5;
+	int strength = 30;
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
@@ -413,7 +413,6 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(combIdleID, false);
 			animatorCompo.SetBool(combWinID, true);
 		}
 	}
@@ -422,7 +421,6 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(combIdleID, false);
 			animatorCompo.SetBool(combLoseID, true);
 		}
 	}
@@ -431,7 +429,7 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(combLoseID, false);
+
 			animatorCompo.SetBool(proneID, true);
 		}
 	}
@@ -442,7 +440,6 @@ public class Player : MonoBehaviour
 		{
 			Debug.Log("Stand Up");
 
-			//animatorCompo.SetBool(proneID, false);
 			animatorCompo.SetBool(getUpID, true);
 		}
 	}
