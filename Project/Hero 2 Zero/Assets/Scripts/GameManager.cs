@@ -303,7 +303,11 @@ public class GameManager : MonoBehaviour
 
 			if (listPlayers[currentPlayer].HasSkippedTurns())
 			{
-				StateRollDice();
+				if ((listPlayers[currentPlayer].GetComponent<Animator>() && listPlayers[currentPlayer].HasIdleState()) ||
+				    !listPlayers[currentPlayer].GetComponent<Animator>())
+				{
+					StateRollDice();
+				}
 			}
 			else
 			{

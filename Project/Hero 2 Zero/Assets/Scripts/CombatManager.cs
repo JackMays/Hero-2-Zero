@@ -286,7 +286,7 @@ public class CombatManager : MonoBehaviour {
 				}
 				if (player.GetComponent<Animator>())
 				{
-					if (player.HasIdleState())
+					if (player.HasIdleState() || player.HasDied())
 					{
 						// end combat
 						isCombatEnded = true;
@@ -312,7 +312,8 @@ public class CombatManager : MonoBehaviour {
 						isResolveOnce = true;
 					}
 
-					if (player.HasIdleState() && player2.HasIdleState())
+					if ((player.HasIdleState() && player2.HasIdleState()) || 
+					    (player.HasDied() || player2.HasDied()))
 					{
 						// end combat
 						isCombatEnded = true;

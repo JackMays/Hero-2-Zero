@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
 	#region Variables
 	// Typical player values.
-	int health = 20;
+	int health = 1;
 	int maxHealth = 20;
-	int strength = 30;
+	int strength = 5;
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
@@ -741,6 +741,11 @@ public class Player : MonoBehaviour
 	{
 		return animatorCompo.GetBool(idleID);
 	}
+
+	public bool HasProneState()
+	{
+		return animatorCompo.GetBool(proneID);
+	}
 	
 	public bool HasDied()
 	{
@@ -761,6 +766,7 @@ public class Player : MonoBehaviour
 			if (wasDead)
 			{
 				ChangeHealth(maxHealth);
+				StandUp();
 				wasDead = false;
 			}
 			return true;
