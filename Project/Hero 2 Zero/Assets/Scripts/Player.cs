@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 	#region Variables
 	// Typical player values.
-	int health = 20;
+	int health = 1;
 	int maxHealth = 20;
 	int strength = 5;
 	int defence = 5;
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 	// Holds whether the player has just stopped moving to a tile.
 	bool justStopped = false;
 
-	bool justAttacked = false;
+	bool justFought = false;
 
 	bool wasDead = false;
 	
@@ -279,7 +279,7 @@ public class Player : MonoBehaviour
 			health = 0;
 			ChangeTurnsToSkip(deathSkipCap);
 			wasDead = true;
-			Prone();
+			//Prone();
 		}
 	}
 	
@@ -356,9 +356,8 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(combWinID, false);
 			animatorCompo.SetBool(combLoseID, false);
 			animatorCompo.SetBool(proneID, false);
+			animatorCompo.SetBool(getUpID, false);
 			animatorCompo.SetBool(idleID, true);
-
-			justAttacked = false;
 		}
 	}
 
@@ -384,7 +383,7 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(combIdleID, false);
 			animatorCompo.SetBool(combAttackID, true);
 		}
 	}
@@ -398,14 +397,22 @@ public class Player : MonoBehaviour
 			animatorCompo.SetBool(combIdleID, true);
 		}
 
-		justAttacked = true;
+		justFought = true;
+	}
+
+	// for anim event at the end of attack
+	// Switch back to combatidle and flag an attack so combat state can move forward
+	public void DefeatEnd()
+	{
+		Prone();
+		
+		justFought = true;
 	}
 
 	public void Victory()
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(idleID, false);
 			animatorCompo.SetBool(combWinID, true);
 		}
 	}
@@ -414,7 +421,6 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(idleID, false);
 			animatorCompo.SetBool(combLoseID, true);
 		}
 	}
@@ -423,9 +429,24 @@ public class Player : MonoBehaviour
 	{
 		if (animatorCompo)
 		{
-			animatorCompo.SetBool(combLoseID, false);
+
 			animatorCompo.SetBool(proneID, true);
 		}
+	}
+
+	public void StandUp()
+	{
+		if (animatorCompo)
+		{
+			Debug.Log("Stand Up");
+
+			animatorCompo.SetBool(getUpID, true);
+		}
+	}
+
+	public void ResetPlayerCombat()
+	{
+		justFought = false;
 	}
 	
 	// Rotates the player to a specified direction.
@@ -495,7 +516,7 @@ public class Player : MonoBehaviour
 			health -= (dmg - defence);
 		}*/
 		
-		Defeat();
+		//Defeat();
 
 		health -= dmg;
 		
@@ -711,9 +732,19 @@ public class Player : MonoBehaviour
 		return justStopped;
 	}
 
-	public bool JustStoppedAttacking()
+	public bool HasFightAnimFinished()
 	{
-		return justAttacked;
+		return justFought;
+	}
+
+	public bool HasIdleState()
+	{
+		return animatorCompo.GetBool(idleID);
+	}
+
+	public bool HasProneState()
+	{
+		return animatorCompo.GetBool(proneID);
 	}
 	
 	public bool HasDied()
@@ -735,6 +766,7 @@ public class Player : MonoBehaviour
 			if (wasDead)
 			{
 				ChangeHealth(maxHealth);
+				StandUp();
 				wasDead = false;
 			}
 			return true;
