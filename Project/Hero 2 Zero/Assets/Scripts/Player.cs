@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 	#region Variables
 	// Typical player values.
-	int health = 1;
+	int health = 20;
 	int maxHealth = 20;
 	int strength = 5;
 	int defence = 5;
