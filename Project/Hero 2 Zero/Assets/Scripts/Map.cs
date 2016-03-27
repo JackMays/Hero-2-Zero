@@ -121,6 +121,12 @@ public class Map : MonoBehaviour
 	public bool changeMap = false;
 	#endregion
 	
+	#region Test
+	public bool testSprites = false;
+	
+	public List<GameObject> sprites;
+	#endregion
+	
 	// Use this for initialization
 	void Awake ()
 	{
@@ -203,7 +209,12 @@ public class Map : MonoBehaviour
 				// Checks if the space is a tile.
 				if (value != 0) {
 					// Creates the tile.
-					CreateTile2(i, j, value);
+					if (!testSprites) {
+						CreateTile2(i, j, value);
+					}
+					else {
+						CreateSpriteTile(i,j,value);
+					}
 					
 					// Adds the position to the list.
 					viableTiles.Add(new Vector2(i, j));
@@ -240,6 +251,32 @@ public class Map : MonoBehaviour
 		
 		// Moves the tile locally to the correct position.
 		g.transform.localPosition = new Vector3(j * 2, 0, (0 - i) * 2);
+	}
+	
+	// Places a tile at the specified position and changes its type.
+	void CreateSpriteTile(int i, int j, int value)
+	{	
+		// Places a tile, changes its name and assigns its parent.
+		int v = 0;
+		
+		if (value != 6 && value != 7) {
+			v = 1;
+		}
+		else if (value == 6) {
+			v = 2;
+		}
+		else if (value == 7) {
+			v = 0;
+		}
+		
+		GameObject g = Instantiate<GameObject>(sprites[value-1]);
+		
+		
+		g.name = "Tile : (" + i + ", " + j + ") : " + value;
+		g.transform.parent = mapParent.transform;
+		
+		// Moves the tile locally to the correct position.
+		g.transform.localPosition = new Vector3(j * 2, 0.1f, (0 - i) * 2);
 	}
 	
 	// Places chests on random tiles.
