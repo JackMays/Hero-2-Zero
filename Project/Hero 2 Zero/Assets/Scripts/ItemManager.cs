@@ -357,41 +357,6 @@ public class ItemManager
 		isRaycasting = false;
 	}
 	
-	// Allows the player to drag the camera.
-	void DragSelectionCamera()
-	{
-		
-		
-		
-		
-		
-		// Gets the camera's position.
-		Vector3 pos = rayCam.transform.position;
-		
-		// Keeps the camera within bounds.
-		// Forward boundary.
-		if (pos.z > 10) {
-		
-		}
-		// Backward Boundary.
-		else {
-			if (pos.z < -10) {
-			
-			}
-		}
-		// Right Boundary.
-		if (pos.x > 10) {
-		
-		}
-		// Left Boundary.
-		else {
-			if (pos.x < -10) {
-			
-			}
-		}
-		
-	}
-	
 	// Returns whether in raycast mode or not.
 	public bool IsInRaycastMode()
 	{

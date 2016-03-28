@@ -677,328 +677,219 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Bottom_Sheath
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Left_Ankle_Guard
+        weight: 1
+      - path: Left_Arm_Guard
+        weight: 1
+      - path: Left_Boot
+        weight: 1
       - path: Left_Boot_Braces
         weight: 1
-      - path: Player_1_Clothes:Belt
+      - path: Left_Eblow_Solver
         weight: 1
-      - path: Player_1_Clothes:Belt_Pouch
+      - path: Left_Elbow_Pad
         weight: 1
-      - path: Player_1_Clothes:Body
+      - path: Left_Forearm_Guard
         weight: 1
-      - path: Player_1_Clothes:Body/Player_1_Clothes:Trousers
+      - path: Left_Hand_Guard
         weight: 1
-      - path: Player_1_Clothes:Bottom_Sheath
+      - path: Left_Hand_IK
         weight: 1
-      - path: Player_1_Clothes:Breastplate
+      - path: Left_Knee_Pad
         weight: 1
-      - path: Player_1_Clothes:Eyes
+      - path: Left_Knee_Solver
         weight: 1
-      - path: Player_1_Clothes:Hair
+      - path: Left_Leg_IK
         weight: 1
-      - path: Player_1_Clothes:Left_Arm_Guard
+      - path: Left_Toe_Guard
         weight: 1
-      - path: Player_1_Clothes:Left_Elbow_Pad
+      - path: Leg_Pouch
         weight: 1
-      - path: Player_1_Clothes:Left_Knee_Pad
+      - path: Mouth
         weight: 1
-      - path: Player_1_Clothes:Leg_Pouch
+      - path: Right_Ankle_Guard
         weight: 1
-      - path: Player_1_Clothes:Mouth
+      - path: Right_Arm_Guard
         weight: 1
-      - path: Player_1_Clothes:pCube7
-        weight: 1
-      - path: Player_1_Clothes:pCube7/Player_1_Clothes:transform15
-        weight: 1
-      - path: Player_1_Clothes:pCube17
-        weight: 1
-      - path: Player_1_Clothes:pCube17/Player_1_Clothes:transform30
-        weight: 1
-      - path: Player_1_Clothes:pCube18
-        weight: 1
-      - path: Player_1_Clothes:pCube18/Player_1_Clothes:transform29
-        weight: 1
-      - path: Player_1_Clothes:pCube19
-        weight: 1
-      - path: Player_1_Clothes:pCube19/Player_1_Clothes:transform28
-        weight: 1
-      - path: Player_1_Clothes:pCube20
-        weight: 1
-      - path: Player_1_Clothes:pCube20/Player_1_Clothes:transform27
-        weight: 1
-      - path: Player_1_Clothes:pCube21
-        weight: 1
-      - path: Player_1_Clothes:pCube21/Player_1_Clothes:transform35
-        weight: 1
-      - path: Player_1_Clothes:pCube22
-        weight: 1
-      - path: Player_1_Clothes:pCube22/Player_1_Clothes:transform34
-        weight: 1
-      - path: Player_1_Clothes:pCube23
-        weight: 1
-      - path: Player_1_Clothes:pCube23/Player_1_Clothes:transform33
-        weight: 1
-      - path: Player_1_Clothes:pCube24
-        weight: 1
-      - path: Player_1_Clothes:pCube24/Player_1_Clothes:transform32
-        weight: 1
-      - path: Player_1_Clothes:pCube25
-        weight: 1
-      - path: Player_1_Clothes:pCube26
-        weight: 1
-      - path: Player_1_Clothes:pCube27
-        weight: 1
-      - path: Player_1_Clothes:Player_1_Boot:Player_Example1:Body
-        weight: 1
-      - path: Player_1_Clothes:Player_1_Boot:Player_Example1:Body/Player_1_Clothes:Player_1_Boot:Player_Example1:polySurface3
-        weight: 1
-      - path: Player_1_Clothes:Player_1_Boot:Player_Example1:Body/Player_1_Clothes:Player_1_Boot:Player_Example1:polySurface3/Player_1_Clothes:Left_Boot4
-        weight: 1
-      - path: Player_1_Clothes:polySurface36
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body 1
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body3
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body3/Player_1_Clothes:transform16
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body5
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body6
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body7
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body8
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body9
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body9/Player_1_Clothes:transform24
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body10
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body10/Player_1_Clothes:transform23
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body11
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body11/Player_1_Clothes:transform22
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body12
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body12/Player_1_Clothes:transform21
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body13
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body13/Player_1_Clothes:transform20
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body14
-        weight: 1
-      - path: Player_1_Clothes:polySurface36/Player_1_Clothes:Body14/Player_1_Clothes:transform19
-        weight: 1
-      - path: Player_1_Clothes:polySurface41
-        weight: 1
-      - path: Player_1_Clothes:polySurface41/Player_1_Clothes:Left_Forearm_Guard
-        weight: 1
-      - path: Player_1_Clothes:polySurface41/Player_1_Clothes:Left_Hand_Guard
-        weight: 1
-      - path: Player_1_Clothes:polySurface41/Player_1_Clothes:Right_Forearm_Guard
-        weight: 1
-      - path: Player_1_Clothes:polySurface41/Player_1_Clothes:Right_Hand_Guard
-        weight: 1
-      - path: Player_1_Clothes:polySurface45
-        weight: 1
-      - path: Player_1_Clothes:polySurface45/Player_1_Clothes:transform31
-        weight: 1
-      - path: Player_1_Clothes:pPlane4
-        weight: 1
-      - path: Player_1_Clothes:pPlane4/Player_1_Clothes:transform11
-        weight: 1
-      - path: Player_1_Clothes:pPlane5
-        weight: 1
-      - path: Player_1_Clothes:pPlane5/Player_1_Clothes:transform12
-        weight: 1
-      - path: Player_1_Clothes:Right_Arm_Guard
-        weight: 1
-      - path: Player_1_Clothes:Right_Elbow_Pad
-        weight: 1
-      - path: Player_1_Clothes:Right_Knee_Pad
-        weight: 1
-      - path: Player_1_Clothes:Scarf
-        weight: 1
-      - path: Player_1_Clothes:Sheath_Hold
-        weight: 1
-      - path: Player_1_Clothes:Sheath_Hold1
-        weight: 1
-      - path: Player_1_Clothes:Top_Sheath
-        weight: 1
-      - path: Player_1_Clothes:Vest
-        weight: 1
-      - path: Player_1_Skeleton:Left_Eblow_Solver
-        weight: 1
-      - path: Player_1_Skeleton:Left_Hand_IK
-        weight: 1
-      - path: Player_1_Skeleton:Left_Knee_Solver
-        weight: 1
-      - path: Player_1_Skeleton:Left_Leg_IK
-        weight: 1
-      - path: Player_1_Skeleton:Right_Elbow_SOlver
-        weight: 1
-      - path: Player_1_Skeleton:Right_Hand_IK
-        weight: 1
-      - path: Player_1_Skeleton:Right_Knee_Solver
-        weight: 1
-      - path: Player_1_Skeleton:Right_Leg_IK
-        weight: 1
-      - path: Player_1_Skeleton:Root
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Bag_Root
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Bag_Root/Player_1_Skeleton:Bag_End
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Left_Thigh
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Left_Thigh/Player_1_Skeleton:Left_Knee
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Left_Thigh/Player_1_Skeleton:Left_Knee/Player_1_Skeleton:Left_Ankle
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Left_Thigh/Player_1_Skeleton:Left_Knee/Player_1_Skeleton:Left_Ankle/Player_1_Skeleton:Left_Toe
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Right_Thigh
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Right_Thigh/Player_1_Skeleton:Right_Knee
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Right_Thigh/Player_1_Skeleton:Right_Knee/Player_1_Skeleton:Right_Ankle
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Right_Thigh/Player_1_Skeleton:Right_Knee/Player_1_Skeleton:Right_Ankle/Player_1_Skeleton:Right_Toe
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_1_1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_1_1/Player_1_Skeleton:Finger_1_2
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_1_1/Player_1_Skeleton:Finger_1_2/Player_1_Skeleton:Finger_1_3
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_2_1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_2_1/Player_1_Skeleton:Finger_2_2
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_2_1/Player_1_Skeleton:Finger_2_2/Player_1_Skeleton:Finger_2_3
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_3_1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_3_1/Player_1_Skeleton:Finger_3_2
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_3_1/Player_1_Skeleton:Finger_3_2/Player_1_Skeleton:Finger_3_3
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_4_1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_4_1/Player_1_Skeleton:Finger_4_2
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Finger_4_1/Player_1_Skeleton:Finger_4_2/Player_1_Skeleton:Finger_4_3
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Thumb_1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Thumb_1/Player_1_Skeleton:Thumb_2
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Thumb_1/Player_1_Skeleton:Thumb_2/Player_1_Skeleton:Thumb_3
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Weapon_Parent1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Left_Shoulder/Player_1_Skeleton:Left_Elbow/Player_1_Skeleton:Left_Wrist/Player_1_Skeleton:Weapon_Parent1/Player_1_Skeleton:Dagger:Dagger
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Lower_Neck
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Lower_Neck/Player_1_Skeleton:Upper_Neck
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Lower_Neck/Player_1_Skeleton:Upper_Neck/Player_1_Skeleton:Hair_Root
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Lower_Neck/Player_1_Skeleton:Upper_Neck/Player_1_Skeleton:Hair_Root/Player_1_Skeleton:Hair_End
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_1_1
-          1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_1_1
-          1/Player_1_Skeleton:Finger_1_2 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_1_1
-          1/Player_1_Skeleton:Finger_1_2 1/Player_1_Skeleton:Finger_1_3 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_2_1
-          1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_2_1
-          1/Player_1_Skeleton:Finger_2_2 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_2_1
-          1/Player_1_Skeleton:Finger_2_2 1/Player_1_Skeleton:Finger_2_3 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_3_1
-          1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_3_1
-          1/Player_1_Skeleton:Finger_3_2 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_3_1
-          1/Player_1_Skeleton:Finger_3_2 1/Player_1_Skeleton:Finger_3_3 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_4_1
-          1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_4_1
-          1/Player_1_Skeleton:Finger_4_2 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Finger_4_1
-          1/Player_1_Skeleton:Finger_4_2 1/Player_1_Skeleton:Finger_4_3 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Thumb_1
-          1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Thumb_1
-          1/Player_1_Skeleton:Thumb_2 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Thumb_1
-          1/Player_1_Skeleton:Thumb_2 1/Player_1_Skeleton:Thumb_3 1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Weapon_Parent
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Player_1_Skeleton:Right_Shoulder/Player_1_Skeleton:Right_Elbow/Player_1_Skeleton:Right_Wrist/Player_1_Skeleton:Weapon_Parent/Player_1_Skeleton:Dagger1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Scarf_Root
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Scarf_Root/Scarf_1
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Scarf_Root/Scarf_1/Scarf_2
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
-        weight: 1
-      - path: Player_1_Skeleton:Root/Player_1_Skeleton:Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
-        weight: 1
-      - path: polySurface1
-        weight: 1
-      - path: polySurface1/Left_Ankle_Guard
-        weight: 1
-      - path: polySurface1/Left_Boot
-        weight: 1
-      - path: polySurface1/Left_Toe_Guard
-        weight: 1
-      - path: polySurface1/Right_Ankle_Guard
-        weight: 1
-      - path: polySurface1/Right_Boot
-        weight: 1
-      - path: polySurface1/Right_Toe_Guard
+      - path: Right_Boot
         weight: 1
       - path: Right_Boot_Braces
+        weight: 1
+      - path: Right_Elbow_Pad
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Forearm_Guard
+        weight: 1
+      - path: Right_Hand_Guard
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Pad
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Right_Toe_Guard
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheath_Hold
+        weight: 1
+      - path: Sheath_Hold1
+        weight: 1
+      - path: Top_Sheath
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1247,8 +1138,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Walking
       takeName: Take 001
-      firstFrame: 12
-      lastFrame: 42
+      firstFrame: 14
+      lastFrame: 44
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

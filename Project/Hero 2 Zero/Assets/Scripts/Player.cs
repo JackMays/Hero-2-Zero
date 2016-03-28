@@ -120,22 +120,17 @@ public class Player : MonoBehaviour
 	
 	// Sets the player up to move to the next tile.
 	public void MoveTile()
-	{
-		//Debug.Log("Map Pos: " + mapPosition + " | Direction : " + direction);
-		
+	{		
 		// Stores the current position in 3D space.
-		startJumpPosition = new Vector3(2 * mapPosition.x, transform.position.y, 0 - (2 * mapPosition.y));
+		startJumpPosition = new Vector3(map.TILEGAP * mapPosition.x, transform.position.y, 0 - (map.TILEGAP * mapPosition.y));
 		
 		// Find the direction the player needs to move in.
 		FindDirection ();
 		
-		//Debug.Log("New Direction: " + direction);
-		
 		// Find the position the player needs to move to.
 		FindMoveTarget();
-		//Debug.Log("Target: " + moveTarget);
 		
-		//Debug.Log("New Map Pos: " + mapPosition);
+		Move ();
 		
 		// Sets that the player is now moving.
 		movingTile = true;
@@ -145,11 +140,13 @@ public class Player : MonoBehaviour
 	// Moves the player over time to the target space.
 	public void Move()
 	{		
-		// Updates timer with time sicne last update.
+		// Updates timer with time since last update.
 		moveTime += Time.deltaTime;
 		
 		// 1 second to finish movement.
 		transform.localPosition = Vector3.Lerp(startJumpPosition, moveTarget, moveTime / moveSpeed);
+		
+		Debug.Log(transform.localPosition);
 		
 		// Checks if player has finished moving.
 		if (moveTime >= moveSpeed) {
@@ -241,19 +238,19 @@ public class Player : MonoBehaviour
 		Vector3 mTarget = new Vector3();
 		
 		if (direction == 0) {
-			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (0 - (mapPosition.y-1)));
+			moveTarget = new Vector3(map.TILEGAP * mapPosition.x, transform.position.y, map.TILEGAP * (0 - (mapPosition.y-1)));
 			mapPosition.y -= 1;
 		}
 		else if (direction == 1) {
-			moveTarget = new Vector3(2 * (mapPosition.x+1), transform.position.y, 0 - (2 * mapPosition.y));
+			moveTarget = new Vector3(map.TILEGAP * (mapPosition.x+1), transform.position.y, 0 - (map.TILEGAP * mapPosition.y));
 			mapPosition.x += 1;
 		}
 		else if (direction == 2) {
-			moveTarget = new Vector3(2 * mapPosition.x, transform.position.y, 2 * (0 - (mapPosition.y+1)));
+			moveTarget = new Vector3(map.TILEGAP * mapPosition.x, transform.position.y, map.TILEGAP * (0 - (mapPosition.y+1)));
 			mapPosition.y += 1;
 		}
 		else if (direction == 3) {
-			moveTarget = new Vector3(2 * (mapPosition.x-1), transform.position.y, 0 - (2 * mapPosition.y));
+			moveTarget = new Vector3(map.TILEGAP * (mapPosition.x-1), transform.position.y, 0 - (map.TILEGAP * mapPosition.y));
 			mapPosition.x -= 1;
 		}
 	}
@@ -338,7 +335,7 @@ public class Player : MonoBehaviour
 		RotatePlayer(direction);
 		
 		// Moves the player in world space.
-		transform.localPosition = new Vector3(mapPosition.x * 2, transform.position.y, 0 - (mapPosition.y * 2));
+		transform.localPosition = new Vector3(mapPosition.x * map.TILEGAP, transform.position.y, 0 - (mapPosition.y * map.TILEGAP));
 		
 		// Sets movement to 0 and stops the player.
 		movement = 0;

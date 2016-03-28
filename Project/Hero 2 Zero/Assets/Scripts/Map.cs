@@ -52,6 +52,8 @@ public class Map : MonoBehaviour
 		{1, 6, 5, 4, 3, 4, 3, 2, 1}		
 	};
 	
+	// The spacing between tiles.
+	public int TILEGAP = 2;
 	
 	// Holds the position of where the player needs to choose a path
 	// and the directions the player can choose.
@@ -235,7 +237,7 @@ public class Map : MonoBehaviour
 		g.transform.parent = mapParent.transform;
 		
 		// Moves the tile locally to the correct position.
-		g.transform.localPosition = new Vector3(j * 2, 0, (0 - i) * 2);
+		g.transform.localPosition = new Vector3(j * TILEGAP, 0, (0 - i) * TILEGAP);
 		
 		// Changes the colour of the tile to change type.
 		g.GetComponent<Renderer>().material = mats[value-1];
@@ -250,7 +252,7 @@ public class Map : MonoBehaviour
 		g.transform.parent = mapParent.transform;
 		
 		// Moves the tile locally to the correct position.
-		g.transform.localPosition = new Vector3(j * 2, 0, (0 - i) * 2);
+		g.transform.localPosition = new Vector3(j * TILEGAP, 0, (0 - i) * TILEGAP);
 	}
 	
 	// Places a tile at the specified position and changes its type.
@@ -276,7 +278,7 @@ public class Map : MonoBehaviour
 		g.transform.parent = mapParent.transform;
 		
 		// Moves the tile locally to the correct position.
-		g.transform.localPosition = new Vector3(j * 2, 0.1f, (0 - i) * 2);
+		g.transform.localPosition = new Vector3(j * TILEGAP, 0.1f, (0 - i) * TILEGAP);
 	}
 	
 	// Places chests on random tiles.
@@ -318,7 +320,7 @@ public class Map : MonoBehaviour
 				// Places a chest at the indexed tile's position and sets its parent.
 				GameObject c = Instantiate<GameObject>(chestPrefab);
 				c.transform.parent = mapParent.transform;
-				c.transform.localPosition = new Vector3(tiles[index].y * 2, 0.062f, -tiles[index].x * 2);
+				c.transform.localPosition = new Vector3(tiles[index].y * TILEGAP, 0.062f, -tiles[index].x * TILEGAP);
 				c.GetComponent<Chest>().SetGridPosition(tiles[index]);
 			
 				// Adds the chest to the list and decrements number to place.

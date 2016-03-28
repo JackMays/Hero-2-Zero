@@ -15,9 +15,6 @@ public class Cam_Movement : MonoBehaviour
 	// Holds whether the camera can move or not.
 	public bool canMove = true;
 
-	// Gets the gameobject that holds the gui textures.
-	GameObject GUIParent;
-
 	// Used to smooth the camera's movement.
 	Vector3 velocity = Vector3.zero;
 
@@ -31,14 +28,13 @@ public class Cam_Movement : MonoBehaviour
 	// Holds the original position of the mouse for dragging.
 	Vector3 mousePos;
 
-	// Holds whether the camera will come to a gradual stop or not when dagging.
+	// Holds whether the camera will come to a gradual stop or not when dragging.
 	public bool gradualStop = true;
 	#endregion
 
 	void Start () {
 		speed = 10f;
 		zoomSens = 20f;
-		GUIParent = GameObject.Find("GUIHold");
 	}
 	
 	// Checks if the camer ahas moved out of the bounds.
@@ -163,9 +159,10 @@ public class Cam_Movement : MonoBehaviour
 	{
 		if (canMove)
 		{
+			// Allows the camera to be moved with middle mouse.
 			checkDragScreen();
 
-			//move cam with wasd
+			// Move camera with WASD.
 			if (Input.GetKey (KeyCode.W)) {
 				transform.Translate (Vector3.forward * speed * Time.deltaTime, Space.World);
 			}
@@ -180,10 +177,11 @@ public class Cam_Movement : MonoBehaviour
 				transform.Translate (Vector3.right * speed * Time.deltaTime, Space.World);		
 			}
 			
+			// Used for controllers.
 			transform.Translate(Vector3.forward * Input.GetAxis("Vertical") * speed * Time.deltaTime, Space.World);
 			transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime, Space.World);
 
-			//zoom
+			// Zoom.
 			float fov = myCam.fieldOfView;
 			fov -= Input.GetAxis ("Mouse ScrollWheel") * zoomSens;
 			fov = Mathf.Clamp (fov, minFov, maxFov);

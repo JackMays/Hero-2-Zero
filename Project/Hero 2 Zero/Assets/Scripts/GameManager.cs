@@ -373,6 +373,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log(int.Parse(input.text));
 		listPlayers[currentPlayer].StartMovement(int.Parse(input.text));
 		listPlayers[currentPlayer].FindFinish();
+		listPlayers[currentPlayer].Walk();
 		turnState = 1;
 	}
 	
@@ -462,37 +463,34 @@ public class GameManager : MonoBehaviour
 						// idle when finished moving
 						listPlayers[currentPlayer].Idle();
 					}
-
-				}
-
-				Debug.Log ("turn state: " + turnState.ToString());
-			}
-			else {
-				// Checks if the current tile is a choice tile.
-				bool[] dirs = map.IsChoiceTile((int)playerPos.x, (int)playerPos.y);
-				
-				// Checks if the directions is not null.
-				if (dirs != null) {
-					// Shows the direction buttons.
-					ShowDirectionCanvas(dirs);
-					// idles when direction buttons are shown
-					listPlayers[currentPlayer].Idle();
 				}
 				else {
-
-					// Gets the direction the player must move in.
-					int dir = map.IsForceTile((int)playerPos.x, (int)playerPos.y);
+					// Checks if the current tile is a choice tile.
+					bool[] dirs = map.IsChoiceTile((int)playerPos.x, (int)playerPos.y);
 					
-					// Checks if the player has to change direction.
-					if (dir != -1) {
-						// Changes the player's direction.
-						listPlayers[currentPlayer].SetDirection(dir);
-
-					}	
-
-					// Finds the next tile to move to.
-					listPlayers[currentPlayer].MoveTile();
-
+					// Checks if the directions is not null.
+					if (dirs != null) {
+						// Shows the direction buttons.
+						ShowDirectionCanvas(dirs);
+						// idles when direction buttons are shown
+						listPlayers[currentPlayer].Idle();
+					}
+					else {
+						
+						// Gets the direction the player must move in.
+						int dir = map.IsForceTile((int)playerPos.x, (int)playerPos.y);
+						
+						// Checks if the player has to change direction.
+						if (dir != -1) {
+							// Changes the player's direction.
+							listPlayers[currentPlayer].SetDirection(dir);
+						}	
+						
+						// Finds the next tile to move to.
+						listPlayers[currentPlayer].MoveTile();
+					}
+				
+					Debug.Log ("turn state: " + turnState.ToString());
 				}
 			}
 		}
