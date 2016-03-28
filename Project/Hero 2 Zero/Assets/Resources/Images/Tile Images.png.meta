@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f0e706b7e1a7b374897fd711b09a9f58
-timeCreated: 1459040893
+timeCreated: 1459089694
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,7 @@ TextureImporter:
     21300012: Tile Images_6
     21300014: Tile Images_7
     21300016: Tile Images_8
+    21300018: Tile Images_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,7 +67,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Tile Images_1
       rect:
@@ -86,7 +87,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Tile Images_3
       rect:
@@ -126,7 +127,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Tile Images_7
       rect:
@@ -136,7 +137,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Tile Images_8
       rect:
@@ -146,7 +147,17 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tile Images_9
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

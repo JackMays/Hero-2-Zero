@@ -84,6 +84,9 @@ public class Player : MonoBehaviour
 	int proneID = Animator.StringToHash("isProne");
 	int getUpID = Animator.StringToHash("isGetUp");
 
+	// Reference to the weapon so it can be hidden and shown.
+	public List<GameObject> weapons;
+	
 	#endregion
 	
 	// Use this for initialization
@@ -649,6 +652,22 @@ public class Player : MonoBehaviour
 	{
 		isVillain = v;
 	}	
+	
+	// Switches whether the weapon should be shown or not.
+	public void ShowWeapon(int show)
+	{
+		// Checks if the weapon is to be shown.
+		if (show == 1) {
+			foreach(GameObject go in weapons) {
+				go.SetActive(true);
+			}	
+		}
+		else {
+			foreach(GameObject go in weapons) {
+				go.SetActive(false);
+			}	
+		}
+	}
 	
 	#endregion
 	

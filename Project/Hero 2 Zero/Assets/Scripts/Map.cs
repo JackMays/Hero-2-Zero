@@ -246,7 +246,7 @@ public class Map : MonoBehaviour
 	{	
 		// Places a tile, changes its name and assigns its parent.
 		GameObject g = Instantiate<GameObject>(tilePrefabs[value-1]);
-		g.name = "Tile : (" + i + ", " + j + ") : " + value;
+		g.name = "Tile : (" + j + ", " + i + ") : " + value;
 		g.transform.parent = mapParent.transform;
 		
 		// Moves the tile locally to the correct position.
@@ -272,7 +272,7 @@ public class Map : MonoBehaviour
 		GameObject g = Instantiate<GameObject>(sprites[value-1]);
 		
 		
-		g.name = "Tile : (" + i + ", " + j + ") : " + value;
+		g.name = "Tile : (" + j + ", " + i + ") : " + value;
 		g.transform.parent = mapParent.transform;
 		
 		// Moves the tile locally to the correct position.
@@ -399,7 +399,7 @@ public class Map : MonoBehaviour
 	
 	public void AddPrefabToTiles(int i, int j, GameObject pr, Vector3 pos)
 	{
-		tiledMonsterPrefabs[j, i] = Instantiate(pr, pos, Quaternion.identity) as GameObject; 
+		tiledMonsterPrefabs[j, i] = Instantiate(pr, pos, Quaternion.identity) as GameObject;
 	}
 	
 	public void ClearMonsterTile(int i, int j)

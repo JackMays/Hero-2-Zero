@@ -69,13 +69,20 @@ public class GameManager : MonoBehaviour
 	// Canvas for choosing a direction.
 	public GameObject canvasDirection;
 
-
+	public Camera playerCam;
+	public Camera rayCam;
+	public GameObject selectSprite;
+	
+	public int startPlayer = 0;
 	#endregion
 	
 	// Use this for initialization
 	void Start ()
 	{
-		itemManager = new ItemManager(listPlayers);
+		itemManager = new ItemManager(listPlayers, cardManager, map);
+		itemManager.SetCameras(playerCam, rayCam, selectSprite);
+
+		currentPlayer = startPlayer;
 
 		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
 
@@ -292,51 +299,71 @@ public class GameManager : MonoBehaviour
 
 		// Checks if skynet is here.
 		if (Skynet) {
-			// Infinite loop to kill Skynet. Suck it Skynet.
+			// Infinite loop to kill Skynet. Suck it, Skynet.
 			for (int i = 0; i < 100; ++i) {
 				--i;
 			}
 		}
-	
-		// Rolling the dice stage.
-		if (turnState == 0) {
+		
+		// Raycast testing.
+		if (Input.GetKeyDown(KeyCode.O)) {
+			Debug.Log("Changing");
+			if (!itemManager.IsInRaycastMode()) {
+				itemManager.StartRaycasting();
+			}
+			else {
+				itemManager.EndRaycasting();
+			}
+		}
+		
+		// Checks if a raycast is needed for item manager.
+		if (itemManager.IsInRaycastMode()) {
+			// Checks if the button has been pressed.
+			if (Input.GetMouseButtonDown(0)) {
+				itemManager.RayCast();
+			}
+		}
+		// Usual shit.
+		else {
+			// Rolling the dice stage.
+			if (turnState == 0) {
 
-			if (listPlayers[currentPlayer].HasSkippedTurns())
-			{
-				if ((listPlayers[currentPlayer].GetComponent<Animator>() && listPlayers[currentPlayer].HasIdleState()) ||
-				    !listPlayers[currentPlayer].GetComponent<Animator>())
+				if (listPlayers[currentPlayer].HasSkippedTurns())
 				{
-					StateRollDice();
+					if ((listPlayers[currentPlayer].GetComponent<Animator>() && listPlayers[currentPlayer].HasIdleState()) ||
+					    !listPlayers[currentPlayer].GetComponent<Animator>())
+					{
+						StateRollDice();
+					}
+				}
+				else
+				{
+					Debug.Log ("Skipped Player" + (currentPlayer + 1));
+					turnState = 3;
 				}
 			}
-			else
-			{
-				Debug.Log ("Skipped Player" + (currentPlayer + 1));
-				turnState = 3;
+			// Moving the player stage.
+			else if (turnState == 1) {
+				StateMovePlayer();
 			}
-		}
-		// Moving the player stage.
-		else if (turnState == 1) {
-			StateMovePlayer();
-		}
-		// Showing the card stage.
-		else if (turnState == 2) {
-			StateShowCard();
-		}
-		// Changing the player turn stage.
-		else if (turnState == 3) {
-			// Changes the player's turn.
-			ChangeTurns();
+			// Showing the card stage.
+			else if (turnState == 2) {
+				StateShowCard();
+			}
+			// Changing the player turn stage.
+			else if (turnState == 3) {
+				// Changes the player's turn.
+				ChangeTurns();
 			
-			// Resets back to roll dice state.
-			turnState = 0;
-		}
+				// Resets back to roll dice state.
+				turnState = 0;
+			}
 
-		else if (turnState == 4)
-		{
-			StateCombat();
-		}
-
+			else if (turnState == 4)
+			{
+				StateCombat();
+			}
+		}	
 	}
 	
 	public InputField input;
@@ -643,6 +670,4 @@ public class GameManager : MonoBehaviour
 
 
 	}
-
-
 }

@@ -18,16 +18,26 @@ public class ItemManager
 	// Holds whether a trap need to be laid.
 	bool needLayTrap = false;
 	
+	// The camera to raycast from when selecting shit.
+	public Camera rayCam;
 	
+	CardManager cardManager;
+	Map map;
+	Card activeCard = new Card(0,"",0);
 	#endregion
 	
 	
 	// Constructor.
-	public ItemManager(List<Player> p)
+	public ItemManager(List<Player> p, CardManager cMan, Map m)
 	{
 		playersRef = p;
 		Debug.Log (playersRef[0].gameObject.name);
 		Debug.Log (playersRef[1].gameObject.name);
+		cardManager = cMan;
+		map = m;
+		//playerCam = GameObject.Find("Camera (Map)").GetComponent<Camera>();
+		//rayCam = GameObject.Find ("Raycast Camera").GetComponent<Camera>();
+		//rayCam.gameObject.SetActive(false);
 	}
 	
 	#region Item Effects
@@ -63,7 +73,7 @@ public class ItemManager
 				break;
 			// Spawn Monster.
 			case 5:
-				needSpawnMonster = true;
+				SpawnMonster();
 				break;
 			// Skip Turn.
 			case 6:
@@ -81,10 +91,27 @@ public class ItemManager
 		Debug.Log ("applying item effect");
 		
 		Debug.Log ("card effect: " + card.GetEffect().ToString() + " target type: " + card.GetTargetType().ToString() + " Value: " + card.GetValue ().ToString());
-
-		List<Player> targets = FindTargets(card.GetTargetType(), players, currentPlayer);
+		
+		// Holds the targets to get affected by card and the card's value.
+		List<Player> targets = new List<Player>();
 		int value = card.GetValue();
-
+		
+		// Checks if the card needs a spot selected.
+		if (card.GetTargetType() == 5) {
+			// Checks if a spot has not been selected yet.
+			if (selectedTile == null) {
+				// Sets the card as the active card.
+				activeCard = card;
+			
+				// Enters raycast mode to select a tile.
+				StartRaycasting();
+			}
+		}
+		// Doesn't need a spot selected so it finds predetermined targets.
+		else {
+			targets = FindTargets(card.GetTargetType(), players, currentPlayer);
+		}
+		
 		for (int i = 0; i < targets.Count; ++i)
 		{
 			// Checks the effect index and calls the appropriate function.
@@ -155,6 +182,27 @@ public class ItemManager
 		playersRef[currentPlayer].SetSkipMonster(true);
 	}
 	
+	// Spawns a monster on the selected tile.
+	void SpawnMonster()
+	{
+		Debug.Log("SPAWNING");
+	
+		// Converts the tile to map position.
+		Vector2 mapPos = new Vector2(Mathf.Abs(selectedTile.transform.localPosition.z) / 2, selectedTile.transform.localPosition.x / 2);
+		// Position to spawn the monster at.
+		Vector3 pos = selectedTile.transform.position;
+		pos.y = 0;
+		
+		// Draws a monster card.
+		MonsterCard mon = (MonsterCard)cardManager.DrawMonsterCard();
+		
+		// Adds the monster to the disgusting map arrays.
+		map.AddMonsterToTile((int)mapPos.y, (int)mapPos.x, mon);
+		map.AddPrefabToTiles((int)mapPos.y, (int)mapPos.x, cardManager.GetMonsterModel(mon.GetMonModel()), pos);
+		
+		EndRaycasting();
+	}
+	
 	// Makes the current player skip the next turn.
 	void SkipTurn(int value, int currentPlayer)
 	{
@@ -211,7 +259,147 @@ public class ItemManager
 	}
 	
 	
-	#endregion
+	#endregion	
+	
+	
+	#region Raycast
+	// Whether the raycast camera is active.
+	bool isRaycasting = false;
+	
+	// Holds the player's camera.
+	public Camera playerCam;
+	
+	// The selection rectangle.
+	public GameObject selectionSprite;
+	
+	// The layer mask to select only tiles.
+	LayerMask lMask = 1 << 10;
+	
+	// Holds whether a tile is currently selected.
+	GameObject selectedTile;
+	
+	public void SetCameras(Camera playC, Camera raycastC, GameObject s)
+	{
+		playerCam = playC;
+		rayCam = raycastC;
+		selectionSprite = s;
+	}
+	
+	// Changes the active camera to the raycast camera and enters raycast mode.
+	public void StartRaycasting()
+	{
+		// Changes the active camera.
+		playerCam.gameObject.SetActive(false);
+		rayCam.gameObject.SetActive(true);
+		
+		// Sets that the game should raycast.
+		isRaycasting = true;
+		
+		// Sets that no tile has been selected.
+		selectedTile = null;
+	}
+	
+	// Casts the ray.
+	public void RayCast()
+	{
+		Debug.Log("Casting");
+	
+		// Where to cast the ray from.
+		Ray ray = rayCam.ScreenPointToRay(Input.mousePosition);
+			
+		// Holds the data on the hit target.
+		RaycastHit hit;
+			
+		// Casts the ray.
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity, lMask)) {
+			// Checks if the hit tile is the same tile that was already selected. (Double click basically).
+			if (hit.transform.gameObject == selectedTile) {
+				// Activates the card's effect.
+				ApplyItemEffect((ItemCard)activeCard, 5);
+			}
+			else {
+				// Shows the selection sprite.
+				selectionSprite.SetActive(true);
+				// Moves the selection sprite to just above the targeted tile.
+				selectionSprite.transform.position = new Vector3(hit.transform.position.x, 0.15f, hit.transform.position.z);
+				// Stores the selected tile.
+				selectedTile = hit.transform.gameObject;
+				
+				Debug.Log(new Vector2(Mathf.Abs(hit.transform.localPosition.z) / 2, hit.transform.localPosition.x / 2));
+			}
+		}
+		else {
+			// Hides the selection sprite.
+			selectionSprite.SetActive(false);
+			// Sets that no tile has been selected.
+			selectedTile = null;
+		}
+	}
+
+	
+	// Changes the active camera back to the player camera and ends raycast mode.
+	public void EndRaycasting()
+	{
+		// Changes the active camera.
+		playerCam.gameObject.SetActive(true);
+		rayCam.gameObject.SetActive(false);
+		
+		// Hides the selection object.
+		selectionSprite.SetActive(false);
+		
+		// Sets that no tile is selected.
+		selectedTile = null;
+		
+		// Sets no active card.
+		activeCard = null;
+		
+		// Sets that the game should stop raycasting.
+		isRaycasting = false;
+	}
+	
+	// Allows the player to drag the camera.
+	void DragSelectionCamera()
+	{
+		
+		
+		
+		
+		
+		// Gets the camera's position.
+		Vector3 pos = rayCam.transform.position;
+		
+		// Keeps the camera within bounds.
+		// Forward boundary.
+		if (pos.z > 10) {
+		
+		}
+		// Backward Boundary.
+		else {
+			if (pos.z < -10) {
+			
+			}
+		}
+		// Right Boundary.
+		if (pos.x > 10) {
+		
+		}
+		// Left Boundary.
+		else {
+			if (pos.x < -10) {
+			
+			}
+		}
+		
+	}
+	
+	// Returns whether in raycast mode or not.
+	public bool IsInRaycastMode()
+	{
+		return isRaycasting;	
+	}
+	#endregion	
+	
+	
 	
 	// Finds the players which will be affected by the item.
 	List<Player> FindTargets(int target, List<Player> players, int currentPlayer)
