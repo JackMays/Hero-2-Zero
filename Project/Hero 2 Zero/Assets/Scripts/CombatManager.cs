@@ -14,6 +14,8 @@ public class CombatManager : MonoBehaviour {
 	int playerTwoDiceRoll;
 	int monsterDiceRoll;
 
+	float combatPosOffset = 0.8f;
+
 	bool isMonCombat = false;
 	bool isPvpCombat = false;
 
@@ -24,6 +26,9 @@ public class CombatManager : MonoBehaviour {
 	// temp bool until monsters have implemented attacks
 	bool MonsterAttackBypass = false;
 
+	Vector3 oriPlayerPos = Vector3.zero;
+	Vector3 oriPlayer2Pos = Vector3.zero;
+	Vector3 oriMonsterPos = Vector3.zero;
 	// Use this for initialization
 	void Awake () 
 	{
@@ -91,6 +96,8 @@ public class CombatManager : MonoBehaviour {
 		{
 			// DRAW
 			Debug.Log ("Tie");
+
+			player.Idle();
 		}
 		// lower weapon durability if one exists
 		if (player.GetWeapon() != null)
@@ -102,7 +109,7 @@ public class CombatManager : MonoBehaviour {
 		{	
 			map.AddMonsterToTile(tileX, tileY, monster);
 			
-			Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now.");
+			Debug.Log (" A " + map.GetMonsterCardOnTile(tileX, tileY).GetName() + " is here now.");
 		}
 		
 		// if any have died, combat is over, if not its just a round
@@ -210,6 +217,9 @@ public class CombatManager : MonoBehaviour {
 		{
 			// DRAW
 			Debug.Log ("Tie");
+
+			player.Idle();
+			player2.Idle();
 		}
 
 		if (player.GetWeapon() != null)
@@ -284,10 +294,17 @@ public class CombatManager : MonoBehaviour {
 					ResolveMon();
 					isResolveOnce = true;
 				}
+
+				int tileX = (int)player.GetMapPosition().x;
+				int tileY = (int)player.GetMapPosition().y;
+
 				if (player.GetComponent<Animator>())
 				{
 					if (player.HasIdleState() || player.HasDied())
-					{
+					{	
+						player.transform.position = oriPlayerPos;
+						map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
+
 						// end combat
 						isCombatEnded = true;
 						player.ResetPlayerCombat();
@@ -295,7 +312,10 @@ public class CombatManager : MonoBehaviour {
 				}
 				else
 				{
+					player.transform.position = oriPlayerPos;
+					map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
 					isCombatEnded = true;
+					player.ResetPlayerCombat();
 				}
 			}
 		}
@@ -315,6 +335,10 @@ public class CombatManager : MonoBehaviour {
 					if ((player.HasIdleState() && player2.HasIdleState()) || 
 					    (player.HasDied() || player2.HasDied()))
 					{
+
+						player.transform.position = oriPlayerPos;
+						player2.transform.position = oriPlayer2Pos;
+
 						// end combat
 						isCombatEnded = true;
 						player.ResetPlayerCombat();
@@ -329,6 +353,9 @@ public class CombatManager : MonoBehaviour {
 					ResolvePvp();
 					isResolveOnce = true;
 				}
+
+				player.transform.position = oriPlayerPos;
+				player2.transform.position = oriPlayer2Pos;
 
 				// end combat
 				isCombatEnded = true;
@@ -389,16 +416,27 @@ public class CombatManager : MonoBehaviour {
 
 		isMonCombat = true;
 
+		int tileX = (int)player.GetMapPosition().x;
+		int tileY = (int)player.GetMapPosition().y;
+
 		// if there is no model, send it to be instantiated
-		if (map.HasBlankModel((int)player.GetMapPosition().x, (int)player.GetMapPosition().y))
+		if (map.HasBlankModel(tileX, tileY))
 		{
 			// Gets the player's world position.
 			Vector3 pos = player.transform.position;
 			// Removes the y coordinate.
 			pos.y = 0;
 			// Spawns the monster.
-			map.AddPrefabToTiles((int)player.GetMapPosition().x, (int)player.GetMapPosition().y, pr, pos);
+			map.AddPrefabToTiles(tileX, tileY, pr, pos);
 		}
+
+		GameObject monPrefab = map.GetMonsterPrefabOnTile((int)player.GetMapPosition().x, (int)player.GetMapPosition().y);
+
+		oriPlayerPos = player.transform.position;
+		oriMonsterPos = monPrefab.transform.position;
+
+		player.transform.position += player.GetCombatDirection() * combatPosOffset;
+		monPrefab.transform.position += -player.GetCombatDirection() * combatPosOffset;
 	}
 
 	public void EstablishPvpCombat(Player p1, Player p2)
@@ -412,7 +450,13 @@ public class CombatManager : MonoBehaviour {
 	public void ResetCombat()
 	{
 		player = null;
+		player2 = null;
 		monster = null;
+
+		oriPlayerPos = Vector3.zero;
+		oriPlayer2Pos = Vector3.zero;
+		oriMonsterPos = Vector3.zero;
+
 
 		isMonCombat = false;
 		isPvpCombat = false;
@@ -457,7 +501,10 @@ public class CombatManager : MonoBehaviour {
 
 		map.AddMonsterToTile(tileX, tileY, monster);
 		
-		Debug.Log (" A " + map.GetMonsterOnTile(tileX, tileY).GetName() + " is here now CAUSE SKIP.");
+		Debug.Log (" A " + map.GetMonsterCardOnTile(tileX, tileY).GetName() + " is here now CAUSE SKIP.");
+
+		player.transform.position = oriPlayerPos;
+		map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
 
 		isCombatEnded = true;
 	}

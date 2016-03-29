@@ -416,7 +416,7 @@ public class Map : MonoBehaviour
 		tiledMonsterPrefabs[j, i] = null;
 	}
 	
-	public MonsterCard GetMonsterOnTile(int i, int j)
+	public MonsterCard GetMonsterCardOnTile(int i, int j)
 	{
 		// Checks if the tile isn't out of bounds.
 		if (i < 0 || j < 0 || j >= map.GetLength(0) || i >= map.GetLength(1)) {
@@ -425,6 +425,16 @@ public class Map : MonoBehaviour
 		
 		// Return's the tile value.
 		return tiledMonsterCards[j, i];
+	}
+
+	public GameObject GetMonsterPrefabOnTile(int i, int j)
+	{
+		// Checks if the tile isn't out of bounds.
+		if (i < 0 || j < 0 || j >= map.GetLength(0) || i >= map.GetLength(1)) {
+			return null;
+		}
+
+		return tiledMonsterPrefabs[j, i];
 	}
 	
 	public bool HasBlankModel(int i, int j)

@@ -424,7 +424,7 @@ public class GameManager : MonoBehaviour
 				listPlayers[currentPlayer].SetJustStopped(false);
 				
 				// Gets the monster card on the current tile.
-				MonsterCard mc = map.GetMonsterOnTile((int)playerPos.x, (int)playerPos.y);
+				MonsterCard mc = map.GetMonsterCardOnTile((int)playerPos.x, (int)playerPos.y);
 				
 				// Checks that a monster is on the tile.
 				if (mc != null) {
@@ -464,6 +464,7 @@ public class GameManager : MonoBehaviour
 						listPlayers[currentPlayer].Idle();
 					}
 				}
+			}
 				else {
 					// Checks if the current tile is a choice tile.
 					bool[] dirs = map.IsChoiceTile((int)playerPos.x, (int)playerPos.y);
@@ -492,7 +493,6 @@ public class GameManager : MonoBehaviour
 				
 					Debug.Log ("turn state: " + turnState.ToString());
 				}
-			}
 		}
 		
 		// Right-click to skip movement and go straight to last tile.

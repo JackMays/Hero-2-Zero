@@ -714,6 +714,29 @@ public class Player : MonoBehaviour
 	{
 		return mapPosition;
 	}
+
+	public Vector3 GetCombatDirection()
+	{
+		if (direction == 0)
+		{
+			return Vector3.back;
+		}
+		else if (direction == 1)
+		{
+			return Vector3.left;
+		}
+		else if (direction == 2)
+		{
+			return Vector3.forward;
+		}
+		else if (direction == 3)
+		{
+			return Vector3.right;
+		}
+
+
+		return Vector3.zero;
+	}
 	
 	// Gets the number of dice the player can roll.
 	public int GetDice()
