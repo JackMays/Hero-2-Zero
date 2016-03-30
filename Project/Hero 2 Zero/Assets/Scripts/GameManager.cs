@@ -352,6 +352,12 @@ public class GameManager : MonoBehaviour
 			}
 			// Changing the player turn stage.
 			else if (turnState == 3) {
+
+				if (cameraManager.HasCombatViewOn())
+				{
+					cameraManager.ToggleCombatView(false);
+				}
+
 				// Changes the player's turn.
 				ChangeTurns();
 			
@@ -361,6 +367,11 @@ public class GameManager : MonoBehaviour
 
 			else if (turnState == 4)
 			{
+				if (!cameraManager.HasCombatViewOn())
+				{
+					cameraManager.ToggleCombatView(true);
+				}
+
 				StateCombat();
 			}
 		}	

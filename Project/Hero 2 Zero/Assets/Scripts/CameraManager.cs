@@ -8,10 +8,15 @@ public class CameraManager : MonoBehaviour {
 	GameObject currentPlayer = null;
 	
 	Vector3 camMapViewPos;
+	Vector3 camCombatViewPos = Vector3.zero;
 
 	bool mapView = false;
+	bool combatView = false;
 	
 	int camState = 0;
+
+	float camCombatViewOffset = 3.0f;
+	float camCombatPlayerYOffset = 2.5f;
 	
 	public Transform bananaPosition;
 
@@ -30,12 +35,14 @@ public class CameraManager : MonoBehaviour {
 		{
 			//mapView = !mapView;
 			
-			if (camState == 2) {
+			/*if (camState == 2) {
 				camState = 0;
 			}
 			else {
 				++camState;
-			}
+			}*/
+
+			combatView = !combatView;
 		}
 		
 		if (camState == 1)
@@ -60,19 +67,46 @@ public class CameraManager : MonoBehaviour {
 		float camSpeed = 2.0f;
 		
 		//Debug.Log(playerPos);
-		
-		if (mainCam.transform.localPosition != playerPos)
+
+		if (combatView)
 		{
-			//mainCam.transform.localPosition = new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5);
-			
-			mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
-			                                                new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5), 
-			                                                Time.deltaTime * camSpeed);
+			Vector3 offsetPlayerPos = playerPos + (currentPlayer.transform.right * camCombatViewOffset);
+			offsetPlayerPos.y = playerPos.y * camCombatPlayerYOffset;
+
+			if (mainCam.transform.localPosition != offsetPlayerPos)
+			{	
+				mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
+				                                                offsetPlayerPos, 
+				                                                Time.deltaTime * camSpeed);
+			}
+
+			//mainCam.transform.forward = -currentPlayer.transform.right;
 		}
+		else
+		{
+			if (mainCam.transform.localPosition != playerPos)
+			{
+				//mainCam.transform.localPosition = new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5);
+				
+				mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
+				                                                new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5), 
+				                                                Time.deltaTime * camSpeed);
+			}
+		}
+	}
+
+	public bool HasCombatViewOn()
+	{
+		return combatView;
 	}
 
 	public void SetActivePlayer(GameObject p)
 	{
 		currentPlayer = p;
+	}
+
+	public void ToggleCombatView(bool toggle)
+	{
+		combatView = toggle;
 	}
 }
