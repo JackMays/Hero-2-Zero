@@ -61,26 +61,54 @@ public class CameraManager : MonoBehaviour {
 		}	
 	}
 
+	Quaternion newRot;
+	bool setRot = false;
+	
+	void SetNewRotation()
+	{
+		// Holds the current rotation of the camera.
+		Quaternion tempRot = mainCam.transform.localRotation;
+
+		// Makes the camera face the player's left.
+		mainCam.transform.forward = currentPlayer.transform.right;
+		
+		// Rotates the camera to face downwards a little.
+		mainCam.transform.Rotate (new Vector3(35,0,0), Space.Self);
+		
+		// Stores the current camera rotation as the target.
+		newRot = mainCam.transform.localRotation;
+		
+		// Resets camera to original rotation.
+		mainCam.transform.localRotation = tempRot;
+		
+		// For the if else.
+		setRot = true;
+	}
+
 	void UpdateCamera()
 	{
 		Vector3 playerPos = currentPlayer.transform.localPosition;
 		float camSpeed = 2.0f;
 		
 		//Debug.Log(playerPos);
-
+		
 		if (combatView)
 		{
-			Vector3 offsetPlayerPos = playerPos + (currentPlayer.transform.right * camCombatViewOffset);
+			Vector3 offsetPlayerPos = playerPos + (-currentPlayer.transform.right * camCombatViewOffset);
 			offsetPlayerPos.y = playerPos.y * camCombatPlayerYOffset;
-
+			// This should be in and if else but the lerp didnt allow it.
+			SetNewRotation();			
+			
+			Debug.Log(offsetPlayerPos);
+			
 			if (mainCam.transform.localPosition != offsetPlayerPos)
 			{	
 				mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
 				                                                offsetPlayerPos, 
 				                                                Time.deltaTime * camSpeed);
+				                                                
+				mainCam.transform.localRotation = Quaternion.Lerp(mainCam.transform.localRotation, newRot, Time.deltaTime * camSpeed);
 			}
-
-			//mainCam.transform.forward = -currentPlayer.transform.right;
 		}
 		else
 		{
