@@ -25,6 +25,8 @@ public class CameraManager : MonoBehaviour {
 	{
 		mainCam = GameObject.FindWithTag("MainCamera");
 
+		initRot = mainCam.transform.localRotation;
+
 		camMapViewPos = mainCam.transform.localPosition;
 	}
 	
@@ -62,6 +64,7 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	Quaternion newRot;
+	Quaternion initRot;
 	bool setRot = false;
 	
 	void SetNewRotation()
@@ -119,6 +122,8 @@ public class CameraManager : MonoBehaviour {
 				mainCam.transform.localPosition = Vector3.Lerp (mainCam.transform.localPosition, 
 				                                                new Vector3 (playerPos.x, playerPos.y + 5, playerPos.z - 5), 
 				                                                Time.deltaTime * camSpeed);
+
+				mainCam.transform.localRotation = Quaternion.Lerp(mainCam.transform.localRotation, initRot, Time.deltaTime * camSpeed);
 			}
 		}
 	}
