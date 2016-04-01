@@ -442,7 +442,7 @@ public class GameManager : MonoBehaviour
 					// Shows the monster card.
 					cardManager.RevealMonCard(mc);
 					// Starts combat.
-					combatManager.EstablishMonCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModel()));
+					combatManager.EstablishMonCombat(listPlayers[currentPlayer], mc, cardManager.GetMonsterModel(mc.GetMonModelIndex()));
 					listPlayers[currentPlayer].CombatIdle();
 					// Updates state to combat.
 					turnState = 4;
@@ -546,7 +546,7 @@ public class GameManager : MonoBehaviour
 						{
 							MonsterCard monster = cardManager.GetMonEncountered();
 
-							combatManager.EstablishMonCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModel()));
+							combatManager.EstablishMonCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModelIndex()));
 							listPlayers[currentPlayer].CombatIdle();
 							Debug.Log ("COMBAT BEGIN");
 							turnState = 4;

@@ -87,10 +87,10 @@ public class CombatManager : MonoBehaviour {
 				// Also decrease fame more due to critical loss
 				player.HandleCombDeath(monster.GetFameMod(false));
 			}
-			else
+			/*else
 			{
 				player.StandUp();
-			}
+			}*/
 		}
 		else
 		{
@@ -180,10 +180,10 @@ public class CombatManager : MonoBehaviour {
 				player.ChangeFame(10);
 				player2.HandleCombDeath(-10);
 			}
-			else
+			/*else
 			{
 				player2.StandUp();
-			}
+			}*/
 
 			
 		}
@@ -208,10 +208,10 @@ public class CombatManager : MonoBehaviour {
 				player2.ChangeFame(10);
 				
 			}
-			else
+			/*else
 			{
 				player.StandUp();
-			}
+			}*/
 		}
 		else
 		{
@@ -300,7 +300,8 @@ public class CombatManager : MonoBehaviour {
 
 				if (player.GetComponent<Animator>())
 				{
-					if (player.HasIdleState() || player.HasDied())
+					// player is Idle (win/draw) or has gone to prone (loss)
+					if (player.HasIdleState() || player.HasProneState() /*|| player.HasDied()*/)
 					{	
 						player.transform.position = oriPlayerPos;
 						map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
@@ -331,9 +332,10 @@ public class CombatManager : MonoBehaviour {
 						ResolvePvp();
 						isResolveOnce = true;
 					}
-
+					// Both are standing (Tie), One is down (win/loss)
 					if ((player.HasIdleState() && player2.HasIdleState()) || 
-					    (player.HasDied() || player2.HasDied()))
+					    (player.HasProneState() || player2.HasProneState()) /*||
+					    (player.HasDied() || player2.HasDied())*/)
 					{
 
 						player.transform.position = oriPlayerPos;
@@ -445,6 +447,12 @@ public class CombatManager : MonoBehaviour {
 		player2 = p2;
 
 		isPvpCombat = true;
+
+		oriPlayerPos = player.transform.position;
+		oriPlayer2Pos = player2.transform.position;
+		
+		player.transform.position += player.GetCombatDirection() * combatPosOffset;
+		player2.transform.position += -player.GetCombatDirection() * combatPosOffset;
 	}
 
 	public void ResetCombat()

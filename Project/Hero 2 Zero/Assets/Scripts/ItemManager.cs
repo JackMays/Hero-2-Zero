@@ -198,7 +198,7 @@ public class ItemManager
 		
 		// Adds the monster to the disgusting map arrays.
 		map.AddMonsterToTile((int)mapPos.y, (int)mapPos.x, mon);
-		map.AddPrefabToTiles((int)mapPos.y, (int)mapPos.x, cardManager.GetMonsterModel(mon.GetMonModel()), pos);
+		map.AddPrefabToTiles((int)mapPos.y, (int)mapPos.x, cardManager.GetMonsterModel(mon.GetMonModelIndex()), pos);
 		
 		EndRaycasting();
 	}

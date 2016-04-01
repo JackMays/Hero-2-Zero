@@ -86,7 +86,7 @@ public class MonsterCard : Card
 		return monsterImgIndex;
 	}
 
-	public int GetMonModel()
+	public int GetMonModelIndex()
 	{
 		return monsterModelIndex;
 	}

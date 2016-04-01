@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour {
 	int camState = 0;
 
 	float camCombatViewOffset = 3.0f;
-	float camCombatPlayerYOffset = 2.5f;
+	float camCombatPlayerYOffset = 3.5f;
 	
 	public Transform bananaPosition;
 
@@ -98,7 +98,7 @@ public class CameraManager : MonoBehaviour {
 		if (combatView)
 		{
 			Vector3 offsetPlayerPos = playerPos + (-currentPlayer.transform.right * camCombatViewOffset);
-			offsetPlayerPos.y = playerPos.y * camCombatPlayerYOffset;
+			offsetPlayerPos.y = camCombatPlayerYOffset;
 			// This should be in and if else but the lerp didnt allow it.
 			SetNewRotation();			
 			
