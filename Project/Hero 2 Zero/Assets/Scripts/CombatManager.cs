@@ -437,6 +437,8 @@ public class CombatManager : MonoBehaviour {
 		oriPlayerPos = player.transform.position;
 		oriMonsterPos = monPrefab.transform.position;
 
+		monPrefab.transform.forward = -player.transform.forward;
+
 		player.transform.position += player.GetCombatDirection() * combatPosOffset;
 		monPrefab.transform.position += -player.GetCombatDirection() * combatPosOffset;
 	}
@@ -450,6 +452,8 @@ public class CombatManager : MonoBehaviour {
 
 		oriPlayerPos = player.transform.position;
 		oriPlayer2Pos = player2.transform.position;
+
+		player2.transform.forward = -player.transform.forward;
 		
 		player.transform.position += player.GetCombatDirection() * combatPosOffset;
 		player2.transform.position += -player.GetCombatDirection() * combatPosOffset;
