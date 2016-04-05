@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
 	// Reference to the weapon so it can be hidden and shown.
 	public List<GameObject> weapons;
 	
+	public Rigidbody chainEnd;
+	
 	#endregion
 	
 	// Use this for initialization
@@ -131,6 +133,12 @@ public class Player : MonoBehaviour
 		FindMoveTarget();
 		
 		Move ();
+		
+		Debug.Log(chainEnd);
+		if (chainEnd != null) {
+			Debug.Log("FORCE");
+			chainEnd.AddForce(-transform.forward*1000);
+		}
 		
 		// Sets that the player is now moving.
 		movingTile = true;

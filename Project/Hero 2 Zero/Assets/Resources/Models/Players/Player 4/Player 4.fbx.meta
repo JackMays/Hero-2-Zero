@@ -1,0 +1,151 @@
+fileFormatVersion: 2
+guid: 5df269a132cf5734bb74986be3b1cf74
+timeCreated: 1459879496
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Belt
+    100002: Body
+    100004: Boots
+    100006: Detached_Sleeves_Lvl_1
+    100008: Detached_Sleeves_Lvl_2
+    100010: Dress
+    100012: Earrings
+    100014: Eyes
+    100016: Fancy_Gloves
+    100018: Hair
+    100020: Hat
+    100022: Mouth
+    100024: Neck_Cover
+    100026: //RootNode
+    100028: Robe
+    100030: Robe_Sleeves
+    100032: Thigh_Boots
+    400000: Belt
+    400002: Body
+    400004: Boots
+    400006: Detached_Sleeves_Lvl_1
+    400008: Detached_Sleeves_Lvl_2
+    400010: Dress
+    400012: Earrings
+    400014: Eyes
+    400016: Fancy_Gloves
+    400018: Hair
+    400020: Hat
+    400022: Mouth
+    400024: Neck_Cover
+    400026: //RootNode
+    400028: Robe
+    400030: Robe_Sleeves
+    400032: Thigh_Boots
+    2300000: Belt
+    2300002: Body
+    2300004: Boots
+    2300006: Detached_Sleeves_Lvl_1
+    2300008: Detached_Sleeves_Lvl_2
+    2300010: Dress
+    2300012: Earrings
+    2300014: Eyes
+    2300016: Fancy_Gloves
+    2300018: Hair
+    2300020: Hat
+    2300022: Mouth
+    2300024: Neck_Cover
+    2300026: Robe
+    2300028: Robe_Sleeves
+    2300030: Thigh_Boots
+    3300000: Belt
+    3300002: Body
+    3300004: Boots
+    3300006: Detached_Sleeves_Lvl_1
+    3300008: Detached_Sleeves_Lvl_2
+    3300010: Dress
+    3300012: Earrings
+    3300014: Eyes
+    3300016: Fancy_Gloves
+    3300018: Hair
+    3300020: Hat
+    3300022: Mouth
+    3300024: Neck_Cover
+    3300026: Robe
+    3300028: Robe_Sleeves
+    3300030: Thigh_Boots
+    4300000: Eyes
+    4300002: Hair
+    4300004: Body
+    4300006: Mouth
+    4300008: Dress
+    4300010: Neck_Cover
+    4300012: Hat
+    4300014: Belt
+    4300016: Robe
+    4300018: Detached_Sleeves_Lvl_2
+    4300020: Detached_Sleeves_Lvl_1
+    4300022: Robe_Sleeves
+    4300024: Fancy_Gloves
+    4300026: Earrings
+    4300028: Thigh_Boots
+    4300030: Boots
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
