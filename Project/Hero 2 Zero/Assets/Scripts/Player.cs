@@ -815,8 +815,10 @@ public class Player : MonoBehaviour
 				ChangeHealth(maxHealth);
 				wasDead = false;
 			}
-
-			StandUp();
+			if (!HasIdleState())
+			{
+				StandUp();
+			}
 
 			return true;
 		}
