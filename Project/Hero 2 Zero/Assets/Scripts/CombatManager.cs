@@ -278,10 +278,9 @@ public class CombatManager : MonoBehaviour {
 
 	public void ResolveCombat()
 	{
-		if (!isAttackPhaseExec)
-		{
-			ExecuteAttackPhase();
-		}
+
+		ExecuteAttackPhase();
+		
 
 		if (isMonCombat)
 		{
@@ -372,43 +371,87 @@ public class CombatManager : MonoBehaviour {
 	{
 		if (isMonCombat)
 		{
-			if (playerDiceRoll > monsterDiceRoll)
+			if (!isAttackPhaseExec)
 			{
-				player.Attack();
-				MonsterAttackBypass = true;
+				if (playerDiceRoll > monsterDiceRoll)
+				{
+					player.Attack();
+					MonsterAttackBypass = true;
+				}
+				else if (playerDiceRoll < monsterDiceRoll)
+				{
+					MonsterAttackBypass = true;
+					player.Defeat();
+				}
+				else
+				{
+					player.Attack();
+					MonsterAttackBypass = true;
+				}
+
+				isAttackPhaseExec = true;
+
 			}
-			else if (playerDiceRoll < monsterDiceRoll)
+			/*else
 			{
-				MonsterAttackBypass = true;
-				player.Defeat();
-			}
-			else
-			{
-				player.Attack();
-				MonsterAttackBypass = true;
-			}
+				if (playerDiceRoll > monsterDiceRoll)
+				{
+
+					// Mon defeat
+				}
+				else if (playerDiceRoll < monsterDiceRoll)
+				{
+					if (mon attack)
+					{
+						player.Defeat();
+					}
+				}
+
+			}*/
 		}
 		else if (isPvpCombat)
 		{
-			// compare dice
-			if (playerDiceRoll > playerTwoDiceRoll)
+			if (!isAttackPhaseExec)
 			{
-				player.Attack();
-				player2.Defeat();
-			}
-			else if (playerDiceRoll < playerTwoDiceRoll)
-			{
-				player2.Attack();
-				player.Defeat();
+				// compare dice
+				if (playerDiceRoll > playerTwoDiceRoll)
+				{
+					player.Attack();
+				}
+				else if (playerDiceRoll < playerTwoDiceRoll)
+				{
+					player2.Attack();
+				}
+				else
+				{
+					player.Attack();
+					player2.Attack();
+				}
+
+				isAttackPhaseExec = true;
 			}
 			else
 			{
-				player.Attack();
-				player2.Attack();
+				if (playerDiceRoll > playerTwoDiceRoll)
+				{
+
+					if (player.HasFightAnimFinished())
+					{
+						player2.Defeat();
+					}
+				}
+				else if (playerDiceRoll < playerTwoDiceRoll)
+				{
+					if (player2.HasFightAnimFinished())
+					{
+						player.Defeat();
+					}
+				}
+
 			}
 		}
 
-		isAttackPhaseExec = true;
+
 	}
 
 	public void EstablishMonCombat(Player p, MonsterCard m, GameObject pr)
