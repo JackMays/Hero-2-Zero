@@ -89,11 +89,45 @@ public class Player : MonoBehaviour
 	
 	public Rigidbody chainEnd;
 	
+	// Holds the equipment for the different levels.
+	public List<GameObject> level1;
+	public List<GameObject> level2;
+	public List<GameObject> level3;
+	public List<GameObject> level4;
+	public List<GameObject> level5;
+	
+	public List<GameObject> level1Specific;
+	public List<GameObject> level2Specific;
+	public List<GameObject> level3Specific;
+	public List<GameObject> level4Specific;
+	public List<GameObject> level5Specific;
+	
+	// Holds the quipment level lists for easy differentating.
+	List<List<GameObject>> listLevelEquipment = new List<List<GameObject>>();
+	List<List<GameObject>> listLevelSpecificEquipment = new List<List<GameObject>>();
+	
+	public int currentLevel = 5;
+	
 	#endregion
 	
 	// Use this for initialization
 	void Awake ()
 	{
+		// Adds the separate level lists to a unified list.
+		listLevelEquipment.Add(level1);
+		listLevelEquipment.Add(level2);
+		listLevelEquipment.Add(level3);
+		listLevelEquipment.Add(level4);
+		listLevelEquipment.Add(level5);
+	
+		listLevelSpecificEquipment.Add (level1Specific);
+		listLevelSpecificEquipment.Add (level2Specific);
+		listLevelSpecificEquipment.Add (level3Specific);
+		listLevelSpecificEquipment.Add (level4Specific);
+		listLevelSpecificEquipment.Add (level5Specific);
+	
+		ChangeLevelEquipment();
+	
 		turnSkipCap = deathSkipCap;
 		turnSkipCount = turnSkipCap;
 		finishPosition = mapPosition;
@@ -107,7 +141,69 @@ public class Player : MonoBehaviour
 		items.Add (new ItemCard("Summon Monster (On Board)", 0, 5, 0, 2, 5, 0, "Spawn a Monster on a tile. Board Only", 0));
 		items.Add (new ItemCard("Player Turn Skip (On Board)", 0, 6, 1, 2, 4, 0, "Skip a Target Players turn. Board Only", 0));
 		items.Add (new ItemCard("Money for all (On Board)", 0, 1, 100, 2, 3, 0, "MONEH!. Board Only", 0));
-		items.Add (new ItemCard("Other Player HP loss (On Board)", 0, 2, -20, 2, 2, 0, "Digi... Nuke! cept active player. Board Only", 0));
+		items.Add (new ItemCard("Other Player HP loss (On Board)", 0, 2, -20, 2, 2, 0, "Digi... Nuke! 'cept active player. Board Only", 0));
+	}
+	
+	public void ChangeLevel(int l)
+	{
+		// Stores old level temporarily.
+		int oldLevel = currentLevel;
+	
+		// Changes level.
+		currentLevel += l;
+		
+		// Keeps level in bounds.
+		if (currentLevel > 5) {
+			currentLevel = 5;
+		}
+		else if (currentLevel < 1) {
+			currentLevel = 1;
+		}
+		
+		Debug.Log("LEVEL CHANGE : " + oldLevel + " -> " + currentLevel);
+		
+		// If the level has changed, change equipment. Otherwise DON'T!
+		if (oldLevel != currentLevel) {
+			ChangeLevelEquipment();
+		}
+	}
+	
+	void ChangeLevelEquipment()
+	{
+		// Loops through all 5 level lists.
+		for (int i = 0; i < 5; ++i) {
+			if (i > currentLevel - 1) {
+				// Loops through all the equipment in that list.
+				foreach (GameObject g in listLevelEquipment[i]) {
+					// Hides the equipment.
+					g.SetActive(false);
+				}
+			}
+			else {
+				// Loops through all equipment in the list.
+				foreach (GameObject g in listLevelEquipment[i]) {
+					// Shows the equipment.
+					g.SetActive(true);
+				}
+			}
+			
+			// If the current level is not the current list.
+			if (currentLevel - 1 != i) {
+				// Loops through all level specific equipment.
+				foreach (GameObject g in listLevelSpecificEquipment[i]) {
+					// Hides the equipment.
+					g.SetActive(false);
+				}
+			}
+			// The current level is the same as the current list.
+			else {
+				// Loops through all level specific equipment.
+				foreach (GameObject g in listLevelSpecificEquipment[i]) {
+					// Shows the equipment.
+					g.SetActive(true);
+				}
+			}
+		}
 	}
 	
 	#region Movement
@@ -840,6 +936,6 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+		
 	}
 }

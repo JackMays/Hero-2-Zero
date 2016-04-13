@@ -305,6 +305,16 @@ public class GameManager : MonoBehaviour
 			}
 		}
 		
+		// Debugging Equipment.
+		// Level up.
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
+			listPlayers[currentPlayer].ChangeLevel(1);
+		}
+		// Level down.
+		if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			listPlayers[currentPlayer].ChangeLevel(-1);
+		}
+		
 		// Raycast testing.
 		if (Input.GetKeyDown(KeyCode.O)) {
 			Debug.Log("Changing");
