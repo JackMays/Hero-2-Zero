@@ -113,7 +113,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .231215909
+        functionName: KnockDown
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 0a501f832e741c347966e3ebf636744a,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -250,8 +258,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Take 0010
       takeName: Take 001
-      firstFrame: 93
-      lastFrame: 150
+      firstFrame: 1
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

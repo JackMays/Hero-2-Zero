@@ -1,0 +1,1833 @@
+fileFormatVersion: 2
+guid: cdc7efc169e0b3446a3fd2020d1725b0
+timeCreated: 1462208432
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Ankle_Guards
+    100002: Arm_Guards
+    100004: Bag_End
+    100006: Bag_Root
+    100008: Belt
+    100010: Belt_Pouch
+    100012: Body1
+    100014: Boot_Braces
+    100016: Boots
+    100018: Breastplate
+    100020: Elbow_Pads
+    100022: Eyes
+    100024: Finger_1_1
+    100026: Finger_1_1 1
+    100028: Finger_1_2
+    100030: Finger_1_2 1
+    100032: Finger_1_3
+    100034: Finger_1_3 1
+    100036: Finger_2_1
+    100038: Finger_2_1 1
+    100040: Finger_2_2
+    100042: Finger_2_2 1
+    100044: Finger_2_3
+    100046: Finger_2_3 1
+    100048: Finger_3_1
+    100050: Finger_3_1 1
+    100052: Finger_3_2
+    100054: Finger_3_2 1
+    100056: Finger_3_3
+    100058: Finger_3_3 1
+    100060: Finger_4_1
+    100062: Finger_4_1 1
+    100064: Finger_4_2
+    100066: Finger_4_2 1
+    100068: Finger_4_3
+    100070: Finger_4_3 1
+    100072: Forearm_Guards
+    100074: Hair
+    100076: Hair_End
+    100078: Hair_Root
+    100080: Hand_Guards
+    100082: Knee_Pads
+    100084: Left_Ankle
+    100086: Left_Dagger
+    100088: Left_Eblow_Solver
+    100090: Left_Elbow
+    100092: Left_Hand_IK
+    100094: Left_Knee
+    100096: Left_Knee_Solver
+    100098: Left_Leg_IK
+    100100: Left_Shoulder
+    100102: Left_Thigh
+    100104: Left_Toe
+    100106: Left_Wrist
+    100108: Leg_Pouch
+    100110: Lower_Neck
+    100112: Mouth
+    100114: //RootNode
+    100116: Right_Ankle
+    100118: Right_Dagger
+    100120: Right_Elbow
+    100122: Right_Elbow_SOlver
+    100124: Right_Hand_IK
+    100126: Right_Knee
+    100128: Right_Knee_Solver
+    100130: Right_Leg_IK
+    100132: Right_Shoulder
+    100134: Right_Thigh
+    100136: Right_Toe
+    100138: Right_Wrist
+    100140: Root
+    100142: Scarf
+    100144: Scarf_1
+    100146: Scarf_2
+    100148: Scarf_3
+    100150: Scarf_4
+    100152: Scarf_Root
+    100154: Sheaths
+    100156: Thumb_1
+    100158: Thumb_1 1
+    100160: Thumb_2
+    100162: Thumb_2 1
+    100164: Thumb_3
+    100166: Thumb_3 1
+    100168: Toe_Guards
+    100170: Trousers
+    100172: Upper_Body
+    100174: Upper_Neck
+    100176: Vest
+    100178: Weapon_Parent
+    100180: Weapon_Parent1
+    400000: Ankle_Guards
+    400002: Arm_Guards
+    400004: Bag_End
+    400006: Bag_Root
+    400008: Belt
+    400010: Belt_Pouch
+    400012: Body1
+    400014: Boot_Braces
+    400016: Boots
+    400018: Breastplate
+    400020: Elbow_Pads
+    400022: Eyes
+    400024: Finger_1_1
+    400026: Finger_1_1 1
+    400028: Finger_1_2
+    400030: Finger_1_2 1
+    400032: Finger_1_3
+    400034: Finger_1_3 1
+    400036: Finger_2_1
+    400038: Finger_2_1 1
+    400040: Finger_2_2
+    400042: Finger_2_2 1
+    400044: Finger_2_3
+    400046: Finger_2_3 1
+    400048: Finger_3_1
+    400050: Finger_3_1 1
+    400052: Finger_3_2
+    400054: Finger_3_2 1
+    400056: Finger_3_3
+    400058: Finger_3_3 1
+    400060: Finger_4_1
+    400062: Finger_4_1 1
+    400064: Finger_4_2
+    400066: Finger_4_2 1
+    400068: Finger_4_3
+    400070: Finger_4_3 1
+    400072: Forearm_Guards
+    400074: Hair
+    400076: Hair_End
+    400078: Hair_Root
+    400080: Hand_Guards
+    400082: Knee_Pads
+    400084: Left_Ankle
+    400086: Left_Dagger
+    400088: Left_Eblow_Solver
+    400090: Left_Elbow
+    400092: Left_Hand_IK
+    400094: Left_Knee
+    400096: Left_Knee_Solver
+    400098: Left_Leg_IK
+    400100: Left_Shoulder
+    400102: Left_Thigh
+    400104: Left_Toe
+    400106: Left_Wrist
+    400108: Leg_Pouch
+    400110: Lower_Neck
+    400112: Mouth
+    400114: //RootNode
+    400116: Right_Ankle
+    400118: Right_Dagger
+    400120: Right_Elbow
+    400122: Right_Elbow_SOlver
+    400124: Right_Hand_IK
+    400126: Right_Knee
+    400128: Right_Knee_Solver
+    400130: Right_Leg_IK
+    400132: Right_Shoulder
+    400134: Right_Thigh
+    400136: Right_Toe
+    400138: Right_Wrist
+    400140: Root
+    400142: Scarf
+    400144: Scarf_1
+    400146: Scarf_2
+    400148: Scarf_3
+    400150: Scarf_4
+    400152: Scarf_Root
+    400154: Sheaths
+    400156: Thumb_1
+    400158: Thumb_1 1
+    400160: Thumb_2
+    400162: Thumb_2 1
+    400164: Thumb_3
+    400166: Thumb_3 1
+    400168: Toe_Guards
+    400170: Trousers
+    400172: Upper_Body
+    400174: Upper_Neck
+    400176: Vest
+    400178: Weapon_Parent
+    400180: Weapon_Parent1
+    2300000: Left_Dagger
+    2300002: Right_Dagger
+    3300000: Left_Dagger
+    3300002: Right_Dagger
+    4300000: Eyes
+    4300002: Belt_Pouch
+    4300004: Mouth
+    4300006: Hair
+    4300008: Leg_Pouch
+    4300010: Belt
+    4300012: Vest
+    4300014: Scarf
+    4300016: Breastplate
+    4300018: Trousers
+    4300020: Body1
+    4300022: Left_Dagger
+    4300024: Right_Dagger
+    4300026: Forearm_Guards
+    4300028: Arm_Guards
+    4300030: Knee_Pads
+    4300032: Toe_Guards
+    4300034: Hand_Guards
+    4300036: Ankle_Guards
+    4300038: Boot_Braces
+    4300040: Elbow_Pads
+    4300042: Boots
+    4300044: Sheaths
+    7400000: Walking
+    7400002: Idle
+    7400004: Change Sign
+    7400006: Combat Idle
+    7400008: Knock Down
+    7400010: Downed Idle
+    7400012: Shocked
+    9500000: //RootNode
+    13700000: Ankle_Guards
+    13700002: Arm_Guards
+    13700004: Belt
+    13700006: Belt_Pouch
+    13700008: Body1
+    13700010: Boot_Braces
+    13700012: Boots
+    13700014: Breastplate
+    13700016: Elbow_Pads
+    13700018: Eyes
+    13700020: Forearm_Guards
+    13700022: Hair
+    13700024: Hand_Guards
+    13700026: Knee_Pads
+    13700028: Leg_Pouch
+    13700030: Mouth
+    13700032: Scarf
+    13700034: Sheaths
+    13700036: Toe_Guards
+    13700038: Trousers
+    13700040: Vest
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walking
+      takeName: Take 001
+      firstFrame: 440
+      lastFrame: 471
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 481
+      lastFrame: 528
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Change Sign
+      takeName: Take 001
+      firstFrame: 530
+      lastFrame: 635
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Combat Idle
+      takeName: Take 001
+      firstFrame: 102
+      lastFrame: 139
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Knock Down
+      takeName: Take 001
+      firstFrame: 199
+      lastFrame: 229
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Downed Idle
+      takeName: Take 001
+      firstFrame: 229
+      lastFrame: 279
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Shocked
+      takeName: Take 001
+      firstFrame: 640
+      lastFrame: 690
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ankle_Guards
+        weight: 1
+      - path: Arm_Guards
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Belt_Pouch
+        weight: 1
+      - path: Body1
+        weight: 1
+      - path: Boot_Braces
+        weight: 1
+      - path: Boots
+        weight: 1
+      - path: Breastplate
+        weight: 1
+      - path: Elbow_Pads
+        weight: 1
+      - path: Eyes
+        weight: 1
+      - path: Forearm_Guards
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Hand_Guards
+        weight: 1
+      - path: Knee_Pads
+        weight: 1
+      - path: Left_Eblow_Solver
+        weight: 1
+      - path: Left_Hand_IK
+        weight: 1
+      - path: Left_Knee_Solver
+        weight: 1
+      - path: Left_Leg_IK
+        weight: 1
+      - path: Leg_Pouch
+        weight: 1
+      - path: Mouth
+        weight: 1
+      - path: Right_Elbow_SOlver
+        weight: 1
+      - path: Right_Hand_IK
+        weight: 1
+      - path: Right_Knee_Solver
+        weight: 1
+      - path: Right_Leg_IK
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Bag_Root
+        weight: 1
+      - path: Root/Bag_Root/Bag_End
+        weight: 1
+      - path: Root/Left_Thigh
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle
+        weight: 1
+      - path: Root/Left_Thigh/Left_Knee/Left_Ankle/Left_Toe
+        weight: 1
+      - path: Root/Right_Thigh
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle
+        weight: 1
+      - path: Root/Right_Thigh/Right_Knee/Right_Ankle/Right_Toe
+        weight: 1
+      - path: Root/Upper_Body
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_1_1/Finger_1_2/Finger_1_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_2_1/Finger_2_2/Finger_2_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_3_1/Finger_3_2/Finger_3_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Finger_4_1/Finger_4_2/Finger_4_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Thumb_1/Thumb_2/Thumb_3
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1
+        weight: 1
+      - path: Root/Upper_Body/Left_Shoulder/Left_Elbow/Left_Wrist/Weapon_Parent1/Left_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root
+        weight: 1
+      - path: Root/Upper_Body/Lower_Neck/Upper_Neck/Hair_Root/Hair_End
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_1_1 1/Finger_1_2
+          1/Finger_1_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_2_1 1/Finger_2_2
+          1/Finger_2_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_3_1 1/Finger_3_2
+          1/Finger_3_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Finger_4_1 1/Finger_4_2
+          1/Finger_4_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Thumb_1 1/Thumb_2
+          1/Thumb_3 1
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent
+        weight: 1
+      - path: Root/Upper_Body/Right_Shoulder/Right_Elbow/Right_Wrist/Weapon_Parent/Right_Dagger
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3
+        weight: 1
+      - path: Root/Upper_Body/Scarf_Root/Scarf_1/Scarf_2/Scarf_3/Scarf_4
+        weight: 1
+      - path: Scarf
+        weight: 1
+      - path: Sheaths
+        weight: 1
+      - path: Toe_Guards
+        weight: 1
+      - path: Trousers
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

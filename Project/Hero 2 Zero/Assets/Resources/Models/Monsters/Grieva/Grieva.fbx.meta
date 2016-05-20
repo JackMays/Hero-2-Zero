@@ -104,6 +104,7 @@ ModelImporter:
     7400010: Run Away
     7400012: Death
     7400014: Victory
+    7400016: TRAILER Spawn Idle
     9500000: //RootNode
     11100000: //RootNode
     13700000: Grieva
@@ -521,7 +522,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .626315832
+        functionName: KnockDown
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 0a501f832e741c347966e3ebf636744a,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1006,6 +1015,130 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Grieva
+        weight: 1
+      - path: Left_Arm_IK
+        weight: 1
+      - path: Left_Elbow
+        weight: 1
+      - path: Right_Arm_IK
+        weight: 1
+      - path: Right_Elbow
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Core_Bone
+        weight: 1
+      - path: Root/Head_Root
+        weight: 1
+      - path: Root/Head_Root/Head
+        weight: 1
+      - path: Root/Left_Arm_Root
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/l_Finger_1_1
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/l_Finger_1_1/L_Finger_1_2
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/l_Finger_1_1/L_Finger_1_2/L_Finger_1_3
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/L_Finger_2_1
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/L_Finger_2_1/L_Finger_2_2
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/L_Finger_2_1/L_Finger_2_2/L_Finger_2_3
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/L_Thumb_1
+        weight: 1
+      - path: Root/Left_Arm_Root/Left_Shoulder/Left_Elbow 1/Left_Wrist/L_Thumb_1/L_Thumb_2
+        weight: 1
+      - path: Root/Lower_Body_Root
+        weight: 1
+      - path: Root/Lower_Body_Root/Cloth_Front_1
+        weight: 1
+      - path: Root/Lower_Body_Root/Cloth_Front_1/Cloth_Front_2
+        weight: 1
+      - path: Root/Lower_Body_Root/Cloth_Left_1
+        weight: 1
+      - path: Root/Lower_Body_Root/Cloth_Left_1/Cloth_Left_2
+        weight: 1
+      - path: Root/Lower_Body_Root/Cloth_Right_1
+        weight: 1
+      - path: Root/Lower_Body_Root/Cloth_Right_1/Cloth_Right_2
+        weight: 1
+      - path: Root/Right_Arm_Root
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/l_Finger_1_1
+          1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/l_Finger_1_1
+          1/L_Finger_1_2 1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/l_Finger_1_1
+          1/L_Finger_1_2 1/L_Finger_1_3 1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/L_Finger_2_1
+          1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/L_Finger_2_1
+          1/L_Finger_2_2 1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/L_Finger_2_1
+          1/L_Finger_2_2 1/L_Finger_2_3 1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/L_Thumb_1
+          1
+        weight: 1
+      - path: Root/Right_Arm_Root/Right_Shoulder/Right_Elbow 1/Right_Wrist/L_Thumb_1
+          1/L_Thumb_2 1
+        weight: 1
+      - path: Root/Spine_1
+        weight: 1
+      - path: Root/Spine_1/Spine_2
+        weight: 1
+      - path: Root/Spine_1/Spine_2/Spine_3
+        weight: 1
+      - path: Root/Spine_1/Spine_2/Spine_3/Spine_4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: TRAILER Spawn Idle
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

@@ -1,0 +1,254 @@
+fileFormatVersion: 2
+guid: 8bcc52e293220e74ea58ff39cd6841f6
+timeCreated: 1463077548
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Ahoge_1
+    100002: Ahoge_2
+    100004: Ahoge_Root
+    100006: Body
+    100008: Breastplate1
+    100010: Clothes
+    100012: Eyes
+    100014: Finger_1_1
+    100016: Finger_1_1 1
+    100018: Finger_1_2
+    100020: Finger_1_2 1
+    100022: Finger_1_3
+    100024: Finger_1_3 1
+    100026: Finger_2_1
+    100028: Finger_2_1 1
+    100030: Finger_2_2
+    100032: Finger_2_2 1
+    100034: Finger_2_3
+    100036: Finger_2_3 1
+    100038: Finger_3_1
+    100040: Finger_3_1 1
+    100042: Finger_3_2
+    100044: Finger_3_2 1
+    100046: Finger_3_3
+    100048: Finger_3_3 1
+    100050: Finger_4_1
+    100052: Finger_4_1 1
+    100054: Finger_4_2
+    100056: Finger_4_2 1
+    100058: Finger_4_3
+    100060: Finger_4_3 1
+    100062: Hair
+    100064: Head_Top
+    100066: Left_Ankle
+    100068: Left_Arm_IK
+    100070: Left_Elbow
+    100072: Left_Elbow_Solver
+    100074: Left_Knee
+    100076: Left_Knee_Solver
+    100078: Left_Leg_Armour
+    100080: Left_Leg_IK
+    100082: Left_Shoulder
+    100084: Left_Shoulder_Armour
+    100086: Left_Thigh
+    100088: Left_Toes
+    100090: Left_Wrist
+    100092: Lower_Neck
+    100094: Lower_Spine
+    100096: Mouth
+    100098: //RootNode
+    100100: Ponytail_1
+    100102: Ponytail_2
+    100104: Ponytail_3
+    100106: Ponytail_4
+    100108: Ponytail_5
+    100110: Ponytail_Root
+    100112: Rapier1
+    100114: Right_Ankle
+    100116: Right_Arm_IK
+    100118: Right_Elbow
+    100120: Right_Elbow_Solver
+    100122: Right_Knee
+    100124: Right_Knee_Solver
+    100126: Right_Leg_Armour
+    100128: Right_Leg_IK
+    100130: Right_Shoulder
+    100132: Right_Shoulder_Armour
+    100134: Right_Thigh
+    100136: Right_Toes
+    100138: Right_Wrist
+    100140: Root
+    100142: Thumb_1
+    100144: Thumb_1 1
+    100146: Thumb_2
+    100148: Thumb_2 1
+    100150: Thumb_3
+    100152: Thumb_3 1
+    100154: Upper_Armour
+    100156: Upper_Neck
+    100158: Upper_Spine
+    100160: Weapon_Parent
+    400000: Ahoge_1
+    400002: Ahoge_2
+    400004: Ahoge_Root
+    400006: Body
+    400008: Breastplate1
+    400010: Clothes
+    400012: Eyes
+    400014: Finger_1_1
+    400016: Finger_1_1 1
+    400018: Finger_1_2
+    400020: Finger_1_2 1
+    400022: Finger_1_3
+    400024: Finger_1_3 1
+    400026: Finger_2_1
+    400028: Finger_2_1 1
+    400030: Finger_2_2
+    400032: Finger_2_2 1
+    400034: Finger_2_3
+    400036: Finger_2_3 1
+    400038: Finger_3_1
+    400040: Finger_3_1 1
+    400042: Finger_3_2
+    400044: Finger_3_2 1
+    400046: Finger_3_3
+    400048: Finger_3_3 1
+    400050: Finger_4_1
+    400052: Finger_4_1 1
+    400054: Finger_4_2
+    400056: Finger_4_2 1
+    400058: Finger_4_3
+    400060: Finger_4_3 1
+    400062: Hair
+    400064: Head_Top
+    400066: Left_Ankle
+    400068: Left_Arm_IK
+    400070: Left_Elbow
+    400072: Left_Elbow_Solver
+    400074: Left_Knee
+    400076: Left_Knee_Solver
+    400078: Left_Leg_Armour
+    400080: Left_Leg_IK
+    400082: Left_Shoulder
+    400084: Left_Shoulder_Armour
+    400086: Left_Thigh
+    400088: Left_Toes
+    400090: Left_Wrist
+    400092: Lower_Neck
+    400094: Lower_Spine
+    400096: Mouth
+    400098: //RootNode
+    400100: Ponytail_1
+    400102: Ponytail_2
+    400104: Ponytail_3
+    400106: Ponytail_4
+    400108: Ponytail_5
+    400110: Ponytail_Root
+    400112: Rapier1
+    400114: Right_Ankle
+    400116: Right_Arm_IK
+    400118: Right_Elbow
+    400120: Right_Elbow_Solver
+    400122: Right_Knee
+    400124: Right_Knee_Solver
+    400126: Right_Leg_Armour
+    400128: Right_Leg_IK
+    400130: Right_Shoulder
+    400132: Right_Shoulder_Armour
+    400134: Right_Thigh
+    400136: Right_Toes
+    400138: Right_Wrist
+    400140: Root
+    400142: Thumb_1
+    400144: Thumb_1 1
+    400146: Thumb_2
+    400148: Thumb_2 1
+    400150: Thumb_3
+    400152: Thumb_3 1
+    400154: Upper_Armour
+    400156: Upper_Neck
+    400158: Upper_Spine
+    400160: Weapon_Parent
+    2300000: Rapier1
+    3300000: Rapier1
+    4300000: Eyes
+    4300002: Body
+    4300004: Upper_Armour
+    4300006: Left_Leg_Armour
+    4300008: Right_Leg_Armour
+    4300010: Hair
+    4300012: Rapier1
+    4300014: Clothes
+    4300016: Mouth
+    4300018: Breastplate1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Body
+    13700002: Breastplate1
+    13700004: Clothes
+    13700006: Eyes
+    13700008: Hair
+    13700010: Left_Leg_Armour
+    13700012: Mouth
+    13700014: Right_Leg_Armour
+    13700016: Upper_Armour
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

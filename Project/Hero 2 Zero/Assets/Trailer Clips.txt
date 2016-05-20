@@ -1,0 +1,11 @@
+clip 1 - player 1 walk town
+clip 2 - player 2 attack grieva
+clip 3 - show card
+clip 4 - player 3 walk mountains
+clip 5 - grieva victory
+clip 6 - player 4 attack player 2
+clip 7 - player 1 attack player 3
+clip 8 - goblin victory
+clip 9 - Open Chest
+clip 10 - player 2 walk river
+clip 11 - player 4 attack player 3 clash

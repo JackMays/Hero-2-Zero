@@ -206,6 +206,39 @@ public class Player : MonoBehaviour
 		}
 	}
 	
+	#region TRAILER
+	int runAwayID = Animator.StringToHash("isRunning");
+	
+	public void RunAway()
+	{
+		// reset everything when returning to idle
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(walkID, false);
+			animatorCompo.SetBool(combIdleID, false);
+			animatorCompo.SetBool(combAttackID, false);
+			animatorCompo.SetBool(combWinID, false);
+			animatorCompo.SetBool(combLoseID, false);
+			animatorCompo.SetBool(proneID, false);
+			animatorCompo.SetBool(getUpID, false);
+			animatorCompo.SetBool(idleID, false);
+			animatorCompo.SetBool(runAwayID, true);
+		}
+	}
+
+	public void StopRunning()
+	{
+		animatorCompo.SetBool(runAwayID, false);
+		animatorCompo.SetBool(idleID, true);
+	}
+	
+	public void ChangingSign(bool b)
+	{
+		animatorCompo.SetBool("isChangingSign", b);
+	}
+	
+	#endregion
+	
 	#region Movement
 	
 	// Stores the spaces for the player to move and allows the player to move.
