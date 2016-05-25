@@ -880,44 +880,44 @@ public class CameraControl : MonoBehaviour
 			multipleBreaks[4] = true;
 		}
 		
-		if (!multipleBreaks[5] && lerpTime > 2.4f) {
+		if (!multipleBreaks[5] && lerpTime > 2.8f) {
 			players[2].GetComponent<Player>().ChangeLevel(-1);
 			multipleBreaks[5] = true;
 		}
-		if (!multipleBreaks[6] && lerpTime > 2.8f) {
+		if (!multipleBreaks[6] && lerpTime > 3.2f) {
 			players[2].GetComponent<Player>().ChangeLevel(-1);
 			player4Boots.SetActive(true);
 			multipleBreaks[6] = true;
 		}
-		if (!multipleBreaks[7] && lerpTime > 3.2f) {
+		if (!multipleBreaks[7] && lerpTime > 3.6f) {
 			players[2].GetComponent<Player>().ChangeLevel(-1);
 			player4Boots.SetActive(true);
 			multipleBreaks[7] = true;
 		}
-		if (!multipleBreaks[8] && lerpTime > 3.6f) {
+		if (!multipleBreaks[8] && lerpTime > 4f) {
 			players[2].GetComponent<Player>().ChangeLevel(-1);
 			player4Boots.SetActive(true);
 			multipleBreaks[8] = true;
 		}
-		if (!multipleBreaks[9] && lerpTime > 4f) {
+		if (!multipleBreaks[9] && lerpTime > 4.4f) {
 			players[2].SetActive(false);
 			players[3].SetActive(true);
 			multipleBreaks[9] = true;
 		}
 		
-		if (!multipleBreaks[10] && lerpTime > 4.4f) {
+		if (!multipleBreaks[10] && lerpTime > 5.2f) {
 			players[3].GetComponent<Player>().ChangeLevel(-1);
 			multipleBreaks[10] = true;
 		}
-		if (!multipleBreaks[11] && lerpTime > 4.8f) {
+		if (!multipleBreaks[11] && lerpTime > 5.6f) {
 			players[3].GetComponent<Player>().ChangeLevel(-1);
 			multipleBreaks[11] = true;
 		}
-		if (!multipleBreaks[12] && lerpTime > 5.2f) {
+		if (!multipleBreaks[12] && lerpTime > 6f) {
 			players[3].GetComponent<Player>().ChangeLevel(-1);
 			multipleBreaks[12] = true;
 		}
-		if (!multipleBreaks[13] && lerpTime > 5.6f) {
+		if (!multipleBreaks[13] && lerpTime > 6.4f) {
 			players[3].GetComponent<Player>().ChangeLevel(-1);
 			multipleBreaks[13] = true;
 		}
