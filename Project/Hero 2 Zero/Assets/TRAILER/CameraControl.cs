@@ -82,6 +82,12 @@ public class CameraControl : MonoBehaviour
 		cam.position = Vector3.Lerp(cameraPoints[0].position, cameraPoints[1].position, lerpTime * camSpeed);
 		cam.rotation = Quaternion.Lerp(cameraPoints[0].rotation, cameraPoints[1].rotation, lerpTime * camSpeed);
 		
+		if (lerpTime * camSpeed > 0.5f && lerpTime * camSpeed < 0.55f) {
+			if (!player.GetComponent<Character_Blink>().isBlinking) {
+				player.GetComponent<Character_Blink>().StartBlinking();
+			}
+		}
+		
 		if (lerpTime * camSpeed > 0.6f) {	
 			slimeLerpTime += Time.deltaTime;
 			
@@ -101,6 +107,7 @@ public class CameraControl : MonoBehaviour
 			player.GetComponent<Player>().Idle();
 			ChangeSlimeAnimator(0);
 			rotateSlime = true;
+			player.GetComponent<Character_Blink>().StartBlinking();
 		}
 	}
 	
@@ -135,10 +142,10 @@ public class CameraControl : MonoBehaviour
 		player.LookAt(playerPoints[2].position);
 		
 		player.position = Vector3.Lerp(playerPoints[1].position, playerPoints[2].position, lerpTime / 4);
-		cam.position = Vector3.Lerp(cameraPoints[2].position, cameraPoints[3].position, lerpTime / 1.3f);
-		cam.rotation = Quaternion.Lerp(cameraPoints[2].rotation, cameraPoints[3].rotation, lerpTime / 1.3f);
+		cam.position = Vector3.Lerp(cameraPoints[2].position, cameraPoints[3].position, lerpTime / 1.5f);
+		cam.rotation = Quaternion.Lerp(cameraPoints[2].rotation, cameraPoints[3].rotation, lerpTime / 1.5f);
 		
-		player.GetComponent<Player>().RunAway();
+		
 		
 		if (lerpTime / 4 >= 0.30f) {
 			slimeLerpTime += Time.deltaTime;
@@ -224,6 +231,10 @@ public class CameraControl : MonoBehaviour
 				ChangeSlimeAnimator(2);
 			}
 			
+			if (lerpTime >= 1.5f && lerpTime <= 2f) {
+				player.GetComponent<Character_Blink>().StartBlinking();
+			}
+			
 			if (lerpTime >= 3f) {
 				cam.position = cameraPoints[2].position;
 				cam.rotation = cameraPoints[2].rotation;
@@ -240,6 +251,7 @@ public class CameraControl : MonoBehaviour
 				slimeLerpTime = 0;
 				swords[0].SetActive(false);
 				swords[1].SetActive(true);
+				player.GetComponent<Player>().RunAway();
 			}
 		}
 		
@@ -377,6 +389,10 @@ public class CameraControl : MonoBehaviour
 		if (lerpTime > 3f && lerpTime < 7) {
 			cam.position = cameraPoints[3].position;
 			cam.rotation = cameraPoints[3].rotation;
+		}
+		
+		if (lerpTime > 3.75f && lerpTime < 4.25f) {
+			player.GetComponent<Character_Blink>().StartBlinking();
 		}
 		
 		if (lerpTime > 6.5 && lerpTime < 7f) {
@@ -551,6 +567,7 @@ public class CameraControl : MonoBehaviour
 				lerpTime += Time.deltaTime;
 			
 				if (lerpTime > 2) {
+					monsters[0].GetComponent<Animator>().SetBool("isCombatIdle", true);
 					if (lerpTime < 4) {
 						textCanvas.SetActive(true);
 						textCanvas.transform.GetChild(2).GetComponent<Text>().text = "And lose...";
@@ -638,7 +655,7 @@ public class CameraControl : MonoBehaviour
 			showSpawnAnims = false;
 			changeAnimator = false;
 			showCanvasText[1] = true;
-			monsters[0].GetComponent<Animator>().SetBool("isCombatIdle", true);
+			//monsters[0].GetComponent<Animator>().SetBool("isCombatIdle", true);
 		}
 		else {
 			monsters[0].GetComponent<Animator>().SetBool("isSpawn", true);
@@ -715,6 +732,8 @@ public class CameraControl : MonoBehaviour
 			if (knockPlayerDown) {
 				if (!knockedDown) {
 					players[index].GetComponent<Animator>().SetBool("isKnockedDown", true);
+					players[index].GetComponent<Character_Blink>().ChangeEyes(0);
+					players[index].GetComponent<Character_Blink>().ChangeMouth(0);
 					UpdateGUI(index);
 					knockedDown = true;
 					lerpTime = 0;
@@ -822,6 +841,8 @@ public class CameraControl : MonoBehaviour
 		else {
 			if (knockPlayerDown) {
 				players[0].GetComponent<Animator>().SetBool("isKnockedDown", true);
+				players[0].GetComponent<Character_Blink>().ChangeEyes(0);
+				players[0].GetComponent<Character_Blink>().ChangeMouth(0);
 				showAttacking = false;
 			}
 		}
@@ -868,6 +889,7 @@ public class CameraControl : MonoBehaviour
 		}
 		if (!multipleBreaks[2] && lerpTime > 1.2f) {
 			players[1].GetComponent<Player>().ChangeLevel(-1);
+			players[1].GetComponent<Character_Blink>().StartBlinking();
 			multipleBreaks[2] = true;
 		}
 		if (!multipleBreaks[3] && lerpTime > 1.6f) {
@@ -886,6 +908,7 @@ public class CameraControl : MonoBehaviour
 		}
 		if (!multipleBreaks[6] && lerpTime > 3.2f) {
 			players[2].GetComponent<Player>().ChangeLevel(-1);
+			players[2].GetComponent<Character_Blink>().StartBlinking();
 			player4Boots.SetActive(true);
 			multipleBreaks[6] = true;
 		}
@@ -908,6 +931,7 @@ public class CameraControl : MonoBehaviour
 		if (!multipleBreaks[10] && lerpTime > 5.2f) {
 			players[3].GetComponent<Player>().ChangeLevel(-1);
 			multipleBreaks[10] = true;
+			players[3].GetComponent<Character_Blink>().StartBlinking();
 		}
 		if (!multipleBreaks[11] && lerpTime > 5.6f) {
 			players[3].GetComponent<Player>().ChangeLevel(-1);
@@ -986,6 +1010,7 @@ public class CameraControl : MonoBehaviour
 				wait = false;
 				showStage5Part1 = true;
 				players[0].GetComponent<Animator>().SetBool("isAttacking", true);
+				players[0].GetComponent<Character_Blink>().StartBlinking();
 				players[1].GetComponent<Animator>().SetBool("useCard", true);
 				players[2].GetComponent<Animator>().SetBool("isWalking", true);
 			}
@@ -997,19 +1022,32 @@ public class CameraControl : MonoBehaviour
 			if (waitToRun) {
 				if (lerpTime > 2f) {
 					players[0].GetComponent<Animator>().enabled = true;
-					
 				}
 			}
 			
+			if (lerpTime > 2.4f && lerpTime < 2.7f) {
+				players[0].GetComponent<Character_Blink>().ChangeEyes(4);
+				players[0].GetComponent<Character_Blink>().ChangeMouth(1);
+			}	
+			
 			if (lerpTime > 3f && lerpTime < 3.5f) {
+				if (lerpTime > 3.1f && lerpTime < 3.3f) {
+					players[0].GetComponent<Character_Blink>().ChangeMouth(0);
+					players[0].GetComponent<Character_Blink>().ChangeEyes(0);
+				}
 				cam.position = cameraPoints[1].position;
 				cam.rotation = cameraPoints[1].rotation;
 				players[1].GetComponent<Animator>().SetBool("isLaughing", true);
+				players[1].GetComponent<Character_Blink>().ChangeMouth(0);
 			}
 			
 			if (lerpTime > 5) {
 				cam.position = Vector3.Lerp(cameraPoints[1].position, cameraPoints[3].position, (lerpTime - 5) * 2.25f);
 				cam.rotation = Quaternion.Lerp(cameraPoints[1].rotation, cameraPoints[3].rotation, (lerpTime - 5) * 2.25f);
+			}
+			
+			if (lerpTime > 5 && lerpTime < 5.2f) {
+				players[0].GetComponent<Character_Blink>().ChangeEyes(1);
 			}
 			
 			if (lerpTime > 7f) {
@@ -1034,12 +1072,18 @@ public class CameraControl : MonoBehaviour
 				players[3].GetComponent<Animator>().SetBool("useCard", true);
 			}
 			
+			if (lerpTime > 0.8f && lerpTime < 1) {
+				players[2].GetComponent<Character_Blink>().StartBlinking();
+			}
+			
 			if (players[2].transform.position != playerPoints[1].position) {
 				players[2].GetComponent<Animator>().SetBool("isWalking", true);
 				players[2].transform.position = Vector3.Lerp(playerPoints[0].position, playerPoints[1].position, lerpTime / 2.5f);
 			}
 			else {
 				players[2].GetComponent<Animator>().SetBool("isShocked", true);
+				players[2].GetComponent<Character_Blink>().ChangeEyes(4);
+				players[2].GetComponent<Character_Blink>().ChangeMouth(0);
 			}
 			
 			if (lerpTime > 2.5f && lerpTime < 6) {
@@ -1322,6 +1366,7 @@ public class CameraControl : MonoBehaviour
 		
 		if (lerpTime >= clipTime / 2) {
 			monsters[1].GetComponent<Animator>().SetBool("isVictory", true);
+			players[2].GetComponent<Character_Blink>().StartBlinking();
 		}
 		
 		players[2].transform.position = Vector3.Lerp(playerPoints[4].position, playerPoints[5].position, lerpTime / 2);
@@ -1376,6 +1421,8 @@ public class CameraControl : MonoBehaviour
 		
 		if (lerpTime >= clipTime * 0.3f) {
 			players[1].GetComponent<Animator>().SetBool("isKnockedDown", true);
+			players[1].GetComponent<Character_Blink>().ChangeEyes(0);
+			players[1].GetComponent<Character_Blink>().ChangeMouth(0);
 		}
 		
 		if (lerpTime >= clipTime * 0.5f) {
@@ -1414,6 +1461,8 @@ public class CameraControl : MonoBehaviour
 			ChangePositionRotation(players[0].transform, 10, 1);
 			players[2].GetComponent<Animator>().SetBool("isKnockedDown", false);
 			players[1].GetComponent<Animator>().SetBool("isKnockedDown", false);
+			players[2].GetComponent<Character_Blink>().ChangeEyes(0);
+			players[2].GetComponent<Character_Blink>().ChangeMouth(0);
 			return;
 		}
 	}
@@ -1476,9 +1525,13 @@ public class CameraControl : MonoBehaviour
 	{
 		if (clip == 5) {
 			players[1].GetComponent<Animator>().SetBool("isKnockedDown", true);
+			players[1].GetComponent<Character_Blink>().ChangeEyes(0);
+			players[1].GetComponent<Character_Blink>().ChangeMouth(0);
 		}
 		if (clip == 6) {
 			players[2].GetComponent<Animator>().SetBool("isKnockedDown", true);
+			players[2].GetComponent<Character_Blink>().ChangeEyes(4);
+			players[2].GetComponent<Character_Blink>().ChangeMouth(1);
 		}
 		if (clip == 5 || clip == 10) {
 			fireball.SetActive(true);

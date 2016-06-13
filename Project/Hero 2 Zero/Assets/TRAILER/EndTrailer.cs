@@ -51,7 +51,7 @@ public class EndTrailer : MonoBehaviour
 		else {
 			lights[0].SetActive(true);
 			lights[1].SetActive(false);
-			cam.GetChild(0).gameObject.SetActive(false);
+			cam.GetChild(2).gameObject.SetActive(false);
 		}
 	}
 	
@@ -59,12 +59,14 @@ public class EndTrailer : MonoBehaviour
 	{
 		lerpTime += Time.deltaTime;
 		
-		text.position = Vector3.Lerp(textPoints[0].position, textPoints[1].position, lerpTime / 1.5f);
+		text.position = Vector3.Lerp(textPoints[0].position, textPoints[1].position, lerpTime / 2f);
 		
 		if (lerpTime >= 2) {
 			++textIndex;
 			lerpTime = 0;
-			text.GetComponent<TextMesh>().text = texts[textIndex];
+			if (textIndex == texts.Length) {
+				growText = false;
+			}
 		}
 	}	
 	
@@ -83,6 +85,7 @@ public class EndTrailer : MonoBehaviour
 		}
 		
 		if (growText){
+			text.GetComponent<TextMesh>().text = texts[textIndex];
 			GrowText();
 		}
 		
