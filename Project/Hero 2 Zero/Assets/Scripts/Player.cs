@@ -538,7 +538,7 @@ public class Player : MonoBehaviour
 	}
 
 	// for anim event at the end of attack
-	// Switch back to combatidle and flag an attack so combat state can move forward
+	// Go prone if attack defated player
 	public void DefeatEnd()
 	{
 		Prone();
