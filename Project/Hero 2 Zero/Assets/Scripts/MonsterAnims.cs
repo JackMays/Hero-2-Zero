@@ -14,6 +14,8 @@ public class MonsterAnims : MonoBehaviour {
 	int deadID = Animator.StringToHash("isDead");
 	int runID = Animator.StringToHash("isRunning");
 
+	bool justFought = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -73,15 +75,17 @@ public class MonsterAnims : MonoBehaviour {
 		{
 			animatorCompo.SetBool(combAttackID, false);
 			animatorCompo.SetBool(combIdleID, true);
+
+			justFought = true;
 		}
 	}
 	
 	// for anim event at the end of attack
 	// If attack kills combat needs to go forward to the right stage
-	/*public void DefeatEnd()
+	public void DefeatEnd()
 	{
-		Dead();
-	}*/
+		justFought = true;
+	}
 	
 	public void Victory()
 	{
@@ -116,5 +120,20 @@ public class MonsterAnims : MonoBehaviour {
 			
 			animatorCompo.SetBool(runID, true);
 		}
+	}
+
+	public bool HasFightAnimFinished()
+	{
+		return justFought;
+	}
+
+	public bool HasIdleState()
+	{
+		return animatorCompo.GetBool(idleID);
+	}
+
+	public bool HasDeadState()
+	{
+		return animatorCompo.GetBool(deadID);
 	}
 }

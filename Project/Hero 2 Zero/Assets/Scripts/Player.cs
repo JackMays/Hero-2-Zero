@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
 		listLevelSpecificEquipment.Add (level4Specific);
 		listLevelSpecificEquipment.Add (level5Specific);
 	
-		ChangeLevelEquipment();
+		//ChangeLevelEquipment();
 	
 		turnSkipCap = deathSkipCap;
 		turnSkipCount = turnSkipCap;

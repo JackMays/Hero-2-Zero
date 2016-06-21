@@ -9,6 +9,7 @@ public class CombatManager : MonoBehaviour {
 	Player player2;
 
 	MonsterCard monster;
+	MonsterAnims monAnims;
 
 	int playerDiceRoll;
 	int playerTwoDiceRoll;
@@ -35,6 +36,7 @@ public class CombatManager : MonoBehaviour {
 		player = null;
 		player2 = null;
 		monster = null;
+		monAnims = null;
 	}
 	
 	// Update is called once per frame
@@ -285,8 +287,8 @@ public class CombatManager : MonoBehaviour {
 		if (isMonCombat)
 		{
 			if (/*(player.HasFightAnimFinished() || MonsterAttackBypass) ||*/ 
-			    (player.HasFightAnimFinished() && MonsterAttackBypass) ||
-			    !player.GetComponent<Animator>())
+			    (player.HasFightAnimFinished() && monAnims.HasFightAnimFinished()) ||
+			    !player.GetComponent<Animator>() || !monAnims)
 			{
 				if (!isResolveOnce)
 				{
@@ -297,10 +299,11 @@ public class CombatManager : MonoBehaviour {
 				int tileX = (int)player.GetMapPosition().x;
 				int tileY = (int)player.GetMapPosition().y;
 
-				if (player.GetComponent<Animator>())
+				if (player.GetComponent<Animator>() && monAnims)
 				{
-					// player is Idle (win/draw) or has gone to prone (loss)
-					if (player.HasIdleState() || player.HasProneState() /*|| player.HasDied()*/)
+					// player/monster is Idle (win/draw) or has gone to prone/dead respectively (loss)
+					if ((player.HasIdleState() && monAnims.HasIdleState()) ||
+					    (player.HasProneState() || monAnims.HasDeadState()) /*|| player.HasDied()*/)
 					{	
 						player.transform.position = oriPlayerPos;
 						map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
@@ -376,38 +379,46 @@ public class CombatManager : MonoBehaviour {
 				if (playerDiceRoll > monsterDiceRoll)
 				{
 					player.Attack();
-					MonsterAttackBypass = true;
+					//MonsterAttackBypass = true;
+
 				}
 				else if (playerDiceRoll < monsterDiceRoll)
 				{
-					MonsterAttackBypass = true;
-					player.Defeat();
+					//MonsterAttackBypass = true;
+					monAnims.Attack();
 				}
 				else
 				{
 					player.Attack();
-					MonsterAttackBypass = true;
+					monAnims.Attack();
+					//MonsterAttackBypass = true;
 				}
 
 				isAttackPhaseExec = true;
 
 			}
-			/*else
+			else
 			{
 				if (playerDiceRoll > monsterDiceRoll)
 				{
+					if (monster.HasDied())
+					{
+						monAnims.Dead();
+					}
+					else
+					{
+						monAnims.Hit();
+					}
 
 					// Mon defeat
 				}
 				else if (playerDiceRoll < monsterDiceRoll)
 				{
-					if (mon attack)
-					{
-						player.Defeat();
-					}
+					player.Defeat();
+
 				}
 
-			}*/
+			}
 		}
 		else if (isPvpCombat)
 		{
@@ -479,6 +490,8 @@ public class CombatManager : MonoBehaviour {
 
 		oriPlayerPos = player.transform.position;
 		oriMonsterPos = monPrefab.transform.position;
+
+		monAnims = monPrefab.GetComponent<MonsterAnims>();
 
 		monPrefab.transform.forward = -player.transform.forward;
 
