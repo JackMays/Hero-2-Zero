@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 053f48225f8701e40933159d3aaff7ae
+timeCreated: 1466462733
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Collar
+    100002: Finger_1_1
+    100004: Finger_1_1 1
+    100006: Finger_1_2
+    100008: Finger_1_2 1
+    100010: Finger_1_3
+    100012: Finger_1_3 1
+    100014: Finger_2_1
+    100016: Finger_2_1 1
+    100018: Finger_2_2
+    100020: Finger_2_2 1
+    100022: Finger_2_3
+    100024: Finger_2_3 1
+    100026: Finger_3_1
+    100028: Finger_3_1 1
+    100030: Finger_3_2
+    100032: Finger_3_2 1
+    100034: Finger_3_3
+    100036: Finger_3_3 1
+    100038: Finger_4_1
+    100040: Finger_4_1 1
+    100042: Finger_4_2
+    100044: Finger_4_2 1
+    100046: Finger_4_3
+    100048: Finger_4_3 1
+    100050: Left_Ankle
+    100052: Left_Elbow
+    100054: Left_Elbow_Guard
+    100056: Left_Knee
+    100058: Left_Shoulder
+    100060: Left_Shoulder_Guard
+    100062: Left_Shoulder_Root
+    100064: Left_Thigh
+    100066: Left_Toe
+    100068: Left_Wrist
+    100070: Lower_Neck
+    100072: Lower_Spine
+    100074: Right_Ankle
+    100076: Right_Boot
+    100078: Right_Elbow
+    100080: Right_Elbow_Guard
+    100082: Right_Knee
+    100084: Right_Shoulder
+    100086: Right_Shoulder_Guard
+    100088: Right_Shoulder_Root
+    100090: Right_Thigh
+    100092: Right_Toe
+    100094: Right_Wrist
+    100096: Root
+    100098: //RootNode
+    100100: Thumb_1
+    100102: Thumb_1 1
+    100104: Thumb_2
+    100106: Thumb_2 1
+    100108: Thumb_3
+    100110: Thumb_3 1
+    100112: Upper_Neck
+    100114: Upper_Spine
+    400000: Collar
+    400002: Finger_1_1
+    400004: Finger_1_1 1
+    400006: Finger_1_2
+    400008: Finger_1_2 1
+    400010: Finger_1_3
+    400012: Finger_1_3 1
+    400014: Finger_2_1
+    400016: Finger_2_1 1
+    400018: Finger_2_2
+    400020: Finger_2_2 1
+    400022: Finger_2_3
+    400024: Finger_2_3 1
+    400026: Finger_3_1
+    400028: Finger_3_1 1
+    400030: Finger_3_2
+    400032: Finger_3_2 1
+    400034: Finger_3_3
+    400036: Finger_3_3 1
+    400038: Finger_4_1
+    400040: Finger_4_1 1
+    400042: Finger_4_2
+    400044: Finger_4_2 1
+    400046: Finger_4_3
+    400048: Finger_4_3 1
+    400050: Left_Ankle
+    400052: Left_Elbow
+    400054: Left_Elbow_Guard
+    400056: Left_Knee
+    400058: Left_Shoulder
+    400060: Left_Shoulder_Guard
+    400062: Left_Shoulder_Root
+    400064: Left_Thigh
+    400066: Left_Toe
+    400068: Left_Wrist
+    400070: Lower_Neck
+    400072: Lower_Spine
+    400074: Right_Ankle
+    400076: Right_Boot
+    400078: Right_Elbow
+    400080: Right_Elbow_Guard
+    400082: Right_Knee
+    400084: Right_Shoulder
+    400086: Right_Shoulder_Guard
+    400088: Right_Shoulder_Root
+    400090: Right_Thigh
+    400092: Right_Toe
+    400094: Right_Wrist
+    400096: Root
+    400098: //RootNode
+    400100: Thumb_1
+    400102: Thumb_1 1
+    400104: Thumb_2
+    400106: Thumb_2 1
+    400108: Thumb_3
+    400110: Thumb_3 1
+    400112: Upper_Neck
+    400114: Upper_Spine
+    4300000: Right_Boot
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Right_Boot
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
