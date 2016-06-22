@@ -7,7 +7,7 @@ public class MonsterAnims : MonoBehaviour {
 
 	int spawnID = Animator.StringToHash("isSpawning");
 	int idleID = Animator.StringToHash("isIdle");
-	int combIdleID = Animator.StringToHash("isCombIdle");
+	int combIdleID = Animator.StringToHash("isCombatIdle");
 	int combAttackID = Animator.StringToHash("isAttacking");
 	int combWinID = Animator.StringToHash("isVictory");
 	int combLoseID = Animator.StringToHash("isHit");
@@ -17,8 +17,9 @@ public class MonsterAnims : MonoBehaviour {
 	bool justFought = false;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () 
+	{
+		animatorCompo = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame

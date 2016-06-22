@@ -81,6 +81,8 @@ public class CombatManager : MonoBehaviour {
 			player.TakeDamage(damage);
 			player.ChangeFame(monster.GetFameMod(false));
 
+			monAnims.Victory();
+
 			if (player.HasDied())
 			{
 				Debug.Log ("Player's HP hit 0");
@@ -100,6 +102,10 @@ public class CombatManager : MonoBehaviour {
 			Debug.Log ("Tie");
 
 			player.Idle();
+			if (monAnims != null)
+			{
+				monAnims.Idle();
+			}
 		}
 		// lower weapon durability if one exists
 		if (player.GetWeapon() != null)
@@ -379,19 +385,34 @@ public class CombatManager : MonoBehaviour {
 				if (playerDiceRoll > monsterDiceRoll)
 				{
 					player.Attack();
-					//MonsterAttackBypass = true;
+					if (monAnims == null)
+					{
+						MonsterAttackBypass = true;
+					}
 
 				}
 				else if (playerDiceRoll < monsterDiceRoll)
 				{
-					//MonsterAttackBypass = true;
-					monAnims.Attack();
+					if (monAnims != null)
+					{
+						monAnims.Attack();
+					}
+					else
+					{
+						MonsterAttackBypass = true;
+					}
 				}
 				else
 				{
 					player.Attack();
-					monAnims.Attack();
-					//MonsterAttackBypass = true;
+					if (monAnims != null)
+					{
+						monAnims.Attack();
+					}
+					else
+					{
+						MonsterAttackBypass = true;
+					}
 				}
 
 				isAttackPhaseExec = true;
@@ -399,18 +420,25 @@ public class CombatManager : MonoBehaviour {
 			}
 			else
 			{
+				// Mon defeat
 				if (playerDiceRoll > monsterDiceRoll)
 				{
 					if (monster.HasDied())
 					{
-						monAnims.Dead();
+						if (monAnims != null)
+						{
+							monAnims.Dead();
+						}
+
 					}
 					else
 					{
-						monAnims.Hit();
+						if (monAnims != null)
+						{
+							monAnims.Hit();
+						}
 					}
 
-					// Mon defeat
 				}
 				else if (playerDiceRoll < monsterDiceRoll)
 				{
@@ -492,6 +520,10 @@ public class CombatManager : MonoBehaviour {
 		oriMonsterPos = monPrefab.transform.position;
 
 		monAnims = monPrefab.GetComponent<MonsterAnims>();
+		if (monAnims != null)
+		{
+			monAnims.CombatIdle();
+		}
 
 		monPrefab.transform.forward = -player.transform.forward;
 

@@ -555,9 +555,16 @@ public class GameManager : MonoBehaviour
 						if (cardManager.HasMonRevealed())
 						{
 							MonsterCard monster = cardManager.GetMonEncountered();
+							GameObject monModel = cardManager.GetMonsterModel(monster.GetMonModelIndex());
 
-							combatManager.EstablishMonCombat(listPlayers[currentPlayer], monster, cardManager.GetMonsterModel(monster.GetMonModelIndex()));
+							combatManager.EstablishMonCombat(listPlayers[currentPlayer], monster, monModel);
 							listPlayers[currentPlayer].CombatIdle();
+
+							/*if (monModel.GetComponent<MonsterAnims>())
+							{
+								monModel.GetComponent<MonsterAnims>().CombatIdle();
+							}*/
+
 							Debug.Log ("COMBAT BEGIN");
 							turnState = 4;
 							cardManager.HideCard();
