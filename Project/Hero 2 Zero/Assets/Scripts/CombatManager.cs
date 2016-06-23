@@ -307,9 +307,10 @@ public class CombatManager : MonoBehaviour {
 
 				if (player.GetComponent<Animator>() && monAnims)
 				{
-					// player/monster is Idle (win/draw) or has gone to prone/dead respectively (loss)
+					// player/monster is Idle (win/draw) with minster being idle or dead or has gone to prone/dead with monster being idle (loss)
 					if ((player.HasIdleState() && monAnims.HasIdleState()) ||
-					    (player.HasProneState() || monAnims.HasDeadState()) /*|| player.HasDied()*/)
+					    (player.HasProneState() && monAnims.HasIdleState()) || 
+					    (player.HasIdleState() && monAnims.HasDeadState()) /*|| player.HasDied()*/)
 					{	
 						player.transform.position = oriPlayerPos;
 						map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
@@ -342,7 +343,8 @@ public class CombatManager : MonoBehaviour {
 					}
 					// Both are standing (Tie), One is down (win/loss)
 					if ((player.HasIdleState() && player2.HasIdleState()) || 
-					    (player.HasProneState() || player2.HasProneState()) /*||
+					    (player.HasIdleState() && player2.HasProneState()) ||
+					    (player.HasProneState() && player2.HasIdleState())/*||
 					    (player.HasDied() || player2.HasDied())*/)
 					{
 
