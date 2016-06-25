@@ -17,6 +17,7 @@ public class SetRenderQueue : MonoBehaviour
 	protected int[] m_queues = new int[]{3000};
 	public Material mat;
 	public bool changeChildren = true;
+	public bool changeSortOrder = false;
 	
 	protected void Awake()
 	{
@@ -24,13 +25,19 @@ public class SetRenderQueue : MonoBehaviour
 		if (changeChildren) {
 			foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
 				r.material.renderQueue = m_queues[0];
+				
+				if (changeSortOrder) {
+					r.sortingLayerID = 2;
+				}
 			}
 		}
 		
-		Material[] materials = GetComponent<Renderer>().materials;
-
-		for (int i = 0; i < materials.Length && i < m_queues.Length; ++i) {
-			materials[i].renderQueue = m_queues[i];
-		}		
+		if (GetComponent<Renderer>() != null) {
+			Material[] materials = GetComponent<Renderer>().materials;
+	
+			for (int i = 0; i < materials.Length && i < m_queues.Length; ++i) {
+				materials[i].renderQueue = m_queues[i];
+			}		
+		}
 	}
 }
