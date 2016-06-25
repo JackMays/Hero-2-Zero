@@ -21,6 +21,7 @@ public class CombatManager : MonoBehaviour {
 	bool isPvpCombat = false;
 
 	bool isAttackPhaseExec = false;
+	bool isDefeatPhaseExec = false;
 	bool isResolveOnce = false;
 	//bool isRoundResolved;
 	bool isCombatEnded = false;
@@ -63,12 +64,18 @@ public class CombatManager : MonoBehaviour {
 
 			if (monster.HasDied())
 			{
+				monAnims.Dead();
+
 				// Remove Card from area
 				Debug.Log ("Monster's HP hit 0");
 				// gain more fame as bonus for win
 				player.ChangeFame(monster.GetFameMod(true));
 				map.ClearMonsterTile(tileX, tileY);
 				map.ClearPrefabTile(tileX, tileY);
+			}
+			else
+			{
+				monAnims.Run();
 			}
 
 
@@ -287,7 +294,7 @@ public class CombatManager : MonoBehaviour {
 	public void ResolveCombat()
 	{
 
-		ExecuteAttackPhase();
+		ExecuteAnimPhases();
 		
 
 		if (isMonCombat)
@@ -378,7 +385,7 @@ public class CombatManager : MonoBehaviour {
 		}
 	}
 
-	public void ExecuteAttackPhase()
+	public void ExecuteAnimPhases()
 	{
 		if (isMonCombat)
 		{
@@ -422,31 +429,38 @@ public class CombatManager : MonoBehaviour {
 			}
 			else
 			{
-				// Mon defeat
-				if (playerDiceRoll > monsterDiceRoll)
+				if (!isDefeatPhaseExec)
 				{
-					if (monster.HasDied())
+					// Mon defeat
+					if (playerDiceRoll > monsterDiceRoll)
 					{
-						if (monAnims != null)
+						/*if (monster.HasDied())
 						{
-							monAnims.Dead();
+							if (monAnims != null)
+							{
+								monAnims.Dead();
+							}
+
 						}
+						else
+						{
+							if (monAnims != null)
+							{
+								monAnims.Hit();
+							}
+						}*/
+
+						monAnims.Hit();
 
 					}
-					else
+					else if (playerDiceRoll < monsterDiceRoll)
 					{
-						if (monAnims != null)
-						{
-							monAnims.Hit();
-						}
+						player.Defeat();
+
 					}
-
 				}
-				else if (playerDiceRoll < monsterDiceRoll)
-				{
-					player.Defeat();
 
-				}
+				isDefeatPhaseExec = true;
 
 			}
 		}
@@ -473,21 +487,26 @@ public class CombatManager : MonoBehaviour {
 			}
 			else
 			{
-				if (playerDiceRoll > playerTwoDiceRoll)
+				if (!isDefeatPhaseExec)
 				{
+					if (playerDiceRoll > playerTwoDiceRoll)
+					{
 
-					if (player.HasFightAnimFinished())
+						if (player.HasFightAnimFinished())
+						{
+							player2.Defeat();
+						}
+					}
+					else if (playerDiceRoll < playerTwoDiceRoll)
 					{
-						player2.Defeat();
+						if (player2.HasFightAnimFinished())
+						{
+							player.Defeat();
+						}
 					}
 				}
-				else if (playerDiceRoll < playerTwoDiceRoll)
-				{
-					if (player2.HasFightAnimFinished())
-					{
-						player.Defeat();
-					}
-				}
+
+				isDefeatPhaseExec = true;
 
 			}
 		}
@@ -563,6 +582,7 @@ public class CombatManager : MonoBehaviour {
 		isMonCombat = false;
 		isPvpCombat = false;
 		isAttackPhaseExec = false;
+		isDefeatPhaseExec = false;
 		isResolveOnce = false;
 		isCombatEnded = false;
 		// make sure round is reset

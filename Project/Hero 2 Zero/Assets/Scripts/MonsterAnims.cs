@@ -85,7 +85,13 @@ public class MonsterAnims : MonoBehaviour {
 	// If attack kills combat needs to go forward to the right stage
 	public void DefeatEnd()
 	{
-		justFought = true;
+		if (animatorCompo)
+		{
+			animatorCompo.SetBool(combLoseID, false);
+			animatorCompo.SetBool(combIdleID, true);
+			
+			justFought = true;
+		}
 	}
 	
 	public void Victory()
@@ -101,6 +107,7 @@ public class MonsterAnims : MonoBehaviour {
 		if (animatorCompo)
 		{
 			animatorCompo.SetBool(combLoseID, true);
+			Debug.Log ("Hit");
 		}
 	}
 	// Anim for if monster was hit and defeated
