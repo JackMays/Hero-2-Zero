@@ -175,6 +175,10 @@ public class Butterfly : MonoBehaviour
 			if (isLanding) {
 				// Lands the butterfly.
 				StopFlying();
+				
+				// Faces the butterfly upwards.
+				trans.LookAt(2 * trans.position - new Vector3(newPos.x - trans.forward.x, 1.5f, newPos.z - trans.forward.z));
+				
 				return;
 			}
 			
