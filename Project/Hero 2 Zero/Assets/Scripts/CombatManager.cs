@@ -27,6 +27,7 @@ public class CombatManager : MonoBehaviour {
 	bool isCombatEnded = false;
 	// temp bool until monsters have implemented attacks
 	bool MonsterAttackBypass = false;
+	bool isAnimComplete = false;
 
 	Vector3 oriPlayerPos = Vector3.zero;
 	Vector3 oriPlayer2Pos = Vector3.zero;
@@ -456,17 +457,27 @@ public class CombatManager : MonoBehaviour {
 							}
 						}*/
 
-						monAnims.Hit();
+						if (player.HasFightAnimFinished())
+						{
+							monAnims.Hit();
+							isAnimComplete = true;
+						}
 
 					}
 					else if (playerDiceRoll < monsterDiceRoll)
 					{
-						player.Defeat();
+						if (monAnims.HasFightAnimFinished())
+						{
+							player.Defeat();
+							isAnimComplete = true;
+						}
 
 					}
 				}
-
-				isDefeatPhaseExec = true;
+				if (isAnimComplete)
+				{
+					isDefeatPhaseExec = true;
+				}
 
 			}
 		}
@@ -501,6 +512,7 @@ public class CombatManager : MonoBehaviour {
 						if (player.HasFightAnimFinished())
 						{
 							player2.Defeat();
+							isAnimComplete = true;
 						}
 					}
 					else if (playerDiceRoll < playerTwoDiceRoll)
@@ -508,11 +520,14 @@ public class CombatManager : MonoBehaviour {
 						if (player2.HasFightAnimFinished())
 						{
 							player.Defeat();
+							isAnimComplete = true;
 						}
 					}
 				}
-
-				isDefeatPhaseExec = true;
+				if (isAnimComplete)
+				{
+					isDefeatPhaseExec = true;
+				}
 
 			}
 		}
@@ -591,6 +606,7 @@ public class CombatManager : MonoBehaviour {
 		isDefeatPhaseExec = false;
 		isResolveOnce = false;
 		isCombatEnded = false;
+		isAnimComplete = false;
 		// make sure round is reset
 		//ResetRound();
 	}
