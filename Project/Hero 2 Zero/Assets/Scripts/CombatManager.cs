@@ -70,8 +70,8 @@ public class CombatManager : MonoBehaviour {
 				Debug.Log ("Monster's HP hit 0");
 				// gain more fame as bonus for win
 				player.ChangeFame(monster.GetFameMod(true));
-				map.ClearMonsterTile(tileX, tileY);
-				map.ClearPrefabTile(tileX, tileY);
+				/*map.ClearMonsterTile(tileX, tileY);
+				map.ClearPrefabTile(tileX, tileY);*/
 			}
 			else
 			{
@@ -321,6 +321,12 @@ public class CombatManager : MonoBehaviour {
 					{	
 						player.transform.position = oriPlayerPos;
 						map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
+
+						if (monster.HasDied())
+						{
+							map.ClearMonsterTile(tileX, tileY);
+							map.ClearPrefabTile(tileX, tileY);
+						}
 
 						// end combat
 						isCombatEnded = true;
