@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
 	#region Variables	
+	#region Managers
+	
 	// Reference to the map.
 	public Map map;
 	
@@ -21,6 +23,11 @@ public class GameManager : MonoBehaviour
 	
 	// Reference to item manager.
 	ItemManager itemManager;
+	
+	// The chest manager.
+	ChestManager chestManager;
+	
+	#endregion
 
 	ItemCard selectedHandCard;
 	
@@ -37,8 +44,6 @@ public class GameManager : MonoBehaviour
 	public Text p3Fame;
 	public Text p4HP;
 	public Text p4Fame;
-
-
 
 	// Number of players.
 	int numPlayers = 4;
@@ -85,7 +90,10 @@ public class GameManager : MonoBehaviour
 		currentPlayer = startPlayer;
 
 		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
-
+		
+		// Creates the chest manager.
+		chestManager = new ChestManager(map, itemManager);
+		
 		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
 		{
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
@@ -139,6 +147,7 @@ public class GameManager : MonoBehaviour
 		return -1;
 	}
 
+	#region Hand
 	public void IncrementHand()
 	{
 		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
@@ -251,6 +260,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	
+	#endregion 
+	
+	#region Directions
 	// Sets the direction that the player chose.
 	public void SetDirection(int d)
 	{
@@ -277,9 +289,7 @@ public class GameManager : MonoBehaviour
 		// Shows the canvas.
 		canvasDirection.SetActive(true);
 	}
-	
-	// Holds whether the game has been hacked by Skynet.
-	bool Skynet = false;
+	#endregion
 	
 	// Update is called once per frame
 	void Update ()
@@ -296,14 +306,6 @@ public class GameManager : MonoBehaviour
 
 		p4HP.text = "HP: " + listPlayers[3].GetHealth();
 		p4Fame.text = "Fame: " + listPlayers[3].GetFame();
-
-		// Checks if skynet is here.
-		if (Skynet) {
-			// Infinite loop to kill Skynet. Suck it, Skynet.
-			for (int i = 0; i < 100; ++i) {
-				--i;
-			}
-		}
 		
 		// Debugging Equipment.
 		// Level up.
@@ -389,6 +391,7 @@ public class GameManager : MonoBehaviour
 	
 	public InputField input;
 	
+	#region Dice Rolling
 	public void ForceDiceRoll()
 	{
 		Debug.Log(int.Parse(input.text));
@@ -427,6 +430,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	
+	#endregion
+	
+	#region Movement
 	// Waits for the player to stop moving.
 	void StateMovePlayer()
 	{
@@ -521,6 +527,8 @@ public class GameManager : MonoBehaviour
 			listPlayers[currentPlayer].SkipToFinish();
 		}
 	}
+	
+	#endregion
 	
 	// Gets the area tile that the player landed on and shows the first card
 	// from the corresponding deck. (To be expanded)

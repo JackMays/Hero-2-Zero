@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -55,6 +55,7 @@ public class Map : MonoBehaviour
 	// The spacing between tiles.
 	public int TILEGAP = 2;
 	
+	#region Choice Tiles
 	// Holds the position of where the player needs to choose a path
 	// and the directions the player can choose.
 	List<ChoiceTile> choiceTiles = new List<ChoiceTile>() {
@@ -63,7 +64,9 @@ public class Map : MonoBehaviour
 		new ChoiceTile(new Vector2(8, 5), new bool[4] {true, false, false, true}),
 		new ChoiceTile(new Vector2(5, 0), new bool[4] {true, true, false, false})
 	};
+	#endregion
 	 
+	#region Force Tiles
 	// Holds the position of where the player is forced to go in a
 	// particular direction.
 	List<ForceTile> forceTiles = new List<ForceTile>() {
@@ -72,7 +75,9 @@ public class Map : MonoBehaviour
 		new ForceTile(new Vector2(8, 3), 3),
 		new ForceTile(new Vector2(3, 0), 0)
 	};
+	#endregion
 	
+	#region Monster Arrays
 	// Monster Instances by Tile
 	MonsterCard[,] tiledMonsterCards = new MonsterCard[9,9] {
 		{null, null, null, null, null, null, null, null, null},
@@ -99,9 +104,13 @@ public class Map : MonoBehaviour
 		{null, null, null, null, null, null, null, null, null},
 		{null, null, null, null, null, null, null, null, null}
 	};
+	#endregion
 	
 	// Parent of all map tiles.
 	public GameObject mapParent;
+	
+	// List of all tile positions.
+	public List<Vector2> tilePositions;
 	
 	// The tile prefab.
 	public GameObject tilePrefab;
@@ -220,12 +229,13 @@ public class Map : MonoBehaviour
 					
 					// Adds the position to the list.
 					viableTiles.Add(new Vector2(i, j));
+					tilePositions.Add(new Vector2(i, j));
 				}
 			}
 		}
 		
 		// Places the chests using the tile list.
-		PlaceChests(viableTiles);
+		//PlaceChests(viableTiles);
 	}
 	
 	// Places a tile at the specified position and changes its type.
@@ -309,7 +319,6 @@ public class Map : MonoBehaviour
 				//if (tiles[index] == pos) {
 				if (tiles[index].x > pos.x - 4 && tiles[index].x < pos.x + 4) {
 					if (tiles[index].y > pos.y - 4 && tiles[index].y < pos.y + 4) {
-						Debug.Log("Occupied");
 						isOccupied = true;
 					}
 				}	
