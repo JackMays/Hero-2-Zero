@@ -38,8 +38,8 @@ public class PlayerInfoGUI : MonoBehaviour
 	// The point at which the minus fame starts from.
 	public Transform minusOrigin;
 	
-	// The time progress for the big fame difference.
-	
+	// Holds whether some changes are still being shown.
+	bool showingChanges = false;
 	#endregion
 	
 	// Sets up the UI's players and icons.
@@ -372,6 +372,12 @@ public class PlayerInfoGUI : MonoBehaviour
 				
 	#endregion
 	
+	// Returns whether there are still changes being shown.
+	public bool GetShowingChanges()
+	{
+		return showingChanges;
+	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
@@ -412,7 +418,11 @@ public class PlayerInfoGUI : MonoBehaviour
 	
 		// Checks if there are any details that need changing.
 		if (valuesToChange.Count > 0) {
+			showingChanges = true;
 			ChangeValues();
+		}
+		else {
+			showingChanges = false;
 		}
 	}
 }

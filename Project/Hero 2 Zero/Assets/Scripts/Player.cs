@@ -880,7 +880,12 @@ public class Player : MonoBehaviour
 	{
 		return numDice;
 	}
-
+	
+	public int GetGold()
+	{
+		return gold;
+	}
+	
 	public int GetItemHandLimit()
 	{
 		return items.Count;

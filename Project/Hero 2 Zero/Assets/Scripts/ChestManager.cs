@@ -20,22 +20,40 @@ public class ChestManager
 	// Reference to the Item Manager.
 	ItemManager itemManager;
 	
+	// Reference to the player info GUI.
+	PlayerInfoGUI playerGUI;
+	
 	// Holds if a mimic needs to be spawned.
 	bool spawnMimic = false;
+	
+	// Temp list of items. (Untilo cardmanager is safe)
+	List<Card> items = new List<Card>();
+	List<Card> weapons = new List<Card>();
 	#endregion
 	
 	// Constructor.
-	public ChestManager(Map m, ItemManager im)
+	public ChestManager(Map m, ItemManager im, PlayerInfoGUI playInfo)
 	{
+		// Stores the map and item manager references.
 		map = m;
 		itemManager = im;
+		playerGUI = playInfo; 
 		
+		// Loads the chest prefab for instantiating later.
 		chestPrefab = Resources.Load<GameObject>("Prefabs/Chest");
 		
+		// Creates the parent gameobject and sets its position to align witht he tile's parent.
 		chestParent = new GameObject("Chest Parent");
 		chestParent.transform.position = GameObject.Find("Tiles").transform.position;
 		
+		// Attempts to place 10 chests in the world.
 		PlaceChests(10, 50, false);
+		
+		items.Add(new ItemCard("Potion", 10, 2, 5, 2, 0, 0, "Heals 5 health.", 6));
+		items.Add(new ItemCard("High Potion", 20, 2, 10, 2, 0, 0, "Heals 10 health.", 6));
+		
+		weapons.Add(new WeaponCard("Rusty Spoon", -2, 0, 5, 0, "A rusty spoon.", 0));
+		weapons.Add(new WeaponCard("Grand Blade", 4, 0, 10, 0, "A powerful great sword.", 0));
 	}
 	
 	
@@ -72,7 +90,8 @@ public class ChestManager
 				c.transform.parent = chestParent.transform;
 				c.transform.localPosition = new Vector3(map.tilePositions[index].y * map.TILEGAP, 0.062f, -map.tilePositions[index].x * map.TILEGAP);
 				c.GetComponent<Chest>().SetGridPosition(map.tilePositions[index]);
-					
+				SetChestReward(c.GetComponent<Chest>());
+				
 				// Adds the chest to the list and decrements number to place.
 				chests.Add(c.GetComponent<Chest>());
 				--numChestsToPlace;
@@ -99,9 +118,9 @@ public class ChestManager
 		// Loops through all chests.
 		foreach (Chest c in chests) {
 			// Checks if the chest is closed.
-			if (c.GetIsOpen()) {
+			if (!c.GetIsOpen()) {
 				// Checks if the chest's tile is the same as the one given.
-				if (c.GetGridPosition() == gridPos) {
+				if (c.GetGridPosition() == new Vector2(gridPos.y, gridPos.x)) {
 					// Returns the chest as it is on the tile and is closed.
 					return c;
 				}
@@ -204,16 +223,18 @@ public class ChestManager
 	}
 	
 	// Gives the player the contents of the chest.
-	void GivePlayerChestContents(Player player, Chest chest)
+	public void GivePlayerChestContents(Player player, Chest chest, int index)
 	{
+		chest.OpenCloseChest(true);
+		
 		// Gets what the chest contains.
 		int cType = chest.GetChestType();
 		
 		// Checks if the chest has gold.
 		if (cType == 0) {
 			// Adds the chest gold to the player.
+			playerGUI.CreateValueChange(index, false, false, false, true, player.GetGold(), chest.getGold());
 			player.ChangeGold(chest.getGold());
-			
 			return;
 		}
 		
@@ -244,17 +265,17 @@ public class ChestManager
 		int rand = Random.Range(0, 101);
 		
 		// 30% chance the chest will have gold.
-		if (rand < 25) {
+		if (rand < 100) {
 			c.SetGold(Random.Range(20, 50));
 			return;
 		}
 		// 30% chance the chest will have an item.
-		if (rand < 50) {
+		if (rand < 60) {
 			
 			return;
 		}
 		// 25% chance the chest will have a weapon.
-		if (rand < 75) {
+		if (rand < 85) {
 		
 			return;
 		}

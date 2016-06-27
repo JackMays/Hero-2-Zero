@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 	// The chest manager.
 	ChestManager chestManager;
 	
+	public PlayerInfoGUI playerInfoGUI;
+	
 	#endregion
 
 	ItemCard selectedHandCard;
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
 		cameraManager.SetActivePlayer(listPlayers[currentPlayer].gameObject);
 		
 		// Creates the chest manager.
-		chestManager = new ChestManager(map, itemManager);
+		chestManager = new ChestManager(map, itemManager, playerInfoGUI);
 		
 		if (listPlayers[currentPlayer].GetItemHandLimit() != 0)
 		{
@@ -293,20 +295,7 @@ public class GameManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{
-		// display stuff in temp UI
-		p1HP.text = "HP: " + listPlayers[0].GetHealth();
-		p1Fame.text = "Fame: " + listPlayers[0].GetFame();
-
-		p2HP.text = "HP: " + listPlayers[1].GetHealth();
-		p2Fame.text = "Fame: " + listPlayers[1].GetFame();
-
-		p3HP.text = "HP: " + listPlayers[2].GetHealth();
-		p3Fame.text = "Fame: " + listPlayers[2].GetFame();
-
-		p4HP.text = "HP: " + listPlayers[3].GetHealth();
-		p4Fame.text = "Fame: " + listPlayers[3].GetFame();
-		
+	{		
 		// Debugging Equipment.
 		// Level up.
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -369,12 +358,15 @@ public class GameManager : MonoBehaviour
 				{
 					cameraManager.ToggleCombatView(false);
 				}
-
-				// Changes the player's turn.
-				ChangeTurns();
+				
+				// Checks if any changes are being shown.
+				if (!playerInfoGUI.GetShowingChanges()) {
+					// Changes the player's turn.
+					ChangeTurns();
 			
-				// Resets back to roll dice state.
-				turnState = 0;
+					// Resets back to roll dice state.
+					turnState = 0;
+				}
 			}
 
 			else if (turnState == 4)
@@ -485,8 +477,16 @@ public class GameManager : MonoBehaviour
 					// as long as the player isnt already in combat with a prexisting monster or player.
 					if (turnState != 4)
 					{
-						turnState = 2;
-
+						Debug.Log("CHECKING");
+						// Checks if there is a chest on the tile.
+						Chest chest = chestManager.CheckTileForChest(listPlayers[currentPlayer].GetMapPosition());
+						if (chest != null) {
+							chestManager.GivePlayerChestContents(listPlayers[currentPlayer], chest, currentPlayer);
+							turnState = 3;
+						}
+						else {	
+							turnState = 2;
+						}
 						// idle when finished moving
 						listPlayers[currentPlayer].Idle();
 					}
