@@ -233,7 +233,6 @@ public class ChestManager
 		// Checks if the chest has gold.
 		if (cType == 0) {
 			// Adds the chest gold to the player.
-			playerGUI.CreateValueChange(index, false, false, false, true, player.GetGold(), chest.getGold());
 			player.ChangeGold(chest.getGold());
 			return;
 		}

@@ -33,7 +33,6 @@ public class CardManager : MonoBehaviour
 	// Items are a list because specific cards may need to be drawn at certain times.
 	List<ItemCard> itemCards = new List<ItemCard>();
 	
-	
 	// List of the queues. Makes it easier to access a certain list.
 	List<Queue<Card>> cardList = new List<Queue<Card>>();
 	
@@ -69,6 +68,8 @@ public class CardManager : MonoBehaviour
 	// Holds whether a card is being shown.
 	bool cardShowing = false;
 	
+	// Reference to the player info GUI.
+	public PlayerInfoGUI playerInfoGUI;
 	#endregion
 	
 	#region Start Shit
@@ -123,7 +124,7 @@ public class CardManager : MonoBehaviour
 		laneCards.Enqueue(new FameCard(10, 0, 0, "You assault a innocent looking carriage travelling the path. It's cargo is Kidnapped children."));
 		laneCards.Enqueue(new Card(0, "You feel so joyful you start to skip. Like a fag.", 0));
 		laneCards.Enqueue(new Card(0, "You find a stone and leave it.", 0));
-		laneCards.Enqueue(new Card(0, "You trip on a pothole", 0));
+		laneCards.Enqueue(new HealthCard(-5, 0, 0, "You trip on a pothole"));
 		laneCards.Enqueue(new SkipCard(1, 0, "A fallen tree is blocking your path. Skip next turn."));
 		
 		c1E = new int[2] {1, 2};
@@ -231,7 +232,7 @@ public class CardManager : MonoBehaviour
 		/*monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!"));
 		monsterCards.Add(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
 		monsterCards.Add(new MonsterCard("Frost Troll", 2, 0, 15, 8, 4, 20, 10, -10, 5, "Monster!"));*/
-		monsterCards.Add(new MonsterCard("Goblin", 0, 2, 1 /*15*/, 4 /*8*/, 4, 5, 10, -10, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Goblin", 0, 2, 1 /*15*/, 3 /*8*/, 4, 5, 10, -10, 5, "Monster!"));
 	}
 	
 	#endregion

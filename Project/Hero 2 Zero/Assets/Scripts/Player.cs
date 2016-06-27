@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 	// Typical player values.
 	int health = 20;
 	int maxHealth = 20;
+	int magic = 5;
+	int maxMagic = 5;
 	int strength = 5;
 	int defence = 5;
 	int gold = 10;
@@ -107,6 +109,12 @@ public class Player : MonoBehaviour
 	List<List<GameObject>> listLevelSpecificEquipment = new List<List<GameObject>>();
 	
 	public int currentLevel = 5;
+	
+	// Reference to the player info GUI.
+	public PlayerInfoGUI playerInfoGUI;
+	
+	// The index of the player. (Used with the player info GUI).
+	int index = 0;
 	
 	#endregion
 	
@@ -617,7 +625,7 @@ public class Player : MonoBehaviour
 	// Changes the fame based on passed value.
 	public void ChangeFame(int f)
 	{
-		Debug.Log("Fame has been changed by " + f + ". Fame was " + fame + ", and is now " + (fame + f));
+		playerInfoGUI.CreateValueChange(index, false, false, true, false, fame, f);
 		
 		fame += f;
 
@@ -630,7 +638,7 @@ public class Player : MonoBehaviour
 	// Changes the health based on passed value.
 	public void ChangeHealth(int h)
 	{
-		Debug.Log("Health has been changed by " + h + ". Health was " + health + ", and is now " + (health + h));
+		playerInfoGUI.CreateValueChange(index, true, false, false, false, health, h);
 	
 		health += h;
 		
@@ -641,6 +649,22 @@ public class Player : MonoBehaviour
 		
 		// Checks if the player died.
 		CheckDead();
+	}
+	
+	// Changes the magic based on teh passed value.
+	public void ChangeMagic(int m)
+	{
+		playerInfoGUI.CreateValueChange(index, false, true, false, false, magic, m);
+		
+		magic += m;
+		
+		// Keeps magic within bounds.
+		if (magic > maxMagic) {
+			magic = maxMagic;
+		}
+		else if (magic < 0) {
+			magic = 0;
+		}
 	}
 	
 	public void TakeDamage(int dmg)
@@ -654,10 +678,10 @@ public class Player : MonoBehaviour
 		}*/
 		
 		//Defeat();
-
-		health -= dmg;
 		
-		Debug.Log ("Health: " + health);
+		playerInfoGUI.CreateValueChange(index, true, false, false, false, health, -dmg);
+		
+		health -= dmg;
 		
 		if (health < 0)
 		{
@@ -679,9 +703,14 @@ public class Player : MonoBehaviour
 	// Changes the gold based on passed value.
 	public void ChangeGold(int g)
 	{
-		Debug.Log("Gold has been changed by " + g + ". Gold was " + gold + ", and is now " + (gold + g));
+		playerInfoGUI.CreateValueChange(index, false, false, false, true, gold, g);
 	
 		gold += g;
+		
+		// Keeps gold in bounds.
+		if (gold < 0) {
+			gold = 0;
+		}
 	}
 	
 	// Changes the number of dice the player can throw.
@@ -786,6 +815,12 @@ public class Player : MonoBehaviour
 	{
 		isVillain = v;
 	}	
+	
+	// Sets the player's index.
+	public void SetIndex(int i)
+	{
+		index = i;
+	}
 	
 	// Switches whether the weapon should be shown or not.
 	public void ShowWeapon(int show)

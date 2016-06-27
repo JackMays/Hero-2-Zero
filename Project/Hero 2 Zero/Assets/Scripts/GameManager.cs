@@ -100,6 +100,11 @@ public class GameManager : MonoBehaviour
 		{
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
+		
+		// Sets each playher's index.
+		for (int i = 0; i < listPlayers.Count; ++i) {
+			listPlayers[i].SetIndex(i);
+		}
 	}
 	
 	// Changes the player's turn.
