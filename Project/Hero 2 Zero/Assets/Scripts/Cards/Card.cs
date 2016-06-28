@@ -7,8 +7,13 @@ public class Card
 	
 	// The image for the card.
 	int imageIndex = 0;
+	
+	// The title for the card.
+	string title = "";
+	
 	// The card's description.
 	string description = "";
+	
 	// What kind of card is it. 0: Nothing | 1: Fame change | 2: Gold change | 3: Item Change | 4: Choice |
 	// 5: Teleport | 6: Health change | 7: Create Monster | 8: Monster | 9: Skip Turn | 10: Multiple Effects
 	int cardType = 0;
@@ -16,9 +21,10 @@ public class Card
 	#endregion
 	
 	// Use this for initialization
-	public Card (int i, string d, int t)
+	public Card (int i, string ti, string d, int t)
 	{
 		imageIndex = i;
+		title = ti;
 		description = d;
 		cardType = t;
 	}
@@ -28,6 +34,12 @@ public class Card
 	public int GetImageIndex()
 	{
 		return imageIndex;
+	}
+	
+	// Returns the title of the card.
+	public string GetTitle()
+	{
+		return title;
 	}
 	
 	// Returns the description of the card.

@@ -17,7 +17,7 @@ public class TESTScrollRoll : MonoBehaviour
 	// The speed the scroll rolls across the csreen.
 	float speed = 0.75f;
 	
-	// Time for moving teh scroll across screen.
+	// Time for moving the scroll across screen.
 	float lerpTime = 0;
 	
 	// Holds wehther the scroll is rolling or not.
@@ -29,27 +29,6 @@ public class TESTScrollRoll : MonoBehaviour
 	// List of area images. (2nd last image is fame icon, last image is gold icon.)
 	public Sprite[] images;
 	#endregion
-	
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
-	
-	public void ResetScroll()
-	{
-		// Hides the scroll.
-		gameObject.SetActive(false);
-		
-		// Sets the scroll back to the beginning.
-		parent.position = points[0].position;
-		
-		// Resets time back to 0.
-		lerpTime = 0;
-		
-		// Sets teh scroll to stop rolling.
-		isRolling = false;
-	}
 	
 	// Changes the details of the event and sets the scroll to roll.
 	public void CreateEvent(int ima, string title, string description, Vector2[] changes)
@@ -79,8 +58,6 @@ public class TESTScrollRoll : MonoBehaviour
 		// Changes the event description.
 		canvasParent.GetChild(2).GetComponent<Text>().text = description;
 		
-		//return;
-		
 		// Checks if there are no changes.
 		if (changes == null) {
 			canvasParent.GetChild(3).gameObject.SetActive(false);
@@ -97,10 +74,17 @@ public class TESTScrollRoll : MonoBehaviour
 				canvasParent.GetChild(3 + i).gameObject.SetActive(true);
 					
 				// Changes the icon image.
-				canvasParent.GetChild(3 + i).GetComponent<Image>().sprite = ChangeIcon((int)changes[i].x);//images[images.Length - 1 -(int)changes[i].x];
+				canvasParent.GetChild(3 + i).GetComponent<Image>().sprite = ChangeIcon((int)changes[i].x);
 					
-				// Changes the icon text.
-				canvasParent.GetChild(3 + i).GetChild(0).GetComponent<Text>().text = changes[i].y.ToString();
+				// Checks if the change is positive or negative.
+				if (changes[i].y >= 0) {
+					// Changes the icon text.
+					canvasParent.GetChild(3 + i).GetChild(0).GetComponent<Text>().text = "+ " + changes[i].y.ToString();
+				}
+				else {
+					// Changes the icon text.
+					canvasParent.GetChild(3 + i).GetChild(0).GetComponent<Text>().text = "- " + (-changes[i].y).ToString();
+				}
 			}
 			else {
 				// There isn't a change for the current icon so hide it.
@@ -109,6 +93,7 @@ public class TESTScrollRoll : MonoBehaviour
 		}
 	}
 	
+	// Temporary solution until type change later.
 	Sprite ChangeIcon(int index)
 	{
 		// Checks if a fame effect.
@@ -154,6 +139,22 @@ public class TESTScrollRoll : MonoBehaviour
 		isRolling = false;
 	}
 	
+	// Hides the scroll, reset's its position and stops it rolling.
+	public void ResetScroll()
+	{
+		// Hides the scroll.
+		gameObject.SetActive(false);
+		
+		// Sets the scroll back to the beginning.
+		parent.position = points[0].position;
+		
+		// Resets time back to 0.
+		lerpTime = 0;
+		
+		// Sets teh scroll to stop rolling.
+		isRolling = false;
+	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
@@ -161,13 +162,6 @@ public class TESTScrollRoll : MonoBehaviour
 		if (isRolling) {
 			// Rolls the scroll.
 			RollScroll();
-		}
-		
-		// TESTING.
-		if (Input.GetKeyDown(KeyCode.L)) {
-			isRolling = true;
-			
-			lerpTime = 0;
 		}
 	}
 }

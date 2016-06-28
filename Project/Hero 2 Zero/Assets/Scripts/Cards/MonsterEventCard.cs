@@ -10,7 +10,7 @@ public class MonsterEventCard : Card
 	#endregion
 	
 	// Constructor.
-	public MonsterEventCard(string na, int im, string de) : base (im, de, 7)
+	public MonsterEventCard(string na, int im, string ti, string de) : base (im, ti, de, 7)
 	{
 		// Sets the name of the monster.
 		name = na;

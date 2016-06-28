@@ -1,0 +1,450 @@
+fileFormatVersion: 2
+guid: a8207caa17fd86a49b51bac9a0109329
+timeCreated: 1467132355
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Left_Eye
+    100002: Left_Eyebrow
+    100004: Lower_Body
+    100006: Middle
+    100008: Right_Eye
+    100010: Right_Eyebrow
+    100012: Root
+    100014: //RootNode
+    100016: Slime
+    400000: Left_Eye
+    400002: Left_Eyebrow
+    400004: Lower_Body
+    400006: Middle
+    400008: Right_Eye
+    400010: Right_Eyebrow
+    400012: Root
+    400014: //RootNode
+    400016: Slime
+    4300000: Slime
+    7400000: T Pose
+    7400002: Idle
+    7400004: Attack
+    7400006: Hit
+    7400008: Knock Down
+    7400010: Dead
+    7400012: Victory
+    7400014: Run Away
+    9500000: //RootNode
+    13700000: Slime
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: T Pose
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 40
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 137
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hit
+      takeName: Take 001
+      firstFrame: 140
+      lastFrame: 187
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Knock Down
+      takeName: Take 001
+      firstFrame: 190
+      lastFrame: 210
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Dead
+      takeName: Take 001
+      firstFrame: 210
+      lastFrame: 220
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Victory
+      takeName: Take 001
+      firstFrame: 230
+      lastFrame: 269
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run Away
+      takeName: Take 001
+      firstFrame: 280
+      lastFrame: 313
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 25
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

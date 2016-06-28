@@ -15,7 +15,7 @@ public class ItemEventCard : Card
 	#endregion
 	
 	// Use this for initialization
-	public ItemEventCard (bool ad, int ii, int t, int im, string de) : base (im, de, 3)
+	public ItemEventCard (bool ad, int ii, int t, int im, string ti, string de) : base (im, ti, de, 3)
 	{
 		// Sets the index for the item, the target and whetehr the item is to be removed or added.
 		itemIndex = ii;

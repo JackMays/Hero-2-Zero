@@ -20,7 +20,7 @@ public class MoveCard : Card
 	#endregion
 	
 	// Use this for initialization
-	public MoveCard (int mt, int mp, bool isM, int t, int im, string de) : base (im, de, 5)
+	public MoveCard (int mt, int mp, bool isM, int t, int im, string ti, string de) : base (im, ti, de, 5)
 	{
 		// Sets the passed values.
 		moveTiles = mt;

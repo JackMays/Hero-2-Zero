@@ -120,21 +120,21 @@ public class CardManager : MonoBehaviour
 		int[] c2V = new int[1] {-10};
 	
 		// Lane Cards: 10
-		laneCards.Enqueue(new ChoiceCard("Help", "Leave", c1E, c1T, c1V, c2E, c2T, c2V, 0, "Timmy is stuck in a well."));
-		laneCards.Enqueue(new FameCard(10, 0, 0, "You come across a goblin corpse and passing villagers congratulate your victory."));
-		laneCards.Enqueue(new FameCard(-5, 0, 0, "You rearrange the directions of some roadsigns."));
-		laneCards.Enqueue(new FameCard(-10, 0, 0, "You kick a passing old lady. Bitch."));
-		laneCards.Enqueue(new FameCard(10, 0, 0, "You assault a innocent looking carriage travelling the path. It's cargo is Kidnapped children."));
-		laneCards.Enqueue(new Card(0, "You feel so joyful you start to skip. Like a fag.", 0));
-		laneCards.Enqueue(new Card(0, "You find a stone and leave it.", 0));
-		laneCards.Enqueue(new HealthCard(-5, 0, 0, "You trip on a pothole"));
-		laneCards.Enqueue(new SkipCard(1, 0, "A fallen tree is blocking your path. Skip next turn."));
+		laneCards.Enqueue(new ChoiceCard("Help", "Leave", c1E, c1T, c1V, c2E, c2T, c2V, 0, "Billy and the Well", "Billy is stuck in a well."));
+		laneCards.Enqueue(new FameCard(10, 0, 0, "Goblin Corpse", "You come across a goblin corpse and passing villagers congratulate your victory."));
+		laneCards.Enqueue(new FameCard(-5, 0, 0, "Roadsign Rearrange", "You rearrange the directions of some roadsigns."));
+		laneCards.Enqueue(new FameCard(-10, 0, 0, "Bitchy Old Lady", "You kick a passing old lady. Bitch."));
+		laneCards.Enqueue(new FameCard(10, 0, 0, "Carriage Attack", "You assault a innocent looking carriage travelling the path. It's cargo is Kidnapped children."));
+		laneCards.Enqueue(new Card(0, "Like a Fag", "You feel so joyful you start to skip. Like a fag.", 0));
+		laneCards.Enqueue(new Card(0, "Stones", "You find a stone and leave it.", 0));
+		laneCards.Enqueue(new HealthCard(-5, 0, 0, "Trip-idation of Potholes", "You trip on a pothole"));
+		laneCards.Enqueue(new SkipCard(1, 0, "Tree Blocked", "A fallen tree is blocking your path. Skip next turn."));
 		
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {-10, -20};
 		
-		laneCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 0, "You are ambushed by a group of bandits."));
+		laneCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 0, "Bandit Attack", "You are ambushed by a group of bandits."));
 		
 		// Village Cards: 10
 		
@@ -145,21 +145,21 @@ public class CardManager : MonoBehaviour
 		c2T = new int[1] {0};
 		c2V = new int[1] {-10};
 	
-		villageCards.Enqueue(new ChoiceCard("Gain 10 Fame", "Lose 10 Fame", c1E, c1T, c1V, c2E, c2T, c2V, 1, "Do you want Fame?"));
-		villageCards.Enqueue(new FameCard(-10, 0, 1, "You trample a villager's crops."));
-		villageCards.Enqueue(new FameCard(-25, 0, 1, "You knock on someone's door and headbutt them when they answer."));
-		villageCards.Enqueue(new Card(1, "You set someone's hut on fire. Pyromania YEAH.", 0));
-		villageCards.Enqueue(new Card(1, "You window shop as you wander the streets.", 0));
-		villageCards.Enqueue(new Card(1, "You take some time to people watch in the Village Square.", 0));
-		villageCards.Enqueue(new FameCard(-15, 0, 1, "You find a big bearded man and start a public fight."));
-		villageCards.Enqueue(new FameCard(-5, 0, 1, "A girl gives you a flower. You kick her."));
-		villageCards.Enqueue(new GoldCard(-20, 0, 1, "A passing gang of kids steal money from you. -20 Gold."));
+		villageCards.Enqueue(new ChoiceCard("Gain 10 Fame", "Lose 10 Fame", c1E, c1T, c1V, c2E, c2T, c2V, 1, "Simple Question", "Do you want Fame?"));
+		villageCards.Enqueue(new FameCard(-10, 0, 1, "Cropped", "You trample a villager's crops."));
+		villageCards.Enqueue(new FameCard(-25, 0, 1, "Zinedine Zidane at the Door", "You knock on someone's door and headbutt them when they answer."));
+		villageCards.Enqueue(new Card(1, "Pyromaniac", "You set someone's hut on fire. Pyromania YEAH.", 0));
+		villageCards.Enqueue(new Card(1, "Window Shopper", "You window shop as you wander the streets.", 0));
+		villageCards.Enqueue(new Card(1, "Observer", "You take some time to people watch in the Village Square.", 0));
+		villageCards.Enqueue(new FameCard(-15, 0, 1, "Beard Brawl", "You find a big bearded man and start a public fight."));
+		villageCards.Enqueue(new FameCard(-5, 0, 1, "Flower Girl Punt", "A girl gives you a flower. You kick her."));
+		villageCards.Enqueue(new GoldCard(-20, 0, 1, "Childish Thievery", "A passing gang of kids steal money from you. -20 Gold."));
 		
 		c1E = new int[2] {2, 6};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {-10, 20};
 		
-		villageCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 1, "You spend the night at a local inn."));
+		villageCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 1, "Nap Time", "You spend the night at a local inn."));
 		
 		c1E = new int[1] {1};
 		c1T = new int[1] {0};
@@ -168,20 +168,20 @@ public class CardManager : MonoBehaviour
 		c2T = new int[1] {0};
 		c2V = new int[1] {20};
 		
-		villageCards.Enqueue(new ChoiceCard("Join in", "Stop it", c1E, c1T, c1V, c2E, c2T, c2V, 1, "A bar brawl has broken out where you are drinking."));
+		villageCards.Enqueue(new ChoiceCard("Join in", "Stop it", c1E, c1T, c1V, c2E, c2T, c2V, 1, "Bar Brawl", "A bar brawl has broken out where you are drinking."));
 		
 		
 		// Field Cards: 10 (sans the commented out ones)
-		fieldCards.Enqueue(new MonsterEventCard("Slime", 2, "You encounter a friendly slime. Now slay it."));
-		fieldCards.Enqueue(new FameCard(-10, 0, 2, "A passing fairy grants you a wish. You wish for the fairy to die."));
-		fieldCards.Enqueue(new FameCard(10, 0, 0, "Ripped apart a Butterfly. You saved Butterfly kind from evil Dictator!"));
-		fieldCards.Enqueue(new Card(2, "You get hayfever because you're a pusseh.", 0));
+		fieldCards.Enqueue(new MonsterEventCard("Slime", 2, "A Slimy Encounter", "You encounter a friendly slime. Now slay it."));
+		fieldCards.Enqueue(new FameCard(-10, 0, 2, "Don't Believe in Fairies", "A passing fairy grants you a wish. You wish for the fairy to die."));
+		fieldCards.Enqueue(new FameCard(10, 0, 0, "Sexy Butterflies", "Ripped apart a Butterfly. You saved Butterfly kind from evil Dictator!"));
+		fieldCards.Enqueue(new Card(2, "Hayfever", "You get hayfever because you're a pusseh.", 0));
 		//fieldCards.Enqueue(new Card(2, "A flower calls you a prick. You step on it.", 0));
-		fieldCards.Enqueue(new Card(2, "Grass. Pretty much it.", 0));
-		fieldCards.Enqueue(new Card(2, "You lie on the grass and cloudwatch.", 0));
-		villageCards.Enqueue(new GoldCard(20, 0, 2, "You spot an oddly out of place dirt mound in the grass. Digging it unearths a small pouch. +20 Gold."));
-		fieldCards.Enqueue(new HealthCard(20, 0, 2, "You lie in the field and relax under the warm sun."));
-		fieldCards.Enqueue(new HealthCard(10, 0, 2, "A group of villagers invite you to join their picnic"));
+		fieldCards.Enqueue(new Card(2, "Grass", "Grass. Pretty much it.", 0));
+		fieldCards.Enqueue(new Card(2, "Cloudwatching", "You lie on the grass and cloudwatch.", 0));
+		villageCards.Enqueue(new GoldCard(20, 0, 2, "Buried Gold", "You spot an oddly out of place dirt mound in the grass. Digging it unearths a small pouch."));
+		fieldCards.Enqueue(new HealthCard(20, 0, 2, "Lazy Nap", "You lie in the field and relax under the warm sun."));
+		fieldCards.Enqueue(new HealthCard(10, 0, 2, "Picnic Time", "A group of villagers invite you to join their picnic"));
 		
 		c1E = new int[2] {1, 6};
 		c1T = new int[2] {0, 0};
@@ -190,45 +190,45 @@ public class CardManager : MonoBehaviour
 		c2T = new int[1] {0};
 		c2V = new int[1] {10};
 		
-		fieldCards.Enqueue(new ChoiceCard("Destroy it", "Report it", c1E, c1T, c1V, c2E, c2T, c2V, 2, "You come across a rare breed of poison ivy."));
+		fieldCards.Enqueue(new ChoiceCard("Destroy it", "Report it", c1E, c1T, c1V, c2E, c2T, c2V, 2, "Botony", "You come across a rare breed of poison ivy."));
 		
 		// Forest Cards: 10
-		forestCards.Enqueue(new HealthCard(10, 0, 3, "You pick an apple from a tree and eat it."));
-		forestCards.Enqueue(new SkipCard(1, 3, "You are invited to a feast by the local elves. Skip a turn."));
-		forestCards.Enqueue(new SkipCard(2, 3, "All the trees look the same and you find yourself quickly lost."));
-		forestCards.Enqueue(new Card(3, "You find a piece of paper stuck to a tree. Suddenly you can hear drums.", 0));
-		forestCards.Enqueue(new Card(3, "You see a tree and kick it down. Turns out a tree falling in the forest does make a sound.", 0));
-		forestCards.Enqueue(new Card(3, "You climb a tree to get a good vantage point.", 0));
-		forestCards.Enqueue(new FameCard(-20, 0, 3, "You trip over a sacred statue and break it."));
-		forestCards.Enqueue(new FameCard(-20, 0, 3, "You come across a unicorn that will grant you 3 wishes. You scissor kick it."));
-		forestCards.Enqueue(new FameCard(-20, 0, 3, "You are EXTREMELY racist to an Elf. Like, wow, can we even put that in this game?"));
-		forestCards.Enqueue(new GoldCard(50, 0, 3, "In a forest clearing you an important looking chest. As usual. +50 gold."));
+		forestCards.Enqueue(new HealthCard(10, 0, 3, "Yummy Apple", "You pick an apple from a tree and eat it."));
+		forestCards.Enqueue(new SkipCard(1, 3, "Feast with Elves", "You are invited to a feast by the local elves. Skip a turn."));
+		forestCards.Enqueue(new SkipCard(2, 3, "Lost", "All the trees look the same and you find yourself quickly lost."));
+		forestCards.Enqueue(new Card(3, "Slender Forest", "You find a piece of paper stuck to a tree. Suddenly you can hear drums.", 0));
+		forestCards.Enqueue(new Card(3, "Timber", "You see a tree and kick it down. Turns out a tree falling in the forest does make a sound.", 0));
+		forestCards.Enqueue(new Card(3, "Vantage Point", "You climb a tree to get a good vantage point.", 0));
+		forestCards.Enqueue(new FameCard(-20, 0, 3, "Sacred Destruction", "You trip over a sacred statue and break it."));
+		forestCards.Enqueue(new FameCard(-20, 0, 3, "Magical Unicorn", "You come across a unicorn that will grant you 3 wishes. You scissor kick it."));
+		forestCards.Enqueue(new FameCard(-20, 0, 3, "Racism", "You are EXTREMELY racist to an Elf. Like, wow, can we even put that in this game?"));
+		forestCards.Enqueue(new GoldCard(50, 0, 3, "Forest Chest", "In a forest clearing you an important looking chest. As usual."));
 		
 		c1E = new int[2] {1, 9};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {-10, 1};
 		
 		// Mountain Cards: 10
-		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You take a shortcut through a snowy pass, only to find it deeper than expected. -10 Health, Skip next turn."));
-		mountainCards.Enqueue(new Card(4, "You ride a mountain goat.", 0));
-		mountainCards.Enqueue(new Card(4, "You build a snowman. Pretty snowman. And then you fireball it.", 0));
-		mountainCards.Enqueue(new Card(4, "You shout at the mountain and cause an avalanche.", 0));
-		mountainCards.Enqueue(new FameCard(-10, 0, 4, "You push an old lady down the slopes."));
-		mountainCards.Enqueue(new FameCard(-10, 0, 4, "You sneak up on a mountain bear and place a sign on his neck, 'Free Hugs'"));
-		mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "You climb the mountain stairs and encounter a frost troll."));
-		mountainCards.Enqueue(new HealthCard(-20, 0, 4, "You slip in the snow and fall down the mountain."));
+		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "Snowy Shortcut", "You take a shortcut through a snowy pass, only to find it deeper than expected. -10 Health, Skip next turn."));
+		mountainCards.Enqueue(new Card(4, "Mountain Goat", "You ride a mountain goat.", 0));
+		mountainCards.Enqueue(new Card(4, "Wanna build a Snowman", "You build a snowman. Pretty snowman. And then you fireball it.", 0));
+		mountainCards.Enqueue(new Card(4, "Avalanche", "You shout at the mountain and cause an avalanche.", 0));
+		mountainCards.Enqueue(new FameCard(-10, 0, 4, "Dead Old Lady", "You push an old lady down the slopes."));
+		mountainCards.Enqueue(new FameCard(-10, 0, 4, "Mountain Bear Prank", "You sneak up on a mountain bear and place a sign on his neck, 'Free Hugs'"));
+		mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "Forest Troll", "You climb the mountain stairs and encounter a frost troll."));
+		mountainCards.Enqueue(new HealthCard(-20, 0, 4, "Slip 'n' Slide", "You slip in the snow and fall down the mountain."));
 		
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {10, 20};
 		
-		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You win the snowman building contest. +10 Fame, +20 Gold"));
+		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "Snowman Contest", "You win the snowman building contest."));
 
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {10, 30};
 		
-		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "You help capture a criminal and claim their bounty."));
+		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "Bounty Hunter", "You help capture a criminal and claim their bounty."));
 
 		// Monster Cards; 5th img element and 6th type enum: 3
 		// name, card image, model, HP, Strength, Defence, gold gain, fame gain, fame loss, base card image, description
@@ -302,12 +302,12 @@ public class CardManager : MonoBehaviour
 
 	
 		// Holds the card.
-		Card c = new Card(0, "", 0);
+		Card c = new Card(0, "", "", 0);
 	
 		// Checks if a blank card.
 		if (type == 0) {			
 			// Creates a new card.
-			return new Card(i, d, type);
+			return new Card(i, "Title", d, type);
 		}
 		
 		// Checks if a fame, gold or health card.
@@ -331,17 +331,17 @@ public class CardManager : MonoBehaviour
 			// Checks if a fame card.
 			if (type == 1) {
 				// Creates a new card.
-				return new FameCard(v, t, i, d);
+				return new FameCard(v, t, i, "Title", d);
 			}
 			// Checks if a gold card.
 			else if (type == 2) {
 				// Creates a new card.
-				return new GoldCard(v, t, i, d);
+				return new GoldCard(v, t, i, "Title", d);
 			}
 			// Health card.
 			else {
 				// Creates a new card.
-				return new HealthCard(v, t, i, d);
+				return new HealthCard(v, t, i, "Title", d);
 			}
 		}
 		
@@ -360,7 +360,7 @@ public class CardManager : MonoBehaviour
 		
 		}
 		
-		return new Card(0,"",0);
+		return new Card(0,"","",0);
 	}
 	
 	// Adds the card to the deck corresponding with the given area.
@@ -459,14 +459,14 @@ public class CardManager : MonoBehaviour
 			// Casts the card as a multiple effect card.
 			MultipleEffectCard mCard = (MultipleEffectCard)drawnCard;
 			
-			changes = new Vector2[2] { new Vector2(mCard.GetCardArray(0)[0], mCard.GetCardArray(2)[1]),
+			changes = new Vector2[2] { new Vector2(mCard.GetCardArray(0)[0], mCard.GetCardArray(2)[0]),
 				new Vector2(mCard.GetCardArray(0)[1], mCard.GetCardArray(2)[1]) };
 		}
 		else {
 			changes = null;
 		}
 		
-		scrollEvent.CreateEvent(drawnCard.GetImageIndex(), "Event", drawnCard.GetDescription(), changes); 
+		scrollEvent.CreateEvent(drawnCard.GetImageIndex(), drawnCard.GetTitle(), drawnCard.GetDescription(), changes); 
 	}
 	
 	// Pulls the first card and then puts it at the end of the pile.
@@ -701,32 +701,32 @@ public class CardManager : MonoBehaviour
 			if (t == Type.Fame) {
 				Debug.Log("Fame Effect");
 				// Creates a fame card.
-				drawnCard = new FameCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "");
+				drawnCard = new FameCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", "");
 			}
 			
 			// Checks if a gold effect.
 			else if (t == Type.Gold) {
 				Debug.Log("Gold Effect");
 				// Creates a gold card.
-				drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "");
+				drawnCard = new GoldCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", "");
 			}
 			
 			// Checks if an item effect.
 			else if (t == Type.Item) {
 				// Creates a item card.
-				drawnCard = new ItemEventCard(c.GetChoiceExtra(chosenChoice)[i], c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "");
+				drawnCard = new ItemEventCard(c.GetChoiceExtra(chosenChoice)[i], c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", "");
 			}
 			
 			// Checks if a Teleport effect.
 			else if (t == Type.Teleport) {
 				// Creates a teleport card.
-				drawnCard = new MoveCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceValues(chosenChoice)[i], c.GetChoiceExtra(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "");
+				drawnCard = new MoveCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceValues(chosenChoice)[i], c.GetChoiceExtra(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", "");
 			}
 			
 			// Checks if a health effect.
 			else if (t == Type.Health) {
 				// Creates a health card.
-				drawnCard = new HealthCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "");
+				drawnCard = new HealthCard(c.GetChoiceValues(chosenChoice)[i], c.GetChoiceTargets(chosenChoice)[i], 1, "", "");
 			}
 			
 			// Checks if a monster effect.
@@ -955,15 +955,15 @@ public class CardManager : MonoBehaviour
 			switch (effects[i]) {
 				// Fame Card.
 				case 1:
-					drawnCard = new FameCard(values[i], targets[i], 0, "");
+					drawnCard = new FameCard(values[i], targets[i], 0, "", "");
 					break;
 				// Gold Card.
 				case 2:
-					drawnCard = new GoldCard(values[i], targets[i], 0, "");
+					drawnCard = new GoldCard(values[i], targets[i], 0, "", "");
 					break;
 				// Item Card.
 				case 3:
-					drawnCard = new ItemEventCard(true, values[i], targets[i], 0, "");
+					drawnCard = new ItemEventCard(true, values[i], targets[i], 0, "", "");
 					break;
 				// Teleport Card.
 				case 5:
@@ -971,7 +971,7 @@ public class CardManager : MonoBehaviour
 					
 				// Health Card.	
 				case 6:
-					drawnCard = new HealthCard(values[i], targets[i], 0, "");
+					drawnCard = new HealthCard(values[i], targets[i], 0, "", "");
 					break;
 				// Creatre Monster.
 				case 7:
@@ -980,7 +980,7 @@ public class CardManager : MonoBehaviour
 				// Skip Turn.	
 				case 9:
 					Debug.Log("SKIP 1!");
-					drawnCard = new SkipCard(values[i], 0, "");
+					drawnCard = new SkipCard(values[i], 0, "", "");
 					break;
 			}
 			

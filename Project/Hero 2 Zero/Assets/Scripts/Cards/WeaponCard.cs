@@ -20,7 +20,7 @@ public class WeaponCard : Card
 	
 	// Constructor.
 	public WeaponCard (string na, int at, int def, int du, int im, string des, int ty)
-					: base (im, des, ty)
+					: base (im, na, des, ty)
 	{
 		name = na;
 
@@ -30,7 +30,7 @@ public class WeaponCard : Card
 		durability = du;
 	}
 
-	public WeaponCard (WeaponCard weap) : base (weap.GetImageIndex(), weap.GetDescription(), weap.GetCardType())
+	public WeaponCard (WeaponCard weap) : base (weap.GetImageIndex(), "", weap.GetDescription(), weap.GetCardType())
 	{
 		name = weap.GetName();
 		

@@ -36,8 +36,8 @@ public class ChoiceCard : Card
 	
 	// Constructor
 	public ChoiceCard(string c1, string c2, int[] c1E, int[] c1T, int[] c1V, 
-						int[] c2E, int[] c2T, int[] c2V, int im, string de)
-						: base(im, de, 4)
+						int[] c2E, int[] c2T, int[] c2V, int im, string ti, string de)
+						: base(im, ti, de, 4)
 	{
 		// Sets the choice 1 values.
 		choice1Text = c1;

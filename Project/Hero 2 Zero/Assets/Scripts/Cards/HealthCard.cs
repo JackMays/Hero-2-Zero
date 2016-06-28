@@ -13,7 +13,7 @@ public class HealthCard : Card
 	#endregion
 	
 	// Constructor
-	public HealthCard(int he, int ta, int im, string de) : base (im, de, 6)
+	public HealthCard(int he, int ta, int im, string ti, string de) : base (im, ti, de, 6)
 	{
 		// Sets the health change.
 		health = he;

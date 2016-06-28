@@ -16,7 +16,7 @@ public class MultipleEffectCard : Card
 	#endregion
 	
 	// Constructor.
-	public MultipleEffectCard(int[] e, int[] t, int[] v, int im, string de) : base(im, de, 10)
+	public MultipleEffectCard(int[] e, int[] t, int[] v, int im, string ti, string de) : base(im, ti, de, 10)
 	{
 		// Sets the variables.
 		effects = e;

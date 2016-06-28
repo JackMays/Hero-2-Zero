@@ -20,7 +20,7 @@ public class MonsterCard : Card
 	#endregion
 
 	// Use this for initialization
-	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int im, string de) : base (im, de, 8)
+	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int im, string de) : base (im, nm, de, 8)
 	{
 		name = nm;
 
@@ -42,7 +42,7 @@ public class MonsterCard : Card
 		fameLose = falo;
 	}
 	
-	public MonsterCard (MonsterCard mon) : base (mon.GetImageIndex(), mon.GetDescription(), mon.GetCardType())
+	public MonsterCard (MonsterCard mon) : base (mon.GetImageIndex(), mon.name, mon.GetDescription(), mon.GetCardType())
 	{
 		monsterImgIndex = mon.monsterImgIndex;
 		monsterModelIndex = mon.monsterModelIndex;

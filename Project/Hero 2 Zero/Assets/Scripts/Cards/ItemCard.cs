@@ -27,7 +27,7 @@ public class ItemCard : Card
 	
 	// Constructor.
 	public ItemCard (string na, int co, int ef, int va, int us, int ta, int im, string de, int ty)
-					: base (im, de, ty)
+					: base (im, na, de, ty)
 	{
 		// Sets the item's values.
 		name = na;

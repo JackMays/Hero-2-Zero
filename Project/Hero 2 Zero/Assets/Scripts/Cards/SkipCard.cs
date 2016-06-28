@@ -10,7 +10,7 @@ public class SkipCard : Card
 	#endregion
 	
 	// Constructor.
-	public SkipCard(int s, int im, string de) : base (im, de, 9)
+	public SkipCard(int s, int im, string ti, string de) : base (im, ti, de, 9)
 	{
 		skipNum = s;
 	}

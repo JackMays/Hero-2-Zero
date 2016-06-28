@@ -23,7 +23,7 @@ public class ItemManager
 	
 	CardManager cardManager;
 	Map map;
-	Card activeCard = new Card(0,"",0);
+	Card activeCard = new Card(0,"","",0);
 	#endregion
 	
 	
