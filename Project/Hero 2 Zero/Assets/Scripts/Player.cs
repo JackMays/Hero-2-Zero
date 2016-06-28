@@ -291,7 +291,7 @@ public class Player : MonoBehaviour
 		// 1 second to finish movement.
 		transform.localPosition = Vector3.Lerp(startJumpPosition, moveTarget, moveTime / moveSpeed);
 		
-		Debug.Log(transform.localPosition);
+		//Debug.Log(transform.localPosition);
 		
 		// Checks if player has finished moving.
 		if (moveTime >= moveSpeed) {

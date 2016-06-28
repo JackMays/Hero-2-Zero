@@ -70,6 +70,9 @@ public class CardManager : MonoBehaviour
 	
 	// Reference to the player info GUI.
 	public PlayerInfoGUI playerInfoGUI;
+	
+	// Reference to the scroll.
+	public TESTScrollRoll scrollEvent; 
 	#endregion
 	
 	#region Start Shit
@@ -411,6 +414,12 @@ public class CardManager : MonoBehaviour
 		{
 			// Draws a normal card.
 			drawnCard = DrawCard(area);
+			
+			DisplayNormalCard(true);
+			
+			cardShowing = true;
+			
+			return;
 		}
 
 		// Set isMonsterDrawn if a monster is drawn, false if it isnr
@@ -435,6 +444,29 @@ public class CardManager : MonoBehaviour
 		cardObject.enabled = true;
 		
 		cardShowing = true;
+	}
+	
+	// Shows the normal card and updates its values.
+	void DisplayNormalCard(bool other)
+	{
+		Vector2[] changes = new Vector2[1];
+		
+		// Checks if the card is a normal card, an effect card or a multiple effect card.
+		if (drawnCard.GetCardType() == 1 || drawnCard.GetCardType() == 2 || drawnCard.GetCardType() == 6) {
+			changes = new Vector2[1] { new Vector2(drawnCard.GetCardType(), GetCardTypeValue()) };
+		}
+		else if (drawnCard.GetCardType() == 10) {
+			// Casts the card as a multiple effect card.
+			MultipleEffectCard mCard = (MultipleEffectCard)drawnCard;
+			
+			changes = new Vector2[2] { new Vector2(mCard.GetCardArray(0)[0], mCard.GetCardArray(2)[1]),
+				new Vector2(mCard.GetCardArray(0)[1], mCard.GetCardArray(2)[1]) };
+		}
+		else {
+			changes = null;
+		}
+		
+		scrollEvent.CreateEvent(drawnCard.GetImageIndex(), "Event", drawnCard.GetDescription(), changes); 
 	}
 	
 	// Pulls the first card and then puts it at the end of the pile.
@@ -535,6 +567,31 @@ public class CardManager : MonoBehaviour
 		
 		// Shows the card.
 		cardObject.enabled = true;
+	}
+	
+	int GetCardTypeValue()
+	{
+		// Checks if the card is a fame, gold, health or magic card.
+		if (drawnCard.GetCardType() == 1) {
+			// Casts the card as a fame card and returns the fame value.
+			FameCard card = (FameCard)drawnCard;
+			return card.GetFame();
+		}
+		
+		if (drawnCard.GetCardType() == 2) {
+			// Casts the card as a gold card and returns the gold value.
+			GoldCard card = (GoldCard)drawnCard;
+			return card.GetGold();
+		}
+		
+		if (drawnCard.GetCardType() == 6) {
+			// Casts the card as a health card and returns the health value.
+			HealthCard card = (HealthCard)drawnCard;
+			return card.GetHealth();
+		}
+		
+		// Ignore Magic for now.
+		return 0;
 	}
 	
 	public void RevealMonCard()
@@ -1028,6 +1085,7 @@ public class CardManager : MonoBehaviour
 	{
 		cardObject.enabled = false;
 		cardShowing = false;
+		scrollEvent.ResetScroll();
 	}
 	#endregion
 
