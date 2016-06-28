@@ -61,7 +61,7 @@ public class CombatManager : MonoBehaviour {
 			Debug.Log ("Monster Takes: " + playerDiceRoll + " + " + monsterDiceRoll + " = " + damage);
 			monster.TakeDamage(damage);
 			player.Victory();
-			player.ChangeFame(monster.GetFameMod(true));
+
 
 			if (monster.HasDied())
 			{
@@ -70,12 +70,13 @@ public class CombatManager : MonoBehaviour {
 				// Remove Card from area
 				Debug.Log ("Monster's HP hit 0");
 				// gain more fame as bonus for win
-				player.ChangeFame(monster.GetFameMod(true));
+				player.ChangeFame(monster.GetFameMod(true) * 2);
 				/*map.ClearMonsterTile(tileX, tileY);
 				map.ClearPrefabTile(tileX, tileY);*/
 			}
 			else
 			{
+				player.ChangeFame(monster.GetFameMod(true));
 				monAnims.Run();
 			}
 
@@ -87,7 +88,7 @@ public class CombatManager : MonoBehaviour {
 			damage = monsterDiceRoll - playerDiceRoll;
 			Debug.Log ("Player Takes: " + monsterDiceRoll + " - " + playerDiceRoll + " = " + damage);
 			player.TakeDamage(damage);
-			player.ChangeFame(monster.GetFameMod(false));
+
 
 			monAnims.Victory();
 
@@ -97,12 +98,12 @@ public class CombatManager : MonoBehaviour {
 				
 				// remove player for allotted turns, place monster card at area
 				// Also decrease fame more due to critical loss
-				player.HandleCombDeath(monster.GetFameMod(false));
+				player.HandleCombDeath(monster.GetFameMod(false) * 2);
 			}
-			/*else
+			else
 			{
-				player.StandUp();
-			}*/
+				player.ChangeFame(monster.GetFameMod(false));
+			}
 		}
 		else
 		{
@@ -184,8 +185,7 @@ public class CombatManager : MonoBehaviour {
 			player2.TakeDamage(damage);
 			player.Victory();
 
-			player.ChangeFame(10);
-			player2.ChangeFame(-10);
+
 
 			if (player2.HasDied())
 			{
@@ -193,13 +193,15 @@ public class CombatManager : MonoBehaviour {
 				
 				// remove losing player for allotted turns
 				// gain/lose bonus fame for win & loss
-				player.ChangeFame(10);
-				player2.HandleCombDeath(-10);
+				player.ChangeFame(10 * 2);
+				player2.HandleCombDeath(-10 * 2);
 			}
-			/*else
+			else
 			{
-				player2.StandUp();
-			}*/
+				player.ChangeFame(10);
+				player2.ChangeFame(-10);
+				//player2.StandUp();
+			}
 
 			
 		}
@@ -211,8 +213,6 @@ public class CombatManager : MonoBehaviour {
 			player.TakeDamage(damage);
 			player2.Victory();
 
-			player.ChangeFame(-10);
-			player2.ChangeFame(10);
 
 			if (player.HasDied())
 			{
@@ -220,14 +220,17 @@ public class CombatManager : MonoBehaviour {
 				
 				// remove losing player for allotted turns
 				// gain/lose bonus fame for win & loss
-				player.HandleCombDeath(-10);
-				player2.ChangeFame(10);
+				player.HandleCombDeath(-10 * 2);
+				player2.ChangeFame(10 * 2);
 				
 			}
-			/*else
+			else
 			{
-				player.StandUp();
-			}*/
+				player.ChangeFame(-10);
+				player2.ChangeFame(10);
+
+				//player.StandUp();
+			}
 		}
 		else
 		{
