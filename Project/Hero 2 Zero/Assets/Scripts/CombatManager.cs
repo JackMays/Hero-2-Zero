@@ -69,10 +69,9 @@ public class CombatManager : MonoBehaviour {
 
 				// Remove Card from area
 				Debug.Log ("Monster's HP hit 0");
-				// gain more fame as bonus for win
+				// gain more fame as bonus for win alongside gold
 				player.ChangeFame(monster.GetFameMod(true) * 2);
-				/*map.ClearMonsterTile(tileX, tileY);
-				map.ClearPrefabTile(tileX, tileY);*/
+				player.ChangeGold(monster.GetVictoryGold());;
 			}
 			else
 			{
