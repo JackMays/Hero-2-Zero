@@ -32,6 +32,7 @@ ModelImporter:
     7400010: Dead
     7400012: Victory
     7400014: Run Away
+    7400016: Spawn
     9500000: //RootNode
     13700000: Slime
   materials:
@@ -64,7 +65,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -413,6 +414,50 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Lower_Body
+        weight: 1
+      - path: Root/Lower_Body/Middle
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Left_Eyebrow
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eye
+        weight: 1
+      - path: Root/Lower_Body/Middle/Right_Eyebrow
+        weight: 1
+      - path: Slime
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Spawn
+      takeName: Take 001
+      firstFrame: 320
+      lastFrame: 360
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
       transformMask:
       - path: 
         weight: 1
