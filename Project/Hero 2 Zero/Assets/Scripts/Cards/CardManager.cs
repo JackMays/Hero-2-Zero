@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -215,7 +215,7 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new Card(4, "Avalanche", "You shout at the mountain and cause an avalanche.", 0));
 		mountainCards.Enqueue(new FameCard(-10, 0, 4, "Dead Old Lady", "You push an old lady down the slopes."));
 		mountainCards.Enqueue(new FameCard(-10, 0, 4, "Mountain Bear Prank", "You sneak up on a mountain bear and place a sign on his neck, 'Free Hugs'"));
-		mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "Forest Troll", "You climb the mountain stairs and encounter a frost troll."));
+		//mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "Forest Troll", "You climb the mountain stairs and encounter a frost troll."));
 		mountainCards.Enqueue(new HealthCard(-20, 0, 4, "Slip 'n' Slide", "You slip in the snow and fall down the mountain."));
 		
 		c1E = new int[2] {1, 2};
@@ -233,9 +233,10 @@ public class CardManager : MonoBehaviour
 		// Monster Cards; 5th img element and 6th type enum: 3
 		// name, card image, model, HP, Strength, Defence, gold gain, fame gain, fame loss, base card image, description
 		/*monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Slime", 1, 1, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Frost Troll", 2, 0, 15, 8, 4, 20, 10, -10, 5, "Monster!"));*/
-		monsterCards.Add(new MonsterCard("Goblin", 0, 2, 1 /*15*/, 3 /*8*/, 4, 5, 10, -10, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Frost Troll", 2, 3, 15, 8, 4, 20, 10, -10, 5, "Monster!"));*/
+		monsterCards.Add(new MonsterCard("Slime", 0, 0, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Goblin", 0, 1, 1 /*15*/, 3 /*8*/, 4, 5, 10, -10, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Grieva", 0, 2, 1, 1, 8, 20, 15, -5, 5, "Monster!"));
 	}
 	
 	#endregion
