@@ -366,6 +366,9 @@ public class GameManager : MonoBehaviour
 				
 				// Checks if any changes are being shown.
 				if (!playerInfoGUI.GetShowingChanges()) {
+					// Resets the player's dice to standard. (In case they have an extra or less dice.)
+					listPlayers[currentPlayer].ResetDiceCount();
+					
 					// Changes the player's turn.
 					ChangeTurns();
 			
@@ -482,7 +485,6 @@ public class GameManager : MonoBehaviour
 					// as long as the player isnt already in combat with a prexisting monster or player.
 					if (turnState != 4)
 					{
-						Debug.Log("CHECKING");
 						// Checks if there is a chest on the tile.
 						Chest chest = chestManager.CheckTileForChest(listPlayers[currentPlayer].GetMapPosition());
 						if (chest != null) {
@@ -522,8 +524,6 @@ public class GameManager : MonoBehaviour
 						// Finds the next tile to move to.
 						listPlayers[currentPlayer].MoveTile();
 					}
-				
-					Debug.Log ("turn state: " + turnState.ToString());
 				}
 		}
 		

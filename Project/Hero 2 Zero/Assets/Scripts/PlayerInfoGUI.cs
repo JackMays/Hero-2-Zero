@@ -29,6 +29,9 @@ public class PlayerInfoGUI : MonoBehaviour
 	// The parent for the big version of fame change.
 	public GameObject fameParent;
 	
+	// The position the fame window should be when fully enlarged. (Centre basically).
+	public Transform fameOrigin;
+	
 	// Reference to the fame text that needs to be changed.
 	public Text[] fameTexts = new Text[2];
 	
@@ -222,7 +225,7 @@ public class PlayerInfoGUI : MonoBehaviour
 			parent.GetChild(1).GetComponent<Image>().fillAmount = target * 0.05f;
 			
 			// Changes the health bar's text.
-			parent.GetChild(2).GetComponent<Text>().text = "HP : " + target + "/20";
+			parent.GetChild(2).GetComponent<Text>().text = "HP : " + target + " / 20";
 		}
 		else {
 			// Changes the magic bar's colour.
@@ -232,7 +235,7 @@ public class PlayerInfoGUI : MonoBehaviour
 			parent.GetChild(1).GetComponent<Image>().fillAmount = target * 0.2f;
 		
 			// Changes the magic bar's text.			
-			parent.GetChild(2).GetComponent<Text>().text = "MP : " + target + "/5";
+			parent.GetChild(2).GetComponent<Text>().text = "MP : " + target + " / 5";
 		}
 		
 		// Returns the parent.
@@ -331,6 +334,7 @@ public class PlayerInfoGUI : MonoBehaviour
 			minusText.SetActive(true);
 			fameParent.SetActive(true);
 			fameParent.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, time * 2.5f);
+			fameParent.transform.position = Vector3.Lerp(transform.GetChild(vc.GetPlayerIndex()).position, fameOrigin.position, time * 2.5f);
 			
 			fameTexts[0].text = vc.GetOriginalValue().ToString();
 		}
@@ -362,6 +366,7 @@ public class PlayerInfoGUI : MonoBehaviour
 		// Shrink the fame parent.
 		if (time > 3f) {
 			fameParent.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, (time - 3) * 2.5f);
+			fameParent.transform.position = Vector3.Lerp(fameOrigin.position, transform.GetChild(vc.GetPlayerIndex()).position, (time - 3) * 2.5f);
 		}
 		
 		// Hides the fame parent.

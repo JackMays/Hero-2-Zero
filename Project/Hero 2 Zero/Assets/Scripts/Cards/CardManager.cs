@@ -18,7 +18,9 @@ public class CardManager : MonoBehaviour
 		CreateMonster,
 		Monster,
 		Skip,
-		MultipleEffect
+		MultipleEffect,
+		Dice,
+		Magic
 	}
 
 	#region Variables
@@ -129,6 +131,8 @@ public class CardManager : MonoBehaviour
 		laneCards.Enqueue(new Card(0, "Stones", "You find a stone and leave it.", 0));
 		laneCards.Enqueue(new HealthCard(-5, 0, 0, "Trip-idation of Potholes", "You trip on a pothole"));
 		laneCards.Enqueue(new SkipCard(1, 0, "Tree Blocked", "A fallen tree is blocking your path. Skip next turn."));
+		laneCards.Enqueue(new DiceCard(1, 0, 0, "Burst of Speed", "A passing merchant gives you a vial of liquid. After drinking, you feel you can walk further than before."));
+		laneCards.Enqueue(new MagicCard(2, 0, 0, "Berry Bush", "You come across a berry bush on the side of the trail. Eating a few berries regains a little bit of lost magic."));
 		
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
@@ -182,6 +186,7 @@ public class CardManager : MonoBehaviour
 		villageCards.Enqueue(new GoldCard(20, 0, 2, "Buried Gold", "You spot an oddly out of place dirt mound in the grass. Digging it unearths a small pouch."));
 		fieldCards.Enqueue(new HealthCard(20, 0, 2, "Lazy Nap", "You lie in the field and relax under the warm sun."));
 		fieldCards.Enqueue(new HealthCard(10, 0, 2, "Picnic Time", "A group of villagers invite you to join their picnic"));
+		fieldCards.Enqueue(new MagicCard(-2, 0, 2, "Sapped of Energy", "The hot sun overhead makes you feel lethargic with no shade around. You can feel your inner energy seeping away."));
 		
 		c1E = new int[2] {1, 6};
 		c1T = new int[2] {0, 0};
@@ -203,8 +208,10 @@ public class CardManager : MonoBehaviour
 		forestCards.Enqueue(new FameCard(-20, 0, 3, "Magical Unicorn", "You come across a unicorn that will grant you 3 wishes. You scissor kick it."));
 		forestCards.Enqueue(new FameCard(-20, 0, 3, "Racism", "You are EXTREMELY racist to an Elf. Like, wow, can we even put that in this game?"));
 		forestCards.Enqueue(new GoldCard(50, 0, 3, "Forest Chest", "In a forest clearing you an important looking chest. As usual."));
+		forestCards.Enqueue(new DiceCard(-1, 0, 3, "Careful Footing", "The dense forest makes it hard to keep walking at your current pace. You need to slow down to avoid injury."));
+		forestCards.Enqueue(new MagicCard(-3, 0, 3, "Tree Sap", "You place a hand on an interesting tree only to find it sapping your magic energy."));
 		
-		c1E = new int[2] {1, 9};
+		c1E = new int[2] {6, 9};
 		c1T = new int[2] {0, 0};
 		c1V = new int[2] {-10, 1};
 		
@@ -217,6 +224,7 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new FameCard(-10, 0, 4, "Mountain Bear Prank", "You sneak up on a mountain bear and place a sign on his neck, 'Free Hugs'"));
 		//mountainCards.Enqueue(new MonsterEventCard("Frost Troll", 4, "Forest Troll", "You climb the mountain stairs and encounter a frost troll."));
 		mountainCards.Enqueue(new HealthCard(-20, 0, 4, "Slip 'n' Slide", "You slip in the snow and fall down the mountain."));
+		mountainCards.Enqueue(new DiceCard(-1, 0, 0, "Uphill", "The mountain path looks like it goes uphill for miles. With the extra energy of climbing, you can't walk as far as normal."));
 		
 		c1E = new int[2] {1, 2};
 		c1T = new int[2] {0, 0};
@@ -453,7 +461,8 @@ public class CardManager : MonoBehaviour
 		Vector2[] changes = new Vector2[1];
 		
 		// Checks if the card is a normal card, an effect card or a multiple effect card.
-		if (drawnCard.GetCardType() == 1 || drawnCard.GetCardType() == 2 || drawnCard.GetCardType() == 6) {
+		if (drawnCard.GetCardType() == 1 || drawnCard.GetCardType() == 2 || drawnCard.GetCardType() == 6
+			|| drawnCard.GetCardType() == 9 || drawnCard.GetCardType() == 11 || drawnCard.GetCardType() == 12) {
 			changes = new Vector2[1] { new Vector2(drawnCard.GetCardType(), GetCardTypeValue()) };
 		}
 		else if (drawnCard.GetCardType() == 10) {
@@ -467,7 +476,15 @@ public class CardManager : MonoBehaviour
 			changes = null;
 		}
 		
-		scrollEvent.CreateEvent(drawnCard.GetImageIndex(), drawnCard.GetTitle(), drawnCard.GetDescription(), changes); 
+		// Checks if a choice card.
+		if (drawnCard.GetCardType() == 4) {
+			makeChoice = true;
+			chosenChoice = -1;
+			scrollEvent.CreateEvent(drawnCard.GetImageIndex(), drawnCard.GetTitle(), drawnCard.GetDescription(), changes, true, (ChoiceCard)drawnCard);
+		}
+		else {
+			scrollEvent.CreateEvent(drawnCard.GetImageIndex(), drawnCard.GetTitle(), drawnCard.GetDescription(), changes, false, null);
+		}
 	}
 	
 	// Pulls the first card and then puts it at the end of the pile.
@@ -572,7 +589,7 @@ public class CardManager : MonoBehaviour
 	
 	int GetCardTypeValue()
 	{
-		// Checks if the card is a fame, gold, health or magic card.
+		// Checks if the card is a fame, gold, health, magic, dice or skip card.
 		if (drawnCard.GetCardType() == 1) {
 			// Casts the card as a fame card and returns the fame value.
 			FameCard card = (FameCard)drawnCard;
@@ -591,7 +608,25 @@ public class CardManager : MonoBehaviour
 			return card.GetHealth();
 		}
 		
-		// Ignore Magic for now.
+		if (drawnCard.GetCardType() == 9) {
+			// Casts the card as a skip card and returns the skip value.
+			SkipCard card = (SkipCard)drawnCard;
+			return card.GetSkip();
+		}
+		
+		if (drawnCard.GetCardType() == 11) {
+			// Casts the card as a dice card and returns the dice value.
+			DiceCard card = (DiceCard)drawnCard;
+			return card.GetDice();
+		}
+		
+		if (drawnCard.GetCardType() == 12) {
+			// Casts the card as a magic card and returns the magic value.
+			MagicCard card = (MagicCard)drawnCard;
+			return card.GetMagic();
+		}
+		
+		// Ignore others for now.
 		return 0;
 	}
 	
@@ -816,6 +851,14 @@ public class CardManager : MonoBehaviour
 			else if (cardType == Type.MultipleEffect) {
 				CastMultipleEffects(currentPlayer, players);
 			}
+			// Change dice.
+			else if (cardType == Type.Dice) {
+				ChangeDiceEffect(currentPlayer, players);
+			}
+			// Change magic.
+			else if (cardType == Type.Magic) {
+				ChangeMagicEffect(currentPlayer, players);
+			}
 		}
 	}
 	
@@ -974,7 +1017,7 @@ public class CardManager : MonoBehaviour
 				case 6:
 					drawnCard = new HealthCard(values[i], targets[i], 0, "", "");
 					break;
-				// Creatre Monster.
+				// Create Monster.
 				case 7:
 					// Not supported currently.
 					
@@ -987,6 +1030,42 @@ public class CardManager : MonoBehaviour
 			
 			// Applies the new card effect.
 			ApplyEffect(current, players);
+		}
+	}
+	
+	// Changes the number of dice the player can throw.
+	void ChangeDiceEffect(int currentPlayer, List<Player> players)
+	{
+		// Casts the drawn card as a dice card to access the functions.
+		DiceCard c = (DiceCard)drawnCard;
+		
+		// Gets the target of the card.
+		int target = c.GetTarget();
+		
+		// Finds the players which will be effected. 
+		List<int> affectedPlayers = FindTargets(target, currentPlayer, players.Count);
+		
+		// Loops through all the players and changes the gold.
+		foreach (int i in affectedPlayers) {
+			players[i].ChangeDice(c.GetDice());
+		}
+	}
+	
+	// Changes the magic value of selected player.
+	void ChangeMagicEffect(int currentPlayer, List<Player> players)
+	{
+		// Casts the drawn card as a magic card to access the functions.
+		MagicCard c = (MagicCard)drawnCard;
+		
+		// Gets the target of the card.
+		int target = c.GetTarget();
+		
+		// Finds the players which will be effected. 
+		List<int> affectedPlayers = FindTargets(target, currentPlayer, players.Count);
+		
+		// Loops through all the players and changes the magic.
+		foreach (int i in affectedPlayers) {
+			players[i].ChangeHealth(c.GetMagic());
 		}
 	}
 	

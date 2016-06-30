@@ -15,7 +15,8 @@ public class Card
 	string description = "";
 	
 	// What kind of card is it. 0: Nothing | 1: Fame change | 2: Gold change | 3: Item Change | 4: Choice |
-	// 5: Teleport | 6: Health change | 7: Create Monster | 8: Monster | 9: Skip Turn | 10: Multiple Effects
+	// 5: Teleport | 6: Health change | 7: Create Monster | 8: Monster | 9: Skip Turn | 10: Multiple Effects |
+	// 11: Dice Effect | 12: Magic Effect
 	int cardType = 0;
 
 	#endregion
