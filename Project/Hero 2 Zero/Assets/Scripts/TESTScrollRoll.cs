@@ -98,14 +98,22 @@ public class TESTScrollRoll : MonoBehaviour
 	{
 		// Checks if a fame effect.
 		if (index == 1) {
-			return images[3];
+			return images[images.Length-1];
 		}
 		// Checks if a gold effect.
 		if (index == 2) {
-			return images[2];
+			return images[images.Length-2];
 		}
 		// Checks if a health effect.
-		return images[1];
+		if (index == 6) {
+			return images[images.Length-3];
+		}
+		// Checks if a magic effect.
+		
+		// Checks if a dice effect.
+		
+		// Checks if a skip effect.
+		return images[images.Length-6];
 	}
 	
 	// Moves the scroll from point 1 to point 2.
