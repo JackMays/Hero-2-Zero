@@ -235,8 +235,8 @@ public class CardManager : MonoBehaviour
 		/*monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!"));
 		monsterCards.Add(new MonsterCard("Frost Troll", 2, 3, 15, 8, 4, 20, 10, -10, 5, "Monster!"));*/
 		monsterCards.Add(new MonsterCard("Slime", 0, 0, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Goblin", 0, 1, 1 /*15*/, 3 /*8*/, 4, 5, 10, -10, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Grieva", 0, 2, 1, 1, 8, 20, 15, -5, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Goblin", 0, 1, 15, 8, 4, 5, 10, -10, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Grieva", 0, 2, 20, 12, 8, 20, 15, -5, 5, "Monster!"));
 	}
 	
 	#endregion
