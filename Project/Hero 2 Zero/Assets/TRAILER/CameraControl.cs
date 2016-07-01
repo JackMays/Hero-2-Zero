@@ -312,7 +312,7 @@ public class CameraControl : MonoBehaviour
 			hideText = false;
 			scaleFameParent = false;
 			fameTexts[0].text = " : 100";
-			fameTexts[1].text = " : 100";
+			fameTexts[1].text = "100";
 			signRend.material = signMat;
 			minusText.transform.position = minusOrigin.position;
 		}
@@ -324,7 +324,7 @@ public class CameraControl : MonoBehaviour
 			hideText = false;
 			scaleFameParent = false;
 			fameTexts[0].text = " : 100";
-			fameTexts[1].text = " : 100";
+			fameTexts[1].text = "100";
 			minusText.GetComponent<Text>().color = Color.red;
 			minusText.transform.position = minusOrigin.position;
 		}
@@ -446,10 +446,11 @@ public class CameraControl : MonoBehaviour
 			}
 		}
 		
-		if (changeFameCounter) {				
-			string t = " : " + LerpInt(100, 80, textTime);
+		if (changeFameCounter) {
+			string t = "" + LerpInt(100, 80, textTime);	
+			string t2 = " : " + LerpInt(100, 80, textTime);
 				
-			fameTexts[0].text = t;
+			fameTexts[0].text = t2;
 			fameTexts[1].text = t;
 			if (textTime >= 1) {
 				hideText = true;
@@ -710,7 +711,7 @@ public class CameraControl : MonoBehaviour
 		
 		float currFill = UICanvas.transform.GetChild(2).GetChild(1).GetComponent<Image>().fillAmount / 0.05f;
 		
-		UICanvas.transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = 0.05f * LerpFloat(origFill, currFill, lerpTime / 1.5f);
+		UICanvas.transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = 0.05f * LerpFloat(origFill, currFill, lerpTime / 1f);
 	}
 	
 	void MonsterAttack(int index)
@@ -1326,6 +1327,9 @@ public class CameraControl : MonoBehaviour
 			players[0].GetComponent<Animator>().SetBool("isWalking", false);
 			ChangePositionRotation(cam, 3, 0);
 			ChangePositionRotation(players[3].transform, 3, 1);
+			Vector2[] changes = new Vector2[1] {new Vector2(1, 20) };
+			GameObject.Find("Scroll Event").GetComponent<TESTScrollRoll>().CreateEvent(0, "Carriage Attack", "A passing cart driver hurls an insult at you so you attack his caravan. Turns out the caravan was transported kidnapped children.", changes, false, null);
+			
 			return;
 		}
 	}
@@ -1342,6 +1346,8 @@ public class CameraControl : MonoBehaviour
 			ChangePositionRotation(players[2].transform, 4, 1);
 			players[2].GetComponent<Animator>().SetBool("isWalking", true);
 			players[3].GetComponent<Animator>().SetBool("isIdle", false);
+			
+			GameObject.Find("Scroll Event").SetActive(false);
 			return;
 		}
 		
@@ -1463,6 +1469,7 @@ public class CameraControl : MonoBehaviour
 			players[1].GetComponent<Animator>().SetBool("isKnockedDown", false);
 			players[2].GetComponent<Character_Blink>().ChangeEyes(0);
 			players[2].GetComponent<Character_Blink>().ChangeMouth(0);
+			GameObject.Find("Rapier").SetActive(false);
 			return;
 		}
 	}

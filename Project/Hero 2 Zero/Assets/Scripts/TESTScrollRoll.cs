@@ -40,7 +40,7 @@ public class TESTScrollRoll : MonoBehaviour
 		gameObject.SetActive(true);
 		
 		// Sets the position time back to 0.
-		lerpTime = 0;
+		lerpTime = .5f;
 		
 		// Sets the scroll to start rolling.
 		isRolling = true;
