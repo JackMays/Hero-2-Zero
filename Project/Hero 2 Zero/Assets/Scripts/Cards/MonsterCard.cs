@@ -16,11 +16,12 @@ public class MonsterCard : Card
 	int goldVictoryGain = 0;
 	int fameGain = 0;
 	int fameLose = 0;
+	int expMod = 0;
 	
 	#endregion
 
 	// Use this for initialization
-	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int im, string de) : base (im, nm, de, 8)
+	public MonsterCard (string nm, int monIm, int model, int hp, int str, int def, int gain, int faga, int falo, int exp, int im, string de) : base (im, nm, de, 8)
 	{
 		name = nm;
 
@@ -40,6 +41,9 @@ public class MonsterCard : Card
 		// Fame/glory given or taken away
 		fameGain = faga;
 		fameLose = falo;
+		expMod = exp;
+
+		Debug.Log ("expMod: " + expMod);
 	}
 	
 	public MonsterCard (MonsterCard mon) : base (mon.GetImageIndex(), mon.name, mon.GetDescription(), mon.GetCardType())
@@ -118,6 +122,18 @@ public class MonsterCard : Card
 		}
 		else {
 			return fameLose;
+		}
+	}
+
+	public int GetExpMod(bool gain)
+	{
+		if (gain)
+		{
+			return expMod;
+		}
+		else
+		{
+			return -expMod;
 		}
 	}
 

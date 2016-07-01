@@ -239,12 +239,12 @@ public class CardManager : MonoBehaviour
 		mountainCards.Enqueue(new MultipleEffectCard(c1E, c1T, c1V, 4, "Bounty Hunter", "You help capture a criminal and claim their bounty."));
 
 		// Monster Cards; 5th img element and 6th type enum: 3
-		// name, card image, model, HP, Strength, Defence, gold gain, fame gain, fame loss, base card image, description
+		// name, card image, model, HP, Strength, Defence, gold gain, fame gain, fame loss, exp mod, base card image, description
 		/*monsterCards.Add(new MonsterCard("Fucking Snowman", 0, 0, 10, 10, 3, 10, 10, -10, 5, "Monster!"));
 		monsterCards.Add(new MonsterCard("Frost Troll", 2, 3, 15, 8, 4, 20, 10, -10, 5, "Monster!"));*/
-		monsterCards.Add(new MonsterCard("Slime", 0, 0, 10, 4, 1, 5, 5, -15, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Goblin", 0, 1, 15, 8, 4, 5, 10, -10, 5, "Monster!"));
-		monsterCards.Add(new MonsterCard("Grieva", 0, 2, 20, 12, 8, 20, 15, -5, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Slime", 0, 0, 10, 4, 1, 5, 5, -15, 25, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Goblin", 0, 1, 15, 8, 4, 5, 10, -10, 20, 5, "Monster!"));
+		monsterCards.Add(new MonsterCard("Grieva", 0, 2, 20, 12, 8, 20, 15, -5, 15, 5, "Monster!"));
 	}
 	
 	#endregion

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
+	int experience = 1000;
 
 	int deathSkipCap = 3;
 	int turnSkipCap;
@@ -633,6 +634,13 @@ public class Player : MonoBehaviour
 		{
 			Application.LoadLevel(3);
 		}
+	}
+
+	public void ChangeExperience(int e)
+	{
+		experience += e;
+
+		Debug.Log ("exp: " + e);
 	}
 	
 	// Changes the health based on passed value.

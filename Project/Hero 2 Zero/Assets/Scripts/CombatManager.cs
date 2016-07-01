@@ -71,11 +71,13 @@ public class CombatManager : MonoBehaviour {
 				Debug.Log ("Monster's HP hit 0");
 				// gain more fame as bonus for win alongside gold
 				player.ChangeFame(monster.GetFameMod(true) * 2);
-				player.ChangeGold(monster.GetVictoryGold());;
+				player.ChangeExperience(monster.GetExpMod(true) * 2);
+				player.ChangeGold(monster.GetVictoryGold());
 			}
 			else
 			{
 				player.ChangeFame(monster.GetFameMod(true));
+				player.ChangeExperience(monster.GetExpMod(true));
 				monAnims.Run();
 			}
 
@@ -98,10 +100,12 @@ public class CombatManager : MonoBehaviour {
 				// remove player for allotted turns, place monster card at area
 				// Also decrease fame more due to critical loss
 				player.HandleCombDeath(monster.GetFameMod(false) * 2);
+				player.ChangeExperience(monster.GetExpMod(false) * 2);
 			}
 			else
 			{
 				player.ChangeFame(monster.GetFameMod(false));
+				player.ChangeExperience(monster.GetExpMod(false));
 			}
 		}
 		else
