@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 	
 	public PlayerInfoGUI playerInfoGUI;
 	
+	public TurnGUI turnGUI;
+	
 	#endregion
 
 	ItemCard selectedHandCard;
@@ -36,16 +38,6 @@ public class GameManager : MonoBehaviour
 	// List of the players.
 	public List<Player> listPlayers;
 	public List<GameObject> listTargetButtons;
-
-	// Temp for easier testing
-	public Text p1HP;
-	public Text p1Fame;
-	public Text p2HP;
-	public Text p2Fame;
-	public Text p3HP;
-	public Text p3Fame;
-	public Text p4HP;
-	public Text p4Fame;
 
 	// Number of players.
 	int numPlayers = 4;
@@ -101,7 +93,7 @@ public class GameManager : MonoBehaviour
 			cardManager.PopulateHand(listPlayers[currentPlayer].GetCurrentItem(handIndex));
 		}
 		
-		// Sets each playher's index.
+		// Sets each player's index.
 		for (int i = 0; i < listPlayers.Count; ++i) {
 			listPlayers[i].SetIndex(i);
 		}
@@ -152,6 +144,33 @@ public class GameManager : MonoBehaviour
 		
 		// Returns that no player is on the tile.
 		return -1;
+	}
+	
+	// Does the work needed to show the turn GUI at the beginning or end of a turn.
+	void SetupTurnGUI(bool beginning)
+	{
+		// Gets the player's grid position.
+		Vector2 playGrid = listPlayers[currentPlayer].GetMapPosition();
+		
+		// Gets the area type from the map at the player's position.
+		int tileType = map.GetTile((int)playGrid.x, (int)playGrid.y)-1;
+		
+		// Holds whether the player is on a village tile or not.
+		bool inVillage = false;
+		
+		// Checks if the player is on a village tile.
+		if (tileType == 1) {
+			inVillage = true;
+		}
+	
+		// Checks if beginning of turn.
+		if (beginning) {
+			turnGUI.StartNewPlayerTurn(listPlayers[currentPlayer], inVillage);
+		}
+		// Must be end of turn.
+		else {
+			turnGUI.EndPlayerTurn(inVillage);
+		}
 	}
 
 	#region Hand
@@ -335,16 +354,16 @@ public class GameManager : MonoBehaviour
 			if (turnState == 0) {
 
 				if (listPlayers[currentPlayer].HasSkippedTurns())
-				{
+				{					
 					if ((listPlayers[currentPlayer].GetComponent<Animator>() && listPlayers[currentPlayer].HasIdleState()) ||
 					    !listPlayers[currentPlayer].GetComponent<Animator>())
-					{
+					{						
 						StateRollDice();
 					}
 				}
 				else
 				{
-					Debug.Log ("Skipped Player" + (currentPlayer + 1));
+					Debug.Log ("Skipped Player " + (currentPlayer + 1));
 					turnState = 3;
 				}
 			}
@@ -366,14 +385,24 @@ public class GameManager : MonoBehaviour
 				
 				// Checks if any changes are being shown.
 				if (!playerInfoGUI.GetShowingChanges()) {
-					// Resets the player's dice to standard. (In case they have an extra or less dice.)
-					listPlayers[currentPlayer].ResetDiceCount();
-					
-					// Changes the player's turn.
-					ChangeTurns();
-			
-					// Resets back to roll dice state.
-					turnState = 0;
+					// Checks if the turn GUI is hidden.
+					if (!turnGUI.GetShowing()) {
+						SetupTurnGUI(false);
+					}
+				
+					// Waits for the end turn button to be pressed or if the player skips.
+					if (Input.GetButtonDown(rollButton) || turnGUI.GetPressedButton() == 0) {// || listPlayers[currentPlayer].GetSkippedTurn()) {
+						// Resets the player's dice to standard. (In case they have more or less dice.)
+						listPlayers[currentPlayer].ResetDiceCount();
+						
+						// Changes the player's turn.
+						ChangeTurns();
+						
+						SetupTurnGUI(true);
+						
+						// Resets back to roll dice state.
+						turnState = 0;
+					}
 				}
 			}
 
@@ -422,10 +451,13 @@ public class GameManager : MonoBehaviour
 			//diceManager.ShowDice(listPlayers[currentPlayer].GetDice());
 			
 			// Waits for the player to roll the dice.
-			if (Input.GetButtonDown(rollButton)) {
+			if (Input.GetButtonDown(rollButton) || turnGUI.GetPressedButton() == 0) {
 				// Rolls the dice and sets to wait for result.
 				diceManager.RollDice();
 				diceRolled = true;
+				
+				// Hides the gui.
+				turnGUI.ShowHideGUI(false);
 			}
 		}
 	}
@@ -488,7 +520,8 @@ public class GameManager : MonoBehaviour
 						// Checks if there is a chest on the tile.
 						Chest chest = chestManager.CheckTileForChest(listPlayers[currentPlayer].GetMapPosition());
 						if (chest != null) {
-							chestManager.GivePlayerChestContents(listPlayers[currentPlayer], chest, currentPlayer);
+							chestManager.GivePlayerChestContents(listPlayers[currentPlayer], chest, currentPlayer);							
+							
 							turnState = 3;
 						}
 						else {	

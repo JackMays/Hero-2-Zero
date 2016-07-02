@@ -56,7 +56,8 @@ public class MonsterCard : Card
 		defense = mon.defense;
 		goldVictoryGain = mon.goldVictoryGain;
 		fameGain = mon.fameGain;
-		fameLose = mon.fameLose;	
+		fameLose = mon.fameLose;
+		expMod = mon.expMod;
 	}
 	
 	// This will allow to make a deep copy of another monster instance.

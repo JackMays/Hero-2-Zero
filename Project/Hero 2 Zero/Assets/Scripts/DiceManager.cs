@@ -78,7 +78,7 @@ public class DiceManager : MonoBehaviour
 	{
 		// Checks if the already the correct number of dice.
 		if (numDice == numD) {
-			return;
+			//return;
 		}
 		
 		// The number of dice is not correct so some need to be hidden/shown.

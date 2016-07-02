@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 	int defence = 5;
 	int gold = 10;
 	int fame = 200;
-	int experience = 1000;
+	public int experience = 1000;
 
 	int deathSkipCap = 3;
 	int turnSkipCap;
@@ -974,6 +974,16 @@ public class Player : MonoBehaviour
 	public bool HasDied()
 	{
 		return (health == 0);
+	}
+	
+	public bool GetSkippedTurn()
+	{
+		if (turnSkipCount < turnSkipCap)
+		{
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public bool HasSkippedTurns()
