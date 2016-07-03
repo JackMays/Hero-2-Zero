@@ -5,6 +5,7 @@ public class CombatManager : MonoBehaviour {
 
 	public Map map;
 
+
 	Player player;
 	Player player2;
 

@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 	public PlayerInfoGUI playerInfoGUI;
 	
 	public TurnGUI turnGUI;
+
+	public CombatGUI combGUI;
 	
 	#endregion
 
@@ -656,9 +658,16 @@ public class GameManager : MonoBehaviour
 	{
 		if (!combatManager.HasCombatEnded())
 		{
+
+
 			// roll until both combatants are rolled
 			if (!cmbBothRolled)
 			{
+				if (!combGUI.gameObject.activeSelf)
+				{
+					combGUI.gameObject.SetActive(true);
+				}
+
 				// Checks if the dice have been rolled and if they have stopped.
 				if (diceRolled && !diceManager.IsRolling()) 
 				{					
@@ -685,13 +694,15 @@ public class GameManager : MonoBehaviour
 						}
 
 						cmbBothRolled = true;
+
+						combGUI.gameObject.SetActive(false);
 					}
 
 
 				}
 				else if (diceRolled == false) {
 					// Waits for the player to roll the dice.
-					if (Input.GetButtonDown(rollButton)) {
+					if (Input.GetButtonDown(rollButton) || combGUI.GetPressedButton() == 0) {
 
 						if (!listPlayers[currentPlayer].HasSkippedMonster())
 						{
@@ -704,6 +715,8 @@ public class GameManager : MonoBehaviour
 							combatManager.ForceCombatEnd();
 							listPlayers[currentPlayer].SetSkipMonster(false);
 						}
+
+						combGUI.SetPressedButton(-1);
 					}
 				}
 			}
