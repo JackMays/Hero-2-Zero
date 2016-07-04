@@ -261,6 +261,10 @@ public class TESTScrollRoll : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Input.GetKeyDown(KeyCode.M)) {
+			isRolling = true;
+		}
+	
 		// Checks if the scroll is currently rolling.
 		if (isRolling) {
 			// Rolls the scroll.
