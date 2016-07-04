@@ -47,6 +47,9 @@ public class CardManager : MonoBehaviour
 	public Button hideHand;
 	public Button leftHand;
 	public Button rightHand;
+
+	Vector3 disabledHandPosition = Vector3.zero;
+	Vector3 enabledHandPosition = Vector3.zero;
 	// The buttons on the card.
 	GameObject choice1;
 	GameObject choice2;
@@ -63,12 +66,15 @@ public class CardManager : MonoBehaviour
 	bool makeChoice = false;
 	bool isMonsterDrawn = false;
 	bool isMonsterRevealed = false;
-	
-	// Holds the selected choice.
-	int chosenChoice = -1;
-	
 	// Holds whether a card is being shown.
 	bool cardShowing = false;
+
+	// Holds the selected choice.
+	int chosenChoice = -1;
+
+
+	float lerpTime = 0.0f;
+
 	
 	// Reference to the player info GUI.
 	public PlayerInfoGUI playerInfoGUI;
@@ -95,6 +101,10 @@ public class CardManager : MonoBehaviour
 		// Hides the card.
 		cardObject.enabled = false;
 		monsterCardObject.enabled = false;
+
+		enabledHandPosition = handCardObject.transform.position;
+		disabledHandPosition = enabledHandPosition;
+		disabledHandPosition.y = enabledHandPosition.y - 2;
 
 		ToggleHand(false);
 		
@@ -1181,6 +1191,13 @@ public class CardManager : MonoBehaviour
 		// Enable show hand when the rest isnt
 		showHand.gameObject.SetActive(!enable);
 
+		if (!enable)
+		{
+			//handCardObject.transform.localPosition = disabledHandPosition;
+			// Ready for next true toggle
+			lerpTime = 0.0f;
+		}
+
 	}
 
 	public void PopulateHand(ItemCard card)
@@ -1195,6 +1212,16 @@ public class CardManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (handCardObject.enabled)
+		{
+			if (handCardObject.transform.localPosition != enabledHandPosition)
+			{
+				lerpTime += Time.deltaTime;
+				handCardObject.transform.localPosition = Vector3.Lerp (handCardObject.transform.localPosition, enabledHandPosition, lerpTime * 1.0f);
+			}
+		}
+
+
 		if (Input.GetKeyDown(KeyCode.A)) {
 			
 		}
