@@ -673,9 +673,9 @@ public class CameraControl : MonoBehaviour
 		UICanvas.transform.GetChild(1).GetComponent<Text>().text = "Player " + pl;
 		UICanvas.transform.GetChild(2).GetChild(0).GetComponent<Image>().fillAmount = 0.05f * he;
 		UICanvas.transform.GetChild(2).GetChild(1).GetComponent<Image>().fillAmount = 0.05f * he;
-		UICanvas.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = he + " / 20";
+		UICanvas.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = "HP : " + he + " / 20";
 		UICanvas.transform.GetChild(3).GetChild(0).GetComponent<Image>().fillAmount = 0.2f * ma;
-		UICanvas.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = ma + " / 5";
+		UICanvas.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = "MP : " + ma + " / 5";
 		UICanvas.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = " : " + fa;
 		UICanvas.transform.GetChild(5).GetChild(0).GetComponent<Text>().text = " : " + go;
 	}
@@ -686,7 +686,7 @@ public class CameraControl : MonoBehaviour
 		heaFill -= Random.Range(3, 6);
 		
 		UICanvas.transform.GetChild(2).GetChild(1).GetComponent<Image>().fillAmount = 0.05f * heaFill;
-		UICanvas.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = heaFill + " / 20";	
+		UICanvas.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = "HP : " + heaFill + " / 20";	
 		
 		if (index == 2) {
 			UICanvas.transform.GetChild(2).GetChild(1).GetComponent<Image>().color = new Color(255,164,0);
@@ -733,6 +733,10 @@ public class CameraControl : MonoBehaviour
 			if (knockPlayerDown) {
 				if (!knockedDown) {
 					players[index].GetComponent<Animator>().SetBool("isKnockedDown", true);
+					if (index == 1) {
+						Debug.Log("INDEX : " + index);
+						GameObject.Find("Whirlwind").GetComponent<TrailerMoveWhirlwind>().dropWhirlwind = true;
+					}
 					players[index].GetComponent<Character_Blink>().ChangeEyes(0);
 					players[index].GetComponent<Character_Blink>().ChangeMouth(0);
 					UpdateGUI(index);
