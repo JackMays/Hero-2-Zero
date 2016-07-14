@@ -327,8 +327,10 @@ public class CombatManager : MonoBehaviour {
 					    (player.HasProneState() && monAnims.HasIdleState()) || 
 					    (player.HasIdleState() && monAnims.HasDeadState()) /*|| player.HasDied()*/)
 					{	
+
 						player.transform.position = oriPlayerPos;
-						map.GetMonsterPrefabOnTile(tileX, tileY).transform.position = oriMonsterPos;
+						monAnims.gameObject.transform.position = oriMonsterPos;
+						monAnims.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
 
 						if (monster.HasDied())
 						{

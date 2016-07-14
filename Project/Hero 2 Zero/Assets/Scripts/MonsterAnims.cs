@@ -14,7 +14,12 @@ public class MonsterAnims : MonoBehaviour {
 	int deadID = Animator.StringToHash("isDead");
 	int runID = Animator.StringToHash("isRunning");
 
+	float runDelayCount = 0.0f;
+	float runDelayCap = 100.0f;
+	float runDelayIncrement = 0.6f;
+
 	bool justFought = false;
+	bool isRunDelay = false;
 
 	// Use this for initialization
 	void Awake () 
@@ -23,8 +28,20 @@ public class MonsterAnims : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if (isRunDelay)
+		{
+			if (runDelayCount >= runDelayCap)
+			{
+				Idle();
+			}
+			else
+			{
+				runDelayCount += runDelayIncrement;
+				Debug.Log ("pls " + runDelayCount);
+			}
+		}
 	}
 
 	public void Idle()
@@ -40,6 +57,8 @@ public class MonsterAnims : MonoBehaviour {
 			animatorCompo.SetBool(deadID, false);
 			animatorCompo.SetBool(runID, false);
 			animatorCompo.SetBool(idleID, true);
+
+			isRunDelay = false;
 		}
 	}
 	
@@ -128,6 +147,13 @@ public class MonsterAnims : MonoBehaviour {
 			
 			animatorCompo.SetBool(runID, true);
 		}
+	}
+
+	public void RunDelay()
+	{
+		isRunDelay = true;
+
+		gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
 	}
 
 	public bool HasFightAnimFinished()
